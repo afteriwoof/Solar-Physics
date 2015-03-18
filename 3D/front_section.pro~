@@ -1,0 +1,67 @@
+; code to calculate the tangent points of the ellipse in the quadrilateral and take only the front part
+
+; Created: 28-01-09
+; Last edited: 29-01-09 
+; Last edited: 23-04-09 to include clause for making the front section be the furthest points from the Sun.
+
+pro front_section, x, y, z, xe, ye, ze, front_x, front_y, front_z
+
+sz = size(xe, /dim)
+
+dist = dblarr(sz)
+
+for k=0,sz[0]-1 do dist[k]=sqrt((xe[k]-x[0])^2.+(ye[k]-y[0])^2.+(ze[k]-z[0])^2.) + $
+	sqrt((xe[k]-x[2])^2.+(ye[k]-y[2])^2.+(ze[k]-z[2])^2.)
+t1 = where(dist eq min(dist))
+
+for k=0,sz[0]-1 do dist[k]=sqrt((xe[k]-x[0])^2.+(ye[k]-y[0])^2.+(ze[k]-z[0])^2.) + $
+	sqrt((xe[k]-x[1])^2.+(ye[k]-y[1])^2.+(ze[k]-z[1])^2.)
+t2 = where(dist eq min(dist))
+
+for k=0,sz[0]-1 do dist[k]=sqrt((xe[k]-x[3])^2.+(ye[k]-y[3])^2.+(ze[k]-z[3])^2.) + $
+	sqrt((xe[k]-x[1])^2.+(ye[k]-y[1])^2.+(ze[k]-z[1])^2.)
+t3 = where(dist eq min(dist))
+
+for k=0,sz[0]-1 do dist[k]=sqrt((xe[k]-x[3])^2.+(ye[k]-y[3])^2.+(ze[k]-z[3])^2.) + $
+	sqrt((xe[k]-x[2])^2.+(ye[k]-y[2])^2.+(ze[k]-z[2])^2.)
+t4 = where(dist eq min(dist))
+
+print, t1, t2, t3, t4
+plots, xe[t1], ye[t1], ze[t1], color=2, psym=2, /t3d ;yellow
+plots, xe[t2], ye[t2], ze[t2], color=3, psym=2, /t3d ;red
+plots, xe[t3], ye[t3], ze[t3], color=4, psym=2, /t3d ;green
+plots, xe[t4], ye[t4], ze[t4], color=5, psym=2, /t3d ;blue
+
+if n_elements(t1) gt 1 then t1 = t1[1]
+if n_elements(t2) gt 1 then t2 = t2[1]
+if n_elements(t3) gt 1 then t3 = t3[1]
+if n_elements(t4) gt 1 then t4 = t4[1]
+
+heights = [sqrt(xe[t1]^2.+ye[t1]^2.+ze[t1]^2.),sqrt(xe[t2]^2.+ye[t2]^2.+ze[t2]^2.),$
+	sqrt(xe[t3]^2.+ye[t3]^2.+ze[t3]^2.),sqrt(xe[t4]^2.+ye[t4]^2.+ze[t4]^2.)]
+print, heights
+list = [t1,t2,t3,t4]
+print, list
+list = list[reverse(sort(heights))]
+print, list
+
+start = min([list[0],list[1]])
+finish = max([list[0],list[1]])
+front_x = xe[start:finish]
+front_y = ye[start:finish]
+front_z = ze[start:finish]
+print, start, finish
+
+if list[2] lt finish && list[2] gt start then begin
+	start = max([list[0],list[1]])
+	finish = min([list[0],list[1]])
+	front_x = [xe[start:sz[0]-1], xe[0:finish]]
+	front_y = [ye[start:sz[0]-1], ye[0:finish]]
+	front_z = [ze[start:sz[0]-1], ze[0:finish]]
+	print, 'change'
+	print, start, finish
+endif
+
+		
+
+end

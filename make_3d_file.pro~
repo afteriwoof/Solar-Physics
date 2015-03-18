@@ -1,0 +1,51 @@
+; Code to take the slices and put them into a file for Jose to make 3D vis.
+
+pro make_3d_file
+
+openw, lun, /get_lun, '3d_file.txt', error=err
+free_lun,lun
+
+openu, lun, '3d_file.txt', /append
+printf, lun, 'STEREO Event 2008-12-12  jbyrne6@gmail.com'
+printf, lun, 'NumberOfFrames 2'
+printf, lun, 'Frame 0'
+printf, lun, '  Time 2008:12:12:06:05'
+printf, lun, '  NumberOfEllipses 57'
+printf, lun, '  NumberOfPointsPerEllipse 101'
+free_lun, lun
+
+num=[4,5,7,55,57,58,60,61,62,63,64,67]
+ellipse_count = 0
+for j=0,2 do begin
+	k = num[j]
+	restore,'~/PhD/Data_Stereo/20081212/combining/cor1/0605/my_scc_measure/slice'+int2str(k)+'/ell.sav'
+	openu,lun,'3d_file.txt',/append
+	printf, lun, '  Ellipse '+int2str(ellipse_count)
+	ellipse_count+=1
+	for i=0,100 do printf, lun, xe[i], ye[i], ze[i]
+	free_lun, lun
+endfor
+for k=9,53 do begin
+	restore,'~/PhD/Data_Stereo/20081212/combining/cor1/0605/my_scc_measure/slice'+int2str(k)+'/ell.sav'
+	openu,lun,'3d_file.txt',/append
+	printf, lun, '  Ellipse '+int2str(ellipse_count)
+	ellipse_count+=1
+	for i=0,100 do printf, lun, xe[i], ye[i], ze[i]
+	free_lun, lun
+endfor
+for j=3,11 do begin
+	k = num[j]
+	restore,'~/PhD/Data_Stereo/20081212/combining/cor1/0605/my_scc_measure/slice'+int2str(k)+'/ell.sav'
+	openu,lun,'3d_file.txt',/append
+	printf, lun, '  Ellipse '+int2str(ellipse_count)
+	ellipse_count+=1
+	for i=0,100 do printf, lun, xe[i], ye[i], ze[i]
+	free_lun, lun
+endfor
+
+openu, lun, '3d_file.txt', /append
+printf, lun, 'EndOfFile'
+free_lun, lun
+
+
+end

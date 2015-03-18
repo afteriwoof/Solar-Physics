@@ -1,0 +1,39 @@
+; Trying to solve simultaneous equations by Gauss elimination
+
+; Created: 11-09-08
+
+pro solve_simul, matrix
+
+i=0
+j=0
+sz = size(matrix, /dim)
+m = sz[0]
+n = sz[1]
+
+while(i lt m and j lt n) do begin
+	maxi = i
+	for k=i,m-1 do begin
+		if abs(matrix[j,k]) gt abs(matrix[j,maxi]) then maxi=k
+	endfor
+	if matrix[j,maxi] ne 0 then begin
+		print, matrix & pause
+		temp = matrix[*,i]
+		matrix[*,i] = matrix[*,maxi]
+		print, matrix & pause
+		matrix[*,maxi] = temp
+		print, matrix & pause
+		matrix[*,i] = matrix[*,i] / matrix[j,i]
+		print, matrix & pause
+		for u=i+1,m-1 do begin
+			matrix[*,u] -= (matrix[*,i] * matrix[j,u])
+			print, matrix & pause
+		endfor
+		i+=1
+	endif
+	j+=1
+endwhile
+
+
+
+
+end

@@ -1,0 +1,8 @@
+; Code to remove the (0,0) origin point from the 3D reconstructions
+
+pro remove_origin
+
+
+
+
+end
