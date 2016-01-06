@@ -1,40 +1,88 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
-{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+Revisiting SECCHI - 3D Reconstruction
 
-\f0\b\fs24 \cf0 ; Guide to download, prep, process, ellipse-fit, and 3D reconstruct STEREO CME data.\
-
-\b0 \
-\
-
-\b 1)
-\b0 \
-; Input start and end dates, detector, spacecraft, and this will download, ingest, and prep the data in a file structure under Postdoc/Data_Stereo/.\
-\
-download_prep_stereo, start\'92yyyy/mm/ddThh:mm\'92, end\'92yyyy/mm/ddThh:mm\'92, \'91cor1/2\'92, \'91stereo_a/b\'92\
-\
-\
-
-\b 2a)
-\b0 \
-; Perform image differencing (running or base):\
-\
-fls = file_search(\'91*\'92)\
-rdiff = differencing(fls)\
-fdiff = differencing(fls,/fixed)\
-\
-automated_3d, base_path, /difference\
-\
-
-\b 2b)\
-
-\b0 ; Perform CORIMP detections (if dynamic images available) <\'97 mostly for LASCO, problematic for the CORs.\
-\
-automated_3d, base_path, /run_detections\
-\
-\
-
-\b 3)\
-}
+Prepping: Download data & sccingest
+data = vso_search(date='YYYY/MM/DDTHH:MM-YYYY/MM/DDTHH:MM',inst='secchi',detector='cor1/2',source='stereo_a/b',/url)
+sock_copy, data.url, out_dir='YYYYMMDD'
+sccingest, files=file_search('YYYYMMDD/*fts')
+cor1:
+list = cor1_pbseries('yyyymmdd','a/b')
+secchi_prep, list.filename, in, da, /polariz_on, /calroll, /interpolate, /write_fts
+cor2:
+list = cor1_pbseries('yyyymmdd', 'a/b', /cor2)
+secchi_prep, list.filename, in, da, /polariz_on, /calfac_off, /calimg_off, /write_fts
+fls = file_search('*fts')
+$mkdir bkgsub_unwarp
+for k=0,n_elements(fls)-1 do begin & $
+da = sccreadfits(fls[k], in) & $
+bkg = scc_getbkgimg(in) & $
+da -= bkg & $
+da = cor2_warp(da, in) & $
+da = rm_inner(da, in, dr_px, thr=2.75:cor2a / 3:cor2b) & $
+da = rm_outer(da, in, dr_px, thr=15:cor2a / 16.9:cor2b) & $
+sccwritefits, 'bkgsub_unwarp/'+in.filename, da, in, comments='jason' & $
+endfor
+Characterising CME front:
+@pandc.b
+save, xf, yf, f='frontpandc_HHMM.sav'
+image = intarr(2048,2048)
+for i=0,n_elements(xf)-1 do image[xf[i],yf[i]]=1
+errs=1
+ang=2
+noplot=0
+front_ell_kinematics,image,errs,in,da,ang,ei,re,xe,ye,pe,mhf,mhe,aa,noplot
+save, ei, re, xe, ye, pe, mhf, mhe, aa, f='ell_arcsec_HHMM.sav'
+x2png, '(diff_)ell_HHMM.png'
+daa_ell = da[*,*,k]
+print, where(daa_ell eq 888)
+print, where(daa_ell eq 988)
+x=xe/in[k].cdelt1+in[k].naxis1/2.-in[k].xcen/in[k].cdelt1
+y=ye/in[k].cdelt2+in[k].naxis2/2.-in[k].ycen/in[k].cdelt2
+res=polyfillv(x,y,2048,2048)
+daa_ell[res]=888
+for j=0,100 do daa_ell[x[j],y[j]]=988
+plot_image, daa_ell
+print, in[k].date_obs
+daa_ell_HHMM = daa_ell
+save, daa_ell_HHMM, f='daa_ell_HHMM.sav'
+save, x, y, f='xya_ell_HHMM.sav'
+x2png, 'daa_ell_HHMM.png'
+********
+dab_ell = da[*,*,k]
+print, where(dab_ell eq 888)
+print, where(dab_ell eq 988)
+x=xe/in[k].cdelt1+in[k].naxis1/2.-in[k].xcen/in[k].cdelt1
+y=ye/in[k].cdelt2+in[k].naxis2/2.-in[k].ycen/in[k].cdelt2
+res=polyfillv(x,y,2048,2048)
+dab_ell[res]=888
+for j=0,100 do dab_ell[x[j],y[j]]=988
+plot_image, dab_ell
+print, in[k].date_obs
+dab_ell_HHMM = dab_ell
+save, dab_ell_HHMM, f='dab_ell_HHMM.sav'
+save, x, y, f='xyb_ell_HHMM.sav'
+x2png, 'dab_ell_HHMM.png'
+*********
+Determining 3D slices:
+Then move daa/b_ell_HHMM.sav and the two fits files to combining/cor1or2/HHMM/.
+And in that folder do:
+fls=file_Search('*fits*')
+da=sccreadfits(fls[0],ina,/nodata)
+da=sccreadfits(fls[1],inb,/nodata)
+spacecraft_location, ina, inb
+$mkdir my_scc_measure
+cd,'my*'
+restore,'../daa*', /ver
+restore,'../dab*',/ver
+$mkdir slice1 slice2 slice3 slice4 slice5 slice6 slice7 slice8 slice9 slice10 slice11 slice12 slice13 slice14 slice15 slice16 slice17 slice18 slice19 slice20 slice21 slice22 slice23 slice24 slice25 slice26 slice27 slice28 slice29 slice30 slice31 slice32 slice33 slice34 slice35 slice36 slice37 slice38 slice39 slice40 slice41 slice42 slice43 slice44 slice45 slice46 slice47 slice48 slice49 slice50 slice51 slice52 slice53 slice54 slice55 slice56 slice57 slice58 slice59 slice60 slice61 slice62 slice63 slice64 slice65 slice66 slice67 slice68 slice69 slice70 slice71 slice72 slice73 slice74 slice75 slice76 slice77 slice78 slice79 slice80 slice81 slice82 slice83 slice84 slice85 slice86 slice87 slice88 slice89 slice90 slice91 slice92 slice93 slice94 slice95 slice96 slice97 slice98 slice99 slice100 slices_all bogus_slices
+.r my_scc_measure
+my_scc_measure, daa_ell_HHMM, dab_ell_HHMM, ina, inb  (click in left window)
+.r my_scc_measure_readin
+my_scc_measure_readin, daa_ell_HHMM, dab_ell_HHMM, ina, inb (click in right window)
+.r get_wcs_intersects
+get_wcs_intersects, ina, inb
+runthru, ina, inb
+; write down the bogus slices in bogus.txt file in folder bogus_slices/.
+cd,'slices_all'
+plot_slices, slice_begin, slice_end, '../bogus_slices/bogus.txt', 'INSTR DATE', …
+************
+; Can then use gather_ell.pro
