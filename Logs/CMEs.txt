@@ -1,0 +1,85 @@
+CMEs
+
+http://soho.nascom.nasa.gov/pickoftheweek/old/17dec2010/
+
+
+2003/11/04 dimming
+A CME was observed behind the East limb on March 22nd, possibly related to returning AR 0985.
+There is a CME in progress at 1900 on 3/25/08 UT, at PA=100, associated with flares in Active Regions on and near the East limb and an EPL that peaked around 1849UT.
+
+2004/01/21 Two prominence eruptions -> CMEs.
+
+2009-04-17 LASCO-C2 10:06UT
+
+
+STEREO:  (also see SECCHICMESummaryTable.pdf)
+
+2006/12/30 Cor2-A/B http://secchi.nrl.navy.mil/movies/061230_cor2_comb.mpg
+can see filament lift off in EUVI 304
+
+2007/05/15 Large CME in East  http://cor1.gsfc.nasa.gov/images/movies/2007-May-15b.mpg
+
+2007/05/20 Faint CME in the south which is interesting.
+
+2007/07/08 CME with weak front in Cor1 maybe worth analysing?
+
+2007/07/29-30 Stereo west limb fast CMEs, very faint.
+
+2007/08/02 mostly Ahead., very faint.
+
+2007/10/08 COR1/2-B analysis done for paper.
+			The COR1-A data is very faint, might not come up in edge detections.
+
+2007/10/18 No discernible event!
+
+2007/11/04 Slow spiral CME observed in both, though front might be hard to discern. Worth analysing.
+
+2007/11/14-22
+
+2007/11/16 11:00 COR2-A
+
+2007/12/24 Seen mostly in Ahead Cor2 and not in behind.
+
+2008/02/04 No good CME visible!
+
+2008/03/25 Very clear in EUVI and both Cors. However, analysis shows the actual front is too faint in Cor1a so there's a jump in the heights from Cor1 to Cor2.
+
+2008/04/26 Clear in Ahead and is a halo in Behind so could be good for 3D reconstructions.
+
+2008/05/17 Seen good in Ahead and faint partial halo in Behind.
+
+2008/05/23 Not a clearly defined event in either spacecraft.
+
+2008/06/01 Seen in Ahead, but faint in Behind (CACTus didn't detect it in Behind. CDAW catches it from 'side' very faint!) Mostl et al., 2009 ApJ
+
+2008/06/12 Very diffuse front too hard to discern. Funny twisting event though!
+
+2008/06/26 Great CME in Behind, some unknown 'spinning' in Ahead can't see CME.
+
+2008/07/07 Good CME in Ahead Cor2, seen straight on (partial halo) in Behind. Slow rise in Cor1 hard to discern, especially in Behind (running difference bad). Might be a fast CME overtaking slow one!?!
+
+2008-12-12 Great CME from each viewpoint & Cor1/2 into HI1/2, Earth directed (Davis et al.) with ACE data etc.
+
+2009-01-21
+Cor2 and HI visible.
+http://soho.nascom.nasa.gov/pickoftheweek/old/06feb2009/
+
+2009-02-13
+Not great but worth a look !
+
+2009-02-20 seen in SOHO pick of the week
+http://soho.nascom.nasa.gov/pickoftheweek/old/20feb2009/
+
+2009-08-04 
+slow rising CME from noon seen mostly from Behind where it's very bright.
+
+2009-11-18
+Spectacular twisting and deflection of erupting prominence:
+http://soho.nascom.nasa.gov/pickoftheweek/old/20nov2009/
+Has a CME in Behind.
+
+2009-11-21
+Great 'classic' CME visible in Ahead from 10:00  
+http://soho.nascom.nasa.gov/pickoftheweek/old/25nov2009/
+And is somewhat visible in the beacon data for Behind so might be possible to analyse 3D.
+http://stereo-ssc.nascom.nasa.gov/browse/2009/11/21/

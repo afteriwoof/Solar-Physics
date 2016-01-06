@@ -1,0 +1,1555 @@
+PROPER Way to ; Make sphere of the Sun
+sphere = fltarr(21,21,21)
+for x=0,20 do for y=0,20 do for z=0,20 do $
+	sphere[x,y,z] = sqrt((x-10)^2.+(y-10)^2.+(z-10)^2.)
+shade_volume, sphere, 10, v, p
+v = (v/max(v))*2 - 1
+plots, v, psym=3, color=6, /t3d
+
+
+MATLAB
+>> cd ~/PhD/Data_Stereo/20081212/a/cor2/bkg_sub_unwarp_median_rm/
+>> fls=dir('*.fts');
+>> cd ~/PhD/MATLABstuff/Trinity08/
+>> edges_sep(fls);
+
+10 to 15-01-10
+
+Winter School, St. Andrews.
+
+18-01-10
+
+Morning working through emails and some papers.
+Met Peter to form action plan for the week.
+Worked through the Kilpua et al., 2009 paper and references within.
+
+19-01-10
+
+Emails about the reply to Leslie Sage and arguments on deflection etc.
+Emails with Jose about the new 3D front to reconstruct.
+
+20-01-10
+
+Wrote up Papers_Expansion and emailed around.
+
+21-01-10
+
+Looking at the source region and a power-law fit to the deflection and angular width expansion.
+SR: ~50-55 degrees
+http://solarmonitor.org/full_disk.php?date=20081212&type=bbso_halph&indexnum=1
+http://solis.nso.edu/vsm/data_summary/DataSumm3.php?stime=1228114800&etime=1199170800#161
+
+22-01-10
+
+Wrote CALC_DOWN.pro to determine the downward force in our observed deflection and compare this to the deflection force an object along our CME trajectory would experience in a simple dipole. The results will show that if their form is different then additional forces must be at play over just the dipole field (argues for gas pressure, driving forces, etc.).
+
+25-01-10
+
+Working through Pneuman & Kopp 1971 paper from powerpoint presentation on solar wind/field structure.
+Email discussion with DavidPS about CME images.
+
+29-01-10
+
+PG Seminar
+SGM
+
+31-01-10
+
+Spent an hour just correcting the 3D text file to send Jose since I'd another looping error over the constrained ellipse slices.
+
+01-02-10
+
+Jose trying to make binaries.
+Working on error simulation through noising ellipse image into matlab and see where edge detections lie.
+
+In folder Error_Analysis/
+
+IDL
+da=sccreadfits(file_search('*fts'),in, /nodata)
+im=fltarr(2048,2048)
+restore,'xy_ell0822.sav'
+res=polyfillv(x2,y2,2048,2048)
+im[res]=1.
+im=im+randomu(seed,2048,2048)*2.
+save, im, f='im_snr3-2.sav'
+sccwritefits, 'noised_ell.fts', im, in, comments='jason'
+
+Matlab:
+cd ~/PhD/Error_Analysis/snr3-2/
+im=fitsread('noised_ell.fts');
+imagesc(im);
+cd ~/PhD/MATLABstuff/Summer07
+edge=CMEfront2(im);
+cd ~/PhD/Error_Analysis/snr3-2/scale4
+imwrite(edge,'edge.png');
+
+IDL:
+edge = flip(read_png('edge.png'))
+plot_image, edge[700:900,1000:1200]
+plots, x2-700, y2-1000, color=3,psym=1
+x2png, 'edge_compare.png'
+plot_image, edge
+plots, x2, y2, color=3
+x2png, 'edge_compare_large.png'
+
+
+02-02-10
+
+Got the binaries from Jose and managed to make a couple movies.
+Talked over the errors with Shane, suggests 4pixels in HI1.
+
+03-02-10
+
+Reading through notes for replying to Leslie Sage and papers (like ones Peter emailed today).
+Meeting: notes on how to do plots, what the big science questions are and how we answer them, draw up response to Leslie. Redraft paper now.
+
+04-02-10
+
+Editing kins_figure4.pro
+pwd
+~/PhD/Data_Stereo/20081212/combining2/max_ells_fronts
+kins_figure4,'kins_meanspread.txt',/edges,/occulter,/mids,/tog,/heights
+Writing byrne_20100204.doc nature paper.
+
+05-02-10
+
+Claire's viva.
+
+08-02-10
+
+Working on the paper. Emailed draft.
+Graphic Design print projet portfolio.
+
+09-02-10
+
+Worked on paper some more and coded up plot_slices_paper6.pro to make the figure 2 image for the nature paper with the constrained fronts of the reconstruction.
+
+plot_slices_paper7,30,25,/zoom,/no_proj,/no_ell,/nolabels
+
+(see also make_paper_images.txt)
+
+10-02-10
+
+Morning chat with Peter about the magnetic dipole and how we can calculate the distance along the equatorial for the deflection to cross in a standard dipole and compare to our solar wind case.
+
+http://books.google.ie/books?id=e4yupcOzJxkC&lpg=PA32&ots=6ytfVZfiFR&dq=dipole%20field%20radius%20latitude&pg=PA32#v=onepage&q=dipole%20field%20radius%20latitude&f=false
+
+Wrote DIPOLE_CROSSING.pro
+
+11-02-10
+
+Spent the day witing the cover letter response with Peter.
+
+12-02-10
+
+Editing cover letter response.
+
+15-02-10
+
+Meeting with Peter to get final draft of cover letter. Met Jose to make 3D movies. Worked on the frames on laptop for back projected movie. Emails about the plots/movies.
+
+16-02-10
+
+Going over the cover letter and paper. Remade the 3D movie with Jose. Need to remake the figure2.
+Meeting, working through changes and the images/movies.
+Made the da_0822-1452_rm.sav of the too much inner removed occulter for the movie.
+
+17-02-10
+
+Working on text.
+
+18-02-10
+
+More text. Pretty Cor2 image NRL emails.
+On 17 February 2010 18:36, Nathan Rich (Contractor) <nathan.rich.ctr@nrl.navy.mil> wrote:
+Jason,
+You should be able to replicate our website images with:
+
+IDL> bytimg=scc_mk_image(filename,times=3)
+
+That's the short answer. The long answer is that the cor2 images on our website come from total-brightness images computed from the polarized sequences. These are created with the command:
+
+IDL> secchi_prep, three_filenames, hdrout, imout, savepath=outdir, /polariz, /write_fts,  /calimg_off, /nocalfac, /precomm, /pipeline
+
+and then the output of this command (FITS file) is input into scc_mk_image.pro. These images are generated with the scc_daily_pretties.pro.
+
+-nathan
+
+
+19-02-10
+
+Friday journal club.
+
+22-02-10
+
+Email about the figures.
+Reading Wang et al., 2009:
+What thermodynamic process does the CME plasma under- 
+go? What happens with the various forces involved? 
+Limited knowledge on these global issues were obtained 
+through indirect ways, largely from the statistical combina- 
+tion of observations of many CMEs from multiple space- 
+craft over a long time period.axis and independent of time. 
+
+It should be noted that all the above conclusions were 
+established on statistical surveys, which cannot review the 
+detailed evolution behavior of any individual CMEs.
+
+Working through the paper byrne_paper_20100222 / refs.doc
+Emailed most finalised draft.
+
+Working on the pretties Cor2 images to put into back_proj_movie_frames_pretties.pro
+
+23-02-10
+
+Found a problem with the cor2a/1052, 1122 and 1152 fronts - wasn't using the most updated ones.
+
+So,
+Had to go to 1122/.../slices_all and use gather_ells,/fronts to remake ells_fronts1122.sav
+Then go to ells_comb/ and restore,'../ells_fronts/ells_fronts1122.sav' and '../ells/ells1122.sav' and see what slices_to_keep_in_full and do 
+@eq.b
+k=0
+@sub.b
+IDL> for k=46,75 do begin & $
+IDL> xcs[*,k]=xes[*,k] & $
+IDL> ycs[*,k]=yes[*,k] & $
+IDL> zcs[*,k]=zes[*,k] & $
+IDL> endfor
+IDL> save, xcs,ycs,zcs,f='new_comb1122.sav' --> which got renamed to replace ells_comb1122.sav
+
+Trying to make my own pretties without the mask for Cor2b:
+temp5=scc_mk_image(fls[k],/nologo,/nodatetime,/norotate,outhdr=hdr,/noscale)
+plot_image, bytscl(alog(temp5),-0.04,0.049)
+IDL> mask=dblarr(2048,2048)
+IDL> mask[*,*]=1           
+IDL> mask=rm_inner(mask,in[0],dr_px,thr=2.8)
+IDL> mask=rm_outer(mask,in[0],dr_px,thr=16.4)
+IDL> mask=rebin(mask,1024,1024)
+IDL> plot_image, bytscl(alog(temp5),-0.04,0.089)*mask
+
+Finally happy with pretties_mask_1024.sav !
+
+Looked at cropping bmp images for the movie of reconstruction.
+
+24-02-10
+
+Meeting to finalise paper and start online submission to Nature.
+Cropping movie.
+Looking at the EUVI 304 data to see what heights the prominence spans for what lattitudes. Generally positioned above ~50 deg on disk and has increasing heights from 1.3 R_Sun as it erupts from ~03:00 UT.
+
+25-02-10
+
+Met Jose in the morning to remake more zoomed in movie.
+SWG LOC meeting.
+
+Working on scc_measure on EUVI data:
+(degrees)(rsun)c.f. power law (x=(68/a)^(1/0.9))
+a=45  x=1.30  x=1.58
+a=40  x=1.45  x=1.80
+a=35  x=1.65  x=2.09
+
+Reading chpt.1 of Ken Phillips book club.
+
+26-02-10
+
+Book club.
+Rejection from Nature. again.
+
+01-03-10
+
+Working on Science latex file for 2010 resubmission. byrnetextfigs_20100301.tex
+Applying for SPD  abstract submission etc.
+
+02-03-10
+
+Finalising Science resubmission latex and cover letter.
+Tie-pointing the EUVI 304 prominence data for 20081212 event -->  prominence_apex.txt
+
+IDL> scc_measure,sigrange(alog(daa[*,*,k])),sigrange(alog(dab[*,*,k])),ina[k],inb[k],wsize=800,outfile='temp17.txt'
+
+IDL> $cat temp0.txt temp1.txt temp2.txt temp3.txt temp4.txt temp5.txt temp6.txt temp7.txt temp8.txt temp9.txt temp10.txt temp11.txt temp12.txt temp13.txt temp14.txt temp15.txt temp16.txt temp17.txt > all.txt
+
+Sent reply to Sage. Sort of angry!
+
+03-03-10
+
+Reply from Sage - wants us to iterate on the abstract.
+Redid it.
+
+04-03-10
+
+Sent new abstract. Reply from Sage unimpressed. Template.
+
+05-03-10
+
+More working on abstract.
+Pizza seminar.
+Group Meeting.
+
+08-03-10
+
+Redid abstract again, meetings with Peter on it.
+Stats seminar.
+
+Wrote ang_widths.pro in /PhD/Data_Stereo/20081212/combining2/ells and save output aws.sav as the upper limit of angular widths that could occur from reconstruction.
+Did the same but called in the HI1 files and saved awshi1.sav, then used all of them to make kins_figure4_ang_widths_full.pdf.
+ade kins_figure4_ang_widths_constCOR2.pdf to see if the early COR2 frames were underestimated would it change the fit at all, and no!
+
+09-03-10
+
+Tonsillitis.
+
+10-03-10
+
+Worked on abstract and some of paper to resubmit to Science.
+Conlon.
+
+11-03-10
+
+Finalising paper for Science again.
+
+12-03-10
+
+Submitted Science.
+Journal club.
+
+15-03-10
+
+Starting work on talk for SWG.
+Made the pngs of euvi for ahead and behind and 20081212_EUVI.mov.
+
+16-03-10
+
+Reading some theory and making swg talk.
+LOC meeting.
+Paddy's eve!
+
+18-03-10
+
+More talk preparation.
+Some paper reading.
+Working on making the ellipse images on the pretties (cor2). Saved mov_cor2a_pretties_ells.sav and cor2a_1222.png cor2a_1222_zoom.png.
+
+19-03-10
+
+Going over talks for SWG next week.
+Book Club.
+
+
+STEREO SWG21 22-26 March 2010
+
+
+07-04-10
+
+Working through the scale edges on 20081212/b/cor2/bkg_sub_unwarp_median_rm/edg_images/redone into redone2/ folder.
+
+restore, 'fdiff_masks_0822-1452.sav', 'rdiff_masks_0822-1122.sav'
+mreadpngs, file_search('../scale5/*png'), edges5     and edges6
+for k=0,8 do combined[*,*,k]=(fdiff_masks[*,*,k]+rdiff_masks[*,*,k])+edges5[*,*,k+2]/255.+edges6[*,*,k+2]/255.
+se=dblarr(4,4)
+se[*,*]=2.
+plot_image, combined[1050:1950,700:1600,7]+dilate(frontspandc[1050:1950,700:1600,7],se)                       
+@pandc.b
+save, xf, yf, f='../redone2/frontpandc_1122.sav' 
+
+So redone2/ should contain frontpandc_0922 up to 1152 anyway.
+
+08-04-10
+
+Saved frontspandc_0922-1152.sav in redone2/.
+Save out the xyb_0952.sav to xyb_1222.sav which are the coordinates of the ellipse fits to the fronts.
+Put each of the my_scc_measure folders under the files which I'm redoing into orig/ and used the new dab_ell_HHMM.sav to redo each slices.
+Bouncy Ball
+
+09-04-10
+
+SGM
+
+12-04-10
+
+Used gather_ells.pro to save out the ells.sav, ells_fronts.sav and max_fronts.sav from the redone cor2 0952 - 1222 and wrote back_proj_movie_frames_redone.pro to call from the redone folders.
+Started pausing back_proj_movie_frames_redone.pro to take note of slices_to_keep_in_full_redone.txt.
+Edited back_proj_movie_frames_pretties_redone.pro in the same way.
+
+13-04-10
+
+Working on the JASR paper corrections.
+Started going through the rest of the fronts in Cor2-B for the 20081212 event from 1222 to 1452 times.
+
+14-04-10
+
+Finished the frontspandc_0822-1452.sav for the Cor2B 20081212 fronts now more correctly at scale5 edge detections.
+The individual fronts saved out [xf,yf] need to be xf+1050 and yf+700 in the 2048x2048 images.
+
+Going through the front_ell_kinematics to save out the ellipse and front coords for the redone2/.
+PhD/Data_Stereo/20081212/b/cor2/bkg_sub_unwarp_median_rm/edg_images/redone2
+IDL> i=6                                                                                    
+IDL> front_ell_kinematics,frontspandc[*,*,i],1,in[i],da[*,*,i],2,ei,re,xe,ye,pe,mhf,mhe,aa,0
+IDL> save, xe, ye, f='ell_arcsec_1122.sav'                                                  
+IDL> $mv front_points.sav front_arcsec_1122.sav                                           
+
+Then:
+k=9 (upto 13)
+dab_ell = da[*,*,k]
+print, where(dab_ell eq 888)
+print, where(dab_ell eq 988)
+x=xy_ells[*,k,0]/in[k].cdelt1+in[k].naxis1/2.-in[k].xcen/in[k].cdelt1
+y=xy_ells[*,k,1]/in[k].cdelt2+in[k].naxis2/2.-in[k].ycen/in[k].cdelt2
+res=polyfillv(x,y,2048,2048)
+dab_ell[res]=888
+for j=0,100 do dab_ell[x[j],y[j]]=988
+plot_image, dab_ell
+print, in[k].date_obs
+
+dab_ell_1322=dab_ell
+save, dab_ell_1322, f='dab_ell_1322.sav'
+save, x, y, f='xyb_1322.sav'
+
+Then move dab_ell_1322.sav to combining2/cor2/1322/.
+And in that folder (having moved previous dab_ell_1322.sav and my_scc_measure folder into orig/.) do:
+fls=file_Search('*fts')
+da=sccreadfits(fls[0],ina,/nodata)
+da=sccreadfits(fls[1],inb,/nodata)
+$mkdir my_scc_measure
+cd,'my*'
+restore,'../daa*
+restore,'../dab*
+
+$mkdir slice1 slice2 slice3 slice4 slice5 slice6 slice7 slice8 slice9 slice10 slice11 slice12 slice13 slice14 slice15 slice16 slice17 slice18 slice19 slice20 slice21 slice22 slice23 slice24 slice25 slice26 slice27 slice28 slice29 slice30 slice31 slice32 slice33 slice34 slice35 slice36 slice37 slice38 slice39 slice40 slice41 slice42 slice43 slice44 slice45 slice46 slice47 slice48 slice49 slice50 slice51 slice52 slice53 slice54 slice55 slice56 slice57 slice58 slice59 slice60 slice61 slice62 slice63 slice64 slice65 slice66 slice67 slice68 slice69 slice70 slice71 slice72 slice73 slice74 slice75 slice76 slice77 slice78 slice79 slice80 slice81 slice82 slice83 slice84 slice85 slice86 slice87 slice88 slice89 slice90 slice91 slice92 slice93 slice94 slice95 slice96 slice97 slice98 slice99 slice100 slices_all bogus_slices
+.r my_scc_measure
+my_scc_measure, daa_ell_1322, dab_ell_1322, ina, inb
+
+.r my_scc_measure_readin
+my_scc_measure_readin, daa_ell_1322, dab_ell_1322, ina, inb
+.r get_wcs_intersects
+get_wcs_intersects, ina, inb
+@runthru.b
+cd,'slices_all
+.r plot_slices
+plot_slices, /zoom, /no_ell, /no_proj, /room_all, /nolabels
+
+
+Used back_proj_movie_frames_pretties_redone.pro to go through the combined fronts now and saved the slices_to_keep_in_full_redone file again.
+
+15-04-10
+
+In folder ells_comb/redone/
+restore, '../../ells_fronts/redone/ells_fronts0952.sav', /ver
+restore, '../../ells/redone/ells0952.sav', /ver
+xcs = xfs
+ycs = yfs
+zcs = zfs
+for k=55, 76 do begin & $
+xcs[*,k] = xes[*,k] & $
+ycs[*,k] = yes[*,k] & $
+zcs[* k] = zes[*,k] & $
+endfor
+save, xcs, ycs, zcs, f='ells_comb0952.sav'
+
+Saved all the new ells_combHHMM.sav for Cor2.
+
+Redid the 2flankpts by:
+in folder ells_comb/redone
+fls=file_Search('ells_comb*sav')
+restore,'../../../allhdrs.sav'
+ang_width_3d, fls, allhdrs
+then the saved 2flankptsHHMM.sav were moved to 2flankpts/redone/.
+Then edited add_flanks.b in the corresponding folder for 0822-1452.
+
+Used kins_meanspread.pro to write out the new kins_meanspread.txt file in max_ells_fronts/redone/.
+
+16-04-10
+
+David's funeral.
+
+19-04-10
+
+Downloading data from 20081113 again in redone/ to see how it might fare being reanalysed for 3D work.
+Looking into how it should be prepped also; seems like the only real issue for cor1 is background subtracting, as using /calroll will combine the roll background and the monthly minimum background in the prepping. Probably use total brightness for consistency with cor2 though it's ideally better to use polarised brightness to remove as much scattering and f-corona so low down.
+
+20-04-10
+
+Prepping the data:
+20081113/redone/a/pB_bkgsub/ is the secchi_prep, list.filename, /polariz_on, /pb, /write_fts
+20081113/redone/a/pB_calroll/ is the secchi_prep, list.filename, /polariz_on, /pb, /write_fts, /calroll
+
+nb: don't think I need the /roll keyword for rotating the background if the difference is > 1 since it lists it in the prepping as ~0.3.
+
+Viewing data at bytscl(alog(da), -25, -17)
+fixed-difference smoothed seems best for viewing CME.
+for k=1,70 do plot_image, smooth(sigrange((da[*,*,k]-da[*,*,0]),/use_all,frac=0.95),3,/ed)
+for k=1,70 do da_fdiff_fmedian[*,*,k-1]=fmedian((da[*,*,k]-da[*,*,0]),3) 
+xstepper, sigrange(da_fdiff_fmedian,/use_all,frac=0.99), xs=750
+
+Want to run Matlab edge detection:
+>> cd ~/PhD/Data_Stereo/20081113/redone/b/cor1/pB_calroll/
+>> fls=dir('*.fts');
+>> cd ~/PhD/MATLABstuff/Trinity08/
+>> edges_sep(fls);
+
+PROPER Way to ; Make sphere of the Sun
+sphere = fltarr(21,21,21)
+for x=0,20 do for y=0,20 do for z=0,20 do $
+	sphere[x,y,z] = sqrt((x-10)^2.+(y-10)^2.+(z-10)^2.)
+shade_volume, sphere, 10, v, p
+v = (v/max(v))*2 - 1
+plots, v, psym=3, color=6, /t3d
+
+Editing the codes in 20080426/combining/cor1/1435/my_scc_measure/slices_all/ to be front_section_full.pro and gather_ells_full.pro.
+
+Saved ells.sav, ells_fronts.sav, and max_fronts.sav in 20080426/ folders to get toward seeing the kinematics.
+
+21-04-10
+
+Finished the max_ells_fronts for 20080426 and working on kins_3d.pro to output the kinematics. Limited by having so few frames in reconstruction though!
+Looking at the 20091121 event now...
+
+cor1a: secchi_prep, list.filename, /polariz_on, /calroll, /write_fts
+
+22-04-10
+
+Reading book club chapt.
+
+23-04-10
+
+Book club.
+
+26-04-10
+
+Create new folder called "Thesis"
+
+27-04-10
+
+Looking at how the power-law behaves.
+
+28-04-10
+
+Wrote kins_powerlaws.pro and creating lots of variations of plots in the PhD/Data_Stereo/20081212/combining2/max_ells_fronts/redone folder.
+
+29-04-10
+
+Making presentation
+
+30-04-10
+
+SGM
+
+Last week
+
+Just been studying up Aschwanden's book.
+Graphic Design work due next week!
+
+10-05-10
+
+Meeting with Peter about retreat, etc.
+
+11-05-10
+
+Started working on CME theory for the retreat presentation. Mostly flux-rope model.
+
+12-05-10
+
+Print graphic design stuff.
+
+13-05-10
+
+Working on Retreat presentation.
+
+14-05-10
+
+ARG Retreat, Dunsink Observatory.
+
+17-05-10
+
+Made additions and some edits for David on 'Contribution for the Solar Feature Detection Book Chapter'.
+
+Made points and comments on the Nat. Comms. editor's comments and referees' reports.
+
+18-05-10
+
+Worked on paper a bit.
+
+19-05-10 to 30-05-10
+
+SPD Miami
+
+31-05-10
+
+Slept in, jetlag buzz, mostly emails.
+
+01-06-10
+
+Meeting with Peter about paper corrections.
+Have to go through the deflection and velocity along trajectory.
+Issues to address in rewriting, mostly expanding all details and sections.
+New plots, maybe another with the height time and angle time on them.
+Thesis rough outline - should throw the transfer report into intro, and paper into chapters.
+Think on external examiner too (R Walsh, R Harrison, S Poedts, ...).
+Dinner and drinks for Larisza going away for marriage.
+
+02-06-10
+
+Slow morning...
+Working on paper.
+
+03-06-10
+
+Working on paper.
+
+04-06-10
+
+Journal Club.
+
+Bank Holiday
+
+08-06-10
+
+Working on paper. byrne20100608.tex emailed draft to Peter.
+Emailed to accept Hawaii position!
+
+09-06-10
+
+Working on paper. byrne20100609.tex
+
+10-06-10
+
+Trying to plot out WIND data... looks ok!
+Reading book club chapter.
+
+11-06-10
+
+Book club
+
+13-06-10
+
+Came in to work on paper edits esp. discussion sect.
+
+14-06-10
+
+Finished writing draft paper and emailed.
+Looking at coding up the WIND plot - having issues with reading in the date format dd-mm-yyyy with readcol because anytim won't work to use utplot.
+Working through the pedantics of references etc in the latex (which is from science) for nat. commun.
+
+15-06-10
+
+Shane's edits/comments on the draft.
+Paper from Claire/JGR by Odstrcil & Pizzo 1999.
+Wrote KINS_NAT_COMMUN.pro to plot out kinematics figure for Nat. Commun. paper.
+
+IDL> kins_nat_commun,'kins_meanspread.txt','../prominence_apex.txt',/heights,/edges,/prominence,/tog,/mids,/occult_widths
+
+Meeting:
+1) Plot WIND data
+2) Study the radial velocity
+3) Write editor/referee response.
+
+Wrote VEL_SPREAD.pro to plot out the different heights vel_spread.pdf and show that the lull in velocity seems apparent across the front, and this is shown in the older plots of all_angs.pdf and kins_meanspread_deflect.pdf and kins_meanspread_deflect_h.pdf but these were for the old front not redone.
+Looking at recpol.png of all the fronts plotted in same frames could it be an artifact of how the front 'distorts' as this distortion passes through the middle of the front to cause apparent increasing and decreasing acceleration before it propagates out with solar wind...?   --> see draft email today.
+Wrote RECPOL_FRONTS.b and recpol_fronts.png
+Writing code to take out only the parts of the front that aren't at the origin. REMOVE_ORIGIN.pro unfinished!!!
+
+Wrote GET_MAX_COORDS.b and took out the maximum heights from the max+2flanksHHMM.sav files and saved MAX_HEIGHTS.sav   
+Added the maximum velocity into vel_spread.pro and it hardly changes it at all !!! This isn't the proper way to do it though - want the max heights from the recpol (r,a) plots!
+What if it's that I have to take the maximum height and pythagoras it ?
+
+16-06-10
+
+Saved MAX_R_HEIGHTS.sav and MAX_R_THETA.sav
+Saved vel_spread.png from the code.
+Saved MAX_FRONT_XZ.png comparing the Midpoint of Front against the maximum height on the front - both having showed same velocity trend.
+Wrote PLOT_MAX_FRONTS_XZ.b
+Wrote PLOT_MAX_FRONTS_XZ_PROM.b and saved max_fronts_xz_prom.png to include the prominence heights.
+
+Emailed the Velocity Stall? email about the comparison of front measurments (and remade recpol_fronts_blue.png).
+
+Edited vel_spread.pro with keyword prom for plotting the prominence velocity as inner-CME material, and emailed vel_spread_prom.png and vel_spread_prom_zoom.png.
+
+Possibly see a GOES A-class flare at 06:30 for this 20081212 event?
+
+Wrote KINS_NAT_COMMUN_XDIR.pro to change the mid_r and prominence height to cartesian and see how it affects the velocity profile:
+ polrec, mid_r, mid_a, mid_rx, mid_rz, /degrees  and   polrec, prom_h, prom_lat, prom_hx, prom_hz, /degrees
+and saved  kins_nat_commun_xdir_accel_time.pdf , kins_nat_commun_xdir_accel_height.pdf and emailed.
+
+17-06-10
+
+Finished writing WIND_PLOTTER.pro and using the data file 'OMNI_HRO_1MIN_9382.txt1'
+wind_plotter,fl1,/no_lines,/tog and saved wind_plot.pdf and emailed.
+
+Replied to email about plotting the 2 panels source54N.png and overplotted on kins_nat_commun_xdir_source54N.pdf
+
+18-06-10
+
+Edited the wind_plotter.pro and changed the wind_plot.pdf according to email suggestions.
+Wrote PLOT_MAX_FRONTS_XZ_PROM_WIDTHS.b to see how all the width points look in xz plot too.
+SGM
+
+working on paper and started thesising
+
+01-07-10
+
+Making the multiscale threshold images of 1 April 2004 event:
+
+Recall:
+2       $ps2pdf plot.ps
+3       toggle
+4       plot_map, mapfilt2, /noaxes, /notit, /limb, pos=[0.5,0,1,1]
+5       plot_map, map2, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+6       !p.thick=2
+7       !p.color=255
+8       toggle, /landscape, xs=10, ys=5
+
+mu = moment(im, sdev=sdev)
+contour, im, lev=mu[0]+sdev, path_info=info, path_xy=xy, /path_data_coords
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		plots, x, y, psym=3 & $
+endfor
+
+canny_atrous2d, filt, modgrad, alpgrad
+index2map,in1,sigrange(modfilt2[*,*,3]),mapmodfilt23
+index2map,in1,sigrange(alpfilt2[*,*,3]),alpmodfilt23
+
+plot_image, sigrange(modgrad[*,*,5])
+
+mu=moment(modgrad[*,*,5],sdev=sdev)
+contour, modgrad[*,*,5], lev=mu[0]+sdev, path_info=info, path_xy=xy, /path_data_coords
+
+x = (xy[0,*]-in1.crpix1)*in1.cdelt1
+y = (xy[1,*]-in1.crpix2)*in1.cdelt2
+
+toggle, f='modmapcontour.ps', /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+plot_map, mapmodfilt23, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+plot_map, mapmodfilt23, /noaxes, /notit, /limb, pos=[0.5,0,1,1]
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in1.crpix1)*in1.cdelt1 & $
+		y = (y-in1.crpix2)*in1.cdelt2 & $
+		plots, x, y, psym=-3 & $
+endfor
+toggle
+$ps2pdf modmapcontour.ps
+
+Repeat for alpfilt2[*,*,3]
+
+toggle, f='alpmapcontour.ps', /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+plot_map, mapalpfilt23, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in1.crpix1)*in1.cdelt1 & $
+		y = (y-in1.crpix2)*in1.cdelt2 & $
+		plots, x, y, psym=-3 & $
+endfor
+toggle
+$ps2pdf alpmapcontour.ps
+
+
+02-07-10
+
+Book Club
+
+05-07-10
+
+Try working on instrumentation chapter!
+
+06-07-10
+
+still
+
+09-07-10
+
+Group meeting
+
+12-07-10
+
+shattered. trying to look up wind instruments for thesis.
+
+13-07-10
+
+writing - MHD theory
+
+14-07-10
+
+writing - CME models
+
+15-07-10
+
+writing - CME image processing
+Meeting with Peter, decide external, quick overview of how writing is going. Aim to have draft by end July to give.
+
+16-07-10
+
+SJC
+
+19-07-10
+
+Writing - Multiscale methods & error analysis
+
+20-07-10
+
+writing - 3D cme models, solar atmosphere.
+
+21-07-10
+
+writing - solar atmosphere, solar wind
+
+22-07-10
+
+writing - 3D CME reconstruction techniques, following on from ellipse characterisation.
+
+23-07-10
+
+More writing. 
+Book Club.
+
+26-07-10
+
+Emails about viva and submission dates. Replied to Huw. 
+
+27-07-10
+
+Data_VSO/20040401/thesis_casestudy/
+
+Saved the headers in.sav and did the nrgf at thr=2.2 and 8.0
+nrgf_steps_one_image,in[4],da[*,*,4],filt4
+save, filt4, f='filt4.sav
+filt4[where(filt4 eq filt4[450,450])]=min(filt4)
+plot_image, sigrange(bytscl(filt4,-5,9))
+save, filt4, f='filt4_scl.sav'
+index2map, in[4], filt4, filt4map
+save, filt4map, f='filt4map.sav'
+index2map, in[4], sigrange(da[*,*,4], da4map
+
+************
+!p.multi=[0,2,1]
+toggle, f='im+filt.ps', /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+plot_map, da4map, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+plot_map, filt4map, /noaxes, /notit, /limb, pos=[0.5,0,1,1]
+toggle
+$ps2pdf im+filt.ps
+$open im+filt.pdf
+
+************
+canny_atrous2d, filt4, modgrad, alpgrad
+save, modgrad, f='modgrad.sav'
+save, alpgrad, f='alpgrad.sav'
+
+************
+cme_detection_mask,in[4],filt4,modgrad,alpgrad,circ_pol,list,cme_detect,cme_mask,/show
+( running this code with rm_inner and rm_outer within to remove the strong edges of the previous rm_inner/outer from the nrgf_steps. )
+
+************
+modgrad5 = modgrad[*,*,5]
+modgrad5=rm_inner(modgrad5,in[4],dr_px,thr=2.35,/plot)
+modgrad5=rm_outer(modgrad5,in[4],dr_px,thr=7.85,/plot)
+index2map, in[4], sigrange(modgrad5,frac=0.95), modmap5
+
+alpgrad5 = alpgrad[*,*,5]
+alpgrad5=rm_inner(alpgrad5,in[4],dr_px,thr=2.35,/plot)
+alpgrad5=rm_outer(alpgrad5,in[4],dr_px,thr=7.85,/plot)
+index2map, in[4], sigrange(alpgrad5,frac=0.95), alpmap5
+
+************
+mu = moment(modgrad5, sdev=sdev)
+contour, modgrad5, lev=mu[0]+0.5*sdev, path_info=info, path_xy=xy, /path_data_coords
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		plots, x, y, psym=3 & $
+endfor
+
+************
+!p.multi=[0,2,1]
+toggle, f='modmapcontour.ps', /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+plot_map, modmap5, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+plot_map, modmap5, /noaxes, /notit, /limb, pos=[0.5,0,1,1]
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[4].crpix1)*in[4].cdelt1 & $
+		y = (y-in[4].crpix2)*in[4].cdelt2 & $
+		plots, x, y, psym=-3 & $
+endfor
+toggle
+$ps2pdf modmapcontour.ps
+$open modmapcontour.pdf
+
+************
+!p.multi=[0,2,1]
+toggle, f='alpmapcontour.ps', /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+plot_map, alpmap5, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+plot_map, alpmap5, /noaxes, /notit, /limb, pos=[0.5,0,1,1]
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[4].crpix1)*in[4].cdelt1 & $
+		y = (y-in[4].crpix2)*in[4].cdelt2 & $
+		plots, x, y, psym=-3 & $
+endfor
+toggle
+$ps2pdf alpmapcontour.ps
+$open alpmapcontour.pdf
+
+************
+!p.multi=[0,2,1]
+toggle, f='modalpmapcontour.ps', /color, /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+loadct, 0
+plot_map, modmap5, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[4].crpix1)*in[4].cdelt1 & $
+		y = (y-in[4].crpix2)*in[4].cdelt2 & $
+		set_line_color & $
+		plots, x, y, psym=-3, color=3 & $
+endfor
+loadct, 0
+plot_map, alpmap5, /noaxes, /notit, /limb, pos=[0.5,0,1,1]
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[4].crpix1)*in[4].cdelt1 & $
+		y = (y-in[4].crpix2)*in[4].cdelt2 & $
+		set_line_color & $
+		plots, x, y, psym=-3, color=3 & $
+endfor
+toggle
+$ps2pdf modalpmapcontour.ps
+$open modalpmapcontour.pdf
+
+************
+cme_detection_mask,in[4],da[*,*,4], modgrad[*,*,3:6],alpgrad[*,*,3:6],c,l,d,cme_mask
+save, cme_mask, f='cme_mask.sav'
+index2map,in[4],cme_mask,cme_maskmap
+save, cme_maskmap, f='cme_maskmap.sav' 
+
+************
+!p.multi=[0,2,1]
+toggle, f='cme_mask.ps', /color, /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+loadct, 0
+plot_map, cme_maskmap, /noaxes, /notit, /limb, pos=[0,0,0.5,1]
+!p.color=0
+!p.charsize=1.5
+!p.charthick=2
+shade_surf, cme_mask, pos=[0.6,0.15,1,0.85], az=20;, xtickname=['0',' ','400',' ','800',' ','1200']
+toggle
+$ps2pdf cme_mask.ps
+$open cme_mask.pdf
+
+************
+For 20010423_faint
+use 
+plot_image, bytscl(filt2,-4,6)
+
+Making 6 part image (for whichever thresholds need changing)
+
+mu = moment(modgrad5, sdev=sdev)
+contour, modgrad5, lev=mu[0]+0.5*sdev, path_info=info, path_xy=xy, /path_data_coords
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		plots, x, y, psym=3 & $
+endfor
+
+!p.multi=[0,2,3]
+toggle, f='20010423_faint.ps', /color, /portrait, xs=6.66, ys=10
+!p.color=255
+!p.thick=3
+plot_map, da2map, /noaxes, /notit, /limb, pos=[0.05,0.6,0.5,0.9]
+plot_map, filt2_sclmap, /noaxes, /notit, /limb, pos=[0.5,0.6,0.95,0.9]
+loadct, 0
+plot_map, modmap5, /noaxes, /notit, /limb, pos=[0.05,0.3,0.5,0.6]
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[2].crpix1)*in[2].cdelt1 & $
+		y = (y-in[2].crpix2)*in[2].cdelt2 & $
+		set_line_color & $
+		plots, x, y, psym=-3, color=3 & $
+endfor
+loadct, 0
+plot_map, alpmap5, /noaxes, /notit, /limb, pos=[0.5,0.3,0.95,0.6]
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[2].crpix1)*in[2].cdelt1 & $
+		y = (y-in[2].crpix2)*in[2].cdelt2 & $
+		set_line_color & $
+		plots, x, y, psym=-3, color=3 & $
+endfor
+loadct, 0
+plot_map, cme_maskmap, /noaxes, /notit, /limb, pos=[0.05,0,0.5,0.3]
+!p.color=0
+!p.charsize=1.5
+!p.charthick=2
+shade_surf, cme_mask, pos=[0.55,0,0.95,0.3], az=20, ax=60;, xtickname=['0',' ','400',' ','800',' ','1200']
+toggle
+$ps2pdf 20010423_faint.ps
+$open 20010423_faint.pdf
+
+************
+For 20000211_streamers
+use 
+plot_image, bytscl(filt4,-2,5)
+
+Making 6 part image (for whichever thresholds need changing)
+
+mu = moment(modgrad5, sdev=sdev)
+contour, modgrad5, lev=mu[0]+0.5*sdev, path_info=info, path_xy=xy, /path_data_coords
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		plots, x, y, psym=3 & $
+endfor
+
+!p.multi=[0,2,3]
+toggle, f='20000211_streamers.ps', /color, /portrait, xs=6.66, ys=10
+!p.color=255
+!p.thick=3
+plot_map, da4map, /noaxes, /notit, /limb, pos=[0.05,0.6,0.5,0.9]
+plot_map, filt4map, /noaxes, /notit, /limb, pos=[0.5,0.6,0.95,0.9]
+loadct, 0
+plot_map, modmap5, /noaxes, /notit, /limb, pos=[0.05,0.3,0.5,0.6]
+no_contours=15
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[4].crpix1)*in[4].cdelt1 & $
+		y = (y-in[4].crpix2)*in[4].cdelt2 & $
+		set_line_color & $
+		plots, x, y, psym=-3, color=3 & $
+endfor
+loadct, 0
+plot_map, alpmap5, /noaxes, /notit, /limb, pos=[0.5,0.3,0.95,0.6]
+for c=0,no_contours[0]-1 do begin & $
+		x = xy[0,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		y = xy[1,info[c].offset:(info[c].offset+info[c].n-1)] & $
+		x = (x-in[4].crpix1)*in[4].cdelt1 & $
+		y = (y-in[4].crpix2)*in[4].cdelt2 & $
+		set_line_color & $
+		plots, x, y, psym=-3, color=3 & $
+endfor
+loadct, 0
+plot_map, cme_maskmap, /noaxes, /notit, /limb, pos=[0.05,0,0.5,0.3]
+!p.color=0
+!p.charsize=1.5
+!p.charthick=2
+shade_surf, cme_mask, pos=[0.55,0,0.95,0.3], az=20, ax=60;, xtickname=['0',' ','400',' ','800',' ','1200']
+toggle
+$ps2pdf 20000211_streamers.ps
+$open 20000211_streamers.pdf
+
+28-07-10
+
+Saved out the contours xy_s5c1.sav etc in 20040401_fluxrope/ and circ_pol.sav, where s5c1 is CME front, and s5c2 to s5c5 are streamers.
+Have to change them to map space by
+x = (x-in[4].crpix1)*in[4].cdelt1 & $
+y = (y-in[4].crpix2)*in[4].cdelt2 & $
+
+************
+!p.multi=0
+toggle, f='colour_contours.ps', /color
+!p.color=255
+!p.thick=3
+loadct, 0
+plot_map,  modmap5, /limb, /noaxes, /notit
+set_line_color
+restore, '1sdev/xy_s5c1.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=3
+restore, '1sdev/xy_s5c2.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=4
+restore, '1sdev/xy_s5c3.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=5
+restore, '1sdev/xy_s5c4.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=6
+toggle
+$ps2pdf colour_contours.ps
+$open colour_contours.pdf
+
+************
+!p.multi=[0,2,2]
+restore, 'colour_contour_plots.sav'
+toggle, f='colour_contour_plots.ps', /color
+!p.color=0
+!p.thick=4
+!p.charthick=4
+!p.charsize=1.5
+set_line_color
+plot, c1, xr=[0,180], /xs, xtickinterval=90, pos=[0.05, 0.55, 0.45, 0.95], /nodata
+oplot, c1, color=3
+plots, [0,180], [median(c1), median(c1)], line=1
+xyouts, 5, 0.9, 'Median .354'
+plot, c2, xr=[0,180], /xs,  xtickinterval=90, pos=[0.55, 0.55, 0.95, 0.95], /nodata
+oplot, c2, color=4
+plots, [0,180], [median(c2), median(c2)], line=1
+xyouts, 5, 0.9, 'Median .011'
+plot, c3, xr=[0,180], /xs,  xtickinterval=90, pos=[0.05, 0.05, 0.45, 0.45], /nodata
+oplot, c3, color=5
+plots, [0,180], [median(c3), median(c3)], line=1
+xyouts, 5, 0.9, 'Median .005'
+plot, c4, xr=[0,180], /xs,  xtickinterval=90, pos=[0.55, 0.05, 0.95, 0.45], /nodata
+oplot, c4, color=6
+plots, [0,180], [median(c4), median(c4)], line=1
+xyouts, 5, 0.9, 'Median .008'
+toggle
+$ps2pdf colour_contour_plots.ps
+$open colour_contour_plots.pdf
+
+************
+Combining the above two:
+
+!p.multi=[0,1,5]
+toggle, f='colour_contours_distributions.ps', /color, /landscape, xs=10, ys=5
+!p.color=255
+!p.thick=3
+loadct, 0
+plot_map,  modmap5, /limb, /noaxes, /notit, pos=[0,0,0.5,1]
+set_line_color
+restore, '1sdev/xy_s5c1.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=3
+restore, '1sdev/xy_s5c2.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=4
+restore, '1sdev/xy_s5c3.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=5
+restore, '1sdev/xy_s5c4.sav'
+x = (x-in[4].crpix1)*in[4].cdelt1
+y = (y-in[4].crpix2)*in[4].cdelt2
+plots, x, y, psym=-3, color=6
+
+!p.color=0
+!p.thick=4
+!p.charthick=4
+!p.charsize=2
+set_line_color
+plot, c1, xr=[0,180], /xs, xtickinterval=90, pos=[0.55, 0.525, 0.75, 0.975], /nodata
+oplot, c1, color=3
+plots, [0,180], [median(c1), median(c1)], line=1
+xyouts, 5, 0.9, 'Median', charsize=1.3
+xyouts, 10, 0.8, '0.354', charsize=1.3
+plot, c2, xr=[0,180], /xs,  xtickinterval=90, pos=[0.8, 0.525, 1, 0.975], /nodata
+oplot, c2, color=4
+plots, [0,180], [median(c2), median(c2)], line=1
+xyouts, 5, 0.9, 'Median', charsize=1.3
+xyouts, 10, 0.8, '0.011', charsize=1.3
+plot, c3, xr=[0,180], /xs,  xtickinterval=90, pos=[0.55, 0.05, 0.75, 0.475], /nodata
+oplot, c3, color=5
+plots, [0,180], [median(c3), median(c3)], line=1
+xyouts, 5, 0.9, 'Median', charsize=1.3
+xyouts, 10, 0.8, '0.005', charsize=1.3
+plot, c4, xr=[0,180], /xs,  xtickinterval=90, pos=[0.8, 0.05, 1, 0.475], /nodata
+oplot, c4, color=6
+plots, [0,180], [median(c4), median(c4)], line=1
+xyouts, 5, 0.9, 'Median', charsize=1.3
+xyouts, 10, 0.8, '0.008', charsize=1.3
+
+toggle
+$ps2pdf colour_contours_distributions.ps
+$open colour_contours_distributions.pdf
+
+************
+Want to plot all the frames of the cme_masks from 20040401 event (how many on one page though, 2x3?)
+
+!p.multi=[0,2,3]
+toggle, f='20040401_cme_masks.ps', /portrait, xs=6.66, ys=10
+!p.color=255
+!p.thick=3
+loadct, 0
+plot_map, filtmap1, /limb, /noaxes, /notit, pos=[0.05,0.6,0.5,0.9]
+plot_map, cme_maskmap1, /limb, /noaxes, /notit, pos=[0.5,0.6,0.95,0.9]
+plot_map, filtmap2, /limb, /noaxes, /notit, pos=[0.05,0.3,0.5,0.6]
+plot_map, cme_maskmap2, /limb, /noaxes, /notit, pos=[0.5,0.3,0.95,0.6]
+plot_map, filtmap3, /limb, /noaxes, /notit, pos=[0.05,0,0.5,0.3]
+plot_map, cme_maskmap3, /limb, /noaxes, /notit, pos=[0.5,0,0.95,0.3]
+toggle
+$ps2pdf 20040401_cme_masks.ps
+$open 20040401_cme_masks.pdf
+
+(3x4?)
+!p.multi=[0,3,4]
+toggle, f='20040401_cme_masks.ps', /portrait, xs=10, ys=10
+!p.color=255
+!p.thick=3
+loadct, 0
+plot_map, filtmap1, /limb, /noaxes, /notit, pos=[0,0.75,0.25,1]
+plot_map, cme_maskmap1, /limb, /noaxes, /notit, pos=[0.25,0.75,0.5,1]
+shade_surf, cme_mask1, pos=[0.51,0.77,0.79,1], az=10, ax=60, xst=4, yst=4, zst=4
+plot_map, filtmap3, /limb, /noaxes, /notit, pos=[0,0.5,0.25,0.75]
+plot_map, cme_maskmap3, /limb, /noaxes, /notit, pos=[0.25,0.5,0.5,0.75]
+shade_surf, cme_mask3, pos=[0.51,0.52,0.79,0.75], az=10, ax=60, xst=4, yst=4, zst=4
+plot_map, filtmap5, /limb, /noaxes, /notit, pos=[0,0.25,0.25,0.5]
+plot_map, cme_maskmap5, /limb, /noaxes, /notit, pos=[0.25,0.25,0.5,0.5]
+shade_surf, cme_mask5, pos=[0.51,0.27,0.79,0.5], az=10, ax=60, xst=4, yst=4, zst=4
+toggle
+$ps2pdf 20040401_cme_masks.ps
+$open 20040401_cme_masks.pdf
+
+
+29-07-10
+
+ACCEPTED TO NATURE COMMUNICATIONS!!!
+
+30-07-10
+
+Wrote KINS_NAT_COMMUN_XDIR2.pro to split the kinematics figure across three separate x-axes re: editor's request.
+
+IDL> kins_nat_commun_xdir2,'kins_meanspread.txt','../prominence_apex.txt',/heights,/edges,/prominence,/mids,/occult_widths,/tog
+
+Saved, kins_nat_commun_xdir2_final.pdf.
+
+03-08-10
+
+Edited the Gallagher_fig1.pdf and Gallagher_fig3.pdf on laptop.
+Went through Nat. Commun. checklist and emailed edits.
+
+04-08-10
+
+James' going away lunch drinks.
+
+05-08-10
+
+Studied a bit at home.
+Celtic Rising!
+
+06-08-10
+
+Journal Club.
+Redid the Nat. Commun. paper references and emailed link to final resubmission folder Gallagher.zip on grian.
+
+07-08-10
+
+Working on thesis Chpt. 6 a bit, to separate out the kinematics of the event.
+Wrote KINS_THESIS_XDIR2.pro to plot out the height, velocity and acceleration of the CME and prominence for thesis. Made kins_thesis_xdir2.pdf and saved it as 12dec2008kins.pdf into thesis folder.
+IDL> kins_thesis_xdir2,'kins_meanspread.txt','../prominence_apex.txt',/edges,/prominence,/mids,/occult_widths,/tog
+in PhD/Data_Stereo/20081212/combining2/max_ells_fronts/redone.
+
+08-08-10
+
+Worked on the ENLIL paper theory a bit with view to writing paragraph in Chapter 6.
+
+09-08-10
+
+Meeting with Peter about the resubmission to Nat. Commun.
+Quick email to Dave about EUVI errors - just do 1 or 2 pixels I suppose for errorbars on tie-pointing prominence apex.
+
+10-08-10
+
+Made the images and 0000.png again on laptop for the paper submission and movie fronts. Emailed Peter &Shane. Remade Gallagher_Movie1.mov
+Working on Chapter 6 some more.
+Wrote plot_slices_paper8.pro correcting for some of the cor2 frames.
+Wrote plot_slices_span1452.pro to make figure for chapter 6 illustrating how the midpoint/top/bottom etc of kinematics along front are measured. Made image span1452.pdf
+run
+IDL> plot_slices_span1452,30,25,/zoom,/no_proj,/nolabels,/no_ell
+in folder PhD/Data_Stereo/20081212/combining2/cor2/1122/my_scc_measure/slices_all.
+
+11-08-10
+
+Working on Chapter 4 - SOHO as a third eye on 3D reconstruction.
+
+To make the image, downloaded the pretty off NRL site, read in png, rebinned to 2048, rotated it by -in.crota to correspond to edg56_1622 and output
+front_ell_kinematics,edg,1,in,temp,2,ei,re,xe,ye,pe,mhf,mhe,aa,0,/noflank
+as 1622a.png
+
+Making back-projection images with my_soho_projection_guide calling stereo_and_soho.b
+Had to write plot_slices_soho_HEE.pro and use convert_stereo_coord to transform the HEEQ coordinates of the front for back-projecting onto the right LASCO plane-of-sky. Wrote out proj_soho_ell.txt in ~/PhD/Data_Stereo/20080426/combining/cor2/1622/my_scc_measure/slices_all/
+
+So, to make image, 
+from PhD/Data_Stereo/20080426/combining/cor2/1622/my_scc_measure/slices_all
+run
+IDL> plot_slices_soho_hee
+then readcol, '~/PhD/Data_Stereo/20080426/combining/cor2/1622/my_scc_measure/slices_all/proj_soho_ell.txt', x, y, z, f='F, F, F'
+and plot_map, mapfilt4 (or mapfilt3)
+and plots,y*rsun,z*rsun,psym=3,color=5   where rsun = pb0r(in,/arcsec)[2]
+
+12-08-10
+
+Submitted final version to Nat. Commun.
+
+Added in Chapter 4 SOHO back projection image.
+Working on Chapter 6 some more - ENLIL model and CME pancaking.
+
+13-08-10
+
+Book club.
+
+16-08-10
+
+Working on Summary.
+Edited CV for IfA-Manoa job in Hawai'i with Peter, Alex and James as referees.
+Emailed Peter first draft of thesis.
+
+Interesting 3D vis with objects in IDL "Point Cloud Isosurface" making polygons using hist_nd.pro
+http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/1ce38f22f8755503?hl=en
+
+17-08-10
+
+Submitted Hawai'i job application: IfACoverLetter.pdf and JByrneCV.pdf.
+
+Quick chat with Peter about thesis: Introduction, equations need going over (simplify) and CME theory needs lengthening and more discussion on importance of kinematics. Details on other CME catalogues need including (e.g. Hough transform etc.). Conclusions & Future Work.
+
+Nature Communications editor request to remake Figure 2.
+make_paper_images (.txt)
+plot_slices_paper4.pro and plot_slices_paper5.pro changed accordingly.
+Means changing the colours of Fig1a as well.
+
+Writing thesis portion on CACTus. Stuck synopsisCACTus into the CACTus folder under CME_theory/papers.
+
+Working on laptop to redo natcommunfig2.ai / pdf
+
+18-08-10
+
+Interesting point on using TVIMAGE instead of !p.multi to place images into ps with correct aspect ratio maintained
+http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/5ceaf9b6b26d6bbf?hl=en
+
+Remade the images for editor of Nat. Commun. and met Peter to email them. C. R. Kitchin book on stellar formation processes.
+
+Working on CDAW chapt. piece.
+
+19-08-10
+
+Going through the Catalogues and writing section for thesis: CDAW, CACTus, SEEDS, ARTEMIS.
+
+20-08-10
+
+Emails from Shadia about postdoc application.
+
+Finalising catalogues section thesis.
+
+21-08-10
+
+Wrote Future Work section on Automation.
+
+23-08-10
+
+Writing more of Future Work chapter.
+
+rest of week
+Working on CME chapter.
+
+31-09-10
+
+Working on editing together CME chapter.
+Email from Nature with the proofs for editing.
+
+01-09-10
+
+Submitting the proofs for Nat. Commun.
+
+02-09-10
+
+Writing in the coordinates section.
+
+03-09-10
+
+Emails about press realease for Nat. Commun. and Viva defence date.
+
+06-09-10
+
+Phone call with Peter about the press release - edited and mailed Alex.
+Worked on thesis restructuring and Future Work section. Emailed Alex about reading it over.
+
+07-09-10
+
+Sent Alex thesis link.
+Working more on Future Work section. 
+
+08-09-10
+
+Finished Future work section.
+
+09-09-10
+
+Finished introduction section.
+
+10-09-10
+
+Reading through first final thesis draft.
+
+13-09-10
+
+Printed thesis for Graham. Chat about it in general.
+Baysian.
+Frozen-in condition.
+How CCDs calibrated in-flight etc.
+Helioseismology / astroseismology.
+
+Going through the method for making sun-earth_sliceHHMM.sav and sun-earth_ells.tiff etc for CME Pancaking section.
+pwd -> PhD/Data_Stereo/20081212/combining2/ells_comb/redone
+restore,'../ells_comb0605.sav',/ver
+ind=where(xcs ne 0 and ycs ne 0 and zcs ne 0)
+x=xcs[ind]
+y=ycs[ind]
+z=zcs[ind]
+project_one_ell, x, y, z, xp, yp, zp
+plot, x, z, psym=1
+plots, xp, zp, psym=1, color=3
+ellipse_mpfit_independent, xp, zp, xf, zf, xe, ze, p
+plot, x, z, psym=1
+plots, xp, zp, psym=1, color=3
+plots, xf, zf, psym=2, color=4
+plots, xe, ze, psym=3, color=2
+save, xp, zp, xf, zf, xe, ze, p, f='sun-earth_sliceHHMM.sav'
+
+Saved, 'sun-earth_ells.sav'
+Wrote sun-earth_ells_thesis_fig.b and saved figure for thesis.
+Wrote sun-earth_ells_thesis_fig_zoom.b 
+Saved tilts.sav
+
+14-09-10
+
+Edited sun-earth_ells_thesis_fig.b to plot both the top and bottom as ellipses and their tilt angle. Saved sun-earth_ells.pdf in thesis.
+Submitted copy of thesis to Mauro. Emailed copy to James.
+Studying...   
+http://neutrino.aquaphoenix.com/un-esa/sun/sun-chapter5.html
+
+15-09-10
+
+DublinSouthFM "The Red Shift" interview.
+Nature Press Release email.
+
+16-09-10
+
+Press release emails.
+
+******************
+VIVA - BREAK - CORRECTIONS
+******************
+
+18-11-10
+
+Emails about Kinematics Paper.
+
+26-11-10
+
+Wrote plot_different_kins_20101126.pro version of plot_different_kins.pro to run for obtaining the chi_squared of vel and accel of const. accel and non-constant accel models to compare the scatter of forward/reverse and centre differencing.
+
+Made plot_different_kins_zero_a.pro and plot_different_kins_const_a.pro for zero and constant acceleration respectively.
+
+.r plot_different_kins_const_a
+temp1=fltarr(10000)
+temp2=temp1
+temp3=temp1
+temp4=temp1
+for k=0,n_elements(temp1)-1 do begin & $
+plot_different_kins_const_a, c1, c2, c3, c4, /no_plot & $
+temp1[k]=c1 & $               
+temp2[k]=c2 & $               
+temp3[k]=c3 & $               
+temp4[k]=c4 & $               
+endfor
+print, ave(temp1)/ave(temp2) *100
+print, ave(temp3)/ave(temp4) *100
+
+29-11-10
+
+Emailed Brian my final corrected thesis!!!
+
+30-11-10
+
+Editing PLOT_DIFFERENT_KINS_CONST_A.pro and output const_a_forward_centre_noise001.pdf which plots the forward and centre difference of a model constand acceleration at 1% noise, with chi-squared fits to the constant acceleration (no errorbars).
+const_a_forward_centre_noise005.pdf
+const_a_forward_centre_noise010.pdf
+
+Running the code many times will give a ditribution of final fits to the acceleration... write DISTRIBUTION_CONST_A.b
+
+01-12-10
+
+Non-constant acceleration:  plot, ((1/exp(temp/100))+(1/(50*exp(-temp/500))))^(-1)  from equation from Gallagher et al 2003.
+
+02-12-10
+
+College Closed in the SNOW!
+SOHO's 15th Birthday!
+
+Looking at coding non_constant accel. using the equation 11.15 in Priest & Forbes.
+Wrote NON_CONST.pro to just plot and test eqn 11.15.
+
+07-12-10
+
+Meeting:
+Include in paper
+1) mention of all possibe uncertainties/errors than are encompassed in errorbars. (pixel issues, psf, signal+noise)
+2) show concisely how each scheme works with regards cadence / noise in a plot e.g. x-axis increasing cadence, y-axis how each scheme gets closer to the correct acceleration value
+3) conclusions should include possible bootstrapping mentions etc of how to tackle issues in the future. Point of paper is just to highlight the issues!
+
+Wrote PLOT_DIFFERENT_KINS_CADENCE.pro to test different schemes results for different cadences.
+Run KINS_CADENCE.b to produce kins_cadence.txt to plot.
+
+08-12-10
+
+The attempt to do plot_different_kins_cadence.pro using kins_cadence.b and readcol on kins_cadence.txt doesn't work as currently coded - too difficult to try and sample the same point in the profile for changing cadence... maybe need to pick a point and count the cadence out from there!
+Trying to do this in PLOT_DIFFERENT_KINS_CADENCE_FIXED.pro
+IDL> for k=1,400 do plot_different_kins_cadence_fixed,k,500
+
+09-12-10
+
+Saved kins_cadence_fixed3.pdf up to kins_cadence_fixed1997.pdf to see how the different schemes fare on changing cadence.
+Want to adapt it for another acceleration model.
+Wrote PLOT_KINS_CADENCE_FIXEDMOVIE.b to see how a movie of the plots from plot_kins_cadence.b looks!
+Wrote PLOT_DIFFERENT_KINS_CADENCE_FIXED2.pro to try changing around the acceleration model for testing the effects of different profiles with cadence.
+
+10-12-10
+
+Hawaii emails. AtmosCube Seminar. Group Meeting. Paul's grad.
+
+13-12-10
+
+Embassy phone call: next available appointment 13 January 8.30am (arrive ten mins early). Emailed dublincons@state.gov to request emergency appointment. - set for Dec. 22nd at 8am.
+http://dublin.usembassy.gov/general/emergency-travel-appointments.html
+
+Checklist (by phone):
+DS-2019
+Proof of payment of SEVIS fee.
+Passport.
+DS-160 (print confirmation) - requires digital photo. 
+VISA payment by bank draft/postal order for the amount €105 payabe to US Embassy.
+Cover letter.
+Bank statements 3 months.
+Proof of intention to return to Ireland.
+Pre-stamped addressed envelope for posting back passport.
+
+14-12-10
+
+Course: http://livetoad.org/Courses/Documents/03e0/Notes
+
+YouTube: numericalmethodsguy  http://numericalmethods.eng.usf.edu/
+
+Wrote CHOOSE_DERIV2.pro to be a pro version of function choose_deriv.pro in order to output the truncation error.

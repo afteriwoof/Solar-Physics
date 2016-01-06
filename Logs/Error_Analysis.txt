@@ -1,0 +1,64 @@
+see Bevington 'Data Reduction & Error Analysis'
+
+
+CHAPTER 1: Uncertainties in Measurements
+
+Accuracy v Precision
+
+Significant figures / roundoff
+
+1) The leftmost nonzero digit is the most significant digit.
+2) If there is no decimal point, the rightmost nonzero digit is the least significant digit.
+3) If there is a decimal point, the rightmost digit is the least significant digit, even if it is a zero.
+4) All digits between the least and most significant digits are counted as significant digits.
+
+1) If the fraction is greater than 1/2, increment the new least significant digit.
+2) If the fraction is less than 1/2, do not increment.
+3) If the fraction equals 1/2, increment the least significant digit only if it is odd.
+
+Sampling distribution - Gaussian / normal error distribution.
+(parent parameter) = lim{N->inf}(experimental parameter)
+
+Mean/centroid/average. < x >
+Median (50%greater and less).
+Mode/most probable value.
+
+Standard deviation (sqrt of variance) (the average of the squares minus the square of the average) (root mean square of the deviations) (second moment of the data about the mean) (an appropriate measure of the uncertainty due to fluctuations in the observations in our attempt to determine the 'true' value).
+
+
+CHAPTER 2: Probability Distributions
+
+Binomial; Poisson; Gaussian (the latter two are considered limiting cases of the binomial).
+
+"If n coins are tossed, there are 2^n different possible ways in which they can land."
+Each possible way has a probability of 1/2^n of occurring.
+
+Permutations and combinations.
+Probability ; Binomial Theorem for the expansion of a power of a sum.
+Mean mu=np  (n items with probability for success p)
+sdev = sqrt(np(1-p))
+
+Poisson distribution represents an approximation to the binomial distribution for the special case where the average number of success is much smaller than the possible number (mu << n because p << 1).
+sigma = sqrt(mu) ...std. dev.
+sigma/mu = 1/sqrt(mu) ...relative uncertainty.
+
+Gaussian distribution has a fairly simple analytic form, and it is accepted by convention and experimentation to be the most likely distribution for most experiments. The most probable estimate of the mean mu from a random sample of observations x is the average of the observations x_bar. Bell-shaped and symmetric about mean mu.
+Full Width Half Maximum is defined as the range of x between values at which the probability is half its maximum value.
+
+not finished reading this chpt
+
+
+CHAPTER 3: Error Analysis
+
+Instrumental uncertainties; equipment or user faults (a lack of perfect precision).
+Require a confidence level in our measurements (often chosen as one std.dev.~68%).
+
+Statistical uncertainties; finite counts over finite time intervals (not lacking precision).
+Repeated measurements give a Poisson distribution about their mean. sigma=sqrt(mu)
+The relative uncertainties (sigma/mu) are proportional to 1/sqrt(mu) thus they are smaller when our counting rates are higher. (NB: in the finite limit mu~x, which infinitely converges to the 'parent' mu)
+
+Propagation of errors:
+
+Eg. V = LWH where each has an error. To work out error in V use Taylor series expansion (usually neglecting higher order terms).
+Error Propagation Equation.
+Rules for error propagation of dependent variables (pg 50).

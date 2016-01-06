@@ -1,0 +1,196 @@
+CLUSTERING NOTES / PROCEDURES
+
+2012-07-23
+
+; Testing with the model data
+
+loadct, 39
+set_line_color
+fls = file_search('~/Postdoc/Automation/Test/multicme_model/*fits*')
+;run_automated_model, fls, '../multicme_model_cluster/detections_dublin/'
+restore, '../multicme_model_cluster/detections_dublin/det_stack*',/ver
+pa_total = det_stack.stack
+clean_pa_total, pa_total, pa_mask
+pa_total *= pa_mask
+separate_pa_total, pa_total, det_info
+det_fls = file_search('../multicme_model_cluster/detections_dublin/dets_*')
+find_pa_heights_all_redo_model,fls,pa_total,det_info,det_fls,'../multicme_model_cluster/detections_dublin/det_stack*sav','../multicme_model_cluster/cme_profs'
+cme_prof_fls=file_Search('../multicme_model_cluster/cme_profs/cme_prof_*.sav')
+find_pa_heights_masked_model,fls,pa_total,det_info,det_fls,det_stack,cme_prof_fls,'../multicme_model_cluster/cme_profs'
+
+; Clustering
+kins_fls=file_Search('../multicme_model_cluster/cme_profs/cme_kin_prof_*')
+cme_count = max(strmid(file_basename(kins_fls),13,1))
+for k=0,cme_count do begin & $
+	kins_fls_subset = file_search('../multicme_model_cluster/cme_profs/cme_kin_prof_'+num2str(k)+'*') & $
+	group_cme_kins,kins_fls_subset,ave_xs,ave_ys,slopes,pos_angs, cme_count=k, out_dir='../multicme_model_cluster/cme_profs' & $
+	cluster_fls = file_search('../multicme_model_cluster/cme_profs/cluster_'+num2str(k)+'*') & $
+	for j=0,n_elements(cluster_fls)-1 do begin & $
+		restore, cluster_fls[j], /ver & $
+		cme_kins_fls = kins_fls_subset[cluster_inds] & $
+		save, cme_kins_fls, f='../multicme_model_cluster/cme_profs/cme_kins_fls_'+num2str(k)+'_'+num2str(j)+'.sav' & $
+	endfor & $		
+endfor
+
+;**************************
+
+2012-07-26
+
+; Now to do the same for real data
+
+loadct, 39
+set_line_color
+fls=file_Search('../candidates/20000101/dyn*fits*')
+restore,'../candidates/20000101/detections_dublin/det_stack*',/ver 
+pa_total = det_stack.stack
+clean_pa_total, pa_total, pa_mask
+pa_total *= pa_mask
+separate_pa_total, pa_total, det_info
+det_fls=file_Search('../candidates/20000101/detections_dublin/dets*')
+find_pa_heights_all_redo,fls,pa_total,det_info,det_fls,'../candidates/20000101/detections_dublin/det_stack*sav','../candidates/20000101/detections_dublin/cme_profs'
+cme_prof_fls=file_Search('../candidates/20000101/detections_dublin/cme_profs/cme_prof_*.sav')
+find_pa_heights_masked,fls,pa_total,det_info,det_fls,det_stack,cme_prof_fls,'../candidates/20000101/detections_dublin/cme_profs'
+
+; Clustering
+kins_fls=file_search('../candidates/20000101/detections_dublin/cme_profs/cme_kin_prof_*')
+cme_count = max(strmid(file_basename(kins_fls),13,1))
+for k=0,cme_count do begin & $
+	kins_fls_subset = file_search('../candidates/20000101/detections_dublin/cme_profs/cme_kin_prof_'+num2str(k)+'*') & $
+	if strlen(kins_fls_subset[0]) ne 0 then begin & $ 
+		group_cme_kins,kins_fls_subset,ave_xs,ave_ys,slopes,pos_angs, fail, cme_count=k, out_dir='../candidates/20000101/detections_dublin/cme_profs' & $
+		if fail ne 1 then begin & $
+			cluster_fls = file_search('../candidates/20000101/detections_dublin/cme_profs/cluster_'+num2str(k)+'*') & $
+			for j=0,n_elements(cluster_fls)-1 do begin & $
+				print, 'restoring ', cluster_fls[j] & $
+				restore, cluster_fls[j], /ver & $
+				cme_kins_fls = kins_fls_subset[cluster_inds] & $
+				save, cme_kins_fls, f='../candidates/20000101/detections_dublin/cme_profs/cme_kins_fls_'+num2str(k)+'_'+num2str(j)+'.sav' & $
+			endfor & $
+		endif & $		
+	endif & $
+endfor
+
+
+;**************************
+
+; Now to do generalise for all data (in the case of taking all the CME information and masking it out, not just the M.A.D. heights!)
+
+loadct, 39
+set_line_color
+dir = '~/Postdoc/Automation/candidates/20100227-0305'
+fls=file_Search(dir+'/dyn*fits*')
+restore, dir+'/detections_dublin/det_stack*',/ver 
+pa_total = det_stack.stack
+clean_pa_total, pa_total, pa_mask
+pa_total *= pa_mask
+separate_pa_total, pa_total, det_info
+det_fls=file_Search(dir+'/detections_dublin/dets*')
+find_pa_heights_all_redo,fls,pa_total,det_info,det_fls,dir+'/detections_dublin/det_stack*sav',dir+'/detections_dublin/cme_profs'
+cme_prof_fls=file_Search(dir+'/detections_dublin/cme_profs/cme_prof_*.sav')
+find_pa_heights_masked,fls,pa_total,det_info,det_fls,det_stack,cme_prof_fls,dir+'/detections_dublin/cme_profs', /no_plots
+
+; Clustering
+kins_fls=file_search(dir+'/detections_dublin/cme_profs/cme_kin_prof_*')
+cme_count = max(strmid(file_basename(kins_fls),13,2))
+for k=0,cme_count do begin & $
+	if k lt 10 then kins_fls_subset = file_search(dir+'/detections_dublin/cme_profs/cme_kin_prof_0'+num2str(k)+'*') else kins_fls_subset = file_search(dir+'/detections_dublin/cme_profs/cme_kin_prof_'+num2str(k)+'*') & $
+	if strlen(kins_fls_subset[0]) ne 0 then begin & $ 
+		; Note can include /group_clusters keyword in group_cme_kins.pro at line calling clustering.pro to test the range of each cluster for overlap. & $
+		group_cme_kins,kins_fls_subset,ave_xs,ave_ys,slopes,pos_angs, fail, cme_count=k, out_dir=dir+'/detections_dublin/cme_profs' & $
+		; saves cluster_CMEnumber_clusternumber.sav
+		if fail ne 1 then begin & $
+			cluster_fls = file_search(dir+'/detections_dublin/cme_profs/cluster_'+num2str(k)+'_'+'*')  & $
+			for j=0,n_elements(cluster_fls)-1 do begin & $
+				print, 'restoring ', cluster_fls[j] & $
+				restore, cluster_fls[j], /ver & $
+				cme_kins_fls = kins_fls_subset[cluster_inds] & $
+				if k lt 10 then save, cme_kins_fls, f=dir+'/detections_dublin/cme_profs/cme_kins_fls_0'+num2str(k)+'_'+num2str(j)+'.sav' else save, cme_kins_fls, f=dir+'/detections_dublin/cme_profs/cme_kins_fls_'+num2str(k)+'_'+num2str(j)+'.sav' & $
+				; saves cme_kins_fls_CMEnumber_clusternumber.sav & $
+			endfor & $
+		endif & $		
+	endif & $
+endfor
+
+; plotting
+cme_fls = file_search(dir+'/detections_dublin/cme_profs/cme_kins_fls*') & $
+for k=0,n_elements(cme_fls)-1 do begin & $
+	restore, cme_fls[k], /ver & $
+	restore, cme_kins_fls[0], /ver & $
+	utbase = anytim(datetime[0]) & $
+	utplot, datetime, definite_y, utbase, psym=1, yr=[0,20000], xr=[anytim(datetime[0])-utbase-1e5, anytim(datetime[n_elements(datetime)-1])-utbase+1e5] & $
+	for j=1,n_elements(cme_kins_fls)-1 do begin & $
+		restore, cme_kins_fls[j], /ver & $
+		help, datetime, definite_y & $
+		if n_elements(datetime) gt 1 then outplot, datetime, definite_y, psym=1 & $
+	endfor & $
+	pause & $
+endfor
+
+; Or to overplot:
+for k=0,n_elements(cme_fls)-1 do begin & $
+	restore, cme_fls[k], /ver & $
+	restore, cme_kins_fls[0], /ver & $
+	utbase = anytim(datetime[0]) & $
+	if k eq 0 then utplot, datetime, definite_y, utbase, psym=1, yr=[0,20000], xr=[anytim(datetime[0])-utbase-1e5, anytim(datetime[n_elements(datetime)-1])-utbase+2e5] else outplot,  datetime, definite_y, utbase, psym=1 & $
+	for j=1,n_elements(cme_kins_fls)-1 do begin & $
+		restore, cme_kins_fls[j], /ver & $
+		help, datetime, definite_y & $
+		if n_elements(datetime) gt 1 then outplot, datetime, definite_y, psym=1 & $
+	endfor & $
+	pause & $
+endfor
+
+
+; Where to pick up for inspecting how to fit the CME height-time profiles (spanning position angles)
+
+; fitting!?!
+dir = '~/Postdoc/Automation/candidates/20100227-0305'
+cme_fls = file_search(dir+'/detections_dublin/cme_profs/cme_kins_fls*') & $
+;for k=0,n_elements(cme_fls)-1 do begin & $
+k=0 & $
+	restore, cme_fls[k], /ver & $
+	restore, cme_kins_fls[0], /ver & $
+	def_xs = definite_x & $
+	def_ys = definite_y & $
+	datetimes = datetime & $
+	pos_angles = strmid(file_basename(cme_kins_fls[0]),19,3)
+	for j=1,n_elements(cme_kins_fls)-1 do begin & $
+		restore, cme_kins_fls[j], /ver & $
+		def_xs = [def_xs, definite_x] & $
+		def_ys = [def_ys, definite_y] & $
+		datetimes = [datetimes, datetime] & $
+		pos_angles = [pos_angles, strmid(file_basename(cme_kins_fls[0]),19,3)] & $
+	endfor ; & $
+	;pause & $
+;endfor
+
+
+;**************************
+
+; Now for just the case of inspecting the M.A.D. heights and assuming there are no cases of multiple CMEs occuring together.
+: not done!
+
+
+
+;**************************
+
+BASIC MODULE
+
+;**************************
+
+
+Work with Huw 2012-09-18
+
+loadct, 39
+set_line_color
+fls=file_Search('../candidates/20110112-14/dyn*')
+restore,'20110112-14/combined_stack.sav',/ver  
+pa_total = stack
+clean_pa_total,pa_total,pa_mask
+pa_total *= pa_mask
+separate_pa_total,pa_total,det_info
+det_fls=file_Search('20110112-14/dets_*')
+stack_fls=file_Search('20110112-14/det_stack*') 
+find_pa_heights_all_redo,fls,pa_total,det_info,det_fls,stack_fls,'20110112-14/cme_profs'
+cme_prof_fls=file_Search('cme_profs/cme_prof_*')
+find_pa_heights_masked,fls,pa_total,det_info,det_fls,stack_fls,cme_prof_fls,'20110112-14/cme_kin_profs',/no_plots

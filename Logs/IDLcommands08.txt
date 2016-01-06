@@ -1,0 +1,1491 @@
+07-01-08
+
+2       utplot,t,h,utbasedatac2,psym=-2,tit='Height Apex', ytit='arcsec'
+3       utplot,t,h,utbasedatac2,psym=2,tit='Height Apex', ytit='arcsec'
+4       utplot,t,h,utbasedatac2,psym=-2,tit='Height Apex', ytit='arcsec'
+5       plot, h, t, psym=-2
+6       plot, h, t
+7       help, h,t
+8       t=tot
+9       h=[hc2,hc3]
+10      print, timeplotc2
+11      print, tot
+12      tot=[timeplotc2, timeplotc3]
+13      print, timeplotc3
+14      timeplotc3=anytim(time_arc3)-anytim(time_arc2[0])
+15      print, timeplotc3
+16      timeplotc3=anytim(time_arc3)-anytim(time_arc3[0])
+17      utbasedatac3=time_arc3[0]
+18      print, time_arc2
+19      print, time_arc3
+20      time_arc3=file2time(flsc3)
+21      xstepper, dac3, xs=600
+22      help, dac3
+23      mreadfits, flsc3, in, dac3
+24      flsc3=file_Search('C3/Normalised_rm/*fts')
+25      help, inc3
+26      help, inc2
+27      mreadfits, flsc3, inc3
+28      flsc3=file_Search('C3/*fts')                                         
+29      hc3=kinsc3[*,5]
+30      print, kinsc3[*,5]
+31      print, kinsc3
+32      help, kinsc3
+33      help, inc3
+34      mreadfits, flsc3, inc3
+35      flsc3=file_Search('C3/*fts')
+36      print, timeplotc2
+37      timeplotc2=anytim(time_arc2)-anytim(utbasedatac2)
+38      utbasedatac2=time_arc2[0]
+39      print, inc2.time_d$obs
+40      print, flsc2
+41      print, time_arc2
+42      time_arc2=file2time(flsc2)
+43      mreadfits, flsc2, in, dac2
+44      flsc2=file_search('C2/NormaliseD_rm/*fts')
+45      help, inc2
+46      mreadfits, flsc2, inc2
+47      flsc2=file_search('C2/*fts')
+48      $
+49      ?$
+50      $ls
+51      pwd
+52      plot_image, dac2[*,*,5]
+53      print,hc2
+54      plot_image, dac2[*,*,1]
+55      print, inc2[0].time_d$obs
+56      print, inc2[0].time_obs                                              
+57      xstepper,dac2,xs=700
+58      mreadfits, flsc2, in, dac2
+59      flsc2=file_Search('C2/Normalised_rm/*fts')
+60      help, inc2
+61      mreadfits, flsc2, inc2
+62      flsc2=file_Search('C2/*fts')
+63      pwd
+64      plot, hc2, psym=-2
+65      plot, hc2, psym=2
+66      plot, hc2
+67      print, errorsc2
+68      print, hc2
+69      hc2= kinsc2[*,5]
+70      print, kinsc2[*,5]
+71      print, kinsc2
+72      print, errorsc2
+73      help
+74      pwd
+75      restore, 'kinsc2.sav',/ver
+76      restore, 'kinsc3.sav',/ver
+77      restore, 'errorsC3.sav',/ver
+78      print,errorsc2
+79      restore, 'errorsC2.sav',/ver
+80      print, kinsc2
+81      help, kinsc2
+82      restore, 'kinsc2.sav',/ver
+83      pwd
+
+
+08-01-08
+
+2       oploterror,t,h_rsun,delta_t,h_errs_rsun,psym=3
+3       oploterror,t,h_rsun,delta_t,h_errs,psym=3
+4       outplot,t,h_model/rsun_arcsec,utbasedata,psym=-3
+5       utplot, t, h_rsun,utbasedata,psym=3,tit='!6Height Apex', ytit='R_sun',yr=[0,22],/ys
+6       a_model=f[0]
+7       v_model=f[0]*t+f[1]
+8       v_model=f[0]8t+f[1]
+9       h_model=f[0]*t^2+f[1]*t+f[2]
+10      f=mpfitexpr(yf,t,h_arcsec,h_errors,[h_arcsec[0],v_arcsec[0],a_arcsec[0]])
+11      yf='p[0]*x^2.+p[1]*x+p[2]'
+12      print, h_errs_rsun
+13      h_errs_rsun=h_errors/rsun_arcsec
+14      print, h_Errors
+15      h_errors=[errsc2_arcsec,errsc3_arcsec]
+16      h_errors=[errorsc2_arcsec,errorsc3_arcsec]
+17      print, errsc3_arcsec
+18      errsc3_arcsec=errorsc3*inc3[0].platescl
+19      print, errsc2_arcsec
+20      errsc2_arcsec=errorsc2*inc2[0].platescl
+21      print, errorsc2*11.9
+22      print, errorsc2*(11.9/rsun_arcsec)
+23      print, errorsc2*(6.96e8*11.9/rsun_arcsec)
+24      print, errs
+25      errs=[errorsc2,errorsc3]
+26      print, errorsc3
+27      print, errorsc2
+28      print, errs                                                          
+29      print, h_errs_rsun
+30      print, h_errs
+31      h_errs_rsun=h_errors/rsun_arcsec
+32      h_errors=errs
+33      print, errs
+34      retall
+35      h_errs_rsun=h_errors/rsun_arcsec
+36      print, h_rsun
+37      h_rsun=h_arcsec/rsun_arcsec
+38      print, rsun_arcsec
+39      Rsun_arcsec=(pb0r(inc2[0],/arc,/soho))[2]
+40      a_arcsec=deriv(t,v_arcsec)
+41      v_arcsec=deriv(t,h_arcsec)
+42      print, h_arcsec
+43      h_arcsec=[kinsc2[*,5],kinsc3[*,5]]
+44      delta_t=[delta_tc2,delta_tc3]
+45      print, delta_tc3
+46      for i=1,n_elements(timeplotc3)-2 do delta_tc3[i]=(timeplotc3[i+1]-timeplotc3[i])/3.
+47      print, delta_tc2
+48      for i=1,n_elements(timeplotc2)-2 do delta_tc2[i]=(timeplotc2[i+1]-timeplotc2[i])/3.
+49      print, delta_tc3
+50      delta_tc3[n_elements(timeplotc3)-1]=2*(timeplotc3[n_elements(timeplotc3)-1]-timeplotc3[n_elements(timeplotc3)-2])/3.
+51      print, delta_tc2
+52      delta_tc2[n_elements(timeplotc2)-1]=2*(timeplotc2[n_elements(timeplotc2)-1]-timeplotc2[n_elements(timeplotc2)-2])/3.
+53      print, delta_tc2
+54      delta_tc3[0]=2*(timeplotc3[1]-timeplotc3[0])/3.                      
+55      delta_tc2[0]=2*(timeplotc2[1]-timeplotc2[0])/3.
+56      delta_t=fltarr(n_elements(t))
+57      delta_tc3=fltarr(n_elements(timeplotc3))
+58      felta_tc3=fltarr(n_elements(timeplotc3))
+59      delta_tc2=fltarr(n_elements(timeplotc2))
+60      print, t
+61      t=[timeplotc2,timeplotc3]
+62      print, timeplotc3
+63      timeplotc3=anytim(time_arc3)-anytim(utbasedata)
+64      time_arc3=file2time(flsc3)
+65      timeplotc2=anytim(time_arc2)-anytim(utbasedata)
+66      print, utbasedata
+67      utbasedata=time_arc2[0]
+68      time_arc2=file2time(flsc2)
+69      pwd
+70      .r ellipse_plots
+71      help, errs
+72      print, errs
+73      help, flsc2, flsc3, hc2, hc3
+74      print, hc3
+75      print, hc2
+76      print, kinsc2
+77      print, flsc3
+78      print, flsc2
+79      p=mpfitexpr(expr,t,h_rsun,errs_rsun,start)
+80      help,t
+81      retall
+
+
+09-01-08
+
+2       oploterror,t[2:10],a[2:10]*750000,delta_t[2:10],a_errs[2:10]*750000,psym=3
+3       outplot,t[2:10],a_model_array[2:10],utbasedata,psym=-3
+4       utplot,t[2:10],a[2:10]*750000,utbasedata,psym=3,tit='Acceleration Apex', ytit='m/sec^2'
+5       outplot,t[2:10],a_model_array[2:10]*750000,utbasedata,psym=-3
+6       utplot,t[2:10],a[2:10]*750000,utbasedata,psym=3,tit='Acceleration Apex', ytit='m/sec^2'
+7       oploterror,t[2:10],a[2:10],delta_t[2:10],a_errs[2:10],psym=3
+8       outplot,t[2:10],a_model_array[2:10],utbasedata,psym=-3
+9       a_model_array=replicate(a_model*750000,n_elements(t))
+10      utplot,t[2:10],a[2:10]*750000,utbasedata,psym=3,tit='Acceleration Apex', ytit='m/sec^2'
+11      utplot,t,a*750000,utbasedata,psym=3,tit='Acceleration Apex', ytit='m/sec^2'
+12      oploterror,t_new,v_new*710,delta_t[1:11],v_errs[1:11]*710,psym=3
+13      outplot,t_new,v_model*710,utbasedata,psym=-3
+14      utplot,t_new,v_new*710,utbasedata,psym=3,tit='Velocity Apex',ytit='km/sec'
+15      utplot,t_new[1:11],v_new[1:11]*710,utbasedata,psym=3,tit='Velocity Apex',ytit='km/sec'
+16      utplot,t,a*750000,utbasedata,psym=3,tit='Acceleration Apex', ytit='m/sec^2'
+17      print, a_Errs
+18      for i=0,12 do a_errs[i]=a[i]*(v_errs[i]/v[i]+delta_t[i]/t[i])
+19      a_errs=fltarr(13)
+20      oploterror,t_new,v_new*710,delta_t[1:11],v_errs[1:11]*710,psym=3
+21      outplot,t_new,v_model*710,utbasedata,psym=-3
+22      utplot,t_new,v_new*710,utbasedata,psym=3,tit='Velocity Apex',ytit='km/sec'
+23      oploterror,t_new,v_new*710,delta_t[1:11],v_errs[1:11]*710,psym=3
+24      outplot,t_new,v_model*710,utbasedata,psym=-3
+25      utplot,t_new,v_new*710,utbasedata,psym=3,tit='Velocity Apex'
+26      oploterror,t_new,v_new*710,delta_t[1:11],v_errs[1:11]*710,psym=3
+27      outplot,t_new,v_model*710,utbasedata,psym=-3
+28      utplot,t_new,v_new*710,utbasedata,psym=3,tit='Velocity Apex'
+29      print, v_errs
+30      for i=0,12 do v_errs[i]=v[i]*(h_errs[i]/h[i]+delta_t[i]/t[i])
+31      print, v_errs
+32      print, v
+33      print, h_errs
+34      oploterror,t_new,v_new*710,delta_t[1:11],v_new_errs*710,psym=3
+35      outplot,t_new,v_model*710,utbasedata,psym=-3
+36      utplot,t_new,v_new*710,utbasedata,psym=3,tit='Velocity Apex'
+37      oploterror,t_new,v_new,delta_t[1:11],v_new_errs,psym=3
+38      outplot,t_new,v_model,utbasedata,psym=-3
+39      utplot,t_new,v_new,utbasedata,psym=3,tit='Velocity Apex'
+40      v_new_errs=v_errs[1:11]
+41      utplot,t_new,v_new,utbasedata,psym=2
+42      t_new=t[1:11]
+43      v_new=v[1:11]
+44      print, v[12]
+45      print, v[2]
+46      print, v[13]
+47      help,v
+48      utplot,t,v,utbasedata,psym=2
+49      utplot,t,v,utbasedata
+50      help, v_errs
+51      help, v
+52      print, v_errs
+53      save,t,h,h_rsun,utbasedata,h_model,v_model,a_model,a,v,h_errs,delta_t,rsun_arcsec,h_errs,h_errs_rsun,yf,f,v_errs,a_errs,f='plot_vars.sav'
+54      oploterror,t,h_rsun,delta_t,h_errs_rsun,psym=3
+55      outplot,t,h_model/rsun_arcsec,utbasedata,psym=-3
+56      utplot,t,h_rsun,utbasedata,psym=3,tit='!6Height Apex',ytit='R_sun',yr=[0,22],/ys
+57      save,t,h,h_rsun,utbasedata,h_model,v_model,a_model,a,v,h_errs,delta_t,rsun_arcsec,h_errs,h_errs_rsun,yf,f,f='plot_vars.sav'
+58      oploterror,t,h_rsun,delta_t,h_errs_rsun,psym=3
+59      outplot,t,h_model/rsun_arcsec,utbasedata,psym=-3
+60      utplot,t,h_rsun,utbasedata,psym=3,tit='!6Height Apex',ytit='R_sun',yr=[0,22],/ys
+61      oploterror,t,h_rsun,temp,h_errs_rsun,psym=3
+62      outplot,t,h_model/rsun_arcsec,utbasedata,psym=-3
+63      utplot,t,h_rsun,utbasedata,psym=3,tit='!6Height Apex',ytit='R_sun',yr=[0,22],/ys
+64      temp=fltarr(n_elements(delta_t))
+65      oploterror,t,h_rsun,delta_t,h_errs_rsun,psym=3
+66      outplot,t,h_model/rsun_arcsec,utbasedata,psym=-3
+67      utplot,t,h_rsun,utbasedata,psym=3,tit='!6Height Apex',ytit='R_sun',yr=[0,22],/ys
+68      oploterror,t,h_rsun,delta_t,h_errs_rsun,psym=3
+69      h_errs_rsun=h_errs/rsun_arcsec
+70      h_errs=[h_errs[0:4],h_errs[6:*]]
+71      help, h_errs
+72      h_errs=[errorsc2*inc2.platescl,errorsc3*inc3.platescl]
+73      print, errorsc2*inc2.platescl
+74      print, errorsc2
+75      print,h_errs
+76      help,h_Errs
+77      oploterror,t,h_rsun,delta_t,h_errs_rsun,psym=3
+78      h_errs_rsun=h_errs/rsun_arcsec
+79      help, h_errs_rsun
+80      help, h_errs
+81      oploterror,t,h_rsun,delta_t,h_errs_rsun,psym=3
+82      outplot,t,h_model/rsun_arcsec,utbasedata,psym=-3
+83      utplot,t,h_rsun,utbasedata,psym=3,tit='!6Height Apex',ytit='R_sun',yr=[0,22],/ys
+84      a_model=f[0]
+85      v_model=f[0]*t+f[1]
+86      h_model=f[0]*t^2.+f[1]*t+f[2]
+87      f=mpfitexpr(yf,t,h,h_errs,[h[0],v[0],a[0]])
+88      print, v_errs
+89      print, a_errs
+90      for i=0,12 do a_errs[i]=a[i]*(v_errs[i]/v[i]+delta_t[i]/t[i])
+91      for i=0,12 do v_errs[i]=v[i]*(h_errs[i]/h[i]+delta_t[i]/t[i])
+92      a_errs=v_errs
+93      v_errs = fltarr(n_elements(t))
+94      a=deriv(t,v)
+95      v=deriv(t,h)
+96      h_rsun_errs = h_errs/rsun_arcsec
+97      h_rsun=
+98      h_rsun=h/rsun_arcsec
+99      help,h
+100     rsun_arcsec = (pb0r(inc2,/arc,/soho))[2]
+101     yf='p[0]*x^2.+p[1]*x+p[2]'
+102     utplot, t, h, utbasedata, psym=2, tit='!6Height Apex', ytit='arcsec'
+103     utplot, t, h, utbasedata
+104     h_errs=[h_errs[0:4],h_errs[6:*]]
+105     help, h_errs
+106     h_errs=[errorsc2,errorsc3]
+107     restore, 'errorsc3.sav',/ver
+108     restore, 'errorsc2.sav',/ver
+109     help, delta_t
+110     delta_t=[delta_t[0:4],delta_t[6:*]]
+111     exptime=delta_t
+112     help, delta_t
+113     delta_t = [delta_tc2,delta_tc3]
+114     delta_tc3=inc3.exptime
+115     delta_tc2=inc2.exptime
+116     print, utbasedata
+117     plot, t, h, psym=-2
+118     t=[t[0:4],t[6:*]]
+119     oplot, t, h, psym=-2
+120     plot, t, h_arcsec, psym=-2
+121     plot, t, h, psym=-2
+122     h=[h_arcsec[0:4],h_arcsec[6:*]]                                
+123     plot, h_arcsec
+124     h_arcsec=[hc2,hc3]
+125     print, hc3
+126     hc3=kinsc3[*,5]
+127     print, hc2
+128     hc2=kinsc2[*,5]
+
+
+MATLAB Commands
+
+%-- Unknown date --%
+,:,3)), axis('xy');
+imagesc(edges(:,:,5)), axis('xy');
+imwrite(edges(:,:,5), 'edg4.png');
+clear
+pwd
+cd ../../C3
+cd ../../../C3
+ls
+cd Normalised_rm/
+ls
+load('edges.mat');
+whos
+imagesc(edges(:,:,5)), axis('xy');
+imagesc(edges(:,:,4)), axis('xy');
+imagesc(edges(:,:,3)), axis('xy');
+imagesc(edges(:,:,4)), axis('xy');
+imagesc(edges(:,:,6)), axis('xy');
+imagesc(edges(:,:,7)), axis('xy');
+imagesc(edges(:,:,8)), axis('xy');
+imagesc(edges(:,:,9)), axis('xy');
+imagesc(edges(:,:,10)), axis('xy');
+imagesc(edges(:,:,11)), axis('xy');
+imagesc(edges(:,:,12)), axis('xy');
+for i=1,20
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+for i=1,20
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+for i=1,20
+imagesc(edges(:,:,i)), axis('xy');
+wait
+end
+for i=1,20
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+for i=1,20
+i
+end
+for i=1:20
+i
+end
+for i=1:20
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+cd ../../
+pwd
+cd ..
+pwd
+cd 20000131/
+cd C2
+ls
+cd Normalised_rm/
+ls
+clear
+load('edges.mat');
+whos
+for i=1:16
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+imagesc(edges(:,:,5)), axis('xy');
+imagesc(edges(:,:,6)), axis('xy');
+imagesc(edges(:,:,7)), axis('xy');
+imagesc(edges(:,:,6)), axis('xy');
+imagesc(edges(:,:,15)), axis('xy');
+imagesc(edges(:,:,14)), axis('xy');
+imagesc(edges(:,:,13)), axis('xy');
+imagesc(edges(:,:,12)), axis('xy');
+imagesc(edges(:,:,13)), axis('xy');
+pwd
+cd edg_images/
+imwrite(edges(:,:,6), 'edg1.png');
+imwrite(edges(:,:,7), 'edg2.png');
+imwrite(edges(:,:,8), 'edg3.png');
+imwrite(edges(:,:,9), 'edg4.png');
+imwrite(edges(:,:,10), 'edg5.png');
+imwrite(edges(:,:,11), 'edg6.png');
+imwrite(edges(:,:,12), 'edg7.png');
+imwrite(edges(:,:,13), 'edg8.png');
+cd ../../..
+pwd
+cd ../20000211
+ls
+cd C2/Normalised_rm/
+clear
+load('edges.mat');
+whos
+for i=1:8
+imagesc(edges(:,:,i)), axis('xy');
+pause
+i
+end
+pwd
+for i=1:8
+imagesc(edges(:,:,i)), axis('xy');
+pause
+i
+end
+cd ../../
+ls
+cd ../
+cd 20000215/C2/Normalised_rm/
+ls
+clear
+load('edges.mat');
+whos
+for i=1:9
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+cd ../../../20000218/C2/CME1/Normalised_rm/
+load('edges.mat');
+whos
+for i=1:9
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+i=1
+imagesc(edges(:,:,i)), axis('xy');
+i=2;
+imagesc(edges(:,:,i)), axis('xy');
+i=3;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,3), 'edg1.png');
+imwrite(edges(:,:,4), 'edg2.png');
+imwrite(edges(:,:,5), 'edg3.png');
+imagesc(edges(:,:,i)), axis('xy');
+i=5
+imagesc(edges(:,:,i)), axis('xy');
+i=6;
+imagesc(edges(:,:,i)), axis('xy');
+pwd
+clear
+cd ../
+ls
+cd ..
+ls
+cd CME2/
+ls
+cd Normalised_rm/
+ls
+load('edges.mat');
+whos
+imagesc(edges(:,:,i)), axis('xy');
+i=1
+imagesc(edges(:,:,i)), axis('xy');
+i=2;
+imagesc(edges(:,:,i)), axis('xy');
+i=3;
+imagesc(edges(:,:,i)), axis('xy');
+i=4;
+imagesc(edges(:,:,i)), axis('xy');
+cd ../../
+ls
+cd ..
+ls
+cd ..
+cd 20000418
+lw
+ls
+cd C2
+ls
+cd Normalised_rm/ls
+cd Normalised_rm/
+ls
+clear
+load('edges.mat');
+imagesc(edges(:,:,i)), axis('xy');
+i=1
+imagesc(edges(:,:,i)), axis('xy');
+i=2;
+imagesc(edges(:,:,i)), axis('xy');
+i=3;
+imagesc(edges(:,:,i)), axis('xy');
+whos
+i=4;
+imagesc(edges(:,:,i)), axis('xy');
+i=5;
+imagesc(edges(:,:,i)), axis('xy');
+i=6;
+imagesc(edges(:,:,i)), axis('xy');
+i=7;
+imagesc(edges(:,:,i)), axis('xy');
+i=8;
+imagesc(edges(:,:,i)), axis('xy');
+i=9;
+imagesc(edges(:,:,i)), axis('xy');
+i=10;
+imagesc(edges(:,:,i)), axis('xy');
+i=11;
+imagesc(edges(:,:,i)), axis('xy');
+i=10;
+imagesc(edges(:,:,i)), axis('xy');
+i=9;
+imagesc(edges(:,:,i)), axis('xy');
+i=10;
+imagesc(edges(:,:,i)), axis('xy');
+i=8;
+imagesc(edges(:,:,i)), axis('xy');
+i=7;
+imagesc(edges(:,:,i)), axis('xy');
+i=6;
+imagesc(edges(:,:,i)), axis('xy');
+i=5;
+imagesc(edges(:,:,i)), axis('xy');
+i=6;
+imagesc(edges(:,:,i)), axis('xy');
+i=7;
+imagesc(edges(:,:,i)), axis('xy');
+i=5;
+imagesc(edges(:,:,i)), axis('xy');
+i=4;
+imagesc(edges(:,:,i)), axis('xy');
+i=6;
+imagesc(edges(:,:,i)), axis('xy');
+pwd
+mkdir edg_images
+cd edg_images/
+imwrite(edges(:,:,6), 'edg1.png');
+imwrite(edges(:,:,7), 'edg2.png');
+imwrite(edges(:,:,8), 'edg3.png');
+imwrite(edges(:,:,9), 'edg4.png');
+imwrite(edges(:,:,10), 'edg5.png');
+imwrite(edges(:,:,11), 'edg6.png');
+i=11;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,12), 'edg7.png');
+i=12;
+imagesc(edges(:,:,i)), axis('xy');
+i=13;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,13), 'edg8.png');
+ls
+clear
+cd ../../..
+ls
+cd ..
+ls
+cd 20000419
+cd C2/Normalised_rm/
+ls
+load('edges.mat');
+whos
+i=1
+imagesc(edges(:,:,i)), axis('xy');
+for i=1:10
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+for i=1:10
+i
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+pwd
+mkdir edg_images
+cd edg_images/
+imwrite(edges(:,:,2), 'edg1.png');
+imwrite(edges(:,:,3), 'edg2.png');
+imwrite(edges(:,:,4), 'edg3.png');
+imwrite(edges(:,:,4), 'edg4.png');
+imwrite(edges(:,:,4), 'edg3.png');
+imwrite(edges(:,:,5), 'edg4.png');
+imwrite(edges(:,:,6), 'edg5.png');
+clear
+cd ../../..
+ls
+cd ..
+cd 20010401/C2/CME1/Normalised_rm/
+ls
+load('edges.mat');
+whos
+for i=1:10
+i
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+imagesc(edges(:,:,4)), axis('xy');
+imagesc(edges(:,:,3)), axis('xy');
+imagesc(edges(:,:,5)), axis('xy');
+pwd
+mkdir edg_images
+cd edg_images/
+imwrite(edges(:,:,4), 'edg1.png');
+imwrite(edges(:,:,5), 'edg2.png');
+cd ../../../CME2/Normalised_rm/
+ls
+clear
+load('edges.mat');
+whos
+for i=1:31
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+cd ../../CME3/Normalised_rm/
+load('edges.mat');
+whos
+for i=1:5
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+imagesc(edges(:,:,1)), axis('xy');
+imagesc(edges(:,:,2)), axis('xy');
+imagesc(edges(:,:,3)), axis('xy');
+imwrite(edges(:,:,2), 'edg1.png');
+imagesc(edges(:,:,2)), axis('xy');
+cd ../../../
+ls
+cd ../
+ls
+cd 20010423/C2/
+ls
+cd CME1/Normalised_rm/
+ls
+load('edges.mat');
+whos
+for i=1:11
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+cd ../
+ls
+cd ..
+ls
+cd CME2/Normalised_rm/
+load('edges.mat');
+whos
+for i=1:13
+i
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+imagesc(edges(:,:,7)), axis('xy');
+imagesc(edges(:,:,6)), axis('xy');
+imagesc(edges(:,:,7)), axis('xy');
+imagesc(edges(:,:,6)), axis('xy');
+imagesc(edges(:,:,5)), axis('xy');
+imagesc(edges(:,:,4)), axis('xy');
+imagesc(edges(:,:,5)), axis('xy');
+imagesc(edges(:,:,6)), axis('xy');
+imagesc(edges(:,:,7)), axis('xy');
+imagesc(edges(:,:,6)), axis('xy');
+imagesc(edges(:,:,7)), axis('xy');
+imagesc(edges(:,:,8)), axis('xy');
+pwd
+cd ../../..
+pwd
+cd ../20000118
+cd C3
+cd Normalised_rm/
+load('edges.mat');
+whos
+for i=1:40
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+cd edg_images/
+imwrite(edges(:,:,4), 'edg1.png');
+imwrite(edges(:,:,5), 'edg2.png');
+imwrite(edges(:,:,6), 'edg3.png');
+imwrite(edges(:,:,7), 'edg4.png');
+imwrite(edges(:,:,7), 'edg5.png');
+imwrite(edges(:,:,7), 'edg4.png');
+imwrite(edges(:,:,8), 'edg5.png');
+imwrite(edges(:,:,9), 'edg6.png');
+imwrite(edges(:,:,10), 'edg7.png');
+imwrite(edges(:,:,11), 'edg8.png');
+imwrite(edges(:,:,12), 'edg9.png');
+imwrite(edges(:,:,13), 'edg10.png');
+imwrite(edges(:,:,14), 'edg11.png');
+imwrite(edges(:,:,15), 'edg12.png');
+imwrite(edges(:,:,16), 'edg13.png');
+imwrite(edges(:,:,17), 'edg14.png');
+imwrite(edges(:,:,18), 'edg15.png');
+imwrite(edges(:,:,19), 'edg16.png');
+imwrite(edges(:,:,20), 'edg17.png');
+ls
+cd ../../..
+pwd
+cd ../20000211/
+ls
+cd C2/Normalised_rm/
+ls
+cd edg_images/
+ls
+cd ..
+ls
+load('edges.mat');
+whos
+for i=1:8
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+cd edg_images/
+imagesc(edges(:,:,1)), axis('xy');
+imagesc(edges(:,:,2)), axis('xy');
+imagesc(edges(:,:,3)), axis('xy');
+imagesc(edges(:,:,2)), axis('xy');
+imwrite(edges(:,:,2), 'edg1.png');
+imwrite(edges(:,:,3), 'edg2.png');
+imwrite(edges(:,:,4), 'edg3.png');
+imwrite(edges(:,:,5), 'edg4.png');
+imwrite(edges(:,:,6), 'edg5.png');
+imagesc(edges(:,:,6)), axis('xy');
+imwrite(edges(:,:,7), 'edg6.png');
+imagesc(edges(:,:,7)), axis('xy');
+imagesc(edges(:,:,8)), axis('xy');
+imwrite(edges(:,:,8), 'edg7.png');
+cd ../../..
+cd ..
+ls
+cd 20000215
+cd C2/Normalised_rm/
+ls
+load('edges.mat');
+whos
+for i=1:9
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+cd ../../../..
+ls
+cd Data_VSO/20010401/c2/cme2
+ls
+cd Normalised_rm/
+ls
+load('edges.mat');
+whos
+for i=1:39
+imagesc(edges(:,:,i)), axis('xy');
+pause
+i
+end
+cd ../../../..
+ls
+cd 20010423
+cd C2/CME1/Normalised_rm/
+load('edges.mat');
+whos
+for i=1:11
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+%-- 10/26/07 12:11 PM --%
+cd ~/PhD/Data_Stereo/Cor1/ahead_15may07/totb/CME/Normalised/
+ls
+load('edges.mat');
+whos edges
+for i=1:63
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+for i=1:63
+imagesc(edges(:,:,i)), axis('xy');
+i
+pause
+end
+colormap('gray')
+for i=1:63
+i
+pause
+imagesc(edges(:,:,i)), axis('xy');
+end
+for i=1:63
+i
+pause
+imagesc(edges(:,:,i)), axis('xy');
+end
+cme_edg=edges(:,:,33:63)
+whos cme_edg
+cme_edg=edges(:,:,33:63);
+whos cme_edg
+pwd
+mkdir cme_edg
+cd cme_edg/
+for i=1:31
+imwrite(cme_edg(:,:,i), 'edg',int2str(i),'.png');
+end
+for i=1:31
+eval(['imwrite(cme_edg(:,:,i), 'edg',int2str(i),'.png');'])
+for i=1:31
+eval[(imwrite(cme_edg(:,:,i), 'edg',int2str(i),'.png');)]
+eval[(imwrite(cme_edg(:,:,i), 'edg',int2str(i),'.png'))];
+eval([imwrite(cme_edg(:,:,i), 'edg',int2str(i),'.png')])
+for i=1:31
+eval([imwrite(cme_edg(:,:,i), 'edg',int2str(i),'.png')])
+end
+for i=1:31
+end
+t='edg1.png'
+i=1
+t='edg',int2str(i),'1.png'
+t=eval(['edg',int2str(i),'1.png'])
+t=eval(['edg',int2str(i),'.png'])
+i
+int2str(i)
+t=(['edg',int2str(i),'.png'])
+t=['edg',int2str(i),'.png']
+for i=1:31
+t=['edg',int2str(i),'.png']
+imwrite(cme_edg(:,:,i), t);
+end
+ls
+%-- 10/30/07  5:55 PM --%
+cd ~/PhD/Data_VSO/
+ls
+cd 20000419
+ls
+cd C3
+ls
+cd Normalised_rm/
+ls
+load('edges.mat');
+whos edges
+i=1
+imagesc(edges(:,:,i)), axis('xy');
+colormap('gray')
+for i=1,17
+i
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+for i=1:17
+i
+imagesc(edges(:,:,i)), axis('xy');
+pause
+end
+pwd
+ls
+mkdir edg_images
+i=1
+imagesc(edges(:,:,i)), axis('xy');
+i=2
+imagesc(edges(:,:,i)), axis('xy');
+i=3;
+imagesc(edges(:,:,i)), axis('xy');
+i=4;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg1.png');
+i=5;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg2.png');
+i=6;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg3.png');
+i=7;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg4.png');
+i=8;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg5.png');
+i=9;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg6.png');
+i=10;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg7.png');
+i=11;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg8.png');
+i=12;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg9.png');
+i=12;
+i=13;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg10.png');
+i=14;
+imagesc(edges(:,:,i)), axis('xy');
+imwrite(edges(:,:,i), 'edg11.png');
+i=15;
+imagesc(edges(:,:,i)), axis('xy');
+ls
+mv *png edg_images
+pwd
+ls
+cd ..
+ls
+cd 20010423
+cd C2
+ls
+cd CME1
+ls
+cd Normalised_rm/
+ls
+clear
+load('edges.mat');
+whos edges
+for k=1:11
+imagesc(edges(:,:,k)), axis('xy');
+pause
+end
+k=1
+imagesc(edges(:,:,k)), axis('xy');
+k=2
+imagesc(edges(:,:,k)), axis('xy');
+pwd
+cd edg_images/
+imwrite(edges(:,:,k), 'edg1.png');
+k
+k=3;
+imwrite(edges(:,:,k), 'edg1.png');
+k=4;
+imwrite(edges(:,:,k), 'edg1.png');
+k=2;
+imwrite(edges(:,:,k), 'edg1.png');
+k=3;
+imwrite(edges(:,:,k), 'edg2.png');
+k=4;
+imwrite(edges(:,:,k), 'edg3.png');
+imagesc(edges(:,:,k)), axis('xy');
+k=5;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg4.png');
+pwd
+cd ../../
+pwd
+cd ../..
+ls
+cd C3
+cd CME1
+cd Normalised_rm/
+ls
+clear
+load('edges.mat');
+whos
+for k=1:8
+imagesc(edges(:,:,k)), axis('xy');
+pause
+end
+ls
+mkdir edg_images
+cd edg_images/
+k=1
+imagesc(edges(:,:,k)), axis('xy');
+k=2
+imagesc(edges(:,:,k)), axis('xy');
+k=3;
+imagesc(edges(:,:,k)), axis('xy');
+k=2;
+imwrite(edges(:,:,k), 'edg1.png');
+k=3;
+imwrite(edges(:,:,k), 'edg2.png');
+k=4;
+imwrite(edges(:,:,k), 'edg3.png');
+k=5;
+imwrite(edges(:,:,k), 'edg4.png');
+imagesc(edges(:,:,k)), axis('xy');
+k=6;
+imwrite(edges(:,:,k), 'edg5.png');
+imagesc(edges(:,:,k)), axis('xy');
+k=7;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg6.png');
+k=8;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg7.png');
+ls
+cd ../..
+pwd
+cd ../../..
+ls
+cd 20070125
+cd C3
+cd Normalised_rm/
+ls
+clear
+load('edges.mat');
+whos
+for k=1:15
+imagesc(edges(:,:,k)), axis('xy');
+k
+pause
+end
+cd ../
+s
+cd ..
+ls
+cd C2
+cd Normalised_rm/
+ls
+load('edges.mat');
+whos
+k=1
+imagesc(edges(:,:,k)), axis('xy');
+k=2
+imagesc(edges(:,:,k)), axis('xy');
+k=3
+imagesc(edges(:,:,k)), axis('xy');
+mkdir edg_images
+cd edg_images/
+k=2;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg1.png');
+k=3;
+imwrite(edges(:,:,k), 'edg2.png');
+cd ../../
+ls
+cd ../C3/
+cd Normalised_rm/
+mkdir edg_images
+load('edges.mat');
+cd edg_images/
+ls
+k=1;
+imagesc(edges(:,:,k)), axis('xy');
+k=2;
+imagesc(edges(:,:,k)), axis('xy');
+k=3;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg1.png');
+k=4;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg2.png');
+k=5;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg3.png');
+k=6;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg4.png');
+k=7;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg5.png');
+k=8;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg6.png');
+k=9;
+imagesc(edges(:,:,k)), axis('xy');
+imwrite(edges(:,:,k), 'edg7.png');
+k=10;
+imagesc(edges(:,:,k)), axis('xy');
+k=8;
+imagesc(edges(:,:,k)), axis('xy');
+cd ../../
+pwd
+cd ../
+ls
+cd ..
+ls
+cd 20000127
+ls
+cd C3
+ls
+clear
+cd Normalised_rm/
+ls
+load('edges.mat');
+whos
+for k=1:16
+imagesc(edges(:,:,k)), axis('xy');
+k
+pause
+end
+for k=1:16
+imagesc(edges(:,:,k)), axis('xy');
+k
+pause
+end
+%-- 11/7/07 12:13 PM --%
+wavemenu
+bwselect
+%-- 11/22/07  1:55 PM --%
+ver
+bwselect
+wavememu
+wavemenu
+%-- 11/22/07  1:55 PM --%
+ver
+bwselect
+wavemeni
+wavemenu
+%-- 11/22/07  2:02 PM --%
+cd ~/PhD/
+ls
+cd Mars_Paul/ls
+cd Mars_Paul/
+lsl
+ls
+cd Arsia/
+ls
+arsia=imread('Arsia.tif');
+cd ..
+arsia=imread('Arsia.tif');
+imagesc(arsia);
+colormap('gray')
+pwd
+cd ..
+cd MatlabCodesAlex/
+[a,h,v]=fwt2_mallat(arsia,8);
+cd ~/Desktop/
+im=fitsread('22061695.fts');
+imagesc(im);
+[a,h,v]=fwt2_mallat(im,8);
+cd ../PhD/MatlabCodesAlex/
+[a,h,v]=fwt2_mallat(im,8);
+whos a h v
+imagesc(a[:,:,5]);
+imagesc(a(:,:,5));
+whos im arsia
+arsia2=double(arsia);
+whos
+[a,h,v]=fwt2_mallat(arsia2,8);
+for i=1:8
+im_edges(:,:,i)=wtmm_edge(h(:,:,i),v(:,:,i))
+end
+for i=1:8
+im_edges(:,:,i)=wtmm_edge(h(:,:,i),v(:,:,i));
+end
+whos im_edges
+imagesc(im_edges(:,:,1));
+imagesc(im_edges(:,:,2));
+imagesc(im_edges(:,:,3));
+imagesc(im_edges(:,:,4));
+imagesc(im_edges(:,:,5));
+imagesc(im_edges(:,:,6));
+imagesc(im_edges(:,:,7));
+imagesc(im_edges(:,:,6));
+imagesc(im_edges(:,:,7));
+imagesc(im_edges(:,:,6));
+imagesc(im_edges(:,:,5));
+imagesc(im_edges(:,:,4));
+imagesc(im_edges(:,:,5));
+imagesc(im_edges(:,:,6));
+imagesc(im_edges(:,:,7));
+pwd
+cd ../Mars_Paul/
+ls
+ascraeus=imread('Ascraeus.tif');
+ascraeus=double(ascraeus);
+[a,h,v]=fwt2_mallat(ascraeus,8);
+cd ../MatlabCodesAlex/
+[a,h,v]=fwt2_mallat(ascraeus,8);
+for i=1:8
+asc_edges(:,:,i)=wtmm_edge(h(:,:,i),v(:,:,i));
+end
+imagesc(im_edges(:,:,7));
+imagesc(asc_edges(:,:,7));
+imagesc(asc_edges(:,:,8));
+imagesc(asc_edges(:,:,7));
+imagesc(asc_edges(:,:,6));
+imagesc(asc_edges(:,:,5));
+imagesc(asc_edges(:,:,4));
+imagesc(asc_edges(:,:,3));
+imagesc(asc_edges(:,:,2));
+imagesc(asc_edges(:,:,1));
+imagesc(asc_edges(:,:,8));
+imagesc(a(:,:,8));
+imagesc(a(:,:,7));
+imagesc(a(:,:,6));
+imagesc(a(:,:,5));
+imagesc(a(:,:,4));
+imagesc(h(:,:,4));
+imagesc(h(:,:,5));
+imagesc(h(:,:,6));
+imagesc(h(:,:,7));
+imagesc(h(:,:,3));
+imagesc(h(:,:,2));
+imagesc(h(:,:,1));
+[a,h,v]=fwt2_mallat(ascraeus,16);
+cd ../MatlabCodesAlex/
+[a,h,v]=fwt2_mallat(ascraeus,16);
+cd ../Mars_Paul/
+ls
+olympus=tiffread('Olympus.tif');
+olympus=tifread('Olympus.tif');
+olympus=imread('Olympus.tif');
+olympus=double(olympus);
+cd ../MatlabCodesAlex/
+[a,h,v]=fwt2_mallat(olympus,8);
+for i=1:8
+ol_edges(:,:,i)=wtmm_edge(h(:,:,i),v(:,:,i));
+end
+imagesc(ol_edges(:,:,1));
+imagesc(ol_edges(:,:,2));
+imagesc(ol_edges(:,:,3));
+imagesc(ol_edges(:,:,4));
+imagesc(ol_edges(:,:,5));
+imagesc(ol_edges(:,:,6));
+imagesc(ol_edges(:,:,7));
+imagesc(ol_edges(:,:,6));
+imagesc(ol_edges(:,:,7));
+imagesc(ol_edges(:,:,8));
+imagesc(ol_edges(:,:,5));
+imagesc(ol_edges(:,:,4));
+imagesc(ol_edges(:,:,3));
+cd ../Mars_Paul/
+ls
+pav=imread('Pavonis.tif');
+imagesc(pav);
+cd ../MatlabCodesAlex/
+[a,h,v]=fwt2_mallat(pav,8);
+pav=double(pav);
+[a,h,v]=fwt2_mallat(pav,8);
+for i=1:8
+pav_edges(:,:,i)=wtmm_edge(h(:,:,i),v(:,:,i));
+end
+imagesc(pav_edges(:,:,3));
+imagesc(pav_edges(:,:,4));
+imagesc(pav_edges(:,:,5));
+imagesc(pav_edges(:,:,6));
+imagesc(pav_edges(:,:,7));
+imagesc(pav_edges(:,:,6));
+imagesc(pav_edges(:,:,7));
+imagesc(pav_edges(:,:,6));
+imagesc(pav_edges(:,:,5));
+imagesc(pav_edges(:,:,5)+pav_edges(:,:,4));
+imagesc(pav_edges(:,:,5)+pav_edges(:,:,4)+pav_edges(:,:,6));
+imagesc(pav_edges(:,:,5)+pav_edges(:,:,4)+pav_edges(:,:,6)+pav_edges(:,:,3));
+imagesc(pav_edges(:,:,5)+pav_edges(:,:,4)+pav_edges(:,:,3));
+imagesc(pav_edges(:,:,5));
+imagesc(pav_edges(:,:,6));
+imagesc(pav_edges(:,:,4));
+imagesc(pav_edges(:,:,5)+pav_edges(:,:,4);
+%-- 11/30/07 11:57 AM --%
+cd ~/PhD/Data_VSO/20040401/C2/Normalised_rm/
+ls
+load('edges.mat');
+imagesc(edges(:,:,1));
+colormap('gray')
+imagesc(edges(:,:,2));
+imagesc(edges(:,:,3));
+imagesc(edges(:,:,4));
+imagesc(edges(:,:,5));
+imagesc(edges(:,:,6));
+imagesc(edges(:,:,7));
+imagesc(edges(:,:,8));
+imagesc(edges(:,:,9));
+im9=edges(:,:,9);
+imagesc(edges(:,:,9));
+se=strel('square',2);
+temp=imdilate(im9,se);
+imagesc(temp);
+temp=imclose(temp,se);
+imagesc(temp);
+imagesc(im9);
+imagesc(temp);
+imagesc(im9);
+b9=boundaries(im9,4,'cw');
+whos im9 temp
+double2float(temp);
+help
+help imwrite
+doc imwrite
+imwrite(edges(:,:,9), 'edg9.png');
+pwd
+ls
+imwrite(edges(:,:,8), 'edg8.png');
+imwrite(edges(:,:,7), 'edg7.png');
+imwrite(edges(:,:,6), 'edg6.png');
+imagesc(edges(:,:,6));
+imagesc(edges(:,:,5));
+imwrite(edges(:,:,5), 'edg5.png');
+imagesc(edges(:,:,10));
+imwrite(edges(:,:,10), 'edg10.png');
+imagesc(edges(:,:,11));
+imwrite(edges(:,:,11), 'edg11.png');
+imagesc(edges(:,:,5));
+imagesc(edges(:,:,4));
+pwd
+ls
+clear
+cd ..
+ls
+cd ..
+pw
+pwd
+cd ..
+cd 20000118
+cd C3/Normalised_rm/
+ls
+load('edges.mat');
+imagesc(edges(:,:,4));
+colormap('gray')
+imagesc(edges(:,:,5));
+imagesc(edges(:,:,6));
+%-- 12/12/07  5:45 PM --%
+cd ~/PhD/Data_VSO/20000118/
+LS
+ls
+clear
+ls
+cd C3
+ls
+cd Normalised_rm/
+ls
+load('edges.mat');
+imagesc(edges(:,:,1));
+colormap('gray')
+imagesc(edges(:,:,2));
+imagesc(edges(:,:,3));
+imagesc(edges(:,:,4));
+%-- 12/12/07  5:50 PM --%
+cd ~/PhD/Data_VSO/20000118/C3/Normalised_rm/edg_images/
+ls
+cd ..
+ls
+load('edges.mat');
+imagesc(edges(:,:,4));
+colormap('gray')
+imagesc(edges(:,:,5));
+imagesc(edges(:,:,6));
+imagesc(edges(:,:,7));
+imagesc(edges(:,:,8));
+imagesc(edges(:,:,9));
+imagesc(edges(:,:,10));
+imagesc(edges(:,:,11));
+imagesc(edges(:,:,12));
+imagesc(edges(:,:,13));
+imagesc(edges(:,:,14));
+imagesc(edges(:,:,15));
+imagesc(edges(:,:,1));
+imagesc(edges(:,:,4));
+imagesc(edges(:,:,5));
+%-- 1/9/08  3:03 PM --%
+h_rsun=2.7898861       3.3271656       4.7511815       5.8847650       6.5178450       10.356733
+11.395251       13.112411       14.473365       16.071634       17.287016       19.276641
+20.069888
+h_rsun=(2.7898861       3.3271656       4.7511815       5.8847650       6.5178450       10.356733       11.395251       13.112411       14.473365       16.071634       17.287016       19.276641       20.069888)
+h_rsun=(2.7898861,3.3271656,4.7511815,5.8847650,6.5178450,10.356733,11.395251,13.112411,14.473365,16.071634,17.287016,19.276641,20.069888)
+h_rsun=[2.7898861,3.3271656,4.7511815,5.8847650,6.5178450,10.356733,11.395251,13.112411,14.473365,16.071634,17.287016,19.276641,20.069888]
+h_rsun
+t=[0.0000000       1442.0000       3674.0000       5040.0000       5760.0000       10080.000       11520.000       13680.000       15120.000       17280.000       18720.000       20880.000       22320.000]
+plot(h,t)
+plot(h_rsun,t)
+plot(t,h_rsun)
+plot(t,deriv(h_rsun))
+hep
+help
+plot(diff(h_rsun))
+plot(h_rsun)
+plot(diff(h_rsun),t)
+plot(diff(h_rsun,t))
+plot(diff(h_rsun,'t'))
+diff(h_run)
+diff(h_rsun)
+diff(h_rsun,t)
+diff(h_rsun,3)
+diff(h_rsun,[t])
+syms t
+%-- 1/16/08  5:10 PM --%
+
+
+17-09-08
+
+1       help, /recall
+2       scc_measure, daa, dab, ina, inb
+3       plot_image, front3
+4       restore, 'b/front3.sav', /ver
+5       plot_image, sigrange(dab)
+6       scc_measure, daa, dab, ina, inb
+7       dab=da2_ell
+8       daa=da3_ell
+9       help, ina
+10      scc_measure, da3_ell, da2_ell, ina, inb
+11      print, ina.date_obs, inb.date_obs
+12      inb=inb[2]
+13      ina=ina[3]
+14      $ls
+15      ?$ls
+16      cd,'combining_cor2
+17      pwd
+18      print, ina[3].date_obs, inb[2].date_obs
+19      help, ina, inb
+20      da=sccreadfits(fls,inb,/nodata)
+21      help, fls
+22      fls=file_Search('b/cor2/cme/normalised_rm/*fts')
+23      da=sccreadfits(fls,ina,/nodata)
+24      help, fls
+25      fls=file_Search('a/cor2/cme/normalised_rm/*fts')
+26      help, fls
+27      fls=file_Search('a/cor2/normalised_rm/*fts')                     
+28      plot_image, da3_ell^0.5
+29      plot_image, da2_ell^0.5
+30      plot_image, da2_ell^0.1
+31      plot_image, da2_ell^0.2
+32      plot_image, da2_ell
+33      restore, 'b/cor2/cme/normalised_rm/edg_images/da2_ell', /ver
+34      restore, 'a/cor2/cme/normalised_rm/edg_images/da3_ell.sav', /ver
+35      print, in[2].date_obs
+36      help, in, edges
+37      plot_image, edges[*,*,2]
+38      plot_image, edges[*,*,3]
+39      plot_image, edges[*,*,1]
+40      plot_image, edges[*,*,3]
+41      plot_image, edges[*,*,2]
+42      help, edges
+43      retall
+44      front_ell_kinematics,front3,1,in[2],da[*,*,2],2,ell_info, r_err, xe, ye, perror, max_h_front, apex_a, noplot, /noflank
+45      print, in[0].detector
+46      print, in[0].obsrvtry
+47      print, in[0].obsrvtory
+48      save, da2_ell, f='da2_ell'
+49      da2_ell = temp
+50      plot_image, temp[200:1000,500:1300]^0.5
+51      plot_image, temp[200:1000,500:1300]
+52      plot_image, temp[200:1000,500:1500]
+53      plot_image, sigrange(temp[200:1000,500:1500])                      
+54      plot_image, sigrange(temp)
+55      plot_image, temp
+56      for k=0,100 do temp[xe2[k],ye2[k]]=max(temp)
+57      pmm, temp
+58      plot_image, sigrange(temp)
+59      plot_image, temp
+60      for k=0,100 do temp[xe2[k],ye2[k]]=1
+61      help, xe2, ye2
+62      temp=da[*,*,2]
+63      plots, xe2, ye2, psym=3
+64      plot_image, sigrange(da[*,*,2])
+65      pwd
+66      plots, xe2, ye2, psym=2
+67      plots, xe2, ye2
+68      plots, xe2, ye2, psym=3
+69      plot_image, da[*,*,2]
+70      plots, xe2, ye2, psym=3
+71      ye2=ye/in[2].cdelt2 + (in[2].naxis2/2.-in[2].ycen/in[2].cdelt2)
+72      xe2=xe/in[2].cdelt1 + (in[2].naxis1/2.-in[2].xcen/in[2].cdelt1)
+73      front_ell_kinematics,front3,1,in[2],da[*,*,2],2,ell_info, r_err, xe, ye, perror, max_h_front, apex_a, noplot, /noflank
+74      .r front_ell_kinematics
+75      print, in[2].naxis1
+76      print, in[2].xcen/in[2].cdelt1
+77      print, in[2].cdelt1
+78      print, in[2].xcen
+79      help, xe, ye                                                       
+80      front_ell_kinematics,front3,1,in[2],da[*,*,2],2,ell_info, r_err, xe, ye, perror, max_h_front, apex_a, noplot, /noflank
+81      plots, xe, ye
+82      plot_image, da[*,*,2]^0.5
+83      plot, xe, ye
+84      ye=ye/in[2].cdelt2 + ysc
+85      xe=xe/in[2].cdelt1 + xsc
+86      ysc=(in[2].naxis2)/2.-ypo
+87      xsc=(in[2].naxis1)/2.-xpo
+88      ypo=in[2].ycen/in[2].cdelt2
+89      xpo=in[2].xcen/in[2].cdelt1
+90      ye = (ye/in[2].cdelt2)+in[2].crpix2
+91      xe = (xe/in[2].cdelt1)+in[2].crpix1
+92      plots, xe, ye
+93      plot_map, map
+94      index2map, in[2], sigrange(da[*,*,2]), map
+95      plots, xe, ye
+96      plot_map, map
+97      index2map, in[3], sigrange(da[*,*,3]), map
+98      plots, xe, ye
+99      plot_image, da[*,*,2]
+100     plot, xe, ye
+101     help, xe, ye
+102     help, x_ellipse
+103     plot, inds[0,*], inds[1,*], psym=8
+104     plot, inds[0,*], inds[1,*], psym=7
+105     plot, inds[0,*], inds[1,*], psym=6                                 
+106     plot, inds[0,*], inds[1,*], psym=5
+107     plot, inds[0,*], inds[1,*], psym=4
+108     plot, inds[0,*], inds[1,*], psym=3
+109     plot, inds[0,*], inds[1,*], psym=2
+110     plot, inds[0,*], inds[1,*]
+111     plot, inds[0,*], inds[1,*], psym=3
+112     plot, inds[0,*], inds[1,*]
+113     help, inds
+114     inds=array_indices(front3, ind)
+115     help, inds
+116     inds=array_indices(ind, front3)
+117     help, ind
+118     ind=where(front3 gt 0)
+119     help, front3
+120     .r standard_ellipse_plot
+121     front_ell_kinematics,front3,1,in[2],da[*,*,2],2,ell_info, r_err, xe, ye, perror, max_h_front, apex_a, noplot, /noflank
+122     .r front_ell_kinematics
+123     .r shift_ell
+124     .r front_ell_kinematics
+125     retall
+126     front_ell_kinematics,front3,1,in[2],da[*,*,2],2,ell_info, r_err, xe, ye, perror, max_h_front, apex_a, noplot, /noflank
+127     .r front_ell_kinematics
+128     retall

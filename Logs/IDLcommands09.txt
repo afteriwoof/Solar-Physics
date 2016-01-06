@@ -1,0 +1,1077 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf480
+{\fonttbl\f0\fswiss\fcharset77 Helvetica-BoldOblique;\f1\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14100\viewh16060\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b\fs24 \cf0 \ul \ulc0 23-01-09\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone \
+help, /recall\
+2       im1552=tvrd()\
+3       save,ei,re,xe,ye,pe,mh,aa,f='ellipseinfo1552.sav'\
+4       save,xf1552,yf1552,f='front1552.sav'\
+5       yf1552=yf\
+6       xf1552=xf\
+7       front_ell_kins,xf,yf,1,in[3],sigrange(fdiff1552,frac=0.98),2,ei,re,xe,ye,pe,mh,aa,0,/noflank\
+8       plots, xf, yf, psym=1, color=0\
+9       @pandc.b\
+10      plot_image, sigrange(fdiff1552,frac=0.98)\
+11      save,ei,re,xe,ye,pe,mh,aa,f='ellipseinfo1522.sav'\
+12      im1522=tvrd()\
+13      save, xf1522,yf1522,f='front1522.sav'\
+14      yf1522=yf\
+15      xf1522=xf\
+16      front_ell_kins,xf,yf,1,in[2],sigrange(fdiff1522,frac=0.99),2,ei,re,xe,ye,pe,mh,aa,0,/noflank\
+17      .r front_ell_kins\
+18      retall\
+19      front_ell_kins,xf,yf,1,in[2],sigrange(fdiff1522,frac=0.99),2,ei,re,xe,ye,pe,mh,aa,0,/noflank\
+20      print, in[2].date_obs\
+21      da=sccreadfits(fls,in,/nodata)\
+22      fls=file_Search('../*fts')\
+23      $ls ..\
+24      $ls\
+25      help, in\
+26      plots, xf, yf, psym=1, color=0\
+27      @pandc.b\
+28      plot_image, sigrange(fdiff1522,frac=0.99)\
+29      $open fdiff.html\
+30      wr_movie, 'fdiff', mov\
+31      mov[*,*,1]=tvrd()\
+32      plot_image, sigrange(fdiff1552,frac=0.98)\
+33      plot_image, sigrange(fdiff1552,frac=0.9)\
+34      mov[*,*,9]=tvrd()\
+35      plot_image, sigrange(fdiff1952,frac=0.9)\
+36      mov[*,*,8]=tvrd()\
+37      plot_image, sigrange(fdiff1922,frac=0.91)\
+38      mov[*,*,7]=tvrd()\
+39      plot_image, sigrange(fdiff1852,frac=0.92)\
+40      mov[*,*,6]=tvrd()\
+41      plot_image, sigrange(fdiff1822,frac=0.93)\
+42      mov[*,*,5]=tvrd()\
+43      plot_image, sigrange(fdiff1752,frac=0.94)\
+44      mov[*,*,4]=tvrd()\
+45      plot_image, sigrange(fdiff1722,frac=0.95)\
+46      mov[*,*,3]=tvrd()\
+47      plot_image, sigrange(fdiff1652,frac=0.96)\
+48      plot_image, sigrange(fdiff1652,frac=0.97)\
+49      mov[*,*,2]=tvrd()\
+50      plot_image, sigrange(fdiff1622,frac=0.97)\
+51      plot_image, sigrange(fdiff1622,frac=0.98)\
+52      plot_image, sigrange(fdiff1622,frac=0.97)\
+53      plot_image, sigrange(fdiff1622,frac=0.98)\
+54      plot_image, sigrange(fdiff1622,frac=0.95)\
+55      plot_image, sigrange(fdiff1622,frac=0.99)\
+56      mov[*,*,1]=tvrd()\
+57      plot_image, sigrange(fdiff1552,frac=0.99)\
+58      plot_image, sigrange(fdiff1552,frac=0.95)\
+59      plot_image, sigrange(fdiff1552,frac=0.99)\
+60      plot_image, sigrange(fdiff1552,frac=0.95)\
+61      plot_image, sigrange(fdiff1552,frac=0.99)\
+62      plot_image, sigrange(fdiff1552,frac=0.9)\
+63      plot_image, sigrange(fdiff1552,frac=0.99)\
+64      mov[*,*,0]=tvrd()\
+65      plot_image, sigrange(fdiff1522,frac=0.99)\
+66      plot_image, sigrange(fdiff1522,frac=0.95)\
+67      plot_image, sigrange(fdiff1922,frac=0.95)\
+68      plot_image, sigrange(fdiff1922,frac=0.9)                                \
+69      plot_image, sigrange(fdiff1822,frac=0.9)\
+70      plot_image, sigrange(fdiff1722,frac=0.9)\
+71      plot_image, sigrange(fdiff1622,frac=0.9)\
+72      plot_image, sigrange(fdiff1522,frac=0.9)\
+73      plot_image, sigrange(fdiff1922,frac=0.9)\
+74      plot_image, sigrange(fdiff1922,frac=0.95)\
+75      plot_image, sigrange(fdiff1922,frac=0.99)\
+76      plot_image, sigrange(fdiff1922,frac=0.97)\
+77      plot_image, sigrange(fdiff1522,frac=0.97)\
+78      mov=dblarr(800,800,10)\
+79      $ls\
+80      window, xs=800, ys=800\
+81      help, fdiff1522\
+82      plot_image, sigrange(fdiff1622,frac=0.99)\
+83      plot_image, sigrange(fdiff1552,frac=0.99)\
+84      plot_image, sigrange(fdiff1552,frac=0.97)\
+85      plot_image, sigrange(fdiff1552,frac=0.999)\
+86      plot_image, sigrange(fdiff1522,frac=0.999)\
+87      plot_image, sigrange(fdiff1522,frac=0.99)\
+88      plot_image, sigrange(fdiff1522,frac=0.98)\
+89      plot_image, sigrange(fdiff1522,frac=0.97)\
+90      plot_image, sigrange(fdiff1522)\
+91      plot_image, fdiff1522\
+92      $ls\
+93      save,fdiff1952,f='1952.sav'\
+94      fdiff1952=fdiff\
+95      @quick.b\
+96      k=11\
+97      $vim pandc.b\
+98      pwd\
+99      save,fdiff1922,f='1922.sav'\
+100     fdiff1922=fdiff\
+101     @quick.b\
+102     k=10\
+103     save,fdiff1852,f='1852.sav'\
+104     fdiff1852=fdiff\
+105     @quick.b\
+106     k=9\
+107     save,fdiff1822,f='1822.sav'\
+108     fdiff1822=fdiff\
+109     @quick.b\
+110     k=8\
+111     save,fdiff1752,f='1752.sav'\
+112     fdiff1752=fdiff\
+113     @quick.b\
+114     k=7\
+115     save,fdiff1722,f='1722.sav'\
+116     fdiff1722=fdiff\
+117     @quick.b\
+118     k=6\
+119     save,fdiff1652,f='1652.sav'\
+120     $ls\
+121     fdiff1652=fdiff\
+122     @quick.b\
+123     k=5\
+124     save,fdiff1552,f='1522.sav'\
+125     fdiff1522=fdiff\
+126     @quick.b\
+127     k=2\
+128     save,fdiff1552,f='1552.sav'\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b \cf0 \ul 28-01-09\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone \
+Recall buffer length: 128\
+1       help, /recall\
+2       cd,'slice23\
+3       $ls\
+4       pwd\
+5       cd,'../\
+6       pwd\
+7       plot_slices,/zoom\
+8       window, xs=800, ys=800\
+9       plot_slices,/zoom\
+10      plot_slices\
+11      set_line_color\
+12      plot_slices\
+13      retall\
+14      plot_slices\
+15      .r plot_slices\
+16      cd,'slices_all\
+17      pwd\
+18      $ls\
+19      .r plot_slices\
+20      spacecraft_location, ina, inb\
+21      .r spacecraft_location\
+22      spacecraft_location, ina, inb\
+23      .r spacecraft_location\
+24      print, x_b, y_b, z_b\
+25      restore, 'behind_location.sav', /ver\
+26      print, x_a, y_a, z_a\
+27      restore, 'ahead_location.sav', /ver\
+28      spacecraft_location, ina, inb\
+29      .r spacecraft_location\
+30      $vim spacecraft_location.pro\
+31      print, (90-hglt_a)*!pi/180\
+32      print, 90-hglt_a\
+33      print, hglt_a\
+34      print, hgln_a*!pi/180.\
+35      print, hgln_a*!pi/180\
+36      print, hgln_a\
+37      print, x_a, y_a, z_a\
+38      z_a = dsun_a * cos(lat_a)\
+39      y_a = dsun_a * sin(lat_a) * sin(lon_a)\
+40      x_a = dsun_a * sin(lat_a) * cos(lon_a)\
+41      r = dsun_a / rsun\
+42      lat_a = (90-hglt_a) * !pi/180.\
+43      lon_a = hgln_a * !pi/180.\
+44      rsun = 6.955e8 ;metres\
+45      dsun_a = ina.dsun_obs\
+46      hglt_a = ina.hglt_obs\
+47      hgln_a = ina.hgln_obs\
+48      $vim spacecraft_location.pro\
+49      print, x_a, y_a, z_a                                                  \
+50      plots, X_a, y_a, z_a\
+51      restore, 'ahead_location.sav',/ver\
+52      $ls\
+53      $l\
+54      spacecraft_location, ina, inb\
+55      .r spacecraft_location\
+56      retall\
+57      spacecraft_location, ina, inb\
+58      $vim spacecraft_location.pro\
+59      retall\
+60      spacecraft_location, ina, inb\
+61      $ls\
+62      pwd\
+63      $vim spacecraft_location.pro\
+64      pwd\
+65      cd,'..\
+66      pwd\
+67      print, 216*sin(97*!pi/180)*cos(-23*!pi/180)\
+68      print, ina.dsun_obs\
+69      print, ina.hglt_obs\
+70      print, ina.hgln_obs\
+71      print, ina.date_obs\
+72      help, ina, inb\
+73      scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure23.txt'\
+74      loadct,0\
+75      cd,'../slice23\
+76      @combine.b\
+77      file='measure22.txt'\
+78      scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure22.txt'\
+79      loadct,0\
+80      cd,'../slice22\
+81      @combine.b\
+82      pwd\
+83      @combine.b\
+84      file='measure21.txt'\
+85      scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure21.txt'\
+86      loadct,0\
+87      cd,'../slice21\
+88      @combine.b\
+89      file='measure20.txt'\
+90      scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure20.txt'\
+91      loadct,0\
+92      scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure20.txt'\
+93      cd,'../slice20\
+94      @combine.b\
+95      file='measure19.txt'\
+96      scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure19.txt'\
+97      loadct,0\
+98      cd,'../slice19                                                        \
+99      @combine.b\
+100     file='measure18.txt'\
+101     scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure18.txt'\
+102     cd,'../slice18\
+103     loadct,0\
+104     @combine.b\
+105     file='measure17.txt'\
+106     scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure17.txt'\
+107     loadct,0\
+108     $ls\
+109     cd,'../slice17\
+110     @combine.b\
+111     file='measure16.txt'\
+112     scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure16.txt'\
+113     loadct,0\
+114     cd,'../slice16\
+115     @combine.b\
+116     file='measure15.txt'\
+117     scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure15.txt'\
+118     loadct,0\
+119     cd,'../slice15\
+120     @combine.b\
+121     file='measure14.txt'\
+122     scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure14.txt'\
+123     loadct,0\
+124     cd,'../slice14\
+125     @combine.b\
+126     file='measure13.txt'\
+127     scc_measure,daa_ell_1752,dab_ell_1752,ina,inb,wsize=800,outfile='measure13.txt'\
+128     loadct,0\
+\
+\
+Doing the ellipse tangent points in quadrilateral:\
+\
+1       help, /recall\
+2       plots, xe[9], ye[9], ze[9], psym=2, color=5, /t3d\
+3       plots, xe[9], ye[9], ze[9], psym=5, color=5, /t3d\
+4       print, where(dist eq min(dist))\
+5       print, min(dist)\
+6       for k=0,100 do dist[k]=sqrt((xe[k]-x[0])^2.+(ye[k]-y[0])^2.+(ze[k]-z[0])^2.) + sqrt((xe[k]-x[2])^2.+(ye[k]-y[2])^2.+(ze[k]-z[2])^2.)\
+7       plots, x[1], y[1], z[1], color=4, psym=2, /t3d\
+8       plots, x[2], y[2], z[2], color=2, psym=2, /t3d\
+9       plots, x[2], y[2], z[2], color=3, psym=2, /t3d\
+10      plots, x[1], y[1], z[1], color=3, psym=2, /t3d\
+11      plots, x[1], y[1], z[1], color=3, /t3d\
+12      set_line_color\
+13      plots, x[1], y[1], z[1], color=3, /t3d\
+14      plots, x[1], y[1], z[1], color=1, /t3d\
+15      plots, x[1], y[1], z[1], color=2, /t3d\
+16      plots, xe[99], ye[99], ze[99], psym=2,color=3, /t3d\
+17      print, where(dist eq min(dist))\
+18      print, min(dist)\
+19      help, dist\
+20      for k=0,100 do dist[k]=sqrt((xe[k]-x[0])^2.+(ye[k]-y[0])^2.+(ze[k]-z[0])^2.)\
+21      dist=dblarr(101)\
+22      help, xe\
+23      print, sqrt( (xe[8]-x[0])^2.+(ye[8]-y[0])^2.+(ze[8]-z[0])^2. )\
+24      plots, x[0], y[0], z[0], psym=2, color=3, /t3d\
+25      plots, x[0], y[0], z[0], psym=7, color=3, /t3d\
+26      plots, x[0], y[0], z[0], psym=7, color=2, /t3d\
+27      print, x, y, z                                                                           \
+28      plots, x[0], y[0], z[0], psym=7, color=2\
+29      plots, x[0], y[0], z[0], psym=7, color=4\
+30      set_line_color\
+31      plots, x[0], y[0], z[0], psym=7, color=4\
+32      plots, x[0], y[0], z[0], psym=7\
+33      plots, x[0], y[0], z[0], psym=6\
+34      plots, x[0], y[0], z[0], psym=5\
+35      plots, x[0], y[0], z[0], psym=4\
+36      plots, x[0], y[0], z[0], psym=2\
+37      help, x, y, z\
+38      plots, xe[8], ye[8], ze[8], psym=2, /t3d\
+39      plots, xe, ye, ze, psym=3, /t3d\
+40      plots, x, y, z, psym=2, /t3d\
+41              xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=40, az=30, xtit='Solar Radii'\
+42      surface, dist(5), /nodata, /save, xr=[-5,15], yr=[-15,5], zr=[-10,10], $\
+43      plots, xe, ye\
+44      restore, 'ell.sav', /ver\
+45      plot, x, y, psym=2\
+46      plot, x, y\
+47      plot, x, y, z\
+48      plots, x, y, z\
+49      restore, 'vertices.sav', /ver\
+50      $ls\
+51      pwd\
+52      $ls\
+53      cd,'../\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b \cf0 \ul 21-05-09\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone \
+Dump for whenever I went through angular widths of 3D reconstruction in 20081212.\
+1       help,/recall\
+2       help\
+3       $open ang_widths.txt\
+4       $vim ang_widths.txt\
+5       pwd\
+6       print,min(a[where(a ne 0)]),max(a)\
+7       plot,r,a,psym=3\
+8       wset,1\
+9       recpol,yesr,zes,r,a,/degrees\
+10      plot,yesr,zes,psym=3\
+11      wset,0\
+12      print,min(a[where(a ne 0)])\
+13      print,min(a),max(a)\
+14      plot,r,a,psym=3\
+15      plot,a,r,psym=3\
+16      plot,r,a,psym=3\
+17      plot,r,a\
+18      window,1\
+19      recpol,xesr,zes,r,a,/degrees\
+20      plot,xesr,zes,psym=3\
+21      plot,xesr,zes\
+22      plots,xesr,yesr,zes,/t3d,psym=1,color=3\
+23      plots,xesr,yesr,zes,/t3d,psym=3,color=3\
+24      plots,xesr,yesr,zes,/t3d\
+25      help\
+26      plots,xfs,yfs,zfs,/t3d,psym=3,color=3\
+27      plots,xfs,yfs,zfs,/t3d,psym=3                                    \
+28      plots,xes,yes,zes,/t3d,psym=3\
+29      plots,xesrn,yesrn,zesn,psym=2,/t3d\
+30              zrange=[0,2], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=90, az=0, xtit='Solar Radii'\
+31      surface, dist(5), /nodata, /save, xrange=[0,2], yrange=[-0,2], $\
+32      plots,xesrn,yesrn,zesn,psym=2,/t3d\
+33              zrange=[0,2], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=angle_x, az=angle_z, xtit='Solar Radii'\
+34      surface, dist(5), /nodata, /save, xrange=[0,2], yrange=[-0,2], $\
+35              zrange=[-20,20], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=angle_x, az=angle_z, xtit='Solar Radii'\
+36      surface, dist(5), /nodata, /save, xrange=[-20,20], yrange=[-20,20], $\
+37      plot,xesrn,zesn,psym=2\
+38      plot,xesrn,zesn\
+39      plot,xesrn,yesrn\
+40      plots,xesrn,yesrn\
+41      project_ell,xesr,yesr,zes,xesrn,yesrn,zesn\
+42      help\
+43      plot,xfs,psym=2\
+44      plot,xfs\
+45      help,xfs\
+46      plot,xesr,zes,psym=2\
+47      plot,xesr,zes\
+48      plots,xesr,yesr,zes,psym=3,color=3,/t3d\
+49      plots,xfs,yfs,zfs,psym=3,/t3d\
+50              zrange=[-1,5], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=90, az=0, xtit='Solar Radii'\
+51      surface, dist(5), /nodata, /save, xrange=[-1,5], yrange=[-1,5], $\
+52      plots,xesr,yesr,zes,psym=3,color=3,/t3d\
+53      plots,xfs,yfs,zfs,psym=3,/t3d                                    \
+54              zrange=[-1,5], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=angle_x, az=angle_z, xtit='Solar Radii'\
+55      surface, dist(5), /nodata, /save, xrange=[-1,5], yrange=[-1,5], $\
+56      restore,'sun_ellipsoid_centre_plane.sav',/ver\
+57      ellipsoid_sun_plane,xfs,yfs,zfs\
+58      plots,xfs,yfs,zfs,psym=3,color=3,/t3d\
+59      restore,'ells_fronts.sav',/ver\
+60      restore,'ells_front.sav',/ver\
+61      gather_ells,/fronts\
+62      .r gather_ells\
+63      gather_ells,/fronts\
+64      .r gather_ells\
+65      retall\
+66      gather_ells,/fronts\
+67      .r gather_ells\
+68      print,n_elements(temp)\
+69      print, temp\
+70      temp=fltarr(3)\
+71      retall\
+72      gather_ells,/fronts\
+73      .r gather_ells\
+74      retall\
+75      gather_ells,/fronts\
+76      .r gather_ells\
+77      retall\
+78      gather_ells,/fronts\
+79      pwd\
+80      .r gather_ells                                                   \
+81      retall\
+82      gather_ells,/fronts\
+83      .r gather_ells\
+84      $ls\
+85      pwd\
+86      plots,xesr,yesr,zes,/t3d,psym=3\
+87              zrange=[-1,5], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=angle_x, az=angle_z, xtit='Solar Radii'\
+88      surface, dist(5), /nodata, /save, xrange=[-1,5], yrange=[-1,5], $\
+89      plots,xesr,yesr,zes,/t3d,psym=3\
+90      plots,xesr,yesr,zes,/t3d\
+91              zrange=[-1,5], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=angle_x, az=angle_z, xtit='Solar Radii'\
+92      surface, dist(5), /nodata, /save, xrange=[-1,5], yrange=[-1,5], $\
+93      plots,xesr,yesr,zes,/t3d\
+94              zrange=[-20,20], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=angle_x, az=angle_z, xtit='Solar Radii'\
+95      surface, dist(5), /nodata, /save, xrange=[-20,20], yrange=[-20,20], $\
+96      plot,xesr,zes,psym=3\
+97      plot,xesr,zes,psym=2\
+98      plot,xesr,zes\
+99      plot,yesr,zes\
+100     plot,xesr,zes\
+101     print,alpha_deg\
+102     restore,'sun_ellipsoid_centre_plane.sav',/ver\
+103     $ls\
+104     ellipsoid_sun_plane,xes,yes,zes\
+105     retall\
+106     ellipsoid_any_plane,xes,yes,zes                                  \
+107     set_line_color\
+108     retall\
+109     ellipsoid_any_plane,xes,yes,zes\
+110     plot,yes,xes\
+111     plot,yes,zes\
+112     plot,xes,zes\
+113     plot,xes,yes\
+114     restore,'ells.sav',/ver\
+115     gather_ells\
+116     @recon_Zoom_ell.b\
+117     angle_z=-90\
+118     angle_x=0\
+119     @recon_Zoom_ell.b\
+120     angle_z=90\
+121     angle_x=90\
+122     @recon_Zoom_ell.b\
+123     @recon_Zoom.b\
+124     angle_z=90\
+125     angle_x=90\
+126     @recon_Zoom.b\
+127     angle_z=90\
+128     angle_x=90\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b \cf0 \ul 06-08-09\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone \
+1       help, /recall\
+2       plot_image,alog(bytscl(da[*,*,9],-5,2000))\
+3       window,xs=1000,ys=1000\
+4       plot_image,alog(bytscl(da[*,*,9],-5,2000))\
+5       print,in[9].date_obs\
+6       plot_image,alog(bytscl(da[*,*,9],-5,2000))\
+7       window,xs=2000,ys=2000\
+8       plot_image,alog(bytscl(da[*,*,9],-5,2000))\
+9       plot_image,alog(bytscl(da[*,*,9],15,2000))\
+10      plot_image,alog(bytscl(da[*,*,9],5,2000))\
+11      plot_image,alog(bytscl(da[*,*,9],-5,2000))\
+12      plot_image,alog(bytscl(da[*,*,9],0,2000))\
+13      plot_image,alog(bytscl(da[*,*,9],-8,2000))\
+14      plot_image,alog(bytscl(da[*,*,9],-10,2000))\
+15      plot_image,alog(bytscl(da[*,*,9],-15,2000))\
+16      plot_image,alog(bytscl(da[*,*,9],-20,2000))\
+17      plot_image,alog(bytscl(da[*,*,9],-25,2000))\
+18      plot_image,alog(bytscl(da[*,*,9],-28,2000))\
+19      plot_image,alog(bytscl(da[*,*,9],-30,2000))\
+20      plot_image,alog(bytscl(da[*,*,9],-5,2000))\
+21      plot_image,alog(bytscl(da[*,*,9],-5,1000))\
+22      plot_image,alog(bytscl(da[*,*,9],-5,2000))\
+23      plot_image,alog(bytscl(da[*,*,9],-5,8000))\
+24      plot_image,alog(bytscl(da[*,*,9],-5,10000))\
+25      plot_image,alog(bytscl(da[*,*,9],-50,12000))\
+26      plot_image,alog(bytscl(da[*,*,9],50,12000))\
+27      plot_image,alog(bytscl(da[*,*,9],-20,12000))                     \
+28      plot_image,alog(bytscl(da[*,*,9],0,12000))\
+29      plot_image,alog(bytscl(da[*,*,9],0,12800))\
+30      plot_image,alog(bytscl(da[*,*,9],0,2800))\
+31      pmm,da[*,*,9]\
+32      pmm,da\
+33      plot_image,alog(bytscl(da[*,*,9],0,1800))\
+34      plot_image,alog(bytscl(da[*,*,9],0,800))\
+35      plot_image,alog(bytscl(da[*,*,9],0,1000))\
+36      plot_image,alog(bytscl(da[*,*,9],5,1000))\
+37      plot_image,alog(bytscl(da[*,*,9],15,1000))\
+38      plot_image,alog(bytscl(da[*,*,9],25,1000))\
+39      plot_image,alog(bytscl(da[*,*,9],15,1000))\
+40      plot_image,alog(bytscl(da[*,*,9],5,1000))\
+41      plot_image,alog(bytscl(da[*,*,9],-5,1000))\
+42      plot_image,alog(bytscl(da[*,*,9],-10,1000))\
+43      plot_image,alog(bytscl(da[*,*,9],-20,1000))\
+44      plot_image,alog(bytscl(da[*,*,9],0,1000))\
+45      plot_image,alog(bytscl(da[*,*,9],-50,1000))\
+46      plot_image,alog(bytscl(da[*,*,19],-50,1000))\
+47      plot_image,alog(bytscl(da[*,*,10],-50,1000))\
+48      plot_image,alog(bytscl(da[*,*,14],-50,1000))\
+49      plot_image,alog(bytscl(da[*,*,13],-50,1000))\
+50      plot_image,alog(bytscl(da[*,*,12],-50,1000))\
+51      plot_image,alog(bytscl(da[*,*,11],-50,1000))\
+52      plot_image,alog(bytscl(da[*,*,10],-50,1000))\
+53      plot_image,alog(bytscl(da[*,*,8],-50,1000))\
+54      plot_image,alog(bytscl(da[*,*,9],-50,1000))                      \
+55      plot_image,alog(bytscl(da[*,*,10],-50,1000))\
+56      plot_image,alog(bytscl(da[*,*,7],-50,1000))\
+57      plot_image,bytscl(da[*,*,7],-50,1000)\
+58      plot_image,bytscl(da[*,*,11],-50,1000)\
+59      plot_image,bytscl(da[*,*,10],-50,1000)\
+60      plot_image,bytscl(da[*,*,9],-50,1000)\
+61      plot_image,bytscl(da[*,*,8],-50,1000)\
+62      plot_image,bytscl(da[*,*,8],50,1000)\
+63      plot_image,bytscl(da[*,*,8],0,1000)\
+64      plot_image,bytscl(da[*,*,8],-30,1000)\
+65      plot_image,bytscl(da[*,*,8],-20,1000)\
+66      plot_image,bytscl(da[*,*,8],20,1000)\
+67      plot_image,bytscl(da[*,*,8],-20,1000)\
+68      plot_image,bytscl(da[*,*,8],-20,000)\
+69      plot_image,bytscl(da[*,*,8],-20,900)\
+70      plot_image,bytscl(da[*,*,8],-20,800)\
+71      plot_image,bytscl(da[*,*,8],-20,700)\
+72      plot_image,bytscl(da[*,*,8],-20,600)\
+73      plot_image,bytscl(da[*,*,8],-20,500)\
+74      plot_image,bytscl(da[*,*,8],-20,400)\
+75      plot_image,bytscl(da[*,*,8],-20,300)\
+76      plot_image,bytscl(da[*,*,8],-20,200)\
+77      plot_image,bytscl(da[*,*,8],-20,100)\
+78      plot_image,bytscl(da[*,*,8],0,100)\
+79      plot_image,bytscl(da[*,*,8],90,100)\
+80      plot_image,bytscl(da[*,*,8],10,100)\
+81      plot_image,bytscl(da[*,*,8],0,100)                               \
+82      plot_image,bytscl(da[*,*,8],0,1000)\
+83      pmm,da\
+84      plot_image,sigrange(da[*,*,8],frac=0.99,/use_all)\
+85      plot_image,alog(sigrange(da[*,*,8],frac=0.99,/use_all))\
+86      plot_image,alog(da[*,*,8])\
+87      plot_image,sigrange(da[*,*,8],frac=0.99,/use_all)\
+88      plot_image,sigrange(da[*,*,8],frac=0.9,/use_all)\
+89      plot_image,da[*,*,8]^0.5\
+90      loadct,3\
+91      plot_image,da[*,*,8]^0.5\
+92      plot_image,da[*,*,8]\
+93      da=sccreadfits(fls,in)\
+94      fls=file_Search('*fts')\
+95      $ls\
+96      savepath='.',/write_fts,/rotate_on,/rotinterp_on\
+97      for i =0,N_ELEMENTS(files304)-1 do secchi_prep,sccfindfits(fls[files304[i]].filename),in,da,$\
+98      savepath='.',/write_fts,/rotate_on,/rotinterp_on\
+99      for i =0,N_ELEMENTS(files304)-1 do secchi_prep,sccfindfits(files[files304[i]].filename),in,da,$\
+100     pwd\
+101     help, files304\
+102     files304=where(fls.value eq 304)\
+103     help, fls\
+104     files304=where(files.value eq 304)\
+105     help, fls\
+106     fls=scc_read_summary(date='20081212')\
+107     sccingest,files=fls\
+108     print,fls                                                        \
+109     fls=file_Search('~/Desktop/20081212_euvi304/*fts')\
+110     pwd\
+111     $ls\
+112     sock_copy,data.url,out_dir='~/Desktop/20081212_euvi304'\
+113     pwd\
+114     sock_copy,data.url,out_dir='Desktop/20081212_euvi304'\
+115     sock_copy,data.url,out_dir='desktop/20081212_euvi304'\
+116     help,data\
+117     help,list\
+118     wave='304',source='stereo_b',/url)\
+119     data=vso_search(date='2008/12/12T04:00-2008/12/12T07:00',inst='secchi',detector='euvi',$\
+120     cd,'euvi\
+121     $ls\
+122     cd,'../..\
+123     pwd\
+124     plots,xnf,ynf,psym=1\
+125     plots,xe,ye\
+126     plot_map,map,/limb,/nolabel,/notit,/noaxes\
+127     plots,xe,ye\
+128     !p.thick=2\
+\
+AND\
+\
+1       help, /recall\
+2       .r get_secchi_data\
+3       plot_image,sigrange(da,frac=0.7,/use_all)\
+4       plot_image,sigrange(da,frac=0.9,/use_all)\
+5       plot_image,sigrange(da,frac=0.9)\
+6       plot_image,sigrange(da)\
+7       plot_image,da\
+8       loadct,3\
+9       plot_image,da\
+10      da=sccreadfits(fls,in)\
+11      print,fls\
+12      fls=file_Search('*0555*fts')\
+13      $ls\
+14      cd,'euvi\
+15      $ls\
+16      cd,'../..\
+17      pwd\
+18      plots,xnf,ynf,psym=1\
+19      plots,xe,ye\
+20      plot_map,map,/limb,/nolabel,/notit,/noaxes\
+21      plots,xe,ye\
+22      !p.thick=2\
+23      plots,xe,ye\
+24      plots,xnf,ynf,psym=1\
+25      plot_map,map,/limb,/nolabel,/notit,/noaxes\
+26      plot_map,map,/limb,/nolabel,/notit,grid=0,/noaxes\
+27      plot_map,map,/limb,/nolabel,/notit,grid=0                        \
+28      plot_map,map,/limb,/nolabel,/notit\
+29      plot_map,map,/limb,/nolabel\
+30      plot_map,map,/limb\
+31      !p.color=255\
+32      plot_map,map,/limb\
+33      !p.color=0\
+34      plot_map,map,/limb\
+35      !p.background=0\
+36      plots,xe,ye\
+37      plots,xnf,ynf,psym=1\
+38      plot_map,map,/limb\
+39      window,xs=2000,ys=2000\
+40      plots,xnf,ynf,psym=1\
+41      plots,xe,ye\
+42      plot_map,map,/limb\
+43      plots,xnf,ynf,psym=1\
+44      plots,xe,ye\
+45      plots,xnf,ynf,psym=3\
+46      plot_map,map,/limb\
+47      plots,xe,ye\
+48      plots,xnf,ynf\
+49      plot_map,map,/limb\
+50      plot,xnf,ynf\
+51      plots,xe,ye\
+52      plots,xnf,ynf,psym=1\
+53      plot_map,map,/limb\
+54      plot_map,map                                                     \
+55      map=mk_secchi_map(in,bytscl(alog(da),1,6))\
+56      save,xe,ye,xnf,ynf,f='front+ell_coords0735.sav'\
+57      plots,xnf,ynf,psym=2\
+58      restore,'front_points.sav',/ver\
+59      $ls\
+60      plots,xe,ye,psym=2\
+61      help,xe,ye\
+62      front_ell_kinematics,front_0735,1,in,bytscl(alog(da),1,6),2,ei,re,xe,ye,pe,mhf,mhe,aa,0,/noflank\
+63      .r front_ell_kinematics\
+64      retall\
+65      front_ell_kinematics,front_0735,1,in,bytscl(alog(da),1,6),2,ei,re,xe,ye,pe,mhf,mhe,aa,0,/noflank\
+66      .r front_ell_kinematics\
+67      retall\
+68      front_ell_kinematics\
+69      save,front_0735,f='front_0735_paper.sav'\
+70      save,front_0735,f='front_0735_for_paper.sav'\
+71      front_0735=fronts45[*,*,11]\
+72      plot_image,bytscl(alog(da),1,6)\
+73      plot_image,bytscl(alog(da),1.5,6)\
+74      plot_image,bytscl(alog(da),1,6)\
+75      plot_image,bytscl(alog(da),0,6)\
+76      plot_image,bytscl(alog(da),1,6)\
+77      plot_image,bytscl(alog(da),0,6)\
+78      plot_image,bytscl(alog(da),1,6)\
+79      plot_image,bytscl(alog(da),1.5,6)\
+80      plot_image,bytscl(alog(da),1.1,6)\
+81      plot_image,bytscl(alog(da),1.1,5)                                    \
+82      plot_image,bytscl(alog(da),1.1,4)\
+83      plot_image,bytscl(alog(da),1.1,5)\
+84      plot_image,bytscl(alog(da),1.1,6)\
+85      plot_image,fronts45[*,*,11]\
+86      help, fronts45\
+87      restore,'edg_images/fronts45_0555-0745.sav',/ver\
+88      pwd\
+89      pmm,da\
+90      plot_image,bytscl(alog(da),1.1,6)\
+91      plot_image,bytscl(alog(da),1.2,6)\
+92      plot_image,bytscl(alog(da),1.5,6)\
+93      plot_image,bytscl(alog(da),1,6)\
+94      plot_image,bytscl(alog(da),1,5)\
+95      plot_image,bytscl(alog(da),2,5)\
+96      plot_image,bytscl(alog(da),0,5)\
+97      plot_image,bytscl(alog(da),0,6)\
+98      pmm,alog(da)\
+99      plot_image,alog(da)\
+100     pmm,da,da2\
+101     plot_image,da\
+102     plot_image,da2\
+103     plot_image,alog(da2)\
+104     da2=sccreadfits(fls,in2)\
+105     plot_image,alog(da)\
+106     plot_image,alog(sigrange(da,frac=0.99))\
+107     plot_image,sigrange(da,frac=0.99)\
+108     plot_image,sigrange(da,frac=0.9)                                     \
+109     plot_image,sigrange(da)\
+110     plot_image,alog(sigrange(da,frac=0.999,/use_all))\
+111     plot_image,alog(sigrange(da,frac=0.99,/use_all))\
+112     plot_image,alog(sigrange(da,frac=0.99,/use_All))\
+113     plot_image,alog(sigrange(da,frac=0.95,/use_All))\
+114     plot_image,alog(sigrange(da,frac=0.9,/use_All))\
+115     plot_image,alog(sigrange(da,frac=0.9))\
+116     plot_image,alog(sigrange(da))\
+117     plot_image,alog(da)\
+118     plot_image,da*0.4\
+119     plot_image,da*0.5\
+120     plot_image,alog(da)\
+121     gamma_ct=0.5\
+122     plot_image,alog(da)\
+123     gamma_ct=5\
+124     plot_image,alog(da)\
+125     gamma_ct=1\
+126     plot_image,alog(da)\
+127     pmm,alog(da)\
+128     gamma_ct=0.5\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b \cf0 \ul 17-08-09\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone \
+Inversion\
+\
+1       help, /recall\
+2       $open inv_deriv_vel.pdf\
+3       $ps2pdf inv_deriv_vel.ps\
+4       toggle\
+5       outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+6       utERRplot,X_out+tall(0)-FWHM/2,X_out+tall(0)+FWHM/2,deriv,/horizontal\
+7       utERRplot,X_out+tall(0),deriv-reg_sol_err,deriv+Reg_Sol_Err\
+8       xrange=[tall(0),max(tall)],ytitle='Velocity km/s'\
+9       utplot,X_out+tall(0),deriv,yrange=[min(deriv)/3,max(deriv)],thick=1,xstyle=1,$\
+10      !P.Multi=[0,1,2]\
+11      !p.thick=2\
+12      !p.charthick=2\
+13      !p.charsize=1.5\
+14      toggle,f='inv_deriv_vel.ps'\
+15      $open inv_deriv_vel.pdf\
+16      $ps2pdf inv_deriv_vel.ps\
+17      toggle\
+18      outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+19      .r deriv\
+20      tempr=mid_r*6.95508e5\
+21      utERRplot,X_out+tall(0)-FWHM/2,X_out+tall(0)+FWHM/2,deriv,/horizontal\
+22      utERRplot,X_out+tall(0),deriv-reg_sol_err,deriv+Reg_Sol_Err\
+23      xrange=[tall(0),max(tall)],ytitle='Velocity km/s^2'\
+24      utplot,X_out+tall(0),deriv,yrange=[min(deriv)/3,max(deriv)],thick=1,xstyle=1,$\
+25      !P.Multi=[0,1,2]\
+26      !p.thick=2\
+27      !p.charthick=2                                                   \
+28      !p.charsize=1.5\
+29      toggle,f='inv_deriv_vel.ps'\
+30      deriv_inv,'20081212/distances.txt',/jpb\
+31      set_plot,'x'\
+32      retall\
+33      deriv_inv,'20081212/distances.txt',/jpb\
+34      retall\
+35      help,mid_r\
+36      help,tempr\
+37      outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+38      utERRplot,X_out+tall(0)-FWHM/2,X_out+tall(0)+FWHM/2,deriv,/horizontal\
+39      utERRplot,X_out+tall(0),deriv-reg_sol_err,deriv+Reg_Sol_Err\
+40      xrange=[tall(0),max(tall)],ytitle='Velocity km/s^2'\
+41      utplot,X_out+tall(0),deriv,yrange=[min(deriv)/3,max(deriv)],thick=1,xstyle=1,$\
+42      !P.Multi=[0,1,2]\
+43      toggle,f='inv_deriv_vel.ps'\
+44      $ls\
+45      deriv_inv,'20081212/distances.txt',/jpb\
+46      set_plot,'x'\
+47      retall\
+48      deriv_inv,'20081212/distances.txt',/jpb\
+49      help, /recall\
+50      $ls\
+51      pwd\
+52      retall\
+53      deriv_inv,'jason.sav',/jpb\
+54      retall                                                                 \
+55      deriv_inv\
+56      utERRplot,X_out+tall(0)-FWHM/2,X_out+tall(0)+FWHM/2,deriv,/horizontal\
+57      utERRplot,X_out+tall(0),deriv-reg_sol_err,deriv+Reg_Sol_Err\
+58      xrange=[tall(0),max(tall)],ytitle='Velocity km/s^2'\
+59      utplot,X_out+tall(0),deriv,yrange=[min(deriv)/3,max(deriv)],thick=1,xstyle=1,$\
+60      !P.Multi=[0,1,2]\
+61      !p.thick=2\
+62      !p.charthick=2\
+63      !p.charsize=1.5\
+64      toggle\
+65      .r deriv_inv\
+66      $open inv_deriv_vel.pdf\
+67      $ps2pdf inv_deriv_vel.ps\
+68      toggle\
+69      outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+70      utERRplot,X_out+tall(0)-FWHM/2,X_out+tall(0)+FWHM/2,deriv,/horizontal\
+71      utERRplot,X_out+tall(0),deriv-reg_sol_err,deriv+Reg_Sol_Err\
+72      xrange=[tall(0),max(tall)],ytitle='Acceleration km/s^2'\
+73      utplot,X_out+tall(0),deriv,yrange=[min(deriv)/3,max(deriv)],thick=1,xstyle=1,$\
+74      !P.Multi=[0,1,2]\
+75      !p.thick=2\
+76      !p.charthick=2\
+77      !p.charsize=2\
+78      toggle,f='inv_deriv_vel.ps'\
+79      $open inv_deriv_vel.pdf\
+80      $ps2pdf inv_deriv_vel.ps\
+81      toggle                                                                 \
+82      outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+83      utERRplot,X_out+tall(0)-FWHM/2,X_out+tall(0)+FWHM/2,deriv,/horizontal\
+84      utERRplot,X_out+tall(0),deriv-reg_sol_err,deriv+Reg_Sol_Err\
+85      xrange=[tall(0),max(tall)],ytitle='Acceleration km/s^2'\
+86      utplot,X_out+tall(0),deriv,yrange=[min(deriv)/3,max(deriv)],thick=1,xstyle=1,$\
+87      !P.Multi=[0,1,2]\
+88      !p.thick=2\
+89      !p.charthick=2\
+90      !p.charsize=3\
+91      toggle,f='inv_deriv_vel.ps'\
+92      $open inv_deriv_vel.pdf\
+93      $ps2pdf inv_deriv_vel.ps\
+94      toggle\
+95      outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+96      utERRplot,X_out+tall(0)-FWHM/2,X_out+tall(0)+FWHM/2,deriv,/horizontal\
+97      utERRplot,X_out+tall(0),deriv-reg_sol_err,deriv+Reg_Sol_Err\
+98      xrange=[tall(0),max(tall)],ytitle='Acceleration km/s^2'\
+99      utplot,X_out+tall(0),deriv,yrange=[min(deriv)/3,max(deriv)],thick=1,xstyle=1,$\
+100     !P.Multi=[0,1,2]\
+101     toggle,f='inv_deriv_vel.ps'\
+102     outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+103     outplot,xdata,deriv(xdata,tempr),psym=2,color=3\
+104     outplot,xdata,deriv(xdata,tempr),psym=2,color=9\
+105     outplot,xdata,deriv(xdata,tempr),psym=2,color=8\
+106     outplot,xdata,deriv(xdata,tempr),psym=2,color=7\
+107     outplot,xdata,deriv(xdata,tempr),psym=2,color=6\
+108     outplot,xdata,deriv(xdata,tempr),psym=2,color=5                        \
+109     outplot,xdata,deriv(xdata,tempr),psym=2,color=4\
+110     outplot,xdata,deriv(xdata,tempr),psym=2,color=3\
+111     outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+112     outplot,xdata,deriv(xdata,tempr),psym=2,color=1\
+113     outplot,xdata,deriv(xdata,tempr),psym=2,color=2\
+114     outplot,xdata,deriv(xdata,tempr),psym=2,color=3\
+115     outplot,xdata,deriv(xdata,tempr),psym=2,color=6\
+116     outplot,xdata,deriv(xdata,tempr),psym=2,color=5\
+117     outplot,xdata,deriv(xdata,tempr),psym=2,color=4\
+118     outplot,xdata,deriv(xdata,tempr),psym=2,color=3\
+119     outplot,xdata,deriv(xdata,tempr),psym=2\
+120     print,deriv(xdata,tempr)\
+121     print,deriv(xdata,mid_r)\
+122     .r deriv\
+123     print,deriv(xdata,mid_r)\
+124     help,xdata,mid_r\
+125     print, xdata\
+126     print, deriv(tt,mid_r)\
+127     print, deriv(tt,tempr)\
+128     print, tempr\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b \cf0 \ul 19-08-09\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone \
+1       help, /recall\
+2       print, res\
+3       print, sqrt(total(res^2))               ;make sure still normalised as a check\
+4       res = n1##[[1, 0, 0], [0, sin(a), cos(a)], [0, -sin(a), cos(a)]]        ; rotation matrix for anti-clockwise rotation bout x axis\
+5       a = 23.44*(!dpi/180.0d)         ;rotation between xy in HEEQ and HEE\
+6       n1=[sin(alpha),0,cos(alpha)]\
+7       n1_org=n1\
+8       print,n1\
+9       print,cos(alpha)\
+10      print,sin(alpha)\
+11      print,n1_nn\
+12      n1_nn=n1_new/max(n1_new)\
+13      print,n1_new\
+14      n1_new=[x_new,n1[1],z_new]\
+15      print,z_new\
+16      z_new=-n1[0]*sin(alpha)+n1[2]*cos(alpha)\
+17      print,x_new\
+18      x_new=n1[0]*cos(alpha)+n1[2]*sin(alpha)\
+19      print,alpha*180/!dpi\
+20      print,alpha\
+21      alpha=atan(n1[2]/n1[0])\
+22      print,atan(n1[2]/n1[0])*(180/!dpi)\
+23      print,atan(n1[2]/n1[0])*!dpi/180\
+24      print,atan(n1[2]/n1[0])\
+25      print,sqrt((n1[0])^2.+(n1[2]^2.))\
+26      print,n1                                                         \
+27      n1= GET_STEREO_COORD('2008-12-12 18:00', 'Earth', SYSTEM='HEEQ', /meters)/rsun\
+28      print,n1\
+29      print,sqrt((n1[0])^2.+(n1[2]^2.))\
+30      print, res\
+31      print, sqrt(total(res^2))               ;make sure still normalised as a check\
+32      res = n1##[[1, 0, 0], [0, sin(a), cos(a)], [0, -sin(a), cos(a)]]        ; rotation matrix for anti-clockwise rotation bout x axis\
+33      a = 23.44*(!dpi/180.0d)         ;rotation between xy in HEEQ and HEE\
+34      print, n1\
+35      n1/=max(n1)\
+36      n1=[211.72685  , 0.0d, -2.4292541]\
+37      print,  GET_STEREO_COORD('2008-12-12 18:00', 'Earth', SYSTEM='HEEQ', /meters)/rsun\
+38      print,  GET_STEREO_COORD('2008-12-12 14:00', 'Earth', SYSTEM='HEEQ', /meters)/rsun\
+39      print,  GET_STEREO_COORD('2008-12-14 14:00', 'Earth', SYSTEM='HEE', /meters)/rsun\
+40      print,  GET_STEREO_COORD('2008-12-12 14:00', 'Earth', SYSTEM='HEE', /meters)/rsun\
+41      print,  GET_STEREO_COORD('2008-12-12 14:00', 'Earth', SYSTEM='HEEQ', /meters)/rsun\
+42      print,  GET_STEREO_COORD('2008-12-14 00:00', 'Earth', SYSTEM='HEEQ', /meters)/rsun\
+43      rsun=6.95508e8\
+44      print,  GET_STEREO_COORD('2008-12-14 00:00', 'Earth', SYSTEM='HEEQ', /meters)/rsun\
+45      rsun=6.95508e5\
+46      print,  GET_STEREO_COORD('2008-12-14 00:00', 'Earth', SYSTEM='HEEQ', /meters)\
+47      print, res\
+48      print, sqrt(total(res^2))               ;make sure still normalised as a check\
+49      res = n1##[[1, 0, 0], [0, sin(a), cos(a)], [0, -sin(a), cos(a)]]        ; rotation matrix for anti-clockwise rotation bout x axis\
+50      a = 23.44*(!dpi/180.0d)         ;rotation between xy in HEEQ and HEE\
+51      n1=[0.0d,0.0d,1.0d]             ;define normal to x,y plane in HEEQ  \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b \cf0 \ul 15-09-09\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone In folder PhD/Data_Stereo/20081212/b/cor1/median_rm/rundiff\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\i\b \cf0 \ul \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f1\i0\b0 \cf0 \ulnone Recall buffer length: 128\
+1       help, /recall\
+2       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.975819)\
+3       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.97581)\
+4       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.9758)\
+5       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.9757)\
+6       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.9755)\
+7       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.9759)\
+8       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.975)\
+9       plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.976)\
+10      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.977)\
+11      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.9745)\
+12      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.974)\
+13      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.984)\
+14      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.983)\
+15      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.982)\
+16      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.979)\
+17      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.975)\
+18      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.97)\
+19      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.98)\
+20      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.99)\
+21      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.9)\
+22      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.93)\
+23      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.97)\
+24      plot_image, sigrange((da[*,*,21]-da[*,*,19]),/use_all,frac=0.95)\
+25      plot_image, sigrange((da[*,*,21]-da[*,*,18]),/use_all,frac=0.95)\
+26      plot_image, sigrange(bytscl((da[*,*,21]-da[*,*,18]),-1.51247e-9,  1.63918e-09),/use_all,frac=0.95)\
+27      plot_image, sigrange(bytscl((da[*,*,21]-da[*,*,18]),-1.51247e-9,  1.63918e-09),/use_all,frac=0.9)\
+28      plot_image, sigrange(bytscl((da[*,*,21]-da[*,*,18]),-1.51247e-9,  1.63918e-09),/use_all,frac=0.99)\
+29      plot_image, bytscl((da[*,*,21]-da[*,*,18]),-1.51247e-9,  1.63918e-09)\
+30      plot_image, bytscl((da[*,*,21]-da[*,*,19]),-1.51247e-9,  1.63918e-09)\
+31      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  1.63918e-09)\
+32      plot_image, alog(bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-10,  2.63918e-09))\
+33      plot_image, alog(bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-7,  2.63918e-09))\
+34      plot_image, alog(bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  2.63918e-09))\
+35      plot_image, alog(bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  0.63918e-09))\
+36      plot_image, alog(bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  1.63918e-09))\
+37      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  1.63918e-09)\
+38      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  0.63918e-09)\
+39      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  1.63918e-09)\
+40      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  9.63918e-09)\
+41      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  5.63918e-09)\
+42      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  0.63918e-09)\
+43      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  0.63918e-08)\
+44      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  0.63918e-8.5)\
+45      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  0.63918e-8)\
+46      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-9,  0.63918e-9)\
+47      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-5,  0.63918e-9)\
+48      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-8,  0.63918e-9)\
+49      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-10,  0.63918e-9)\
+50      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-10,  0.63918e-10)\
+51      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-10,  0.63918e-08)\
+52      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-10,  0.63918e-09)\
+53      plot_image, sigrange((da[*,*,21]-da[*,*,20]),/use_all, frac=0.9)\
+54      plot_image, sigrange((da[*,*,21]-da[*,*,20]),/use_all, frac=0.995) \
+55      plot_image, sigrange((da[*,*,21]-da[*,*,20]),/use_all, frac=0.99)\
+56      plot_image, bytscl((da[*,*,21]-da[*,*,20]),-1.51247e-10,  0.63918e-09)\
+57      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1.51247e-10,  0.63918e-09)\
+58      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  0.63918e-09)\
+59      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  1.63918e-09)\
+60      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  5.63918e-09)\
+61      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  2.63918e-09)\
+62      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-11,  2.63918e-10)\
+63      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-9,  2.63918e-10)\
+64      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  2.63918e-10)\
+65      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  2.63918e-09)\
+66      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  2.63918e-08)\
+67      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.51247e-10,  2.63918e-09)\
+68      pmm, sigrange(da[*,*,21]-da[*,*,0])\
+69      plot_image, sigrange(da[*,*,21]-da[*,*,0])\
+70      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,1.8e-6)\
+71      plot_image, bytscl((da[*,*,21]-da[*,*,0]),1e-5,1.8e-6)\
+72      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,1.8e-6)\
+73      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,1.8e-5)\
+74      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,1.8e-7)\
+75      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-4,1.8e-7)\
+76      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-3,1.8e-7)\
+77      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-2,1.8e-7)\
+78      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-1,1.8e-7)\
+79      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,1.8e-7)\
+80      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,1.8e-1)\
+81      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,-1.8e-1)           \
+82      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,-1.8e-4)\
+83      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,-1.8e-4)\
+84      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,-1.8e-5)\
+85      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,-1.8e-6)\
+86      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,-1.8e-7)\
+87      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-5,1.8e-7)\
+88      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-4,1.8e-7)\
+89      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-3,1.8e-7)\
+90      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-2,1.8e-7)\
+91      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-1,1.8e-7)\
+92      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,1.8e-7)\
+93      plot_image, bytscl((da[*,*,21]-da[*,*,0]),11e-7,1.8e-7)\
+94      plot_image, bytscl((da[*,*,21]-da[*,*,0]),1e-7,1.8e-7)\
+95      plot_image, bytscl((da[*,*,21]-da[*,*,0]),0,1.8e-7)\
+96      plot_image, bytscl((da[*,*,21]-da[*,*,0]),0,9.8e-7)\
+97      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9.9e-7,9.8e-7)\
+98      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-4.4e-7,4.5e-7)\
+99      plot_image, bytscl((da[*,*,21]-da[*,*,0]),-4e-7,4.5e-7)\
+100     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-4e-7,5e-7)\
+101     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-7,5e-7)\
+102     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,5e-7)\
+103     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,9e-7)\
+104     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,1e-7)\
+105     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,1e-8)\
+106     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,2e-8)\
+107     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,3e-8)\
+108     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-6,3e-8)              \
+109     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-5e-6,3e-8)\
+110     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9e-6,3e-8)\
+111     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-6,3e-8)\
+112     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-9e-7,3e-8)\
+113     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-7,3e-8)\
+114     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,3e-8)\
+115     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,2e-8)\
+116     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,1e-8)\
+117     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-1e-7,1e-7)\
+118     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-2e-7,1e-7)\
+119     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-5e-7,1e-7)\
+120     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-7,1e-7)\
+121     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-7,1e-8)\
+122     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-6,1e-8)\
+123     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-7,1e-8)\
+124     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-8,1e-8)\
+125     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-8,1e-7)\
+126     plot_image, bytscl((da[*,*,21]-da[*,*,0]),-3e-8,1e-6)\
+127     pmm,((da[*,*,21]-da[*,*,0]))\
+128     plot_image, sigrange(alog((da[*,*,21]-da[*,*,0])))\
+}

@@ -1,0 +1,34 @@
+Guide to keep reducing (scaling down) the quadrilaterals until the back-projection of the inscribed ellipse fits within the LASCO characterisation.
+
+
+Have the folder set up in Postdoc/Data_Stereo/20110303/combining/cor2/0739/.
+
+Making fake SOHO ellipse characterisation coords just for testing:
+fls=file_Search('~/Postdoc_largefiles/2011/01/01/c2_lasco_soho_dynamics_20110101_001141.fits.gz')
+mreadfits_corimp,fls,in,da    
+plot_image,da                                                                                    
+@pandc.b                                                                                         
+im=intarr(1024,1024)                                                                             
+for i=0,19 do im[xf[i],yf[i]]=1                                                                  
+errs=1
+ang=2
+front_ell_kinematics_secchi,im,errs,in,da,ang,ei,re,xe,ye,pe,mhf            ;(may crash)          
+retall
+plots, xe, ye, psym=1
+x = xe/in.rsun
+y = ye/in.rsun
+save, x, y, f='soho_ell.sav'
+
+Move soho_ell.sav to the 0739/ folder.
+
+
+plot_slices_soho,31,31,'../bogus_slices/bogus.txt','test',10,-20,/room_all
+(that saves out proj_soho_ell.txt)
+
+restore, '../../soho_ell.sav',/ver
+z = replicate(0,n_elements(x))
+plots, z, x, y, psym=-3, /t3d
+
+Saving and using plot_slices_soho_testing.pro
+
+

@@ -1,0 +1,410 @@
+2014-01 week in Aberystwyth working with Huw.
+
+Wrote RUN_AUTOMATED_REALTIME_ALERT.pro to test how a realtime detection in a single image can be done.
+Wrote RUN_AUTOMATED_RELATIME_TEST.pro (on Dublin) to run a heap of fits through the run_automated_realtime_alert.pro code in order to test the alert scores over time and determine what thresholds are most appropriate for CME alerts.
+(output going into ~/Postdoc_largefiles/detections_realtime/ folder as first test).
+Wrote GATHER_SCORES.pro to gather up the scores.txt from every day and combine a years worth to inspect the detections.
+Plotted the scores against parameters from the CDAW catalogue, called using ssw_getcme_list.pro
+
+On Dublin:
+in folder Postdoc_largefiles/
+restore, 'score_str.sav'
+inspect_gather_scores, score_str
+save output to CME_det_ims/
+Then On JayDog2:
+in folder Postdoc/Automation/realtime/
+rsync -anvuSH jbyrne@dublin.ifa.hawaii.edu:Postdoc_largefiles/CME_det_ims/ ./CME_det_ims/
+fls = file_Search('CME_det_ims/*sav')
+inspect_top_dets, fls
+
+2014-01 week working back in Trinity.
+CME flux rope with Jose.
+Taverna workflow paper with Gab and Eoin.
+Jack Eddy fellowship application.
+
+
+2014-01-22
+
+Car safety inspection.
+Rearranged office with Serge.
+Going through emails.
+Comments on Workflow paper.
+
+2014-01-23
+
+Meeting with Shadia about the work done while on travel.
+
+Working on test for Huw of the new processed fits files in Postdoc_largefiles/test/fits
+- and emailed about results in dropbox.
+
+fls = file_search('~/Postdoc_largefiles/test/fits/2011/01/12/*fits.gz')
+
+fls = [ fls[0], fls[40:43], fls[80], fls[100] ]
+
+startdate = '2011/01/12'
+enddate = '2011/01/12'
+in_dir = '/Users/jbyrne/Postdoc_largefiles/test/fits'
+out_dir = '/Users/jbyrne/Postdoc_largefiles/test/dets_?'
+
+run_automated_new, fls, out_dir
+
+automated_dublin, startdate, enddate, in_dir, out_dir
+
+
+2014-01-24
+
+Revamped personal website at IfA.
+Edited automated_kins.pro in line with some bugs before I can run the new version of create_htmls.pro for the online catalog.
+--- Redoing automated_kins.pro for 2006 to 2012.
+--- Transferring the fits files for 2011 from gail to dublin.
+
+2014-01-27
+
+Fixed bugs in running automated_kins.pro from crash over weekend.
+Wrote GATHER_GAIL_DETECTIONS_C2.pro to gather the C2 detections and output pngs and movies of just that instrument.
+Rerunning 2006 detections onwards.
+
+Working on run_automated_realtime_alert.pro
+
+2014-01-28
+
+Working on the realtime codes, as emailed to Huw.
+
+2014-01-29
+
+Working on the CORIMP catalog to get it online, via create_html.pro
+and edited find_pa_heights_all_redo.pro  to get the text files in order in the cme_profs/ folders
+and edited gather_gail_detections_inset_all.pro and gather_gail_detections_c2.pro to shift the angle (solar north) correctly.
+
+2014-01-30 & 31
+
+Working on the catalog processing.
+
+2014-02-03
+
+Worked from home on just processing!
+
+2014-02-04
+
+Working on getting the pngs out to gifs for the catalogue, and fixing bugs. Running with /originals keyword call.
+Account on alshamess.
+
+2014-02-05
+
+Writing GATHER_GAIL_DETECTIONS_INSET_ALL_DEVICE.pro to generate .eps and convert to .gifs for online movies.
+Chat with Minghui about alshamess directories and web access.
+
+2014-02-06
+
+Finalised gather_gail_detections_inset_all_device.pro, and now need to make it work on C2 only images.
+
+2014-02-07
+
+Working out why certain bugs are in the outputs now.
+
+2014-02-10
+
+Got back the referee's report from Solar Physics on SWAP paper.
+Trying to fix the issue of two CME detections starting at the same time (sticking extn and extn_count into the relevant codes: automated_kins.pro gather_gail_detections_inset_all_device.pro find_pa_heights_all_redo.pro and create_html.pro).
+Emailed Shadia about potential conference travel plans.
+Skype with Huw about catalogue.
+
+2014-02-11
+
+Worked on the html for the catalogue, thresholding off the erroneous detections, but color coding the other smaller ones in comparison with SEEDS.
+Created a 'help' page html as a "Guide to using the catalog". Emailed to Huw and Shadia.
+
+2014-02-12
+
+Writing cmemass.pro to take in the CME mass save files from Huw (email) and output a plot of mass in time with position-angle colorbar (same as kinematic plots in the catalog). Emailed output to Huw.
+Edited swap_stack_for_conor.pro and emailed it with thoughts on his update.
+Working on more bugs in the automated_kins and encompassing codes.
+
+2014-02-13
+
+More debugging issues. Mostly with shifting angles.
+
+2014-02-14
+
+So close to finishing debugging plot_kins_quartiles.pro and the angle shifts.
+Reading up on CMEs for SWAP paper corrections.
+
+Monday 'Presidents Day' holiday
+
+2014-02-18
+
+Checked solarwind but no fits files (emailed Huw).
+Started on minor corrections for SWAP paper.
+Debugged more codes, and setting 2006 running on dublin and 2012 running on jaydog2.
+
+2014-02-19
+
+Reading up on CME/flare connections and models (mostly in Aschwanden) from referee's report on SWAP paper and writing notes SWAP_report_notes.rtf.
+Setting up codes on alshamess; set the ssh keys for copying and rsync-ing files & folders.
+
+2014-02-20
+
+Working on codes and paper.
+
+2014-02-21
+
+Finished inital note on SWAP_report_notes.rtf and emailed to co-authors.
+Set codes running.
+
+2014-02-24
+
+Working on codes and paper.
+
+i=['2000’,’2001’,’2006','2007','2008','2009','2010','2011','2012']
+for j=0,7 do begin & $
+ create_html, '~/Sites/CORIMP/'+int2str(i[j]),/sav_gol & $  
+ create_html, '~/Sites/CORIMP/'+int2str(i[j]),/quadratic & $  
+ create_html, '~/Sites/CORIMP/'+int2str(i[j]),/linear & $  
+endfor
+
+2014-02-25
+
+Reading CME models in light of SWAP paper report.
+
+2014-02-26
+
+Setting codes running on machines for travels.
+
+2014-02-27 to 2014-03-03 WineSki
+
+2014-03-04
+
+Working on SWAP paper.
+Emailed codes to Huw re bootstrapping.
+Fixed IDL with David Lukas after Mavericks update.
+Setting codes on machines.
+
+2014-03-05
+
+Working on SWAP paper.
+Skype with Hazel about 3D recon, if it can be automated for crude estimates in a large events study.
+Papers for astroph discussion.
+
+2014-03-06
+
+EUVI movies from Huw.
+Finished version of automated_3d.pro following NSPIRES proposal chat with Hazel yesterday.
+
+2014-03-07
+
+Astroph discussion (didn’t get chance to speak).
+Working on SWAP paper.
+Setting codes over the weekend for CORIMP.
+
+2014-03-10, 11, 12
+
+Working on SWAP paper. Drafts back and forth, mostly with Hazel and Shadia. Making movies from Huw’s EUVI images.
+Wed dinner at Shadia’s.
+
+2014-03-13
+
+Analysed SWAP images for Conor’s event.
+
+2014-03-14
+
+Chat with Chau.
+Final edits of SWAP paper.
+Meeting with Shadia and Conor.
+
+2014-03-17
+
+Resubmitted SWAP paper.
+
+2014-03-18
+
+Struggling with automed codes from home.
+
+2014-03-19
+
+Getting codes fixed up.
+Looking at 2012-07-23 extreme event for stereoscopic reconstruction.
+Rejection from Jack Eddy fellowship application.
+Working on lasco_realtime_jpb.pro on gail.
+
+2014-03-20
+
+Working on gail detection codes.
+
+2014-03-21
+
+Working on gail codes.
+
+2014-03-24
+
+Working on gail detection still.
+
+2014-03-25
+
+Working on gail detections.
+Making astrocoffee talk for Friday.
+
+2014-03-26
+Prince Kuhio Day
+
+2014-03-27
+
+Writing AUTOMATED_GAIL_REALTIME.pro on gail.
+Working on talk.
+
+2014-03-28
+
+Astrocoffee talk.
+Sorting UCBerkeley proposal Co-I status.
+Writing CREATE_HTML_REALTIME.pro on gail.
+
+2014-04
+Time off in April.
+
+2014-05
+Worked on NASA LWS proposal.
+Worked on realtime codes.
+Worked on SWAP paper corrections.
+Worked on RAL application (incl. webpage and online portfolio).
+Worked on ROB visit, incl registering for SIPWorks.
+
+2014-05-22
+
+Working on realtime codes, figuring out a cronjob on gail.
+
+2014-05-23
+
+Looking into cme mass codes.
+Setting realtime codes running over weekend.
+
+Memorial Day weekend
+Tried to work at home on automated tweets but can’t figure it out… yet!
+
+2014-05-27
+
+Working on cmemass.pro
+Running realtime codes, fixing bugs.
+
+2014-06-02
+
+Worked from home, got automated twitter posts from command line working.
+
+2014-06-03
+
+Wrote CMEMASS_ALL.pro to loop over cmemass.pro for determine the CME masses in the detections.
+On gail, wrote CMEMASS_GAIL.pro to determine the CME masses and plots, called from automated_kins_gail.pro.
+Edited plot_kins_quartiles_gail.pro to fix issue with time-axis on plots.
+
+2014-06-04
+
+Working on CME mass codes: and fixing various bugs in the process.
+
+2014-06-05
+
+Finalising CME mass codes.
+Doing NASA proposal reviews.
+
+
+SolarPhysics paper / RAL interview / SIPWork & ESPM conference prep & travel prep. / CORIMP Catalog work / etc.
+SIPWork7 at La Roche En Ardenne Aug 18-22.
+
+
+2014-08-25
+
+First day at ROB for PROBA2/SWAP GI project.
+Prepping data and writing overview.pro to see how the SWAP images should be treated for the 2013-07-26 prominence eruption & CME event.
+
+2014-08-26
+
+Wrote OVERVIEW_SWAP.pro to keep an overview of the lines used to generate the images, e.g. 
+pc_points_20130726_183035.eps
+pc_points_mults_20130726_183035.eps
+front_ell_20130726_183035.eps
+
+Also wrote CORRECT_WOBBLE.pro from emails with Laurel on the wobble in the images, but integrated lines into overview_swap.pro.
+
+Emails with Huw on conference/work travel and plans. Note his paper on AN ATLAS OF CORONAL ELECTRON DENSITY AT 5R I: DATA PROCESSING AND CALIBRATION
+
+Used the fullmedian.sav from Laurel to perform longterm background subtraction of the SWAP images.
+
+2014-08-27
+
+Wrote COMPARE_BKGSUB.pro to compare the background subtracted SWAP images with the original used in the multiscale detections - with good results. Redid overview_swap.pro for new images_bkgsub/.
+
+Wrote INTERP_ELL_INFO.pro to interpolate the ellipse parameters and overcome cadence offsets between instruments assumed on the same plane-of-sky. Created interp_ell_info_2013-07-26.eps.
+
+2014-08-28
+
+Prepping & inspecting the LASCO images for the event. Can’t get backgrounds - asked Guillermo but not sure it’s working right so just doing base-difference.
+
+2014-08-29
+
+Writing SWAP_ELLS_ON_LASCO.pro to plot the ellipse characterisations from SWAP on the LASCO images of the CME. Saving swap_ells_on_lasco_yyyymmdd_hhmmss.eps.
+
+2014-09-01
+
+Worked on draft tex paper on the event.
+
+2014-09-02
+
+Got the EUVI data.
+
+2014-09-03
+
+
+2014-09- Hazel’s visit
+
+
+2014-09-30
+
+Working on INSPECT_KINS_STATS_GAIL.pro on gail.
+
+2014-10-01
+
+Working on implementing the codes I need on gail still, for adding the realtime months into the catalog.
+
+2014-10-02
+
+Writing CORIMP_readme.rtf as a guide to the codes in running the CORIMP CME Catalog steps.
+
+Moving to RAL
+
+2014-10-30 (and preceding week)
+
+ssh -Xt stereo-ops.stp.rl.ac.uk csh
+Working on stereo-ops to investigate the jmap_widget_pa_final.pro and editing it as JMAP_WIDGET_PA_FINAL_JPB.pro
+Wondering if it will be useful to try adding image processing buttons to the widget, in the hopes that the mmap features might be more readily identifies with multiscale enhancement or edge detection (less likely).
+
+HELCATS Meeting ROB Brussels
+
+2014-11-10 to 13
+
+ Creating a ‘Plan of Work’ for the HELCATS current workload, PoW_201411.rtf
+And getting the infrastructure set up on stereo-ops etc. with conversation with Matt (Jackie & James, David) about setting up new HELCATS folder location and version control with RCS.
+Got new laptop!
+
+2014-11-17
+
+Setting up new laptop.
+
+2014-11-18
+
+Trying to configure new laptop for access to stereo-ops, in .cshrc file and ssh keys in .ssh
+
+2014-11-19 & 20
+
+Working on widget for the difference images, to read the angles and image date&time for CMEs.
+On stereo-ops in hi_codes/widget/ procedures.
+
+Birthday weekend in Dublin.
+
+
+2014-11- week of 25-28
+
+Working on plot_diff_images.pro and the codes under secchi_display.pro to get the widget working for the difference images and set up in the HELCATS folder on stereo-ops.
+Wrote batch_diffs.pro to run difference images in batches over the weekend.
+
+2014-12
+
+Wrote document (emailed 11/12/14) on HI_catalog.pdf about efforts with the widgets for HI cataloging.
+Wrote Byrne_AGPnewstarter_pre_201412.pdf as pre-proposal page for the IHR awards.
+

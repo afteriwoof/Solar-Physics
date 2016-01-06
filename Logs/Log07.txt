@@ -1,0 +1,1452 @@
+22-01-07
+
+Reading The SOHO Mission publication on LASCO and making LASCOnotes.rtf
+Reading some of the Machine-Vision Course https://www.cs.tcd.ie/courses/computervision/ImageFormation.html
+
+23-01-07
+
+Set up Xcode tools installation. Set up csh and sswidl. Installed Skype (authoxy).
+Installed Silverkeeper for PhD folder sync with laptop.
+
+Installed vim / gvim 
+
+Emailed James about codes he has for me.
+
+Went through IDL tutorial 
+http://icc.dur.ac.uk/~tt/idl.html
+
+>plot_image, im
+>tvprofile, im
+
+24-01-07
+
+Received email with data from James.
+Some IDL links on his page too.
+playing with jason_lasco.bat and the programs: ssw_fill_cube2.pro, pb0r.pro, rm_inner.pro, atrous.pro etc.
+Learning about header/index info. and arcsec!
+
+25-01-07
+
+Emailed Alex, James about level of data calibration.
+
+Lasco site: can't access reduce_level_1.pro so I googled it and got:
+
+http://cass185.ucsd.edu/cgi-bin/www_help.cgi?file=$SSW/soho/lasco/idl/reduce/reduce_level_1.pro&name=REDUCE_LEVEL_1&tabsize=8
+
+http://sohowww.nascom.nasa.gov/solarsoft/soho/lasco/idl/reduce/reduce_level_1.pro
+
+Found the flickering in the images correlates with the jumps in exposure time as seen in the header index.exptime information. Attempt to normalise this by dividing through by the exposure time and see that the histograms then align perfectly.
+
+Another problem might be in the displaying of the data it must be byte-scaled so that the blinking is reduced by taking the pixels range and scaling it into 0-255.
+
+see: PGMeeting_240107.rtf
+
+Writing the readin.bat batch file to keep track of the data variables I'm playing with.
+
+I moved rm_inner.pro and ssw_fill_cube2.pro to the ssw/gen/idl/solar/ folder.
+
+Created noblink.pro which produces the best non-flickering data yet! 
+Tried to do differencing on this after calling noblink.pro and running diff_noblink.pro
+
+Created 18apr2000.sav (saved array of mreadfits data) and in.sav (saved header file for this data) and moved them to ~/PhD/ folder.
+
+Looking at fmedian.pro --> seems to be the main contributor to success in removing flickering (along with the exposure time calibration normalisation).
+
+26-01-07
+
+Received email from James with event and compared the running diff movie with mine (not too much difference in the flickering).
+http://www.lmsal.com/solarsoft/last_events/gev_20070125_0633.html
+
+Also received level 1 data which has exp.small values so emailed James back about that.
+Made movie danb.html (bytscaled normalised data from blink.pro) and danb2.html (bytscl norm. data from blink2.pro)  --> difference being when the fmedian filter is applied but seems unimportant!
+Movie diffnb.html and diffnb2.html by calling diff_noblink.bat after running the preceding blink program.
+
+26-28 Went to Galway for the weekend : AstroFest
+
+29-01-07
+
+Read in James' data and followed his instructions to perform rm_inner and ssw_fill2_cube and although the images were slightly improved (the event being slightly clearer) the data values were still exp. small and I couldn't find the histograms.
+
+30-01 DIAS Course : Image Processing & Wavelets
+
+01-02-07
+
+Can I now put my normalised data through the contour programs I previously had? (ultimate aim being automated CME front detection!)
+Fit ellipse maybe to the ROI which I might define as the contoured area (but this changes for each image!)
+
+02-02-07
+
+Attempt to now determine the CME front: researched transforms to polar coords using recpol.pro and to determine the edge values (plots of lines; need the end values of each line as the front edge) contained in noblink_recpol.pro
+Wrote outeredge.bat but just put that code into noblink_recpol.pro anyway!
+
+05-02-07
+
+Wrote code for fitting ellipse (didn't work good though)! 
+contouring8.bat
+contouring8.pro
+noblink_thresh.pro  put in code to plot ellipse from mpfitellipse.pro
+
+Meeting with Peter:
+1) MAPS; want to analyse data in map format with arcsec coords.
+2) CONTOUR; now have to make contouring of CME in map format.
+3) RECPOL; try to get the CME in polar coords (r,a)
+4) Identify Front; Using the idea of angular width of CME and the r_max sweep across the front and take only the values which are the front itself. Might need to re-bin the data points for this.
+
+
+06-02-07
+
+Attempt to use MAPS to display my data arrays (images). 
+Wrote the following programs:
+mapcontours.pro
+mapcontours.bat ; to accompany writing the .pro
+lilrecpol.bat ; to figure out how the recpol was working on my data
+readmap.bat ; short batch to read in data for command prompt analysis!
+Made movie CME_front_id.html
+
+07-02-07
+
+Fitted tangents to my CME front, and option to include lines showing previous image's tangent lines and angular lines spanning the width of the CME.
+mapcontours_fast.pro [ , /tangents , /lines ]
+mapcontours_fast.bat
+
+08-02-07
+
+Wrote the code from Matlab into IDL attempting to find Minimum Volume Enclosing Ellipse
+
+09-02-07
+
+Wrote MVEE.bat ,  MVEE_plot.bat , lilMVEE.bat
+
+sick 10-02-07 to 13-02-07
+
+
+14-02-07
+
+Debugging MVEE.bat and MVEE_plot.bat, running and comparing to Matlab. Very problematic...
+
+15-02-07
+
+Looking for another way to fit ellipse.
+wrote ellipseplot.bat
+wrote ellipsefit.bat from http://ask.metafilter.com/mefi/36213
+wrote contour8.pro & contour8.bat
+Edited mapcontours_fast.pro to include the average point of each contour array (the probable centre point of an ellipse!)
+
+16-02-07
+
+Can't fit ellipse still, so trying to determine the width of the ellipse; first idea being the "major axis" through the centre point but upon inspection it seems it is actually a curved line of constant radius of r_bar swinging from side to side of CME front.
+Edited mapcontours.bat and mapcontours_fast.pro
+
+Apex:
+2321.4856
+2433.6498
+2333.4183
+2539.9984
+2622.1647
+2694.5676
+2847.8969
+3120.1713
+3443.4131
+~4391.3240
+
+Made graph 'apex.ps'.
+
+
+19-02-07
+
+Trying to find where the mid curve intersects the CME contour edge. Code edited in mapcontours_fast.pro and mapcontours.bat.
+Also added in curve through the CME apex point.
+
+20-02-07
+
+Wrote mapcontours_fast_width_attempts.pro (and mapcontours_width_attempts.bat) in effort to find the width of the CME front as shown from the mid-curve intersecting the CME contour front.
+Failed to achieve good results.
+
+Note: I think there's a problem with my calculation of the [x_mid,y_mid] point as sometimes 0 is counted as a point which drags the average quite a bit!
+
+Problem seems to be: 
+Currently I am finding the average of the full CME contour, then using this to find the front only.
+But I want to first determine the front only, and then find the average of these 'front only' points!
+Writing mapcontours_fast_fix.pro in effort to fix this.
+
+21-02-07
+
+Can't take apex as furthest point because the contour is bumpy!
+
+If I'm to use utplot for the apex then maybe the header times need to be changed for the difference images.
+
+Edited mapcontours_fast.pro (and mapcontours_fix.bat) to now obtain the average point of the front only and determine from this the apex.
+
+Apex:
+2635
+2953
+2763
+3325
+3327
+3533
+4016
+4653
+5147
+6071*
+
+Wrote more code for trying th determine the width by now taking the radius of the average point and finding where it intersects the original contour points since there's more of them and thus it's hopefully more accurate!
+
+22-02-07
+
+Wrote code within mapcontours_fast.pro to find the width of the CME.
+Talk with Peter decided go back to trying to fit ellipse or function in order to get consistent results for determining the apex and width.
+Went back to attempts at fitting ellipse: contour8.pro, ellipsefit.bat.
+Tried to use fit_ellipse.pro obtained from internet, but it works on pixel indices in ROI rather than xy array indices from contour.
+Maybe MPFITFUN.pro will give me the best fit, if given x and y and the function for ellipse.
+
+23-02-07
+
+Wrote the function ellipsefit.pro to calculate the major and minor axes and the orientation of the ellipse from the eigenvectors of the matrix. Different eigenvectors give different ellipses! Put a call to this function in mapcontours_fast.pro. Seems the ellipse is biased by the fact that I have determined its centre point from the average of the points on the binned contour.
+Note: if points lie outside the map then I don't want to include them in the ellipse plot.
+Need to re-think where the centre of the ellipse should go. Also the scaling of the ellipse was chosen to have a division of 6 by me since that looked like closest fit!!!
+
+26-02-07
+
+Analysed the ellipse fitting: plotted the average point in each image and decided I need the average point to float (not be set) so it is another unknown. 
+Met with Peter; discussed use of MPFITFUN (see IDLcommands07).
+
+27-02-07
+
+Went to SPS for tour and met new principal and old teachers! Will return to give IHY talk.
+
+Ran through the use of the MPFITFUN program and attempted to mathematically determine the equation for an ellipse at an inclination to the axes. I think I've found a possible result, in polar coordinates as cartesian coords cannot be seperated into the necessary form for MPFITFUN.
+
+28-02-07
+
+Mathematically figured out the equation for an inclined ellipse. Played with MPFITEXPR to show this, code dumps in IDLcommand07.
+Wrote polarellipsefit_mpfitfun.pro and polarellipse_centre.pro
+
+01-02-07
+
+Attempts to fit the ellipse found it is bound to the origin. Programmed mapcontours_fast.pro to include the ellipse fit with the average point (x_bar,y_bar) as the centre. Only slightly better than the ellipse fit I had previously.
+Ran through the data that Alex gave me during the summer to see how it worked in my program. Happy enough with robustness, but needs adjusting as sometimes it crashes.
+
+02-03-07
+
+Fenwick Cooper visit & Astro lunch.
+
+05-03-07
+
+Quick talk with Peter; Now thinking about wavelets instead of differencing. I played with the ATROUS.pro a little bit.
+Attempt to consider when the front is going off the map edge; wrote MAPCONTOURS_FAST_9.pro which so far only finds the edges on the contour which are closest to the edges of the map (having also found the map edges).
+Edited mapcontours_fast.pro to deduce the width of the fitted ellipse from the idea that taking the maximum radius within the ellipse and doubling it to be the major axis; CME width.
+
+06-03-07
+
+Paper on asymmetric cone model, Michalek 2006.
+Read up on Solar coordinate systems and coord transformations.
+Meeting with Peter; discussed the ellipse fit. Changed threshold to make it higher for the 22-Apr-2000 CME which is quite bright. 
+Plotted the CME ellipse fit major and minor axes in mapcontours_fast.pro.
+Worked out idea of ellipse not constrained to the origin but rather a certain radial distance and angle away. Included this in the code for mpfitfun with limits in place on a floating centre point for the ellipse; wrote MAPCONTOURS_FAST_SHIFT.pro. Seems to be more parabolic than elliptic!
+Still want to find Stereo data. 
+
+07-03-07
+
+Still can't fix the mapcontours_fast_shift.pro by playing with the limits on the floating centre point.
+Read paper abstracts from Max Millennium email.
+Did campus room application.
+
+08-03-07
+
+Teaching, Peter's lecture, and DCU seminar.
+
+09-03-07
+
+Had my biopsy surgery so only small discussion with Peter on the idea of how to use the MPFITELLIPSE.pro in my program. Simply specify the start parameters.
+
+12-03-07
+
+Editing mapcontours_fast_mpfitellipse.pro to try and include the mpfitellipse.pro by specifying the start params.
+Got a good fit for the ellipse for the most important data frames.
+Thoughts: 
+-Fit seems to be biased by the contour (if it were a more symmetric contour the fit would not be so inclined at certain stages).
+-Set a threshold so the program doesn't try to fit ellipse to negligible first contours
+-Think about approximations for when the points go off the frame and it seems the mpfitellipse.pro isn't stable enough to handle this!
+-Radius of curvature of an ellipse?!
+Made movie online CME_ELLIPSE_BW.HTML
+
+13-03-07
+
+Ryan Milligan visit.
+Discussions & emails with Peter & James, Alex on CME ellipse fittings.
+Thoughts on how the ellipse tilts through the frames: angle alpha changing, might be a twist in the flux rope of the CME. Want to obtain plot of alpha.
+Wrote CME_ELLIPSE.PRO which is the ellipse fitting. Also CME_3ELLIPSES.PRO which calls the new ELLIPSEFIT2.PRO in order to use my method of ellipse plotting with the new centre point of the front from the mpfitellipse.pro.
+Went through James' programs with idea of using some better form of image enhancement; atrous breaks up the scales but how do I then take the CME detail? The canny_atrous also tried to bring out the edges.
+
+Ellipse: http://www.du.edu/~jcalvert/math/ellipse.htm
+Radius of Curvature at any point of an ellipse is: ((rr')^3/2)/ab where r, r' are distances to the two focal points.
+
+14-03-07
+
+Got data from James and managed eventually to view the data; first run through CME_ellipse2.pro managed at least to do an initial characterisation.
+Pierre over: Tea, Lunch & Talk.
+Got SFI funding!!!
+
+15-03-07
+
+Morning talk by Pierre. Interesting methods of using the WTMM on curves with arrows showing magnitude of gradient in direction. Possible CME applications.
+Worked on my code, wrote CME_OFFEDGE.pro in attempt to model the CME once it goes off the image edge. Pulled out the velocity of each front by simply subtracting the previous front in time.
+
+16-03-07
+
+Got my stitches out! Tea with Joe & David, lunch with All and Pierre, +Shane UCD.
+From my velocities of the fronts I made my CME_offedge.pro consider the next front at each stage ~Forward Modeling! Had to threshold by not taking the edges of my arrays due to errors introduced, but final model was ok. Need to now take the contour at the projected front and see if I can fit an ellipse same as previously.
+
+20-03-07
+
+Received data pb.sav, tb.sav, hdrs.sav from James. Wrote CME_ELLIPSE_EDIT.pro in order to try and run the data analysis. pb.sav doesn't appear as well as tb.sav for contouring the CME front, however my ellipse fitting doesn't work eitherway!
+Wrote CME_CONTOURS.pro in attempt to assign each contour to an array and be able to call it later in order to say which of the contours are the corresponding ones for when the CME goes off the edge; stuck it in the beginning of CME_offedge.pro.
+
+21-03-07
+
+Worked on writing my code to find the place where the contours will be once the front goes off the edge. Tricky Stuff!!! 
+Spoke with Peter about the method, and also about James' data.
+Got library books (James) and book off Peter on the solar corona.
+
+22-03-07
+
+Got my CME_offedge.pro to find the parts of the contours which lie in the expected place given by the next front. Still a problem with only considering certain contours, but that can be fixed and also somehow must make sure to take only the relevant contours parts (ie: not the core)!
+
+23-03-07
+
+Wrote CME_OFFEDGE_MESSIN.pro to try and mess about with the arrays and get them to do what I want with regard to the edges and fronts and I think I might have gotten it working better alright!!! :D
+Really Hyper today too.
+Came back after dinner. Tried to write CME_OFFEDGE_FRONTONLY.pro to take the velocity of the front just before it went off the edge and use that velocity to postulate all the future fronts off the edge. Didn't work!
+Wrote CME_OFFEDGE_ELLIPSE.pro to so far try and fit ellipse to the off edge parts. Work in progress...
+
+24-03-07
+
+Did some code editing on laptop at home: CME_offedge_ellipse.pro now has the trailing offedge fronts and attempts to fit ellipse with my original code re-edited in ellipsefit.pro. Note new edited codes: CME_OFFEDGE_ELLIPSE_FRONTONLY.pro, CME_OFFEDGE_ELLIPSE_MESSIN.pro and ...MESSIN_ORG.pro and CME_ELLIPSE_BACKUP.pro
+
+26-03-07
+
+Wrote my talk for Wexford: Sun, Storms & Satellites.
+Got email from Peter; contacted James about getting some data he  showed me.
+
+27-03-07
+
+Wexford Piercetown National School, Drinagh. HY talks.
+Uploaded codes at home onto computer and ran through the CME_offedge_ellipse.pro.
+
+28-03-07
+
+Stats course for postgrads. 9.30-12.30
+-Wrote CME_OFFEDGE_ELLIPSE_REDO.pro to try and fit ellipses to my 'next fronts'.
+-Went through the atrous program again: some of the detail is actually quite good at certain scales so want to look at the SNR for different scales versus the difference images.
+-Looked at other data: Attempted to get data but VSO never got back to me. (contained a CME which looks very like a twisting flux tube!)
+-Can't find a flare for my 18apr00 CME (solarmonitor missing the relevant H-alpha data). Might not have been a flare, could have just been a prominence lifting off!
+
+Peter's notes on SNR:
+C = (I_max - I_min) / (I_max + I_min)
+C=contrast, I=intensity
+S/N = I_max / I_min
+And go through this for each scale (and mix of scales).
+
+29-03-07
+
+GREAT NEWS: 3 IRCSETs awarded! Went for Tea then Posh Lunch Yamamori Noodles!
+Looking at the atrous again; adding scales and subtracting to see the effect on the SNR.
+
+>plot, abs(decomp(*,100,3))
+>oplot, abs(decomp(*,100,4)),color=2
+>pmm, "
+
+>plot, abs(decomp(*,100,5)-decomp(*,100,4))
+>pmm, "
+
+Found scales 3 and 4 had best SNR and also 4-3 and 5-4 gave good SNR.
+
+>plot_image, alog(decomp(*,*,3))
+
+30-03-07
+
+Rhona Maclean down from Armagh: tea, talk on Modelling Magnetic Field Topologies, & lunch. Meeting about how to analyse flare Claire & Paul are working on.
+Peter helped me with my poster abstract submission for NAM.
+
+FOLDER IS NOW TRINITY07
+
+02-04-07
+
+Played with CME_ellipse_atrous.pro to see the effects of the different scales. Went through the edge-detection pdf Peter sent which introduces the idea of using the atrous wavelet and then applying the canny edge detector algorithm (=> WTMM).
+Discussed with Peter the use of the wavelet algorithm and how the scales bring out the edge: scale 5 for decomp8 worked brilliantly. Did a contour, /over on it to show the edges. Want to apply the idea of the norm (atan(Gx,Gy)) in order to remove the radial lines of the streamers. Edge effects can also be removed to give only the important CME lines. Possible region growing in order to obtain the front for ellipse fitting.
+Want to run other events through this wavelet detection: 21apr2002 (C2 & C3 -data is there, just need to find it!) and Stereo Cor1 data. 
+If ellipse can work then want to pull out the h(t), v(t), a(t) graphs (prove Peter wrong!).
+Code Dump: IDLcommands07
+
+03-04-07
+
+Got a Haircut!
+Wrote WTMM.pro - WTMM3.pro which take data sets Lasco and Stereo and put them through the atrous and canny methods. Did tweaks to the high, low, sigma of the canny and found the 'best' edge detections I could.
+Made movies www.maths.tcd.ie/~jaydog/Solar/atrous/
+Went for a swim!
+
+04-04-07
+
+Wrote WTMM4.pro and also looked at the idea of taking the directions out of the canny algorithm; James' programs canny_atrous2d.pro and display_angle.pro give the modgrad (sqrt(Gx^2 + Gy^2) and alpgrad (atan(Gy, Gx)) corresponding to the canny.
+-stuck on this. Sidetrack to ellipse and wrote CME_ELLIPSE_HEIGHT.pro where the height is the furthest point on the ellipse. If this is the case it moves in space!
+-Also about to start fixing the offedge programs so writing CME_OFFEDGE1.pro
+
+05-04-07
+
+Got back into the WTMM; wrote WTMM7.pro which takes the contours from the canny detection and assigns them the corresponding direction values (0-360) as given by alpgrad in James' code canny_atrous2d.pro and made movies of results.
+Wrote WTMM8.pro to try and automate the detection and elimination of streamers through the whole data set at a particular scale of decomposition. Made movies.
+Met Peter; discussed the use of the atrous - I need to include the subtraction condition on the scales and maybe try another wavelet routine (Russ'?!).
+
+06-04-07
+Good Friday
+Studied the maths of the convolutions/edge detection/atrous.
+Wrote WTMM9.pro which includes the subtraction of the decomps from each other in the atrous algorithm. Made movies.
+
+09-04-07
+Easter Monday
+Going through my running differences to correct the times of each interval.
+14:18:20.11
+14:42:06.496
+15:00:05.4855
+15:18:05.4745
+15:42:06.3095
+16:00:06.2985
+16:18:05.5875
+16:42:05.573
+17:00:05.462
+17:18:005.501
+17:42:05.587
+18:00:05.8615
+18:18:06.0505
+18:42:05.851
+Written in code DIFFIN.pro and saved as 'diffin.sav'
+Moved ellipsefit.pro into ssw/gen/idl/solar
+The differences in seconds is:
+0
+1426.386
+1078.9895
+1079.989
+1440.835
+1079.989
+1079.289
+1439.9855
+1079.889
+1080.039
+1440.086
+1080.2745
+1080.189
+1439.8005
+
+Wrote talk Apr07Presentation for review tomorrow.
+
+10-04-07
+
+Email from Peter about submitting article to the 'Interconnect' publication in TCHPC.
+Finished presentation for review meeting.
+Review meeting went well -points to note:
+1) Consistency in equation variables needed
+2) Graphs with speeds in km +error bars if possible.
+3) More data sets necessary.
+
+11-04-07
+
+Making poster for Nam conference.
+Obtained C3 data for 18apr00 event. Wrote CME_ELLIPSE_HEIGHT_C3.pro in track the front and obtain more heights for my graphing (and to go into poster).
+
+12-04-07
+
+More poster making!!!
+Made ellipse_width.pro, ellipse_angle.pro, tot.pro, profiles_c2.pro
+, profiles_C3.pro to pull out the kinematics and morphology of the 18apr00 CME.
+Draft NAM07poster.ppt emailed to Alex, James and Peter for comments.
+(also NAM07Peter.ppt, NAM07Long.ppt)
+
+13-04-07
+
+Finished Poster!
+HOLLER!
+...now to get drrrunk.
+
+14-04-07
+
+Writing a schpeel to go on the back of my poster handouts to just say who I am and contact details etc.
+
+RAS NAM2007 & Solar Meeting, conference
+16 - 20-04-07
+
+Spoke with Andy Breen (Uni. Wales), Chris Davis, Richard Harrison, Danille Bershwyn (RAL), Len Culhane, James Klimchuk, Stephane Regnier.
+Highly commended on poster! :D
+
+23-04-07
+
+Paper work to go through with the JF Science classes I taught last term.
+Emailed Alex about booking flights to America.
+
+24-04-07
+
+Met Paul, Peter, Brian about Mars terrace detections.
+Initial Stereo data attempts, and contacted Danielle and Richard about website downloads.
+Meeting with Peter to discuss the á trous algorithm and what to send Alex and James for comparison and discussion of methods.
+Checked flights to DC: US Airways seems best.
+
+25-04-07
+
+Got new heroes! Met group of old school tramps for long lunch!
+Attempted to use sockets to get James' data - Peter tried too.
+Discussion about flights / stipends / car rental etc.
+
+26-04-07
+
+Made the slides of the á trous steps and figured out -with Peter's help- about the Canny being an algorithm of steps to include smoothing and edge detection, and also figured out what's happening in James' codes canny_atrous2d.pro: it's not really a wavelet but rather a simple multiscale analysis.
+Downloaded image processing books online. (email from Jack)
+
+27-04-07
+
+Calculated conference expenses and filled in claim form. Also filled in the Nasa forms for Peter.
+Finished slides of the á trous algorithm steps and analysis on fits files and sent to Alex and James. Also managed to get the Stereo data off the website with Peter. Discussion about summer, money and conferences. Peter will get in touch with Alex about paying me at this wage for the 3 months hopefully, and then reminder to send in the relevant paper work to college admins about starting me on SFI money from Sept.
+GOT A TRINITY BALL TICKET!!! :D
+Wrote CME_ELLIPSE_AUTO.PRO to try and apply ellipse fitting routine to the Stereo data from James 240107. Problems with the header I think being different from Lasco.
+
+29-04-07
+
+Just idea while at home over weekend of maybe (for running difference analysis) instead of taking the intensity threshold against some 'piece' of the image, take the background of the whole data set as the minimum pixel values and threshold relative to that!
+
+30-04-07
+
+IDL>ssw_upgrade, /secchi, /spawn, /ver
+
+Wrote MINPIX.PRO to calculate the minimum pixel values of a given data set, an today applied to 18-apr-00 event only.
+
+01-05-07
+
+Booked flights to DC.
+Wrote CME_ELLIPSE_BKGRD.PRO to try and use the minpix.pro approach of the minimum pixel being the background value to threshold against. (do I want the mode rather than the minimum?!)
+Spoke with Peter about this and the idea of the threshold needing to be dynamic as both the CME and the general brightness of the data drops off at some rate eg going C2 -> C3.
+mu not equal to mu(t)
+Tau = mu + N*sigma where sigma=sigma(t)
+
+02-05-07
+
+Aimée's 21st last night 1920s Guys'n'Dolls Brilliant Buzz!!!
+Met Peter; wrote STEPS.PRO to try show IDL steps for the multiscale analysis.
+Viewed Stereo Secchi data of active region in the 3D Visualisation lab! Savage!!!
+
+03-05-07
+
+Trying to find CME in Stereo data - doesn't seem to be there! Reading through the user guide for Secchi image analysis.
+Len Culhane talk in UCD.
+
+04-05-07
+
+Bkgrd = min(da, dimension=3) so my minpix.pro is redundant!!!
+re-writing minpix.pro and CME_ellipse_bkgrd.pro now.
+Spoke with Peter about idea of using the multiscale decomposition (eg atrous) in order to take the background from a combination of the lower scales and maybe some higher ones (ie: scales which the CME is not on) rather than just the minimum pixel values-which is sensitive to dropouts and would need to be the 'mode'.
+Also, with the multiscales it won't be required to do an fmedian filter.
+
+Telecon with Alex & James.
+
+05-05-07
+
+Played around with the adding/subtracting of scales from the atrous.pro and wrote BKGRD_SCALES.PRO to try and see use the effect of fixed differencing at multiscales. Not very successful.
+
+07-05-07
+
+Email from James to make correction to his canny_atrous codes for the high pass filter.
+Messing with the modgrads of the canny_atrous2d on some of the 18apr00 data. Seems to be quite effective in CME detection but only if I performed large rm_inner on the limb bright circles.
+Code dump IDLcommands07.
+
+08-05-07
+
+Seminar: Synchrotron Spectroscopy!
+Looking at the effects of different scales on SNR and the addition / subtraction of scales again but with proper scaling in mind. Discussion with Peter about this: be careful of the subtractions since it rather should be a division of the first scale to normalise the others against the background.
+'Flat-Fielding'
+Idea of extracting out non-moving features in order to have them not affect the CME front's progression. 'Jitter' the consecutive images?! Piecewise correlations?! Smoothing kernel?! hmmmm Emailed Alex to ask.
+Quick overview again of my progress as well and idea of where to get a paper out of this:
+1) Wavelets
+2) Moving features
+3) Front ID & Ellipse fit
+4) Height-times and F=ma, kinematics etc.
+
+09-05-07
+
+Poster boards!
+Wrote RM_OUTER.PRO and RM_EDGES.PRO to block out the edge effects of the multiscales.
+Editing CME_multiscale.pro to contour the CME...
+Discussed with Peter the idea of how to extract only moving features to try and neglect the streamers. Maybe some way of smoothing the data and then seeing how consecutive smoothed images compare; threshold relative to the velocity.
+Google some feature/object tracking methods.
+
+10-05-07
+
+Paper from James on the Canny multiscale edge detection methods, with me as 5th author!!!
+Googling feature tracking: can't find any explicit methods relevant to me other than some sort of detectors and creating vector maps...
+Peter said region-growing on my area will blur it out and then in consecutive images if the bluring overlaps within a threshold it is a non-moving feature I wish to ignore.
+Wrote DILATEBUZZ.PRO to mess around with the idea of region-growing and tracking, using dilate and erode also.
+
+11-05-07
+
+Fixed Dilatebuzz.pro to now work properly but it only works for one one stationary feature... Emailed it to Peter (no reply).
+*TRINITY BALL*
+
+14-05-07
+
+Went through dilatebuzz.pro with Peter, and he wrote test.pro (in learningIDL/). Discussion of set theory and how it should be applied but biggest problem is the idea of dealing with individual pixels rather than objects (groups of pixels).
+Reading the Digital Image Processing chapters on erode/dilate, opening/closing operations, boundary extraction (erode and subtract from original).
+Emailed lots about Nasa accommodation search for DC this summer.
+
+15-05-07
+
+Offered accommodation in College Park!
+Looking at the alpgrad from the canny_atrous2d and finding there's no useable information from the theta it gives. Need to work through James' code to understand exactly what's happening with the method.
+
+16-05-07
+
+Sorting out accommodation: getting lease contract agreement in order and got reference email from Alex.
+Reception in honour of Eric Finch & Stefan Hutzler.
+Took apart the canny_atrous codes and understood it step-by-step; added my own notes in to it too. Discussed it with Peter and rang James to see how to use the directional information to then disregard the streamers for the CME front only. Making some head way by setting all pixels in the modgrad image to zero below a threshold which takes out the streamers and CME and then multiplying with the alpgrad gives the directional information of these. Now want to use this to say any changes in the directional information along the contours means (to a degree) that it is curved and thus to be kept as CME front.
+
+17-05-07
+
+Wrote ANGLEINFO.PRO in order to take a sample image and threshold it for the CMEs (and streamers) and then take the angle information which was relevant. This highlighted the streamers as being uniform angle values (one colour) and the CME has a gradient of angles across it (variation in colour). Rang James and he was happy with this. Next step is to take the background (first image / without CME) and create a dynamic threshold which corresponds to both the CME's diminishing intensity and the background corona's diminishing intensity.
+
+18-05-07
+
+Poster delivered to reading room.
+Read paper for journal club meeting at 2pm.
+Went to Messrs for a pint (or 5).
+
+21-05-07
+
+Emailed Simon Plunkett and Angelos Vourlidas about NRL visit this summer.
+Got international bank draft for rent payment to Joe Deutsch. Emailed him and Adam Sternberg to say I'll post it as soon as I receive the signed version of the lease agreement.
+Wrote BKGRD.PRO to try and model the Corona drop off radially from Sun centre. Found there's a problem with the shifting distributions...
+
+22-05-07
+
+Figured out the shifting distributions are due to the pixels stepping up/across in order to draw radial lines which decreases the number of the in the array distribution.
+Wrote bkgrd2, 3, 4 .pro for the four quadrants and combined them in ALLBKGRD.PRO which takes the intensity drop off of the whole sun by quadrants.
+
+23-05-07
+
+Received the lease agreement signed from Adam Sternberg, so posted the bank draft of first months rent to Joe Deutsch. 
+Wrote CME_DISCS.PRO which takes discs of the images according to where the contouring against the fixed differencing of the array gives the max and min radii of the CME.
+The intention being to obtain an algorithm with the following steps:
+
+1) Run through a fixed differencing with contouring of CME. (thresholded against the bkgrd which is an annulus of the minimum pixels of the array -> no CME.)
+2) Take the maximum radial distance to the CME front.
+3) Use this radius to determine a threshold according to the bkgrd drop-off intensity (can also bring in angle to say how location in quadrants affects the threshold)
+4) Run through the átrous decompositions with the dynamic threshold in place .
+
+Next steps then will be to use the angle information to take only the CME front and apply ellipse-fit routine.
+
+24-05-07
+
+Wrote CME_DYNAMIC.PRO to perform the steps listed above.
+? Why is the threshold (mu - 5*sigma)
+? Setting the threshold as the median in the bkgrd
+? Need to chain pixels with the modgrad and alpgrad info as in James paper to get fronts
+
+25-05-07
+
+Reading James paper again to try and do the chaining of pixels for the fronts.
+
+05-06-07
+
+Second day in NASA. Have managed to transfer all the files I need from ssh to maths acc. Now have got idl working with my environments set to call the idl_codes folder and need X11 running for display windows.
+
+06-06-07
+
+Editing CME_dynamic.pro with temporary codes to try and figure out how to chain the edges using the alpgrad and modgrad info.
+Wrote TEMP, TEMP1, TEMP2, TEMP3.pro  ( also made movie 'chains').
+
+07-06-07
+
+Backed up all my files onto new external hard-drive.
+Emailed Peter, James and Alex my chaining movie result.
+Writing DYN_SECTOR.pro to see if I can work in only the region where the difference highlights my CME to be, neglecting the rest of the data therefore removing streamers etc.
+Wrote RM_SECTOR.pro to remove all but the sector of interest of an image.
+Writing RUNDIFF_ELLIPSE.pro in the difference_archive folder to try and read in any data set and do my running difference CME front detection and ellipse fit to ultimately have my own height-time plots of many CMEs.
+
+08-06-07
+
+Got 3hrs sleep :(
+Did very little in the morning-then went to Claire's talk at interns lunch.
+Searching for lasco data on VSO and perfecting the rundiff_ellipse.pro to make movies of data I read in. Managing to make some rundiff_ellipse movies.
+
+11-06-07
+
+Peter's radio chat: http://astronomy.ie/audio/patkenny_20070611.mp3
+Trying to sort out accommodation issues.
+Alex is back!
+James came and spoke to me about the chaining method as in his paper; turns out he's not pulling out just the front! Gave me codes CHAIN_WTMM, CHAIN_WTMM2, BINARY_MASK, CALC_WTMM2.pro to look at. grabbed pic of his steps. jma.jpg
+From Jack also found out ARRAY_INDICES.pro will give coords in terms of their index in the array.
+
+12-06-07
+
+Viewed house-looks great. Still need replacement for my sublet though.
+Meeting with Alex: spoke about the way the canny_atrous works and the next-step ideas about 
+1) Chaining pixels along edges using the angle and modulus information.
+2) 	a: use feature extraction ideas to say what's moving (CME) and what's not (streamers)
+	b: use the angle information along the edges where the CME angle dist. will be largest.
+3) With the edge pixels, maybe converting to (r, theta) space will show up CME versus streamers more clearly.
+4) Maybe there is a logic in using my running difference as a first guess of CME location and performing the remove sector algorithm in order to look only at the specific location of the CME in the wavelet space -> it will be the most important/prominenet feature thus easy to model with ellipse fit.
+All of this is the idea of working towards creating some way for the CME data to be transformed into another format which is easier to determine the characteristics of.
+
+13-06-07
+
+Working through DYN_RUNDIFF_SECT.pro to make sure the code is running right and performing the steps for looking only at the sector in which the CME lies.
+Pho for lunch! Thunder/lightning knocked out power!
+
+14-06-07
+
+Finished to a certain degree with dyn_rundiff_sect.pro in that it now applies the sector only analysis to the wavelet space, takes the biggest contour in there and pulls out the front in order to fit ellipse. Problems are the streamer effect on the CME gives a bad front detection which throws off the ellipse and also the thresholding is wrong for some images.
+Lost the updated version - some problem from the power cut yesterday, a .swp file was created and shit it anyway!
+Phew - re-booting the computer I found the backup file and restored my code!!!
+I think I'll now turn to the idea of subtraction wavelet images to remove non-moving features.
+
+15-06-07
+
+Claire's talk at RHESSI meeting this morning.
+Went through James' codes for the WTMM and the pixel chaining, understood them pretty much grand. Now want to apply them to my contoured wavelet images and see how they perform. This means taking new code NEW.pro and putting in the relevant steps for getting to the contoured wavelet space (with dynamic threshold?!) and using the modulus and angle information to now chain pixels within the contoured regions.
+...will prob have to finish this on Mon.
+
+18-06-07
+
+-Want to ask Alex about my im_decomps ?
+Ans: The adding up of scales is not advised. If it is needed to be done at all it should be the rows and columns of the canny_atrous2d.pro which are added up seperately and then recombined to give the image.
+
+-Ask James about picking which scale of the mod and alp to use for calc_wtmm?
+Ans: It completely depends on the case, but a point to note is that edges should be present at all scales of decomposition. This is a property which can be utilised in edge detections.
+
+From the top!
+
+1) canny_atrous2d.pro
+	Calls canny_atrous.pro to perform a convolution across the rows (and then columns) of the B3-spline used in atrous for smoothing, and a gradient operator to pull out the edges; result being the coeffs which are passed to an array 'decomp'.
+Each time the filter is passed it is padded with zeroes (point of atrous) in a form of scaling, so higher decomp corresponds to higher scales --> detail.
+The modgrad is obtained from the sqrt(rows^2 + cols^2)
+The alpgrad is obtained from the arctan(cols/rows)
+
+2) calc_wtmm2.pro
+	WTMM pixels are those which have a maximum modulus value in the direction specified by the input angle (alpgrad). Each pixel is compared to its 8 neighbours and a modgrad value interpolated for it. If the pixel modgrad value is greater than the interpolated value at both al and al+180 then the pixel is flagged as a modulus maxima pixel.
+
+come back to this tmw
+
+
+
+
+Big meeting with James and Alex:
+	Made a Plan-of-Action on google documents about where to go with this summer's work. Idea right now is to on one hand take data, perform basic processing, throw it in Alex's recipe for obtaining the CME front in Matlab, and then try my ellipse fitting on it in order to get the physics out. On the other hand, avoiding the 'black-box' approach of Matlab, I will take the Matlab codes, study the underlying physics and rewrite IDL codes to do the steps needed to finding the CME front. So this is a 'split' challenge to both get physics out while also improving my computational ability and image processing skills.
+	
+19-06-07
+
+More shite with accommodation. :(
+Putting files from Alex into Matlab path.
+http://www.csse.uwa.edu.au/~pk/research/matlabfns/
+Peter rang just to discuss settling in and plan-of-action:
+ - Get hands on data esp: SECCHI (look at past 3 weeks, Jan, James' data)
+ - Cactus, CDAW, Cor1.gsfc.nasa.gov
+Meeting Gina at 4 to get the keys. :)
+
+20-06-07
+
+Went home sick.
+Pulled data off VSO by searching through the movies on CDAW for good CME events. Went as far as May 1997.
+
+21-06-07
+
+Spoke with Alex:
+	Data retrieval for lasco is given at 
+/service/soho-arch00/soho/private/data/processed/lasco/level_05
+(Don't worry about Stereo for now!)
+Try to keep to 1024x1024 arrays.
+Can view the info on the files in the folders too.
+	The Matlab codes at the link above has a NonMaximal Suppression algorithm for getting the edges out of the modgrad, alpgrad info which I have. Should be able to incorporate his code into IDL to get out edges and morphological thinning and such operations can then be performed.
+
+Need-Crash course myself in Matlab through the Getting Started intro.
+Need-Crash crouse in IDL also in the online help under Users Guides / Image Processing .
+
+Rhessi lunch for Chau leaving.
+Spoke to Kevin about IDL use.
+Met James - go back tmw to learn about how he processes Stereo data.
+Feeble attempt at writing Non Maxima Suppression program NMS.pro!
+
+22-06-07
+
+When data is collected from Lasco, want to use getbkgimg.pro to be able to subtract off the median background calculated 'monthly'.
+To use getbkgimg.pro must choose one fits file from the data and do readfits on it to take in the header as just a string (rather than mreadfits takes its as a structure).
+Wrote BKGRD.pro to calculate this monthly lasco background image (bkgrd.sav) and header (bkgrd_hdr.sav) for each data set.
+
+CME Lists: http://lasco-www.nrl.navy.mil/index.php?p=content/cmelist
+
+Meeting with James on Stereo Secchi Cor1 data retrieval and processing:
+see emails of today from James.
+Read Billings Chpt 6 (all about polarisation stuff)
+
+0)	Data lists on cor1 site
+
+1)	cat = cor1_pbseries('date', 'instr')
+	help, cat, /str  ...; find location
+
+2)	secchi_prep, cat[*,*,i], filename, in, da, /calimg_off, /calfac_off
+	...; flat-fielding for ccd biases etc.
+
+3)	Find bkgrd from within GSFC ... service/stereo2/cor1/background/...
+	3 polarisation angles (0,120,240)
+	3 bkgrds to subtract off
+	3 images of polarisation obtained
+
+4) 	cor1_quickpol, da, totb, pb
+	Read in 3 bkgrd subtracted polarised images, combines them to get one image.
+	Returns the single images totb (polarised + non) and pb (polarised).
+
+5)	Make fits files from totb and pb.
+	Use sccwritefits.pro
+	(Stereo programs use sccreadfits ...)
+
+Wrote COR1STEPS.pro to include James' verion of all these steps.
+Also put the setenv into the .login file on my computer (Amy mounted my computer to the /service/stereo files).
+Spent last while just going through Matlab demos to refresh it for me.
+
+;************************************************
+EMAIL:
+
+pol000=sccreadfits('/service/stereo2/cor1/background/b/monthly_min/200704/mc1B_p000_070430.fts',hd000)
+pol120=sccreadfits('/service/stereo2/cor1/background/b/monthly_min/200704/mc1B_p120_070430.fts',hd120)
+pol240=sccreadfits('/service/stereo2/cor1/background/b/monthly_min/200704/mc1B_p240_070430.fts',hd240)
+
+pol_bck=fltarr(1024,1024,3)
+pol_bck[*,*,0]=pol000 & delvar,pol000
+pol_bck[*,*,1]=pol120 & delvar,pol120
+pol_bck[*,*,2]=pol240 & delvar,pol240
+
+CAT = COR1_PBSERIES('1-May-2007', 'Behind')
+
+FOR i=0,284 do begin & $
+   secchi_prep,cat[*,i].filename,in,da,/calimg_off,/calfac_off & $
+   cor1_point,in[0] & $
+   newin=in[0] & $
+   for j=0,2 do da[*,*,j]=da[*,*,j]-pol_bck[*,*,j] & $
+   cor1_quickpol, da, totb, pb & $
+   print,'WRITING IMAGE ',i,' TO ',newin.filename & $
+   sccwritefits,'pb_'+newin.filename,pb,newin,savepath='pb' & $
+   sccwritefits,'totb_'+newin.filename,totb,newin,savepath='totb' & $
+ENDFOR
+;************************************************
+
+25-06-07
+
+David's first day in Nasa. Shown the ropes.
+Got codes off Alex for his method of wavelet decomposition and edge detection. Running them through Matlab and reading them.
+Found a bed online!
+
+26-06-07
+
+Joe's first day in Nasa.
+Running Alex's codes step by step.
+Want to figure out how to either:
+1) Write out images as fits files from Matlab 
+2) Write out the boundary/front information from Matlab (in a format eg: ascii to restore in IDL)
+3) Find out how to utilize the header info in Matlab from index.PrimaryData.Keywords
+
+Wrote READ_DA.m, CMEFRONT.m to try and read data into Matlab and do Alex's recipe for front detection.
+
+27-06-07
+
+Have the save file edges.mat from yesterday.
+Wrote FRONT_18APR00.m to take out the front by eye and save it as a .png to read into IDL. With these I can call them into IDL, run a quick transformation to fix the array orientation and then try to get ellipse fit to work!
+
+28-06-07
+
+Made the movie of the fronts http://www.maths.tcd.ie/~jaydog/Solar/WTMM/recipe.html
+Steps I've accomplished:
+1) Call png image given from Matlab
+2) If there's more than one, combine them in FULL_FRONTS.pro
+3) Then if there's only one front, fit ellipse with FRONT_ELL.pro
+	or if there were more than one part of the front call FRONT_FULL_ELL.pro
+
+29-06-07
+
+Phone call from Peter. Happy with direction, that I try to get my methods applied to Stereo asap to get out a paper with the title Multiscale Analysis of CMEs in 3dimensions" or the like. Non-automated as yet but still a first study.
+Made ellipse fit movie of WTMM Matlab recipe: http://www.maths.tcd.ie/~jaydog/Solar/WTMM/Ellipse_WTMM.html
+Wrote MY_RECIPE.pro to talk through the first steps and to perform the IDL steps with Matlab outputs.
+Asked Alex/Mark about mounting Stereo5 on my computer.
+
+02-07-07
+
+Writing a program for my Stereo data preprocessing. Asked Marc about getting set up on the mounts/paths that James uses for Cor1 background and for Stereo data. 
+
+03-07-07
+
+Amy checked out the Cor1 path which can't be mounted from 21 to me so she tranferred the background folder to my computer. Finished writing STERO_PREP.pro and started running some of the prep on the 24-Jan-07 CME event seen by Stereo. Takes a long time!!!
+Volleyball & JellO Wrestling!
+
+Fourth of July
+Holiday
+
+05-07-07
+
+Problem with server mounts - fixed after lunch.
+Reading CME 3D Configuration thesis by Maria Hebe Cremades Fernandez.
+Ran stereo_prep for ahead_24jan07 and chose the fronts out of it for CME ellipse fit.
+TRANSFORMERS!
+
+06-07-07
+
+Wrote STEREO_NORM.pro to normalise the Stereo data before analysis.
+Ran my first ellipse fit on Secchi Cor1 and it works!!! 
+http://www.maths.tcd.ie/~jaydog/Solar/STEREO/
+Took down some Cor2 data for a look, and it seems to need similar processing of the three polarisation angles.
+
+09-07-07
+
+Reading Cremades 3D CME Config. thesis.
+http://deposit.ddb.de/cgi-bin/dokserv?idn=976523493
+Also found out PLOT_HELIO.pro for plotting solar grid on the Sun.
+
+10-07-07
+
+Going through Stereo data from the logs on the Cor1 site.
+Printed out papers and am continuing to read Cremades thesis.
+
+11-07-07
+
+Ran through more Stereo data by looking at the Cor1 logs. Still reading Cremades. Sent Alex and James the movies.
+
+12-07-07
+
+More Reading and running of Stereo data.
+Ran a good event 09feb07 and am getting ok results.
+Overnight data:
+27 & 28jan07
+Behind data for 09feb07.
+
+13-07-07
+
+Emails about pulling out ALL ellipse information possible!
+Also data for event with overlap of EUVI with David. Movie of CME from EUVI out to Cor2 if possible?
+
+Meeting with James:
+	No need to do the normalisation with regard to exposure time in the stereo_norm.pro since cor_prep already does it when called in secchi_prep.
+	fmedian is a good idea though because the calculation of pb, totb can have trouble if there's erroneous pixel values.
+	cor1_quickpol.pro assumes angles 0,120,240 but this means account needs to be made for data dropouts/gaps where this angle information will then go wrong.
+	The Cor1 lists are on Running Difference images of totb.
+COR2:
+	There is no backgrounds currently available (though they are in NRL). So only thing is to not subtract background or else make your own! So the steps James would imagine to go through at the moment are:
+(see IDL commands for dump of James run of today)
+1)	a = scclister ( ... )
+2)	GUI: lz / polarised / not_SW / ICER4? (from NRL visit maybe best to take ICER1 : 080807)
+3)	print, a.sc_a
+4)	da = sccreadfits ( a.sc_a, outsize=512 )
+5)	secchi_prep, a.sc_a, in, da, /calfac_off
+6)	then can make own background files by taking average of each angle 0,120,240 and subtracting.
+	or:	if no background subtraction then can just run cor_polariz and see how it fares.
+7)	totb = cor_polariz ( da, in )
+	pb = cor_polariz ( da, in, /pb )
+
+Once I changed stereo_norm.pro I relabeled the folders to Old_Normalised and re-ran some Normalised data.
+Edited front_ell_info.pro to include more information about the ellipse and to display a cone! Also edited front_full_ell.pro to include the same info (but this code is particularly for when the front was split).
+
+16-07-07
+
+Went through my front_ell_info.pro and front_full_ell.pro in order to pull out the information from the ellipse fit. I'm not happy with the major and minor axes, they seem to be temperamental!
+Made http://www.maths.tcd.ie/~jaydog/Solar/STEREO/pb/Cor1_A_24Jan07.html
+and running through the behind data.
+
+17-07-07
+
+http://www.maths.tcd.ie/~jaydog/Solar/STEREO/pb/Cor1_A_24Jan07.html
+http://www.maths.tcd.ie/~jaydog/Solar/STEREO/pb/Cor1_B_pb_24jan07.html
+
+Met with Alex and James about this work and they are happy. Just need to get more data so emailed Simon and Angelos in NRL about visiting soon. They have Cor2 access and might help us learn about SEECHI preps and data.
+Going through the stereo data to find events based on the preliminary lists along with the difference movies on the cor1 ... index2.shtml website.
+
+18-07-07
+
+Wrote progress report for Dominic.
+Ran through more Stereo data, found events for 17,18mar07 and behind 02,08may07 and want to analyse the edges arrays made for ahead_17mar07, ahead_09may07 and behind_08may07 (whether they are pb or totb).
+
+19-07-07
+
+Ran more data:
+http://www.maths.tcd.ie/~jaydog/Solar/STEREO/totb/B_totb_08may07.html
+http://www.maths.tcd.ie/~jaydog/Solar/STEREO/totb/Cor1_B_totb_02may07.html
+Quick chat with Alex about running data, paper reading and possible data in Cor2.
+
+20-07-07
+
+Harry Potter 7 Out Tonight (so in work early for nap later)!
+Made graphs output of my CME ellipse fits of Secchi: Graphs_24jan07.html
+Went for Pho lunch.
+Cor1 meeting (cake for James' wedding Congrats).
+HAVE TO GO INTO MY CMEMOVGRAPHS PROS AND FIX THE ANG SET UP SO THAT I ONLY SPECIFY THE FRONT ONCE AND THEN CAN JUST RECALL THE ANG VARIABLE PROBABLY BEST BY DOING THE CLAUSE ON THE ANG FROM 1-4 IN THE ACTUAL ELLIPSE FITTING PROS FRONT_FULL_ELL AND FRONT_ELL_INFO THEMSELVES.
+
+23-07-07
+
+In late - wrecked from White Water Rafting weekend away!
+Can't yet get my wr_movie to take colours used in set_line_color plots.
+Made my combined movie of Ahead, Behind and Ellipse info plots.
+
+24-07-07
+
+Fixed up the ellipse info plots with Ahead & Behind. Running more data through to find another good CME to put into the algorithm and take out the kinematics.
+Looking to get the EUVI data for my CME events on Stereo!
+
+25-07-07
+
+Running CME data from 09feb07 and fixing up script to be more robust in producing the movie of the graphs and CME images for Cor1 A & B. 
+SESI Interns Photo, Volleyball.
+
+26-07-07
+
+Happy with fixed script now for graphs movie, and finished running through the 09feb07 CME in totb.
+
+27-07-07
+
+Cor1 meeting; showed my CME graph movies. Hong Xie very interested! Worked on Lasco/C3 24jan07 to take out the fronts.
+
+30-07-07
+
+Made Lasco/C3 movie 24jan07. Peter rang to talk about data. Want to get it all ready for just obtaining Cor2. EUVI data from Dave, 171A on 09feb07 shows lift off.
+
+31-07-07
+
+Spoke with James about work. He is happy that the 24jan07 event from Lasco/c2/c3 and Secchi/Cor1/Co2 will be a good analysis for first paper. Also from this discussion and from Alex email, Must address the following:
+-Correct rotations (Lasco ROT, Secchi ROTATE) to Solar North and see if this affects the data analysis.
+-Look at the recent movies not on the CME lists for Cor1.
+-EUVI might give source regions or low CME fits.
+-Errors must be analysed for both the spatial resolution and the edge detection/ellipse fit. This might come out the perror in the mrfitfun routine.
+-Get more Lasco events that will show ellipse fits across different CMEs.
+-Write the code from Peter Kovesi's page http://www.csse.uwa.edu.au/~pk/research/matlabfns/ for non-max suppression into IDL (instead of Alex's wtmm_edge.m code).
+-Can start writing up in detail what I have been doing which is of benefit for future paper / thesis (while it's fresh in my mind).
+
+Ran through movies online at http://star.mpae.gwdg.de/daily_mpg to find more Lasco events.
+
+01-08-07
+
+Peter wants a poster presentation on Multiscale methods for Hinode conference: want to see XRT data for my CME events and maybe compare.
+Running edge detections and ellipse fits on Lasco data.
+Wrote the CMEmovgraphsC2.pro in order to take in the fronts gotten for Lasco and take out ellipse info.
+Had to go back and normalise data in Lasco that had been flipped.
+Wrote CMEGRAPHSC2C3_SEPERATE.pro in order to take in the ellipse fits of both Lasco and make graphs and image movies!
+
+02-08-07
+
+Ran edge detections across Lasco data sets.
+Looked at rotation of data- needs to redo the edge detections since pixel rotation can change them!
+Rhessi Lunch - Osaki Japanese
+Brazilian Dinner ala Mike!
+
+03-08-07
+
+Looked at putting together the Lasco/C2/C3 graphs in CmeGraphsC2C3_seperate.pro which has issues with the UTplot since the names of the files off VSO are different to the date labels it expects.
+Told Alex about the week's work and that I'm running out of time and didn't look into re-writing the NonMaxSup.m as suggested...
+James and Alex agree best way to take the source region out of EUVI is by eye.
+Running more Lasco data and edge detections and nearly finished running the 'rotated' event in Stereo and Lasco from 24jan07.
+leaving lots of sutff to run over weekend.
+
+06-08-07
+
+Going through the 24jan07 event - hadn't got the data rotated by the 'SUN' centre pixels so had to redo that.
+Re-rotated all my Lasco data by Sun centre pixels.
+
+07-08-07
+
+Redid the rotations for the Stereo data now for 24jan07.
+Fixing the code for the ellipse angles and heights to be in degree and kms respectively. Trying to combine the plots in utplot for kinematic analysis.
+Managed to make the Graphs_plots movie for Lasco/C2/C3 together stepping along the utplots as CME proceeds.
+
+08-08-07
+
+Went to NRL to see Angelos and Simon. Learned how to make backgrounds and prep the Cor2 data. Got a backdown link set up for the backgrounds that they have for Cor2 which are only from April on. Angelos had previously analysed the 24jan07 event in Cor2 so gave me his processed fits files. Met Russ Howard also, and spoke to Jennifer who made the secchi_prep.pro and to Arnaud about his forward modelling of CMEs.
+
+09-08-07
+
+Wrote COR2_PREP.pro in order to take the a.sc_a from scclister and write out the rotated, normalised fits files for each polarisation angle.
+1) cor2_first
+2) cor2_add_pol
+3) cor2_final
+Combined them all into cor2_prep.pro
+
+10-08-07
+
+Working on the cor2 prepping. Re-writing to be sure, see email to Angelos:
+
+Jason,
+see inline comments:
+
+1) I check each image in case the data needs to be divided by 2.
+2) Then I subtract off the index.biasmean
+3) and divide by the exposure time
+==>  im = (im - biasmean) / exptime
+4) Once this is done for each p000, p120, p240 I sum them (and divide by 3 I presume is fine) to get the combined data (totb?).
+5) A median of this combined data set is taken as the background and divided into each image.
+the median is over a whole day I presume. An alternative way is to divide all CME-containing frames by the nearest prevent image. This method should result in higher contrast. 
+ 
+ 6) I rotate the images to Solar North (about the index.crpix1/2 ?)
+
+I haven't corrected for the black strip in the images left sides, should I before getting the median background? 
+ You don't have too unless you need the images in powers of 2. The full field is 2112x2048, I believe.
+ 
+My final images need a sigrange which displays the CME quite effectively. The WTMM edge detection is working alright on them though of course the front is quite broken at this stage.
+Please see attached figures as an example! 
+The images look good. You are on the right track! 
+
+Spoke with Alex about this work, about giving presentation on Tues and talking on Mon about a poster for Hinode meeting.
+
+13-08-07
+
+Making my presentation. Met with Alex and James to discuss it. 
+
+14-08-07
+
+Final presentation. Bit short but ok. Jack mentioned Huw Morgan's 'Normalised Radial Graded Filter' which could be very useful for our work especially before the edge detections. See 2006 Sol.Phys.236,263.
+
+15-08-07
+
+Working on Poster for Hinode. Interns final presentations. Packed!
+
+16-08-07
+
+More poster work, Alex, James, Peter. Heading for flight home today!
+
+
+20 to 24-08-07
+HINODE CONFERENCE
+
+
+06-09-07
+
+Shane came in to fill in forms. I'm trying to figure out what's wrong with Matlab Wavelet Toolbox!
+Re-wrote Alex's code from Matlab:  FINDLOCALMAXIMA.pro
+
+26-09-07
+
+Been working mostly on paper for Hinode proceedings. Also had problems with Matlab - need the Image Processing Toolbox!
+Today, wrote ATROUS_WTMM.pro to combine the canny_atrous programs from James with the non-maxima suppression methods from Alex to determine the lines along the CME front.
+
+27-09-07
+
+Long talk with Peter:
+1) Writing up the paper on Lasco 10 events under the multiscale analysis with Alex this summer, outlining methods and the resulting edge detections for the 10 events.
+2) Automated method - maybe the running difference window technique will be good at performing a backlog analysis of events as well as creating an automated detection algorithm.
+3) Current work on writing IDL codes for the non-maxima suppression and obtaining a non-noisy image to pull out the front. Might be ok to do some sort of differencing on the scales produced. Otherwise utilise the angle info, mag info and time info across the scales to 'jitter' the image and do a nearest neighbour study to drop out streamers. Or what about some velocity vector type field with arrows corresponding to the angle and magnitude of the pixels they represent (some type of grid say 40 pixels wide) - see email about optical flows etc.
+Alex emailed back about the codes and would like to talk - Monday.
+Moved back upstairs to newly renovated office.
+
+28-09-07
+
+Journal Club.
+Made movies of the angle and mag info with arrow2.
+See codes PRE_ARROW.pro, ARROW_MASK.pro which call canny_atrous2d.pro.
+
+01-10-07 (Claire's Birthday)
+
+Telecon with Alex and James. Notes on the current point in using the gradient info to threshold:
+http://www.maths.tcd.ie/~jaydog/Solar/canny_atrous/arrow_01apr04.html
+
+1) Perform a noise threshold first, to get rid of noise.
+2) Radial filter, Huw Morgan & Habbal, sol.phys.
+3) Chaining through scales, so thats (m, a, t, s) (mag, angle, time, scale)
+	(m, a, t) = 6 n.n. + scale = 8 n.n.
+4) See about the non-maxima supp. methods of the online guy in Oz Alex was talking about before.
+5) Edge-effects are extreme - must be a problem with me doing the rm_inner, rm_outer before the multiscale decomp.
+6) Ellipse model to fall back on for the expansion - seperate CMEs/streamers
+7) Twisting effect of the streamers; do a longer time analysis.
+
+02-10-07
+
+Huw Morgan emailed me his codes and steps: see emails today.
+Wrote PRE_MAKE_POS.pro to calculate the arrays of an image coords in Solar X and Y (in solar radii).
+See folder NRGF in Michelmas07, with code NRGF_STEPS.pro for lasco.
+
+Made movie on longer time sequence of lasco_2004may data to see the arrows on the streamers. 
+Saw Traces in Olympia!
+
+03-10-07
+
+Working on the radial filter on different data sets. Want to see how it fares when I apply a multiscale transform to it.
+Edited out NRGF_STEPSC2 / C3.pro
+Wrote SPATIOTEMP.pro and PRE_SPATIOTEMP.pro to threshold the angular information.
+Trying also to chain through scales to denoise images: SCALE_CHAIN.pro
+"Take each modgrad's moment to define threshold, then set all pixels lower than threshold to zero. If a givven pixel is zero on any scale then set it to zero for all scales (ie denoise)."
+
+04-10-07
+
+Wrote MAG_CHAIN.pro to chain nearest neighbour pixels if they are similar magnitude, and to take those whose magnitude have increased since the previous image.
+
+Review: Claire & Paul. Dinner Jaipur, + night of drinking!
+
+05-10-07
+
+Made images for TCHPC issue.
+
+Wrote CME_WINDOW_MASK.pro to use running difference as an initial guess for where CME is.
+http://www.maths.tcd.ie/~jaydog/Solar/automation/dim_masked_20040401.html
+
+08-10-07
+
+Wrote CME_WINDOWC2 / C3.pro and CME_WINDOWC3_NRGF.pro to apply the windowing algorithm to the lasco coronagraphs, and to the Radial Filtered C3.
+
+Wrote COMBINED_THRESHOLDS.pro to get out the final mask which must be thinned to give the CME front. Reading up on iterative thinning operations.
+Wrote M_THIN.pro from internet slide on morphological operators.
+http://64.233.183.104/search?q=cache:JOXgoq6bPn4J:www.cis.rit.edu/class/simg782/lectures/lecture_04/lec782_05_04.pdf+morph_hitormiss&hl=en&ct=clnk&cd=4&gl=ie&client=firefox-a
+
+09-10-07
+
+Wrote PRE_ARROW_WINDOW.pro and ARROW_MASK_WINDOW.pro to take in the windows defined by the combined_thresholds.pro and display the arrows in only that window (with a view to making a threshold on the information to specify only the CME front).
+Made first automated multiscale movies for CME detection which are in todays email to Peter:
+http://www.maths.tcd.ie/~jaydog/Solar/canny_atrous/automation/20040401_arrows_combined_rebin.html
+etc.
+
+10-10-07
+
+Helped out with IDL tutorial.
+Ran through more data sets and looked at idea of dilating the masks from magchains and scalemasks in order to stop the front breaking up.
+
+11-10-07
+
+Wrote ELLIPSE_MPFIT.pro which calls my ellipsefit.pro and the new NON_ZERO_FRONT.pro to do the ellipse fitting to the front (which doesn't consider the 0,0 point).
+
+12-10-07
+
+Wrote ELLIPSE_MPFIT_RADS.pro to pull out the max points of the modgrad within the boundary of the ellipse along it's radial lines. Also wrote COMBINED_THR_STEP7.pro which is the 7th step in combined_thresholds.pro but taken out separately for ease, and calls ellipse_mpfit_rads.pro.
+
+15-10-07
+
+Wrote FIND_MAXIMAS.pro with the function MAXIMA_INDEX in it, to take the maxima along a plot and spit them out in ascending order. Trying to get the last maxima in order to take out the front as opposed to a core maxima from one of the radial lines in the ellipse.
+
+16-10-07
+
+Started writing the paper for Solar Physics: Byrne_draft_20071016.tex
+Went through some of the data sets that have edges.mat defined from my summer work in Matlab, and wrote out png files to define edges.sav for each data set in IDL.
+Edited ellipse_mpfit.pro and combined_thr_step7.pro to take the max peak of the modgrad in the non-dilated window of combined in combined_thresholds.pro and plot an ellipse to the front.
+
+17-10-07
+
+Worked through more of the edg_images in the Lasco data for taking out the ellipse fit on the fronts determined in Matlab this summer.
+Compiled work together to email Alex and James - see today's emails.
+
+18-10-07
+
+Started writing paper for A&A - in template off site. Byrne_aa_20071018.tex.
+Went through more of my C2 events taking out the ellipse fits for the fronts from Matlab codes.
+Registered (at last)!
+
+19-22 Oct: PORT AVENTURA!!!
+
+23-10-07
+
+Meeting Peter at 3 to talk about work. 
+
+24-10-07 to 02-11-07
+
+Working on the paper and work for the Stereo meeting.
+
+05-11-07
+
+Made draft20071105.pdf from Byrne_aa_20071105.tex
+
+06-11-07
+
+Started making presentation Nov07presentation.ppt for giving at group meeting on Friday and for preparing for presentation at the Stereo/Secchi meeting in Pasadena next week.
+Spoke to Peter about discontinuities in my kinematic curves - see todays email.
+
+10 - 17-11-07
+
+Meeting in Pasadena, SWG and SECCHI. Gave presentation - see note book on talks.
+
+19-11-07
+
+Chatted to Peter about meeting, got to get cracking on my paper again. Analysis of how multiscale is better than running-difference.
+
+20-11-07
+
+Shattered!!! More talking with Peter and Shane about work.
+
+21-11-07
+
+Toyed with ideas of paper.
+Did some initial research on theory for Stereo reconstructions of ellipsoids and so on.
+
+22-11-07
+
+Spoke about paper with a view to fleshing it out and focusing only on methods really, the results so far aren't the important point!
+
+23-11-07
+
+My Birthday! Worked on paper.
+
+26-11-07
+
+Rewrote a lot of the main body of the paper, and started to redo the images.
+Peter's email about interconnect article.
+
+27-11-07
+
+Redoing images in paper and more rewriting. Met Peter about current drafts,  likes it but lots of notes for the rest.
+James arrived.
+
+28-11-07
+
+Writing PRE_ARROW_ONLY.pro to take the arrow masks and make them clearer in the images for the paper. Got the image thickarrows_four.pdf and the individuals.
+
+29-11-07
+
+Read papers for journal club.
+
+30-11-07
+
+Doing the transfer of CME edges for 01-04-04 into IDL to use it in the paper.
+
+03-12-07
+
+Rewrote paper sections and redid images for it again with a view to meeting Peter and James tomorrow.
+
+04-12-07
+
+Meeting - lots of changes to do on paper. Not going to submit until January.
+Working on getting out the height-time and other kinematic curves from the ellipse fits. Wrote ELL_KINEMATICS.pro which calls ELL_FRONT_KINEMATICS.pro in order to gather the information from the ellipses and now have to work out the issue of when an ellipse angular width crosses the 0/360 boundary...
+
+05-12-07
+
+When ellipse cuts the 0/360 line in the map then do the following:
+1) Create a binary mask of the ellipse ( polyfill,[p[2],x_ell[0],x_ell[1]],[p[3],y_ell[0],y_ell[1]] )
+2) Create a binary mask of the 0/360 line
+3) Add the masks; if any pixels are > 1 we have an intersection
+Thus, the ellipse needs to be shifted away from the 0/360 line in order to find its angular width.
+Wrote SHIFT_ELL.pro to do this and tell if the ellipse needs shifting or not.
+Added shift_ell.pro into the bottom of front_ell_kinematics.pro as a function.
+IT WORKS!
+Fixed up the rest of front_ell_kinematics.pro and ell_kinematics.pro to give the proper ellipse information required.
+Now trying to make the height-time plots...
+
+06-12-07
+
+Combining the C2 and C3 information to make a height-time plot for full data set.
+
+time_arC2 = file2time(flsC2)
+utbasedataC2 = time_arC2[0]
+timeplotC2 = anytim(time_arC2) - anytim(utbasedataC2)
+
+time_arC3 = file2time(flsC3)
+;use utbasedataC2 for combining both on the same plot
+timeplotC3 = anytim(time_arC3) - anytim(utbasedataC2)
+
+tottimeplot = [timeplotC2, timeplotC3]
+utplot, tottimeplot, allkins[*,5], utbasedataC2, psym=-2, tit='Height Apex', ytit='arcsec'
+
+
+Code from Paul for fits:
+function:               fit = 'P(0)*(x-P(1))^2 + P(2)'
+Initial guess:  p0 = [ -2.D, -2.D, 2.D]
+x = Pa.field1(1,*)
+y = Pf.field1(1,*)
+err = Pf.field1(2,*)
+par[index,*] = mpfitexpr(fit, x[1:18] ,y[1:18] , err[1:18], p0,
+maxiter = 500
+
+Looked at Peter's previous attempts on 12-04-07 in IDLcommands07 and see also today's code dump.
+
+07-12-07
+
+Worked from home thinking my phone was going to arrive. It didn't.
+
+10-12-07
+
+Late in - phone still not delivered!
+
+In summary, fit my graphs by:
+plot, t, h, psym=2
+yf = 'p[0]*x^2 + p[1]*x + p[2]'
+f = mpfitexpr(yf, t, h, h*0.1, [0.0001, 0.0001, 2.])
+oplot, t, f[0]*t^2. + f[1]*t + f[2]
+(actually oplot, t, f[0]*0.2*t^2+f[1]*2.3*t+f[2])
+
+Emailed Peter - see his reply for criticisms.
+
+11-12-07
+
+From Peter's email:
+
+t = data times in secs
+h = data heights in Mm
+utbase = start time in UT
+
+expr = 'P[ 0 ] + P[ 1 ] * t + P[ 2 ] * t^2'
+start = [ h_guess, v_guess, a_guess ]   ; all estimated from data
+p = mpfitexpr( expr, t, h, 1/h, start )
+
+h_model = p[ 0 ] + p[ 1 ] * t + p[ 2 ] * t^2   ; h0 + v0*t + a*t^2
+v_model = p[ 1 ] + p[ 2 ] * t                  ; v0 + a * t
+a_model = p[ 2 ]                               ; a = const
+
+utplot, t, h, utbase, psym = 2
+outplot, t, h_model
+
+v = deriv( t, smooth( h, 3, /edge ) ), psym = 2
+utbase, t, v, utbase
+outplot, t, v_model
+
+a = deriv( t, smooth( v, 3, /edge ) ), psym = 2
+utbase, t, a, utbase
+outbase, t, a_model
+
+Make sure you give h[t] in Mm or R_sun, v[t] in km/s and a[t] in m/s/s.
+
+You will also need to propagate the errors through the plots using derivsig.
+Make sure these agree to some extent with
+
+dv / v = dh / h + dt / t
+
+and
+
+da / a = dv / v + dt / t
+
+
+Discussion on errors:
+- take the pixel widths of the modgrad in finding the edge error
+- the time interval error is in order of the sampling time interval itself
+- then get the errors in the velocity and accel
+- and the mpfit will return a perror in the fits.
+
+
+From: http://www.naic.edu/~astro/data/idl/quick_start_IDL.shtml
+
+10. Making a PostScript plot
+    To output a plot to a postscript file. First refine a set of IDL
+    instructions that will produce the plot you would like as a .ps file.
+    Then;
+IDL> set_plot,'ps'
+IDL> device,filename='name.ps', ysize=12
+IDL> {set of instructions to make desired plot}
+IDL> device, /close
+IDL> set_plot,'x'
+
+
+Getting the error in the front from modgrads[*,*,5] say. Fitting a Gaussian to the curve. Downloaded GAUSS1.pro
+
+12-12-07
+
+Did the error analysis for 20000118 in Lasco/c2/c3 in their respective folders. Difficulty with the fronts on 20000118 for some reason they are upside down or rotated wrong!!!
+See ELLIPSE_PLOT.pro
+
+13-12-07
+
+Having difficulty propagating the errors into the velocity and acceleration plots.
+Apartment flooded!
+
+14-12-07
+
+Group presentations: Lariza and Dave.
+
+17-12-07
+
+Mulled Wine at 11am!
+ARG Christmas Party!
+
+
+
+
+
+
+
+

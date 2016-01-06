@@ -1,0 +1,1049 @@
+17-01-12
+
+Writing figure_events_secchi.pro
+
+18-01-12
+
+Redoing the outputs that lead to figure_model_histograms_colour_bin20.pdf
+Wrote combine_pa_heights5_check.pro and figure_model_histograms_colour_redo.pro
+
+Working in folder Postdoc/Automation/Catalogue/
+Created folder redo/ in multicme_model_dynamic_thr3/detections_noncleaned/
+fls = file_Search('../Test/multicme_model/*cme*')
+fls=sort_fls(fls,28)
+mreadfits_corimp, fls, in
+restore,'multicme_model_dynamic_thr3/pa_total*shift*sav',/ver
+separate_pa_total, pa_total, det_info
+find_pa_heights, pa_total, det_info
+;(ordering of all_h0 - 4.sav is CME: B, A, D&E, C, F)?!
+$mv all_h*sav multicme_model_dynamic_thr3/detections_noncleaned/redo/
+;-------------
+restore,'multicme_model_dynamic_thr3/detections_noncleaned/redo/all_h0.sav',/ver
+combine_pa_heights5_check,in,heights,image_no,pos_angles
+$mv v_fwds.sav multicme_model_dynamic_thr3/detections_noncleaned/redo/
+$mv v_fwd_all.sav multicme_model_dynamic_thr3/detections_noncleaned/redo/
+$mv v_all.sav multicme_model_dynamic_thr3/detections_noncleaned/redo/
+combine_pa_heights4,in,heights,image_no,pos_angles
+$mv kins.sav multicme_model_dynamic_thr3/detections_noncleaned/redo/
+$mv heights.sav multicme_model_dynamic_thr3/detections_noncleaned/redo/
+$mv v_nows.sav multicme_model_dynamic_thr3/detections_noncleaned/redo/
+; renamed all above *.sav files to number *N.sav according to which restored all_hN.sav
+;--------------
+
+Use figure_model_histograms_colour_redo.pro
+
+Combine_pa_heights4.pro seems to have an issue with the count for the histograms, i.e., the v_nows.sav that it saves because the array counts over the same points too often I think.
+
+19-01-12
+
+Writing combine_pa_heights6_fit.pro to generate a polynomial (2nd order) fit to the height-time points and quote velocities from that.
+
+Wrote PLOT_KIN_TEMP.pro just to play with sample output of temp.sav and see how fits work.
+
+fls = file_Search('../Test/multicme_model/*cme*')
+fls=sort_fls(fls,28)
+mreadfits_corimp, fls, in
+restore,'multicme_model_dynamic_thr3/detections_noncleaned/redo/all_h0.sav',/ver
+combine_pa_heights6_fit,in,heights,image_no,pos_angles
+restore, 'v_fit_all.sav'
+restore, 'v_fit_angles.sav'
+!p.multi=0
+plot,v_fit_angles,v_fit_all*1000.,psym=1,xtit='Position Angle (deg.)',ytit='Velocity (km s!U-1!N)',yr=[0,900],/ys,xr=[236,337],/xs
+plothist, v_fit_all*1000., /nan, /halfbin, bin=20, xtit='Velocity (km s!U-1!N)', ytit='Count'
+Saved CME_B_kins_angles.png and v_fit_all_hist0.png
+
+Edited:
+restore,'multicme_model_dynamic_thr3/detections_noncleaned/redo/all_h0.sav',/ver
+combine_pa_heights6_fit,in,heights,image_no,pos_angles, /saves
+; Rename the sav files with number accordingly. Then move to folder multicme_model_dynamic_thr3/detections_noncleaned/redo/.
+
+Wrote FIGURE_MODEL_VEL_FITS_ANGLES.pro and FIGURE_MODEL_VEL_ANGLES.pro
+
+Made spline_eg,png with output from edited plot_kin_temp.pro
+
+20-01-12
+
+Redoing the figure but with outliers removed.
+
+restore,'multicme_model_dynamic_thr3/detections_noncleaned/redo/all_h1.sav',/ver
+combine_pa_heights6_fit,in,heights,image_no,pos_angles,/remove_outliers,/saves
+Move outputs to folder ~/Postdoc/Automation/Catalogue/multicme_model_dynamic_thr3/detections_noncleaned/redo/outliers_removed/
+and rename them with corresponding number (in this case 1).
+In folder Automation_paper/make_images/ run
+figure_model_vel_angles,/remove_outliers
+$open figure_model_vel_angles.ps
+
+Done for all and saved figure_model_vel_angles_rmoutliers.pdf
+
+23-01-12
+
+Working on the images, wrote figure_model_vel_angles_CMEsAB.pro
+
+24-01-12
+
+fls=file_Search('/Users/Shared/secchi_cor2_a/13/*cme*')
+fls = fls[36]
+mreadfits_corimp, fls, in, da
+
+Looking at run_algorithms_edges_tvscl.pro :
+
+in = add_tag(in,in.telescop,'instrume')
+in.instrume = 'SECCHI'
+in.xcen = in.crpix1
+in.ycen = in.crpix2
+da = reflect_inner_outer(in,da,/stereo) ;with fov 3-11
+C2_thr_inner = 3d
+C2_thr_outer = 11d
+ - some reason there is noise in the inner reflection, but probably doesn't affect the analysis.
+canny_atrous2d, da, modgrad, alpgrad, rows=rows, columns=columns
+da = da[96:1119,96:1119]
+modgrad = modgrad[96:1119,96:1119,*]
+alpgrad = alpgrad[96:1119,96:1119,*]
+rows = rows[96:1119,96:1119,*]
+columns = columns[96:1119,96:1119,*]
+thr_inner = replicate(C2_thr_inner,4)
+thr_outer = replicate(C2_thr_outer,4)
+	for k=0,3 do begin & $
+		modgrad[*,*,k+3]=rm_inner_corimp(modgrad[*,*,k+3],in,dr_px,thr=thr_inner[k]) & $
+		alpgrad[*,*,k+3]=rm_inner_corimp(alpgrad[*,*,k+3],in,dr_px,thr=thr_inner[k]) & $
+		modgrad[*,*,k+3]=rm_outer_corimp(modgrad[*,*,k+3],in,dr_px,thr=thr_outer[k]) & $
+		alpgrad[*,*,k+3]=rm_outer_corimp(alpgrad[*,*,k+3],in,dr_px,thr=thr_outer[k]) & $
+		rows[*,*,k+3] = rm_inner_corimp(rows[*,*,k+3],in,dr_px,thr=thr_inner[k]) & $
+		rows[*,*,k+3] = rm_outer_corimp(rows[*,*,k+3],in,dr_px,thr=thr_outer[k]) & $
+		columns[*,*,k+3]=rm_inner_corimp(columns[*,*,k+3],in,dr_px,thr=thr_inner[k]) & $
+		columns[*,*,k+3]=rm_outer_corimp(columns[*,*,k+3],in,dr_px,thr=thr_outer[k]) & $
+	endfor
+edges = wtmm(modgrad[*,*,3:6], rows[*,*,3:6], columns[*,*,3:6])	
+save,in,da,modgrad,alpgrad,rows,columns,edges,f='test_201101131108.sav'
+>>test0: sdev_factor=1.5
+cme_detection_mask_corimp_dynamic_thr, in, da, modgrad[*,*,3:6], alpgrad[*,*,3:6], cme_mask, list,/show,/loud,/no_wait
+cme_mask0 = cme_mask
+save, cme_mask0, f='cme_mask0.sav'
+>>test1: sdev_factor=1.
+save, cme_mask1, f='cme_mask1.sav'
+>>test2: sdev_factor=0.5
+save, cme_mask2, f='cme_mask2.sav'
+…
+max_cme_mask=3
+sz = size(da,/dim)
+cme_mask_thr = intarr(sz[0],sz[1])
+
+25 to 27-01-12
+
+Finalised paper.
+
+30-01-12
+
+Did Shadia's edits on paper.
+Edited run_algorithms_edges_tvscl.pro to save out the CME_mask_yyyymmddhhmm.sav files in order to create output with codes like figure_data10_frame1.pro for paper animation.
+
+31-01-12
+
+Writing ANIMATION3.pro to take in the suggestions in Huw's email for plotting the 3 images (Cor2A+B, and C3) together.
+Made movie of the lasco events for paper, with the codes figure_event_proposal_frame*.pro
+
+01-02-12
+
+Saved animation3.pro as animation3_cor2b_lead.pro because cor2b leads the images, but want to use cor2a as lead since it has more (and see what happens). oh wait no, that won't work!
+
+02-02-12
+
+Wrote FIGURE_EVENTS_PROPOSAL_ALLFRAMES.pro
+Edited figure_events_proposal_orig.pro and saved figure_events.pdf for paper.
+
+03-02-12
+
+Finished and submitted paper to ApJ.
+
+06 to 08-02-12
+
+Reviewed Braga et al. paper for ASR.
+
+09-02-12
+
+Need to put check in the codes that run on gail for cases where SOHO is in keyhole.
+Checking gail codes:
+automated_gail.pro just calls run_algorithms, fls, pa_total, 'out_dir', /gail, /dynamic <--- this must be different now!?!
+Chat with Gavin Seo about gail.
+
+10-02-12
+
+Wrote RUN_AUTOMATED.pro and RUN_AUTOMATED2.pro in place of run_algorithms_edges_tvscl.pro and run_algorithms2_edges_tvscl.pro to tidy them up and put on gail. Tested on a file with and without gail keyword set and outputs match so it's working.
+
+Codes to send to gail now are:
+run_automated.pro
+	sort_fls.pro
+	canny_atrous2d.pro
+		canny_atrous.pro
+	reflect_inner_outer.pro
+	rm_inner_corimp.pro
+	rm_outer_corimp.pro
+	wtmm.pro
+		find_local_maxima.pro
+	cme_detection_mask_corimp_dynamic_thr.pro
+	test_contour_thresholds.pro
+run_automated2.pro
+	find_outer_peak_edges.pro
+	ellipse_mpfit_corimp.pro
+	polar.pro
+	non_zero_front.pro
+	ellipsefit.pro
+
+(see Automation_guide.rtf for this)
+
+13 - 15-02-12
+
+Off sick.
+
+16-02-12
+
+Seminar "Marketing for Scientists"
+Uploaded PhD to arXiv (tricky).
+
+17-02-12
+
+Running run_automated.pro on the 20110112 original and separated fits files for comparison, output in Test/20110112_orig/ and 20110112_sep/.
+
+20-02-12
+President's Day
+
+21-02-12
+
+So, from the top, testing out the algorithms from input of data to eventually accomplishing output of CME info:::
+
+cd Postdoc/Automation/Catalogue
+
+fls=file_Search('../candidates/201101/12/*cme.fits*')
+run_automated,fls,'../Test/20110112_sep'
+; saves out the pa_total*.sav plots_*.sav and also the plots_list*.sav
+clean_pa_total, pa_total
+separate_pa_total, pa_total, det_info
+plots_fls=file_search('../Test/20110112_sep/plots_2011*') 
+restore,'../Test/20110112_sep/plots_list*sav',/ver
+find_pa_heights_all_redo,pa_total,det_info,plots_fls,plots_list,/loud
+; saves out cme_prof_N.sav
+find_pa_heights_masked,pa_total,det_info,plots_fls,plots_list,'../Test/20110112_sep/cme_prof_0.sav','../Test/20110112_sep/scan0'
+
+
+22-02-12
+
+Rewrote clean_pa_total.pro to fully achieve the correct cleaning.
+
+23-02-12
+
+Researching and playing with clustering algorithms. Thoughts on IDL Analyst module. Email tests of what to achieve to Huw.
+
+24-02-12
+
+Wrote CLUSTERING.pro and emailed Huw.
+
+27-02-12
+
+Trying to find clustering methods without knowing a priori the number of clusters!
+http://www.stat.washington.edu/raftery/Research/PDF/fraley1998.pdf
+http://www.autonlab.org/autonweb/10466.html?branch=1&language=2
+http://www.autonlab.org/autonweb/14669/version/2/part/5/data/moore-veryfast.pdf?branch=main&language=en
+http://www.cs.cmu.edu/~dpelleg/kmeans.html
+
+Thinking now, just do a fixed k-means (say k=5) and throw away any clusters based on some other criterion: e.g. significantly less points than the first n clusters; have some profile indicative of noise maybe by stepping across a large time-gap for small height increase or similar…
+
+SPD Poster Abstract:
+The CORIMP CME Catalogue: Automatically Detecting and Tracking CMEs in Coronagraph Data
+Studying CMEs in coronagraph data can be challenging due to their diffuse structure and transient nature, and user-specific biases may be introduced through visual inspection of the images. The large amount of data available from the SOHO and STEREO missions also makes manual cataloguing of CMEs tedious, and so a robust method of detection and analysis is required. This has led to the development of automated CME detection and cataloguing packages such as CACTus, SEEDS and ARTEMIS. Here we present the development of the CORIMP (coronal image processing) Catalogue: a new, automated, multiscale, CME detection and tracking catalogue, that overcomes many of the drawbacks of current catalogues. It works by first employing a dynamic CME separation technique to remove the static background, and then characterizing CME structure via a multiscale edge-detection algorithm. The detections are chained through time to determine the CME kinematics and morphological changes as it propagates across the plane-of-sky. The effectiveness of the method is demonstrated by its application to a selection of SOHO/LASCO and STEREO/SECCHI images, as well as to synthetic coronagraph images created from a model corona with a variety of CMEs. These algorithms are being applied to the whole LASCO and SECCHI datasets, and a CORIMP catalogue of results will soon be available to the community.
+
+SPD Oral Abstract:
+New High-Accuracy Methods for Automatically Detecting & Tracking CMEs
+With the large amounts of CME image data available from the SOHO and STEREO coronagraphs, manual cataloguing of events can be tedious and subject to user bias. Therefore automated catalogues, such as CACTus and SEEDS, have been developed in an effort to produce a robust method of detection and analysis of events. Here we present the development of a new CORIMP (coronal image processing) CME detection and tracking technique that overcomes many of the drawbacks of previous methods. It works by first employing a dynamic CME separation technique to remove the static background, and then characterizing CMEs via a multiscale edge-detection algorithm. This allows the inherent structure of the CMEs to be revealed in each image, which is usually prone to spatiotemporal crosstalk as a result of traditional image-differencing techniques. Thus the kinematic and morphological information on each event is resolved with higher accuracy than previous catalogues, revealing CME acceleration and expansion profiles otherwise undetected, and enabling a determination of the varying speeds attained across the span of the CME. The potential for a 3D characterization of the internal structure of CMEs is also demonstrated.
+
+29-02-12
+
+Working on getting the codes set up on gail.
+
+2012-03-01
+
+Meeting with Conor about REU work.
+
+2012-03-02
+
+Wrote SHINE_AnnualReport_March2012.pdf, emailed to Shadia.
+
+2012-03-05
+
+Looking at combining two different processed dates, 20110112_sep and 20110113_sep in the following manner:
+restore, '20110112_sep/pa_total*sav',/ver
+pat1=pa_total
+restore, '20110113_sep/pa_total*sav',/ver
+pat2=pa_total
+;combine them into one pa_total = pat1&pat2
+clean_pa_total, pa_total, pa_mask
+pa_total *= pa_mask
+separate_pa_total, pa_total, det_info
+plots_fls1=file_search('../Test/20110112_sep/plots_2011*') 
+plots_fls2=file_search('../Test/20110113_sep/plots_2011*') 
+plots_fls = [plots_fls1, plots_fls2]
+restore,'../Test/20110112_sep/plots_list*sav',/ver
+plots_list1 = plots_list
+restore,'../Test/20110113_sep/plots_list*sav',/ver
+plots_list2 = plots_list
+plots_list2add = plots_list2 + max(plots_list1) +1
+plots_list = [plots_list1, plots_list2add]
+find_pa_heights_all_redo,pa_total,det_info,plots_fls,plots_list;,/loud
+restore, 'cme_prof_1.sav',/ver
+
+2012-03-06 - 12:
+
+SDO/FFT Telecon.
+Ellipsoid paper bullshit.
+ApJ referee's reports.
+Chao-Ling's work.
+Paper to review on Thomson Scattering.
+
+2012-03-13
+
+Sent Shadia version of Notice Of Intent for ROSES-2012 proposal Step1.
+Inspected 19970903_pngs from gail -- looks good.
+
+2012-03-14
+
+Working on referee's report.
+
+2012-03-15
+
+Working on referee's report.
+
+Going through the events in the paper again (in case new gail processed data affects them).
+e.g.
+fls=file_search('../candidates/latest/20000102/dyn*')
+run_automated,fls,'../candidates/latest/20000102/detections',dets
+restore,'../candidates/latest/20000102/detections/det_stack_20000102.sav'
+clean_pa_total, det_stack.stack, pa_mask
+pa_total = det_stack.stack * pa_mask
+separate_pa_total,pa_total,det_info
+find_pa_heights,pa_total,det_info,'../candidates/latest/20000102/detections'
+
+Seems to be a problem with the outer fronts on the detections from gail. Running codes on test cases and seeing if delvar of the variables helps.
+
+2012-03-16
+
+Going to run test of codes both on gail and on dublin to see if it's a gail-specific problem with the outer fronts. IT IS! But I've no idea why…
+
+2012-03-19
+
+Found the bug! A 'count' variable in run_automated2.pro was supposed to be 'count1'. Fixed and rerunning gail, and paper events.
+Reading Howard&DeForest paper for review.
+
+Redoing events for the paper, as called in figure_events_latest.pro.
+
+restore,'../candidates/20000418-19/detections_dublin/det_stack*sav',/ver
+clean_pa_total,det_stack.stack,pa_mask
+pa_total=det_stack.stack*pa_mask
+separate_pa_total,pa_total,det_info
+find_pa_heights,pa_total,det_info,'../candidates/20000418-19/detections_dublin'
+
+2012-03-20
+
+Sent reply to Piet.
+
+Turned back off the /rm_inner_front keyword in run_automated2 call to ellipse_mpfit_corimp because it was affecting cases where detections occur on opposite side of the Sun for example.
+
+Nearly finished referee response.
+
+2012-03-21
+
+Wrote RUN_AUTOMATED_NEW.pro calling RUN_AUTOMATED2_NEW.pro and FIND_OUTER_PEAK_EDGES_NEW.pro and putting outputs in folders detections_dublin_threshedges/  - mostly at thresholds of mu[0]+0.5*sdev in the codes. Also don't need ellipse fitting anymore here.
+
+2012-03-22
+
+Added in MAD (median absolute deviation) to the run_automated2_new.pro and updated the codes for some bugs and trasferred for new run on gail and solarwind.
+Running new codes to check out 20000102/original* fits files. (detections_dublin_mean is using the mean+sdev not median+mad)
+Running the events for the paper:
+(median + 1*mad)
+
+IDL> fls=file_Search('../candidates/20000101/dyn*')
+IDL> run_automated_new,fls,'../candidates/20000101/detections_dublin'
+
+IDL> fls=file_Search('../candidates/20000101/orig*')
+IDL> run_automated_new,fls,'../candidates/20000101/detections_dublin_orig'
+
+IDL> fls=file_search('../candidates/20000102/dyn*')
+IDL> run_automated_new,fls,'../candidates/20000102/detections_dublin'
+
+IDL> fls=file_search('../candidates/20000102/orig*fits.gz')               
+IDL> run_automated_new,fls,'../candidates/20000102/detections_dublin_orig'
+
+IDL> fls=file_search('../candidates/20000418-19/dyn*fits.gz')             
+IDL> run_automated_new,fls,'../candidates/20000418-19/detections_dublin'  
+
+IDL> fls=file_search('../candidates/20000418-19/orig*fits.gz')            
+IDL> run_automated_new,fls,'../candidates/20000418-19/detections_dublin_orig'
+
+IDL> fls=file_search('../candidates/20000423/orig*fits.gz')               
+IDL> run_automated_new,fls,'../candidates/20000423/detections_dublin_orig'
+
+IDL> fls=file_search('../candidates/20000423/dyn*fits.gz')                
+IDL> run_automated_new,fls,'../candidates/20000423/detections_dublin'     
+
+IDL> fls=file_Search('../candidates/20100311-13/dyn*')
+IDL> run_automated_new,fls,'../candidates/20100311-13/detections_dublin'
+
+IDL> fls=file_Search('../candidates/20100311-13/orig*')
+IDL> run_automated_new,fls,'../candidates/20100311-13/detections_dublin_orig'
+
+IDL> fls=file_search('../candidates/20110113/orig*')
+IDL> run_automated_new,fls,'../candidates/20110113/detections_dublin_orig'
+
+IDL> fls=file_search('../candidates/20110113/dyn*')                       
+IDL> run_automated_new,fls,'../candidates/20110113/detections_dublin'     
+
+IDL> fls=file_search('../candidates/20100227-0305/dyn*')                  
+IDL> run_automated_new,fls,'../candidates/20100227-0305/detections_dublin'
+
+IDL> fls=file_search('../candidates/20100227-0305/orig*')                 
+IDL> run_automated_new,fls,'../candidates/20100227-0305/detections_dublin_orig'
+
+******
+STEREO files need doing with specfic changes (set /stereo keyword)
+
+IDL> fls=file_Search('../candidates/secchi_cor2_a/2011/01/13/sep*cme.fits.gz')
+IDL> run_automated_new,fls,'../candidates/secchi_cor2_a/2011/01/13/detections_dublin', /stereo
+
+IDL> fls=file_search('../candidates/secchi_cor2_a/2011/01/13/sep*orig.fits.gz')
+IDL> run_automated_new,fls,'../candidates/secchi_cor2_a/2011/01/13/detections_dublin_orig', /stereo
+
+IDL> fls=file_search('../candidates/secchi_cor2_b/2011/01/13/*cme.fits.gz')
+IDL> run_automated_new,fls,'../candidates/secchi_cor2_b/2011/01/13/detections_dublin', /stereo, /behind
+
+2012-03-23
+
+IDL> restore,'../candidates/20000101/detections_dublin/det_stack*sav',/ver
+IDL> window
+IDL> loadct,13
+IDL> plot_image,det_stack.stack
+IDL> clean_pa_total,det_stack.stack,pa_mask
+IDL> pa_total=det_stack.stack*pa_mask
+IDL> plot_image,pa_total
+IDL> separate_pa_total,pa_total,det_info,/show
+IDL> find_pa_heights,pa_total,det_info,'../candidates/20000101/detections_dublin'
+
+Change the f string for whichever event:
+
+f = '../candidates/20000101/detections_dublin'
+restore, f+'/det_stack*sav',/ver
+window
+loadct,13
+plot_image, det_stack.stack
+clean_pa_total, det_stack.stack, pa_mask
+pa_total = det_stack.stack*pa_mask
+plot_image,pa_total
+separate_pa_total, pa_total, det_info, /show
+find_pa_heights, pa_total, det_info, f
+
+Saved find_pa_heights_masked_old.pro to edit find_pa_heights_masked.pro for accepting the current det_stack structure.
+
+To do the 'window' of height-times (mask):
+
+IDL> f='../candidates/20000102/detections_dublin'  
+IDL> restore, f+'/det_stack*sav',/ver              
+IDL> window                                        
+IDL> loadct,13                                     
+IDL> plot_image, det_stack.stack                   
+IDL> clean_pa_total, det_stack.stack, pa_mask      
+IDL> pa_total = det_stack.stack*pa_mask            
+IDL> plot_image,pa_total                           
+IDL> separate_pa_total, pa_total, det_info, /show 
+IDL> find_pa_heights, pa_total, det_info, f 
+
+IDL> fls=file_Search('../candidates/20000102/dyn*')
+IDL> mreadfits_corimp,fls,in                       
+IDL> det_fls = file_search('../candidates/20000102/detections_dublin/dets*sav')
+IDL> find_pa_heights_all_redo,in,pa_total,det_info,det_fls,det_stack,'temp',/plot_prof,/loud
+
+2012-03-26 (Prince Kuhio Day)
+
+Editing the paper Byrne_ApJ_20120326.tex
+Edited the codes to run on the secchi data.
+Writing RUN_AUTOMATED_NEW_MODEL.pro to take in the multicme_model files.
+
+2012-03-27
+
+Working on report for Howard & DeForest Thomson scattering paper review.
+Ran the cme model through different edge thresholds: multicme_model_med+mad, multicme_model_med, multicme_model_med-mad, multicme_model_gt0.
+
+2012-03-28
+
+Finished and submitted paper review.
+Did the online research ethics tests.
+Inspecting the model edges.
+
+IDL> restore,'multicme_model_gt0/det_stack*sav',/ver
+IDL> plot_image,det_stack.stack
+IDL> pa_total=det_stack.stack                       
+IDL> separate_pa_total,pa_total,det_info,/show
+IDL> find_pa_heights,pa_total,det_info,'multicme_model_gt0'
+IDL> fls=file_search('../TEst/multicme_model/*fits*')
+IDL> det_fls=file_Search('multicme_model_gt0/dets_*sav')
+IDL> find_pa_heights_all_redo,fls,pa_total,det_info,det_fls,det_stack,'multicme_model_gt0',/plot_prof,/loud
+
+Saved find_pa_heights_masked_backup20120328.pro and find_pa_heights_masked_readinall.pro as an attempt to loop through all the detected CMEs in the det_stack.
+Can't get it to work for the two blob CMEs D&E in the paper - they're too close together!
+
+2012-03-29
+
+Working on creating the newer model CMEs profile image for paper.
+
+IDL> fls=file_search('../Test/multicme_model/*fits*')
+IDL> mreadfits_corimp,fls,in
+IDL> restore,'multicme_model_gt0/all_h0.sav',/ver
+
+Doesn't matter, it's the same anyway! But noticing codes are messed up too and need going through some other time.
+
+Working on Byrne_ApJ_20120329.tex with new images and wrote FIGURE_TWOSTACK.pro
+
+2012-04-02
+
+Make paper changes from Shadia, including editing figure_twostack.pro.
+Emails with SDO/FFT and SOHO people about starting to package up the module.
+Ran new SECCHI fits files from Huw, in code figure_events_secchi.pro and started editing animation3.pro to take them in for movie.
+
+2012-04-03
+
+Hawaii Science & Engineering Fair, judge.
+Finished animation3.pro for the paper movie.
+
+2012-04-04
+
+Working on the kinematics stuff again. 
+Wrote PLOT_PEAKACCEL.pro using the model output in folder 
+fls=file_Search('~/postdoc/cme_model/run_peakaccel_file_increment1_20110920a/separated/fits/2005/01/18/*cme*')
+
+Trying to get calc101.com to integrate: 
+(exp[t/10] (10 (t+20)-exp[t/10] (t-20)))/(10 (exp[t/5]+10)^2)
+
+Checked against my own - looks liks calc101.com is wrong!
+
+Using WolframAlpha.com
+a(t)  =  (exp[t/10](10(t+20)-exp[t/5](t-20))/(10(exp[t/5]+10)^2)
+Integral is 
+v(t)  =  (exp[t/10] t)/(exp[t/5]+10) + sqrt[10] tan^-1[exp[t/10]/sqrt[10]
+integral is 
+h(t)  =  sqrt[10] t tan^-1[exp[t/10]/sqrt[10]]
+
+Changing it for a smooth increasing velocity, so there's no deceleration:
+Start with
+h(t)  =  2 sqrt(2) t tan^-1[exp[t/10]/sqrt[10]   or   sqrt(8) t tan^-1[exp[t/10]/sqrt[10]
+derivative is
+v(t)  =  (2 exp[t/10] t)/(sqrt(5) (exp[t/5]+10)+2 sqrt(2) tan^-1[exp[t/10]/sqrt[10]]
+derivate is
+a(t)  =  (exp[t/10] (sqrt[5] (-exp[2 t/5] (t-10) + 200 exp[t/5] -4 exp[t/10] t + 100 (t+10)) + 2 sqrt[2] (exp[t/5] + 10) (t+10) tan^-1[exp[t/10]/sqrt[10]))) / (5 (exp[t/5] +10) (sqrt[5] (exp[t/5]+10)+2 sqrt[2] tan^-1[exp[t/10]/sqrt[10]))^2)
+--> not working out!
+
+What about simplest:
+a(t) = 1/(10/exp[t/10]+exp[t/10])
+v(t) = sqrt(10) tan^-1[exp[t/10]/sqrt[10]]
+h(t) = sqrt(10) t tan^-1[exp[t/10]/sqrt[10]] + imaginary terms
+Integrating h(t)
+=> v(t) = (exp[t/10] t)/(exp[t/5]+10) + sqrt[10] tan^-1[exp[t/10]/sqrt[10]]
+=> a(t) = (exp[t/10] (10 (t+10) - exp[t/5] (t-20)))/(10 (exp[t/5]+10)^2)
+
+Taking just the second term of v(t) above:
+v(t) = sqrt[10] tan^-1[exp[t/10]/sqrt[10]]
+=> h(t) = sqrt[10] (t tan^-1[exp[t/10]/sqrt[10]]) + imaginary terms
+=> a(t) = exp[t/10] / (exp[t/5] + 10)
+But this doesn't work with the deriv in the codes because of the neglected imaginary terms.
+
+Try guessing:
+h(t) = sqrt(10) t tan^-1[(exp[t/10]+exp[t/5])/sqrt[10]]
+v(t) = ((exp[t/10]+2 exp[t/5]) t) / (exp[t/5] + 2 exp[3 t/10] + exp[2 t/5] + 10) + sqrt[10] tan^-1[(exp[t/10]+exp[t/5])/sqrt[10]]
+
+2012-04-05
+
+Trying to find a better acceleration curve still. Can't get Gaussian, or Poisson equations, to do it right.
+
+Guessing:
+a(t) = (exp[t/10](10(t+20)-exp[t/5](t-40))/(10 (exp[t/5]+10)^2)
+intergral
+v(t) = (1/10) ( (10 exp[t/10](t-10))/(exp[t/5]+10) + 20 sqrt[10] tan^-1[exp[t/10]/sqrt[10]])
+Gives imaginary terms in h(t)
+
+v(t) = tan^-1[t]
+a(t) = 1 / (t^2 +1)
+h(t) = t tan^-1[t] -1/2 log[t^2 +1]
+
+h(t) = 0.5 log[t^2+1] -5000 log[0.0001 t^2 +1] + 100 t atan[0.01 t]
+v(t) = t / ( (t^2.+1)) + 100 atan(0.01 t)
+a(t) = - (2 t^2) / (t^2+1)^2 + 1/(t^2+1) + 1/(0.0001 t^2 +1)
+
+Can't just shift these like I'd hoped!!!
+
+2012-04-09
+
+Wrote the function COMBINE_DET_STACKS.pro to gather the det_stack.stack files output on gail and combine them into one stack.
+
+2012-04-10
+
+Running the CME model code, for testing the output with different accelerations and higher noise level.
+
+mkdir run_peakaccel_fileinc1_20120410
+In the code synth_cme_peakaccel.pro change the lines corresponding to the topdir=' ' and f_name=' '.
+Change the noise_level as wanted ; saved run_peakaccel_fileinc1_20120410/noiseN/.
+
+2012-04-11 - 13
+
+Resubmission process for paper to ApJ.
+
+2012-04-16
+
+Working on coding up image of the dependence of errorbars on cadence. Wrote FIG_CADENCE.pro and edited Kinematics_paper/Byrne_20120416.tex
+Installed SSW on laptop for Conor.
+plot_peaked_accel.pro
+called by 
+peak_a_change_cadence.b
+saving out the array entries to restore in code to make paper figure.
+
+2012-04-17
+
+Reviewed article for SSR.
+Wrote FIG_CADENCE_4.pro and experimented with noise etc.
+Editing Kinematics_paper/Byrne_20120417.tex
+Met with Conor about SSW on laptop.
+Looking briefly now into bootstrapping and residuals stuff…
+
+2012-04-18
+
+Working out travel arrangements for June. Emailed Lori after looking at flights on kayak.com but no reply.
+
+Wrote COMBINE_DET_STACK_PS.pro and saved det_stack_1997.pdf among others, in work_on_gail/ folder.
+
+Chat with Shadia about items:
+solar website
+solar workshop we can host next spring maybe
+proposal
+SPD Alaska travel + workshop
+Maui travel
+automated output, contact Huw - skype?
+
+2012-04-19
+
+Reply from Lori - put in Alaska flight request.
+
+Wrote GATHER_GAIL_DETECTIONS.pro
+Investigated output of the automated runs on gail and solarwind:
+
+scp the dets_*sav and dyn*fits from gail to Postdoc/Automation/work_on_gail/detections
+Saved folders of these e.g. Postdoc/Automation/work_on_gail/stacks_1997/
+Ran investigations on the stacks, using code gather_gail_detections.pro
+fls=file_Search('../work_on_gail/investigate_1997/dyn*fits*')
+dets_fls = file_Search('../work_on_gail/investigate_1997/det_stack*sav')
+gather_gail_detections, fls, dets_fls, '../work_on_gail/investigate_1997/19970102_pngs'
+
+Time until now:
+Been working on paper drafts, the final ApJ and the kinematics paper draft. Emails with Peter and Dave about this work, and kinematics collaboration. Working on NASA proposal draft.
+
+2012-05-04
+
+Chris Beaumont's astrocoffee talk - extremely interesting work on machine learning etc. Chat with him about the detection stack clustering etc. and emails.
+
+scp files over from Solarwind detections of 20110112-14 to Dublin.
+
+fls12=file_search('~/postdoc/automation/candidates/20110112/dyn*')
+fls13=file_search('~/postdoc/automation/candidates/20110113/dyn*')
+fls14=file_search('~/postdoc/automation/candidates/20110114/dyn*')
+fls=[fls12,fls13,fls14]
+restore,'20110112-14/det_stack_20110112.sav',/ver
+pa12 = det_stack.stack
+restore,'20110112-14/det_stack_20110113.sav',/ver
+pa13 = det_stack.stack
+restore,'20110112-14/det_stack_20110114.sav',/ver
+pa14 = det_stack.stack
+pa_total=fltarr(360,(size(pa12,/dim))[1]+(size(pa13,/dim))[1]+(size(pa14,/dim))[1])
+pa_total[*,0:(size(pa12,/dim))[1]-1]=pa12
+pa_total[*,(size(pa12,/dim))[1]:((size(pa13,/dim))[1]+(size(pa12,/dim))[1]-1)]=pa13
+pa_total[*,(size(pa12,/dim))[1]+(size(pa13,/dim))[1]:((size(pa14,/dim))[1]+(size(pa13,/dim))[1]+(size(pa12,/dim))[1]-1)]=pa14
+save, pa_total, f='20110112-14/pa_total.sav'
+clean_pa_total,pa_total,pa_mask
+pa_total*=pa_mask
+separate_pa_total,pa_total,det_info
+
+ - trying to get everything ready for reading into find_pa_heights_all_redo.pro
+BUT the det_stack_yyyymmdd.sav are currently separated by day, so have to run the code by day currently!
+
+So I'll just work with: fls12 and pa12.
+clean_pa_total, pa12, pa_mask
+pa12 *= pa_mask
+separate_pa_total, pa12, det_info
+det_fls=file_Search('20110112-14/dets_20110112*sav')
+restore,'20110112-14/det_stack_20110112.sav',/ver
+$mkdir 20110112
+find_pa_heights_all_redo,fls12,pa12,det_info,det_fls,det_stack,'20110112'
+
+Some sort of issue here with the C3 det_fls info - the dets.fronts and dets.edges seem to be the same range as C2 !?!
+Just redo the bloody yoke!!!
+
+fls=file_Search('../candidates/20110112/dyn*fits.gz')
+restore,'../candidates/20110112/detections_dublin/det_stack*',/ver
+pa_total=det_stack.stack
+clean_pa_total,pa_total,pa_mask
+pa_total*=pa_mask
+separate_pa_total,pa_total,det_info
+find_pa_heights_all_redo,fls,pa_total,det_info,det_fls,det_stack,'../candidates/20110112/detections_dublin/cme_profs'
+cme_prof_fl=file_search('../candidates/20110112/detections_dublin/cme_profs/cme_prof_0.sav')
+find_pa_heights_masked,fls,pa_total,det_info,det_fls,det_stack,cme_prof_fl,'../candidates/20110112/detections_dublin/cme_profs'
+prof_fls=file_search('../candidates/20110112/detections_dublin/cme_profs/cme_kin_prof_0_*sav')
+group_cme_kins,prof_fls,ave_xs,ave_ys,slopes,pos_angs
+
+
+2012-05-07
+
+Spoke with Chris Beaumont again, and sent him a dropbox folder 'clusters' with example data.
+Working on proposal writing. Looked into Proba-2 Guest Investigator program.
+
+2012-05-08
+
+Downloaded and played with SWAP images. Wrote RADIAL_FIG.pro and SWAP_FIG.pro in the Postdoc/SWAP/ folder. Emailed examples to Shadia and Huw re: proposal efforts.
+http://proba2.oma.be/index.html/community/guest-investigator-program/article/proba2-guest-investigator-program?menu=24
+http://proba2.oma.be/index.html/swap/swap-analysis-manual/article/data-products?menu=23
+ftp://sohoftp.nascom.nasa.gov/solarsoft/proba2/swap/doc/swap_obj_tutorial.php
+ftp://sohoftp.nascom.nasa.gov/solarsoft/proba2/swap/doc/about_swap_object.php
+
+
+Been working on NASA proposal - submitted 
+
+Contacted Dan Seaton about SWAP, Ben Berkey (fwd Joan) about MK4, and Manuela Temmer about inversion techniques.
+
+2012-05-25
+PROBA2 proposal - submitted
+
+Working on find_pa_heights_all_redo.pro to take out the info on particular detections.
+
+fls=file_Search('../candidates/20100227-0305/dyn*')
+det_fls = file_search('../work_on_solarwind/20100227-0305/dets_*sav')
+stack_fls=file_search('../work_on_solarwind/20100227-0305/det_stack*')
+pa_total=combine_det_stacks(stack_fls)
+clean_pa_total,pa_total,pa_mask
+pa_total*=pa_mask
+separate_pa_total,pa_total,det_info
+
+Working on poster and presentation.
+
+2012-06-01
+
+Printed poster.
+Wrote GATHER_GAIL_DETECTIONS_INSET.pro to make movies for presentation. Emailed Huw about equalising brightness across images.
+
+Travel: Alaska SPD and Maui SHINE
+
+I've had a great few weeks between SPD and SHINE conferences. A lot of excellent feedback from my talks and posters at each, that I'll try to summarise here:
+Joe Davilla took great interest and said if I'm out in Goddard when we're building the database (with Joe Gurman for example) I should get in touch and give a talk to the STEREO team;
+Craig DeForest hopes to see how it overlaps with their HI processing and said if I ever visit Boulder I should come give a talk at SWRI;
+Doug Biesecker hopes to see it applied it to the SECCHI beacon data;
+Guiliana DeToma and Janet Luhmann hope to see it compared or applied with the MK4;
+Jack Ireland hopes to see it compared to other catalogues and if it will be of use for Helioviewer;
+Paulette Liewer is hoping to see us succeed with building a STEREO catalogue too;
+Piet Martens and the FFT are all similarly behind schedule with the modules but happy with how things are going;
+I spoke with Larisza about how she'd like to use the characterisations when we have them for mass estimates;
+And Cooper about how if Dave and I overlap our CME/wave work he'd love to see how his models might fare against our observations.
+
+
+2012-07-05
+
+Brief skeleton plan for NSF SHINE proposal.
+Skype with Peter and Dave about kinematics paper.
+
+WEBSITE PLAN
+
+List of what we need to do to get decent online database up and running. I realise that most of the things holding us up are my tasks, but I wanted to make this list to get organized. I am (as usual) bogged down this week with training and teaching meetings. Next few weeks look better, and I have Summer ahead where I hope to get a lot of this list done. If we can achieve this list including the 'higher level' list then we have a very powerful database which people may begin using regularly. If we only partly finish these tasks then I'm doubtful whether people will use the database. The 3D information is crucial for success since this would be unique to our database.
+
+LASCO
+We can deal with LASCO in the next few weeks so we have something finished to put on the online database.
+- Huw: fix problem with LASCO images 1997/1998. Reprocess. ( ~1 week)
+- Huw: reprocess ALL LASCO images with correct filename format ( ~1week)
+- Jason: CME detection on LASCO
+- Jason/Huw: agree on correct format for providing detections to public
+- Jason/Huw: graphical information on detected CMEs for public (text lists and plots like detection stacks?)
+- Huw: create small compressed daily movies of CMEs to coexist with the still images?
+- Huw: thumbnails for easy browsing?
+- Jason/Huw: place all LASCO output on alshamess for public access
+
+STEREO
+- Huw: image processing SECCHI COR 2s. Routines are ready. Just need to run. May take couple of weeks to run and I do not want to overload gail's processing as I've done in the past. So do this after LASCO.
+- Jason: detection processing on SECCHI
+- Jason/Huw: similar post-processing to LASCO and make available onine
+
+Higher level for future
+- information on absolute brightness (this is more or less done, need uncertainty estimates and agreement between Secchi and LASCO)
+- 3D structural constraints (I am well on my way to achieve this)
+- mass estimates (resulting from previous 2 tasks)
+- Jason/Shadia: More ideas? Source events?
+
+General
+- Jason/Huw/Shadia: Snazzy html front page for the database with explanations of structure and files. Links to publications.
+- Jason/Huw/Shadia: Advertise and encourage use of database when ready (not until we have finished)
+
+
+2012-07-06
+
+Emailed 
+
+2012-07-09
+
+Working on SHINE proposal.
+Met with Conor and Shadia about the July 2010 eclipse observation overlap with prominence lift-off in SDO/AIA.
+
+2012-07-10
+
+Submitted final claim receipts for SHINE and SPD travel.
+Finished first draft of SHINE proposal and emailed Shadia.
+
+2012-07-11
+
+Wrote FIG_PEAKED_ACCEL_KINS.pro to save out eps for paper.
+
+2012-07-12
+
+Edited plot_peakaccel_cadence_fixedpoint.pro, peak_a_change_cadence.b and fig_cadence_4.pro and saved new fig_cadence_4.eps for the kinematics paper.
+(saved backup fig_cadence_4_orig.pro)
+Edited Byrne_20120712.tex
+
+2012-07-16
+
+Making talk for REU students.
+
+2012-07-17
+
+REU talk.
+Working on proposal.
+
+2012-07-18
+
+Comments on proposal from Shadia.
+Meeting with Conor and Shadia.
+
+2012-07-19
+
+Working on numdiff_20120719_jpb.tex
+Wrote fig_cadence_4landscape.pro and output fig_cadence_4landscape.eps for paper.
+
+2012-07-20
+
+Making the movies for eclipse event for Conor.
+Wrote GATHER_GAIL_DETECTIONS_C2.pro
+
+2012-07-23
+
+Writing MODEL_CLUSTER.b
+Working in multicme_model_cluster/ folder, where output from
+run_automated_new_model,fls,'../multicme_model_cluster/detections_dublin_new'
+and also wrote RUN_AUTOMATED_MODEL.pro to output
+run_automated_model,fls,'../multicme_model_cluster/detections_dublin'
+
+2012-07-rest of week
+
+Worked on extending codes to real data, as per entries in Log_clustering.rtf and outputs in relevant folders tested so far in ~/Postdoc/Automation/candidates/
+Need to work on how the output should be dealt with for the M.A.D. heights where might be best to just assume no CMEs occur at the same location and time.
+
+2012-07-30
+
+Looking at SHINE proposal again and sending around draft.
+
+2012-07-31
+
+Skype with Huw:
+- Send on kinematics paper and codes to explain situation.
+- Ignore clustering issues for now as try to populate the VOEvent output.
+- Contact Peter.
+- Contact Bob/Peter about time in Dublin and Wales.
+
+Edited proposal regarding Shadia's comments on the duplicate figures from last proposal to be removed.
+Look into CoMP data. Emailed Blake about it.
+Sent proposal draft to Peter - but he's on holidays!
+
+2012-08-01
+
+Want to make CoMP data overlay figure for proposal.
+Downloading CoMP data:  use rdfits_struct on the CoMP fits files.
+Wrote GET_LASCO_DATA_JPB.pro on Gail to just do what Huw's code does, in my own folder.
+Downloading 2012-01-06 LASCO data.
+
+Hi Jason,
+
+I am doing very well thanks! I am on my way back to Scotland after a great vacation in Canada. So if you have downloaded data, I assume you have gone to the calendar view and gotten a day view like this:http://mlso.hao.ucar.edu/mlso_datasum_comp.php?2012&7&26&COMP The pdf comp data guide has some information that you would need for what information is contained in each file and hovering over the 'data avialable' icons give you the data in each file. What you are probably missing is just the extension number. In IDL
+
+IDL>foo=readfits('filename',ext=1,header)
+
+So this opens the first extension (usually intensity) and you can replace the '1' with the other extension numbers to get the rest of the data. ext=0 is the main header with the context information with no actual data. This ext=0 header is different from the other extensions which have info about those specific data.
+
+As far as processing, that depends on if you are using L1 or L2 data. Some of the info is in that pdf file. If you let me know what type of thing you are looking for (i.e. LOS velocity, polarization) etc, I can try to give you more info. 
+
+Good luck and feel free to ask me more questions! Oh, and currently they are still mucking about with the background subtraction, so if you are using it for scientific research for a paper or so, contact Scott Mcintosh about that stuff. 
+
+-Laurel
+
+Laurel Rachmeler
+		Well, if you are just using your lasso-type cme tracker for comp and just using the intensity images, then you don't need much prep. Level 2 has some extra time integration. (use regular intensity not Enhanced intensity, enhanced is just to bring out the structure, which might be what you want to use in the proposal, but note that it's not in physical units.). Note that many CME's are showing up dark instead of light so you might need to change your code some. Also, you might want to talk with Joan burkpile about when the replacement to MK4 (k coronagraph) will be online as that is white light and much lower than also. I think it should be installed in fall 2012?
+		
+		To get field measurements is a little more difficult. The polarization right now can tell you the POS direction. The best way right now to get b_mag is with the alfevnic wave tracking and density measurements from line ratios, but that isn't on a systematic basis at all yet. Circular polarization can in principal tell you LOS field strength, but it is very difficult with comp to get high enough signal to noise. Cosmo would change that. 
+		
+		The PDF should have some info about the L1 and L2, but if you want detailed info right now, you need to talk to one of us unfortunately. But you prob don't need that much just for the proposal.
+
+Sent emails to Huw and Shadia on the CoMP potential, the kinematics paper status, and the ideas of how to deal with the output of the CORIMP kinematics.
+
+2012-08-02
+
+Working on combine_pa_heights6_fit_quartiles.pro
+
+fls = file_Search('../Test/multicme_model/*cme*')
+fls=sort_fls(fls,28)
+mreadfits_corimp, fls, in
+restore,'multicme_model_dynamic_thr3/detections_noncleaned/redo/all_h0.sav',/ver
+combine_pa_heights6_fit_quartiles,in,heights,image_no,pos_angles,/remove_outliers,/plot_quartiles
+
+
+2012-08-03 - 08
+
+Working on proposal.
+REUs talks.
+
+2012-08-09
+
+Working through the CoMP and LASCO datasets for 2011-05-24 now Huw processed it on gail.
+
+fl = file_search( '../../CoMP/20110524.comp.1074.intensity.fts.gz/20110524.223100.comp.1074.intensity.fts.gz')
+rdfits_struct, fl, str
+help, str, /str
+Wrote COMP_LASCO_FIGURE.pro
+Finished proposal.
+
+2012-08-10
+
+Wrote COMBINE_CLUSTER_HEIGHTS_FIT_QUARTILES.pro to try and take in the output of Log_clustering.rtf, e.g.:
+
+cme_fls = file_search(dir+'/detections_dublin/cme_profs/cme_kins_fls*') & $
+;for k=0,n_elements(cme_fls)-1 do begin & $
+k=0 & $
+	restore, cme_fls[k], /ver & $
+	restore, cme_kins_fls[0], /ver & $
+	def_xs = definite_x & $
+	def_ys = definite_y & $
+	datetimes = datetime & $
+	pos_angles = strmid(file_basename(cme_kins_fls[0]),19,3)
+	for j=1,n_elements(cme_kins_fls)-1 do begin & $
+		restore, cme_kins_fls[j], /ver & $
+		def_xs = [def_xs, definite_x] & $
+		def_ys = [def_ys, definite_y] & $
+		datetimes = [datetimes, datetime] & $
+		pos_angles = [pos_angles, strmid(file_basename(cme_kins_fls[0]),19,3)] & $
+	endfor & $
+	;pause & $
+;endfor
+combine_cluster_heights_fit_quartiles,datetimes,def_xs,def_ys,pos_angles,/plot_quartiles
+
+but problems arise with the jumps between C2 and C3!!! 
+
+2012-08-last week
+
+Worked on the final basic module for FFT in Postdoc/Automation/candidates/20100227-0305/basic_module/
+
+2012-09-17
+
+find_pa_heights_masked_backup20111116,pa_total,det_info,plots_fls,plots_list,'20110112-14_old/cme_prof_0.sav','temp',/plot_prof,/loud
+
+2012-09-18
+
+See Log_clustering.rtf
+
+2012-09-19
+
+Writing READ_DAILY_STACKS.pro to take in the det_stack per day and see if the CME detection regions go into the next day.
+Worked on talk for tomorrow.
+
+2012-09-20
+
+Need to write code that inspects the input stack of each preceding day for cases where CMEs overlap into current day that need to be removed from the det_stack.stack.
+Writing RM_PREV_STACK.pro
+Seminar
+
+2012-09-21
+
+Finalised read_daily_stacks.pro except for needing to loop through more than one subsequent day.
+Edited separate_pa_total.pro to not remove the boundary pixels (as a result of the morph ops).
+
+2012-09-24 (on the plane)
+
+Wrote more into read_daily_stacks.pro to work for more than just one second subsequent day but continuing to loop until the end is found.
+Also tried to make it re-examine the angular widths when found on a subsequent day but having trouble with region growing…
+
+2012-11-02
+
+Working with Dave the past number of weeks in the Kinematics_paper/ folder.
+Also been working on HELIO poster and paper.
+
+Can see notes in kinscasestudy20121005.rtf
+
+fit_kinscasestudy,'temp_kins.sav',/quadratic,/bootstrap,/tog
+renaming temp_kins.sav to the file 'paper_kins.sav'
+
+2012-11-20
+
+Set the data running from my A&A2009 paper to see how the detections fare compared to old manual inspection with the multiscale methods.
+
+Using the fit_kinscme.pro to look at the case study from 2000-01-02 in that paper, via
+fit_kinscme, 'kins_20000102.sav', /sav_gol, /bootstrap
+
+
+Solar in Sonoma Travel
+
+
+2012-12-06
+
+Working on CLEAN_HEIGHTS.pro by copying the format in read_pa_heights_original.pro to overcome the jumps between C2 outer edge and C3 detections.
+(see Log_CME_Module_basic.rtf)
+dir = '~/Postdoc_largefiles/detections_gail/20110113'
+readcol, dir+'/cme_profs/2011-01-13_00.txt', datetimes, heights, angs, f='A,D,F'
+clean_heights, datetimes, heights, angs
+plot_kins_quartiles,datetimes,heights,angs,/sav_gol 
+
+2012-12-07
+
+Worked on plot_kins_quartiles.pro
+
+2012-12-10
+
+Finished up plot_kins_quartiles.pro and edited clean_heights.pro
+Worked on rm_prev_stack.pro and read_daily_stacks.pro in the automated_kins.pro method for interpreting all the detection stacks, ahead of implementing fully automated procedures as in Log_CME_Module_basic.rtf.
+
+2012-12-11
+
+Writing automated_kins.pro and edited the sub-procedures accordingly, notably read_daily_stacks.pro to include /single_file keyword and the output of plot_kins_quartiles.pro
+Needs to be edited to work over more than one following day of detections (right now only checks the next day, not beyond).
+
+2012-12-12
+
+Debugging the codes.
+Fixing the read_daily_stacks.pro to generate a mask of the overlapping days' detections for kinematic output.
+Need to inspect where it goes wrong with call into find_pa_heights_all_redo.pro from automated_kins.pro
+
+2012-12-13
+
+Producing plots across multiple days - but need to ensure it works for more than just a single case of overlap per day (if that's even an issue currently).
+Would ideally group and save out the images with the CME detections on them per event.
+Can potentially plot the changing angular width per event, rather than just stating the fixed angular width. Issue here with the change in angular width in an event that spans more then one day, since the angular width of the first day is fixed in the following days.
+Also want to prevent saving out kinematic plots of spurious detections (but where do I draw the line!?!). Have a clause to only plot if datetimes are at least 3 points.
+
+Wrote GATHER_GAIL_DETECTIONS_INSET_ALL.pro to try and plot out all the images, not just the ones with detections.
+
+Also need to check where the output 'time' on the name of the plot_kins_quartiles plots is coming from - doesn't seem right!
+
+Seems to still be splitting up events that should overlap in days!
+
+2012-12-14 to 20
+
+Been ploughing through the codes, fixing bugs.
+
+2012-12-20
+
+Need to rewrite the way that the rm_prev_stack.pro is applied in the read_daily_stacks.pro, such that the entire new pa_total be considered and the overlapping regions are treated as part of the preceding day, not just the current method of only the angular span from the preceding day cutting out the next days detection stack region.
+
+***
+
+Been working on the codes, thrashing out bugs etc.
+Emails to James Mason.

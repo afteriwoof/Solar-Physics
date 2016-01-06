@@ -1,0 +1,1757 @@
+To prep SECCHI data:
+
+data=vso_search(date='2008/04/26T09:00-2008/05/27T05:00',inst='secchi',$    
+detector='cor2',source='stereo_a',/url)
+sock_copy, data.url, out_dir='20080426_cor2_a/'
+
+Prepping the stereo data for ahead cor2 20080426/27.
+The original files were sccingested to data_stereo/... folder. SCCINGEST, FILES=FILE_SEARCH('20061104*.fts')
+Then use 
+
+list = cor1_pbseries(['20080426','20080428'], 'A', /cor2)
+cor1:
+secchi_prep,list.filename,in,da,/polariz_on,/calroll,/interpolate, /write_fts (re: email from Bill Thompson and his paper)
+cor2:
+secchi_prep,list.filename,in,da,/polariz_on,/calimg_off,/calfac_off,/write_fts (don't /rotate_on,/rotcubic_on, Cor2 data re: Bill Thompson)
+bkg = scc_getbkgimg(in[k], outhdr=hdr)
+da[*,*,k] -= bkg
+;da[*,*,k] = fmedian(da[*,*,k], 3, 3 )
+da[*,*,k] = cor2_warp(da[*,*,k], in[k])
+da[*,*,k] = rm_inner(da[*,*,k],in[k],dr_px,thr=2.75)
+da[*,*,k] = rm_outer(da[*,*,k],in[k],dr_px,thr=15)
+names = in.filename
+sccwritefits, in[k].filename, da[*,*,k], in[k], comments='jason'
+
+So have written out the prepped (incl. bkg subtracted) fts files in PhD/Data_Stereo/20080426/a/cor2/Normalised_rm/
+
+Then using Matlab, edit the edges_sep.m code accordingly and do steps:
+
+>> cd ~/PhD/Data_Stereo/20080426/a/cor2/Normalised_rm/CME/
+>> fls=dir('*fts');
+>> cd ~/PhD/MATLABstuff/Trinity08/
+>> edges_sep(fls);
+
+to write out edg_images.
+
+Prepping cor2a
+for k=0,? do begin & $
+da=sccreadfits(fls[k],in) & $
+bkg = scc_getbkgimg(in) & $
+da-=bkg & $
+da=cor2_warp(da,in) & $
+da = fmedian(da,3) & $
+da = rm_inner(da,in,dr_px,thr=2.75) & $
+da = rm_outer(da,in,dr_px,thr=15) & $
+sccwritefits, in.filename, da, in, comments='jason' & $
+endfor
+
+cor2b
+da = rm_inner(da, in, dr_px, thr=3) & $
+da = rm_outer(da, in, dr_px, thr=16.9) & $
+
+cor1a
+da = rm_inner(da, in, dr_px, thr=1.5) & $
+da = rm_outer(da, in, dr_px, thr=4.35) & $
+
+cor1b
+da = rm_inner(da, in, dr_px, thr=1.55) & $
+da = rm_outer(da, in, dr_px, thr=4.8) & $
+
+
+To prep EUVI data:
+
+;find files
+files=sock_find('http://stereo-ssc.nascom.nasa.gov/','*n4*.fts',path='data/ins_data/secchi/L0/b/img/euvi/20081212')
+
+;sock copy a subset of these
+for i=200,210 do begin sock_copy,files[i],/verb
+
+;ingest into proper directory structure
+sccingest,files=file_search('*.fts')
+
+;read in file info
+files=scc_read_summary(date='12-Dec-2008')
+
+;grab the 304 data
+files304=where(files.value eq 304)
+
+;prep data, rotate, interpolate and write out fits
+for i =0,N_ELEMENTS(files304)-1 do secchi_prep,sccfindfits(files[files304[i]].filename),in,da,savepath='/Users/mcateer/Work/cmes_jason/3d/paper_fts/',/write_fts,/rotate_on,/rotinterp_on
+
+
+05-01-09
+
+Made Scale4 edg_images for the 20080426 event Cor1s. This event is partial halo in Behind so might have to use point and click methods there, with edge detections in Ahead.
+Downloading data for 20080707.
+
+06-01-09
+
+Covering tutorials (9am, 3pm).
+Looked at the event 20080426 for running difference and edge detections of each spacecraft and coronagraph. Email to Peter about Dave's wave and Larisza's possible coronal hole mapping for streamer source. Made mov_diff.html in each case and saved the diff.sav and dim.dav in each CME folder.
+Started writing diff_edges.pro to overlay edges but it's different for each image intensity so just do it when needed.
+Finished downloading 20080707. 
+
+07-01-09
+
+Gathered together 20080426_movies.
+Covered tutorial at 1pm.
+Looked at the scc_measure of cor2 rdiff image - seems to line up somewhat though hard to interpret!
+Found out rotate_on must be set in secchi_prep for rotcubic_on to work!!!
+Prepped data for 20080707 (ingested anyway) and normalised_rm the cor2a fits.
+
+08-01-09
+
+Prepping Cor2b:
+for k=0,35 do begin & $
+IDL> bkg=scc_getbkgimg(in[k],outhdr=hdr) & $
+IDL> bkg=rot(bkg,-hdr.crota,/cubic) & $
+IDL> da[*,*,k]-=bkg & $
+IDL> da[*,*,k]=fmedian(da[*,*,k],3,3) & $
+IDL> da[*,*,k]=rm_inner(da[*,*,k],in[k],dr_px,thr=3.4) & $
+IDL> da[*,*,k]=rm_outer(da[*,*,k],in[k],dr_px,thr=16.7) & $  
+IDL> endfor
+
+Made prepped fits files of 20080707/b/cor2/Normalised_rm/
+Then in Matlab, edit the code edges_sep for the relevant folders and CME_front2 for the right scale:
+>> cd ~/PhD/Data_Stereo/20080707/rotated/b/cor2/Normalised_rm/
+>> fls=dir('*fts');
+>> cd ~/PhD/MATLABstuff/Trinity08/
+>> edges_sep(fls);
+
+Made folder CME_Stereo_candidates which just hosts the movies of possible 3D events to reconstruct.
+
+Met Peter about the Stereo events. A halo might be a great way to do the 3D and if only in Cor2 then use that to estimate where it is located in Cor1, might also constrain it with source region / wave on disk. So the 20080426 event looks good. 
+
+09-01-09
+
+Trying to go through my prepping of 20080426 to be sure it's right.
+
+For cor1a:
+secchi_prep, /polariz_on, /write_fts seems fine but doesn't convert from DNS to solar brightness.
+
+For cor2a:
+secchi_prep, /polariz_on, /write_fts doesn't seem right at all. Total brightness too hard to see anything, plus it's also in DNS still. Background subtraction not appropriate.
+secchi_prep, /polariz_on, /pb writes polarised brightness images which are better. Background subtraction doesn't work unless in MSB units (not DNS which they are).
+secchi_prep, /polariz_on, /nocalfac_butcorrforipsum gives the image in MSB but still too much intensity drop off to see anything (even with alog etc).
+secchi_prep, /polariz_on, /nocalfac_butcorrforipsum, /pb  gives pol.brightness and is better and is in MSB. Background subtraction doesn't seem very effective though. THIS SEEMS TO BE THE BEST!
+
+For cor2b:
+secchi_prep, /polariz_on, /nocalfac_butcorrforipsum, /pb  gives the same good images but again can't background subtract so it's not what I want.
+
+Maybe can just NRGF instead of doing background subtraction?!
+
+Made folder of study_on_prepping with PREPS.TXT and it seems that none of the keywords will actually remove the vignetting effects that I see!!! 
+Seems Cor2 is just not well prepped currently. Routines don't have any great files to fix the vigentting I see.
+Can apply the full prep to Cor1 though since it uses cor1_calibrate.pro which is seperate.
+
+Note for Cor2 that backgrounds are not calibrated, so you should use /NOCALFAC and /CALIMG_OFF when calling secchi_prep.
+http://sohowww.nascom.nasa.gov/solarsoft/stereo/secchi/doc/sccuserguide.html
+
+Also the backgrounds can be called with /totalb keyword is necessary!
+
+Transferred to PhD register today (email).
+
+So prepping the data again to be sure it's all right, for the 20080426 event. Have done the ahead data now to do behind data.
+
+12-01-09
+
+Prepping data 20080426 behind.
+Made the rundiff sav files for each Cor.
+Making edge detections for Cor1/2a.
+
+Found the problem with using mwritefits in Secchi data is with the date_obs being different to Lasco etc. so use sccwritefits instead.
+Can also test that output structure is same as input using str_diff or compare_struct.
+
+Re-doing the prepping for 20080426 again to include the rotation of the data since the mwritefits was leaving out the crota information so I'd have to go through it all again anyway. Easier to 
+prep data with /rotate_on, /rotcubic_on
+and in the cor2 case call the backgrounds and rotate them about the Sun centre 
+x_suncentre = in.crpix1 + (in.xcen / in.cdelt1)
+by the angle -in.crota.
+
+HOWEVER I have found that for Cor2 it seems the rotation should be around the hdr.crpix1, hdr.crpix2 locations, not the Sun centre at all (which sort of makes sense from a keeping as much data as possible available point of view!)
+
+13-01-09
+
+Studied at home for Book Club. Goosens Chpt 2.
+
+14-01-09
+
+Morning studied. Afternoon email from Dave about wave / CME expansions.
+Finished prepping the data for 20080426 rotated.
+Moved the 20080426/cor2 data into about_sc folders to show that these were rotated about sun centre rather than the occulter centre which it should be!
+
+When analysing the waves/ events, I save rundiff images and point and click (pandc.b) the front (at sigrange frac=0.97) saving the front and doing the ellipse fit
+front_ell_kins,xf1815,yf1815,1,in[10],sigrange(fdiff1815,frac=0.97),2,ei,re,xe,ye,pe,mh,aa,0,/noflank
+save,ei,re,xe,ye,pe,mh,aa,f='ellipseinfo1815.sav'
+
+15-01-09
+
+Email from Peter about Biesecker work on 3D CME ellipsoid stuff! 
+Joly society talk.
+
+16-01-09
+
+Book club!
+
+18-01-09
+
+Doing data analysis of 20070516. Can't see the CME in cor2b.
+
+19-01-09
+
+Did the analysis of wave events with regard to the wave source regions. Have all this ellipse info now but unsure what to correlate with wave kinematics... 
+
+20-01-09
+
+Wrote the kins_sr.pro for source region kinematics. Met Peter and Dave to talk about taking the expansion rates just from the point & click angles and plotting the arc expansion of CME against wave expansion on disk.
+
+Note: ideas for next paper doing the CME expansion on great circle projection from the solar disk and comparing to wave expansions.
+
+Wrote angwidth.pro and pre_angwidth.b for just getting the angular width where I click on CME. It isn't corrected for cases when it may be wrong (depending which click is first, what quadrant?!).
+Wrote expansion.pro
+
+21-01-09
+
+Made 20070806_CME_wave_kins.ps and 20070806_CME_wave_expansion.ps and for other events (see email today). Also made plot_peaks.pro for viewing the cme versus wave peak expansion.
+
+1) use @quick.b to save fdiff<time>.sav and @pandc.b to save front<time>.sav --> See "guide" in event 20071207.
+2) use front_ell_wave_sr to fit ellipse wrt source region of wave.
+3) save all the variables, and write them to CME.txt and wave_171.txt, wave_195.txt
+4) edit pre_angwidth.b to run angwidth.pro and obtain angwidth.txt and edit CME.txt for this angular width.
+5) run cme_expansion.pro, cme_wave_kins.pro, cme_wave_expansion.pro for plots
+6) edit plot_peaks.pro to include new peak CME and wave velocities and plot.
+
+22-01-09
+
+Made plots and emailed to Dave.
+Need few lines on the method:
+The CMEs associated with each wave were analysed for their expansion rates as follows. 
+The CME heights and angular widths were determined and used to calculate the arc length of expansion:
+arc = theta * h
+In order to compare with the wave velocities, half this arc length was used in computing the CME expansion rate:
+expansion = 0.5 * d/dt arc
+
+To compare disturbance propagation with the associated CMEs, the CME expansion rate was determined from COR1-A data in the first instance, COR1-B data should the CME not be visible in COR1-A, and failing that the results of CDAW analysis on LASCO/C2 data were used. In order to determine an expansion rate the angular width and height of the CME were measured in running difference images. For the COR1 data the CME fronts were determined through point \& click methods, and an ellipse characterisation was used to provide the maximum height $h$ from the disturbance source region (Byrne et al. 09?). The angular width $\theta$ is the maximum angle from the source region enclosing the CME front, which was found to change with time. The CDAW height and angular width measurements from Sun centre were corrected for the disturbance source region location measured in STEREO-A. In line with the wave velocity measurements from a fixed source, we are concerned here with half the total CME plane-of-sky expansion:
+v_exp = 1/2 * d/dt * (theta * h)
+The peak CME expansions are plotted against the peak disturbance velocities in Fig.10. The scatter is somewhat significant and does not show any clear relationship between the two. The CME direction of propagation with respect to the source region is unknown, so these plane-of-sky results may hide any true relationship. Certainly with this limited sample of events we cannot determine a relationship between the disturbance velocity and the associated CME expansion rates.
+
+23-01-09
+
+Made plot_peaks_correct_soho.pro and edited the cdaw.b for 20070806, 20070519, 20080107 events analysed by CDAW in Lasco/C2 to correct for the source region location given by Ahead. see notes in hardbook.
+Wrote CME_kins.pro to spit out kins.txt in the CME_wave/ folders for each event in the thought that I might put them in the table on Dave's paper.
+
+26-01-09
+
+Made the rundiff/ folder analysis for 10080426_cor1b and cor2b and the movies: 20080426_cor1b_rdiff_ell.html etc. Saving all the ellipse info.
+
+Trying to see if I can background subtract the 20080426/a/cor2/ myself first, then run the different cor_calibrate routines on it by hand. cor2_warp get_calimg
+Calibrating the backgrounds and subtracting from calibrated data doesn't work!
+Subtracting the background then calibrating (by unvignetting only or fully running cor_calibrate) doesn't work!
+Seems if I just background subtract then cor2_warp to correct distortion it's the best I can do, though images/movies still look dirty at least the edge_detections aren't too affected.
+
+Made 20080426/a/cor2/no_calibrate/bkg_sub/unwarp_rm/edg_images/ 
+
+Did edge detections for cor1a too. Hard to see part of CME.
+
+27-01-09
+
+Doing the edge analysis for cor2a. Wrote PICK_OUT_FRONT.pro to click around the multiscale edge. Saving area_1652.sav etc. Made edg56_1722.sav etc which combines the scales 5 and 6.
+Made fronts56.sav
+Started writing Combining Steps, below.
+
+"Combining" Steps:
+1)	Make daa_ell.sav from the ellipse coords on the data. The ellipse coords xe ye have to be transformed back from map space.
+restore, 'ellipseinfo1522.sav', /ver
+xe2=xe/in.cdelt1+in.naxis1/2.-in.xcen/in.cdelt1
+ye2=ye/in.cdelt2+in.naxis2/2.-in.ycen/in.cdelt2
+for k=0,100 do daa_ell[xe2[k],ye2[k]]=max(daa_ell)
+
+3       save, xe7, ye7, f='xyell1752.sav'
+4       save, daa_ell_1752, f='daa_ell_1752.sav'
+5       plot_image, sigrange(daa_ell_1752,frac=0.99)
+6       for k=0,100 do daa_ell_1752[xe7[k],ye7[k]]=max(daa_ell_1752)
+7       daa_ell_1752=da[*,*,7]
+8       plots, xe7, ye7, psym=3
+9       ye7=ye/in[7].cdelt2+in[7].naxis2/2.-in[7].ycen/in[7].cdelt2
+10      xe7=xe/in[7].cdelt1+in[7].naxis1/2.-in[7].xcen/in[7].cdelt1
+11      restore, 'ellipseinfo1752.sav',/ver
+12      plot_image, sigrange(da[*,*,7],frac=0.99)
+
+28-01-09
+
+See IDL_commands09 for todays method of clicking along ellipses and getting the 3D slices.
+Wrote SPACECRAFT_LOCATION.pro to calculate coords of Ahead and Behind at each time frame. Also have edited the plot_slices.pro in the slices_all/ folder to account for this specific time 1752 in Cor2 20080426.
+Did 45 slices. Saved Cor2_1752.isv and CME_1752.tiff, CME_1752.sav
+
+Want to be able to plot only the solution set of the front (ie not the whole ellipsoid shape but the front section) so thinking about finding the tangents of the ellipses in the quadrilaterals and just plotting the front section enclosed in 3 tangent points (2 from Behind halo, 1 from Ahead limb).
+
+for k=0,100 do dist[k]=sqrt((xe[k]-x[0])^2.+(ye[k]-y[0])^2.+(ze[k]-z[0])^2.) + sqrt((xe[k]-x[2])^2.+(ye[k]-y[2])^2.+(ze[k]-z[2])^2.)
+print, where(dist eq min(dist)) 
+plots, xe[9], ye[9], ze[9], psym=2, color=5, /t3d
+
+See IDL_commands for today.
+
+29-01-09
+
+Point and clicking along the fronts to combine ellipses. SUNSHINE
+
+30-01-09
+
+Worry about the kinematics using DERIV. see emails of today and DERIV_TEST.pro code.
+Emailed 3D CME movie to Peter.
+Working on the 1552 frame in Cor2b 20080426 to fix it for 3D.
+
+02-02-09
+
+Interviews for Astro lectureship.
+
+03-02-09
+
+Working on the Cor1a edge ellipse fit for 20080426.
+
+04-02-09
+
+Wrote STEREO_AND_SOHO.b to call PLOT_SLICES_SOHO.pro and PROJECT_SOHO_ELLIPSE.pro for plotting the view of the Stereo reconstruction on the SOHO plane-of-sky. See MY_SOHO_PROJECTION_GUIDE.rtf and email to Peter.
+
+05-02-09
+
+Projected the 1554 SOHO ellipse with the Stereo reconstruction  - emailed Peter.
+
+06-02-09
+
+Emailed Chia the preps I use for Lasco running difference.
+
+09-02-09
+
+Read Gopal's CME expansion paper. Analysis done across lots of data (probably CDAW).
+Tried to analyse the 20080707 event but very hard to take out CME in Cor1 data.
+Looking at the ellipse fits to the data in the 20080426 event again since the LASCO fit was offset, might need correcting. E.g. the ellipse fit includes all the points instead of just outer front/sheath. And I'm also looking at the occulter/sun_centre position in TEST_SUN_CENTRE/.
+The mk_secchi_f uses the occulter centre to put at (0,0). But the actual Sun is offset by in.xcen/ycen. Working through test.b and finding that the lines in front_ell_kinematics.pro and the emails from James on this (10/07/2008) means that the Sun centre is indeed
+in.naxis1/2.-in.xcen/in.cdelt1, in.naxis2/2.-in.ycen/in.cdelt2
+and mk_secchi_map puts this to (0,0) as required.
+
+10-02-09
+
+Kinematics simulations email from Peter. In DERIV_TESTS/ folder.
+Working on the projection of Stereo ellipse into Soho. Wrote PLOT_PROJECTED_ELLS.b and PROJ_C3_IMAGES.b to make movies PROJ_ELLS_C3.html and PROJ_C3_IMAGES.html
+Meeting on kinematics and emails abound. Best approach is No Smoothing and full Error Bar propagation with caution interpreting the velocity and acceleration plots.
+Working through the SolarMuse daily browse for CMEs. A good sample in Oct 2008.
+
+11-02-09
+
+Hacking scc_measure.pro to automatically find the intersections of points which I read in. Using sample circle of values 888 and 988 in ima.sav and imb.sav in PhD/IDLstuff/image_analysis/Hilary09/.
+Got it working for taking out the intersects in Ahead; MY_SCC_MEASURE.pro.
+
+12-02-09
+
+Wrote MY_SCC_MEASURE_READIN.pro to take the output files of my_scc_measure.pro and use them to find the intersections in the first image again.
+Wrote GET_WCS_INTERSECTS.pro to obtain the vertices in 3D of the intersections of the quadrilaterals from the my_scc_measure.pro and my_scc_measure_readin.pro. 
+Now have to make it plot the 3D ellipses in the quad planes reading in from vertices.txt or somehow!
+So 
+1) set the values of the points and the area to be reconstructed to some peak (eg. 888, 988)
+2) run my_scc_measure to output the intersects1/2 by clicking on the left image.
+3) run my_scc_measure_readin to output the corresponding intersects 3/4 by clicking on the right image.
+4) run get_wcs_intersects to output the 3D coordinates of the vertices of the quadrilaterals.
+now have the difficulty of reading in vertices! @runthru.b
+
+13-02-09
+
+Studying MHD book for book club today. 
+Friday seminar: Orbital dynamics of Xray binaries: Callanan (UCC).
+
+slice1 slice2 slice3 slice4 slice5 slice6 slice7 slice8 slice9 slice10 slice11 slice12 slice13 slice14 slice15 slice16 slice17 slice18 slice19 slice20 slice21 slice22 slice23 slice24 slice25 slice26 slice27 slice28 slice29 slice30 slice31 slice32 slice33 slice34 slice35 slice36 slice37 slice38 slice39 slice40 slice41 slice42 slice43 slice44 slice45 slice46 slice47 slice48 slice49 slice50 slice51 slice52 slice53 slice54 slice55 slice56 slice57 slice58 slice59 slice60 slice61 slice62 slice63 slice64 slice65 slice66 slice67 slice68 slice69 slice70 slice71 slice72 slice73 slice74 slice75 slice76 slice77 slice78 slice79 slice80 slice81 slice82 slice83 slice84 slice85 slice86 slice87 slice88 slice89 slice90 slice91 slice92 slice93 slice94 slice95 slice96 slice97 slice98 slice99 slices_all
+
+flatten_plane, 'measure.txt', x,y,z,p1, p2, p3, p4, a, b, c, s, t, angle1, angle2, angle3, angle4
+
+ellipse_equations, a, b, c, s, t, semimajor, semiminor, hx, hy
+
+x_ell = [0,0,a,s]
+y_ell = [0,c,b,t]
+ell_quadrilateral, x_ell, y_ell, semimajor, semiminor, hx, hy, ell
+
+unflatten_plane, ell, angle1, angle2, angle3, angle4, [x[0],y[0],z[0]], xe, ye, ze
+
+plot_spacecraft_views, ina, inb, x,y,z, xe, ye, ze, /zoom
+
+
+16-02-09
+
+Edited flatten_plane.pro to account for different variations of the points p1 to p4 now read in ascending order from the outputs of intersects codes.
+HACK_SCC_MEASURE/ folder contains all.
+
+EUVI Wave event in Ahead and Behind. Can't find the Behind data for the CME. Downloaded Ahead data.
+
+17-02-09
+
+Made the edges4_0615.sav and others for 20090213/cor1a. Can't access Behind data through sockets (see James' email). Prepping cor2a. Made 20090213_cor1a_ell.html movie and emailed. Cor2a front might be too hard to discern.
+Finished getting my_scc_measure procedures to work!!! :)
+Reading Object Graphics book.
+
+18-02-09
+
+Working on objects. Can't find reference to the 3D type of stuff I have - it's all image depth (e.g. terrains) rather than stand-alone 3D pixel stuff!
+Prepping the 20081017 data.
+
+19-02-09
+
+Played with Revolution IDL. Looked at emailed links from Peter.
+If using depth3d.pro make sure the ends of the f array are 0 and the rest in between are 1 to join up!
+Looking at Mesh_Obj which can be used to generate a simple shape (circle,cylinder etc) from vertices and polygons. Polyshade / shade_volume / t3d.
+Go to 20080426/combining/cor2/1752/my_scc_measure/
+run make_xy.b 
+mesh_obj, 0, v, p, e
+create_view, winx=800, winy=800, ax=30, ay=20, zoom=0.04
+tvscl, polyshade(v, p, /t3d)
+plots, v, psym=-1, /t3d
+But this only really works in the correct way for half the ellipsoid before it starts to consider the spines rather than the epipolar slices!
+Tried
+http://michaelgalloy.com/demos/itools/mg_isosurfaces_demo.pro
+Looking at
+http://www.ittvis.com/UserCommunity/CodeLibrary/tabid/59/grm2id/1176/Default.aspx
+http://www.astro.virginia.edu/class/oconnell/astr511/idl_5.1_html/idl116.htm
+http://idlastro.gsfc.nasa.gov/idl_html_help/POLYSHADE.html
+http://idlastro.gsfc.nasa.gov/idl_html_help/ISOSURFACE.html
+http://michaelgalloy.com/demos/itools/mg_order_demo.html
+http://www2.warwick.ac.uk/fac/sci/physics/research/cfsa/people/erwin/research/3d/visualisation
+
+20-02-09
+
+Prepping the 20081017 cor2 data, and doing ege detections.
+Doing the my_scc_measure analysis for 20080426 now.
+
+23-02-09
+
+The 20081017 cor1a is very hard to discern the front in the edg_images but in cor1b and both cor2 it's easily done.
+Downloading 20081026/7 data.
+
+Prepping cor2a
+for k=0,? do begin & $
+da=sccreadfits(fls[k],in) & $
+bkg = scc_getbkgimg(in) & $
+da-=bkg & $
+da=cor2_warp(da,in) & $
+da = fmedian(da,3) & $
+da = rm_inner(da,in,dr_px,thr=2.75) & $
+da = rm_outer(da,in,dr_px,thr=15) & $
+sccwritefits, in.filename, da, in, comments='jason' & $
+endfor
+
+cor2b
+da = rm_inner(da, in, dr_px, thr=3) & $
+da = rm_outer(da, in, dr_px, thr=16.9) & $
+
+cor1a
+da = rm_inner(da, in, dr_px, thr=1.5) & $
+da = rm_outer(da, in, dr_px, thr=4.35) & $
+
+cor1b
+da = rm_inner(da, in, dr_px, thr=1.55) & $
+da = rm_outer(da, in, dr_px, thr=4.8) & $
+
+24-02-09
+
+"The faster and more strongly accelerated CMEs tend to be wider." Vrsnak et al, 2007 Sol.Phys.241. Some good discussion in this paper, and smoothing accel. profiles appendix.
+
+Went through the current CACTus catalogue for Nov/Dec/Jan and downloading some data for 20081113.
+Making the edg6_0322.sav and so on edge detections of CME front 20081027/cor2b. Made 20081027_cor2b_ell.html and the ellipseinfo sav files for it. Analysis done using the full fronts/
+front_ell_kinematics,front6_0652,1,in[12],da[*,*,12],2,ei,re,xe,ye,pe,mh,aa,0
+
+25-02-09
+
+Doing the cor2b prepping for the earlier frames of 20081026/7 event.
+
+Did the cor1b front detections for 20081027 saving fronts5_1245-1845.sav.
+
+Made 20081026_kins.ps after doing all the front edge detections on the full cor-b data. Note the errors are not rigorously tied-down since I change from scale 5 to scale 6 a few frames into cor2.
+
+Made 20080426_kins.ps and incl_cdaw.ps too for the cor-a data.
+
+Idea: With the 3D reconstruction I can then test what the kinematics for the event would look like from different angles. This might indicate how the measurements of the past have been affected by projection angles!
+Also, why not try and get Mauna Loa as another 'eye'!?!
+
+26-02-09
+
+Prepped the 20081113 data which is a lovely curved CME front. Doing the edge detections.
+Spoke to Peter about budgeting for SFI grant to go away.
+
+I wonder if changing ellipse tilts say anything about how the CME might be compressed in the ecliptic versus out of the ecliptic?!
+
+27-02-09
+
+Journal club.
+IOP table quiz.
+
+02-03-09
+
+Doing the prepping of 20081113 cor1.
+
+Notes on C2 prepping at http://images.google.ie/imgres?imgurl=http://www.aanda.org/articles/aa/full/2007/37/aa6777-06/img104.gif&imgrefurl=http://www.aanda.org/articles/aa/full/2007/37/aa6777-06/aa6777-06.right.html&usg=__r5LEcy24paIwtocswk-DIEAhsUo=&h=573&w=566&sz=33&hl=en&start=14&sig2=q437KNDphCRGpDKvQ6BiKA&um=1&tbnid=w0dbugELmzIDxM:&tbnh=134&tbnw=132&ei=9RGsSePhCY6g_gb5lNTvDw&prev=/images%3Fq%3Dschwenn%2Bcme%26um%3D1%26hl%3Den%26client%3Dfirefox-a%26rls%3Dorg.mozilla:en-US:official%26hs%3DCDr%26sa%3DN.
+
+06-03-09
+
+Out sick - came in for Group Meeting.
+
+09-03-09
+
+Studied at home for Book Club on Friday. Started quoting accomodation in DC.
+
+10-03-09
+
+Back in office.
+How can I get at the CME expansion? Take the angular width of the ellipsoid from different angles? Similar to changing projection view. Some form of code that I could write which inputs an angle (in 3D space) of view and gives the kinematics and dynamics in that plane-of-sky projection? Same as just taking a certain angle of lines (90 deg perp to plane-of-sky req.) from Sun intersecting the ellipsoid front?
+I think the best is to take the planes through the centre of the ellipsoid which are parallel to the ellipsoid centre - Sun line and perpindicular to it. These planes will not be affected by the point of view as such, since they are dependant only on the ellipsoid w.r.t. the Sun. Source of observer is important only if the plane-of-sky is then dependent only on the Sun and not the ellipsoid which must be back projected. See ellipsoid_plane.jpg.
+Can also extend this idea to take intersections of multiple planes through the Sun/ellipsoid span. And also tilt them into the ecliptic.
+
+Wrote GATHER_ELLS.pro to gather up the xe, ye, ze, into ells.sav in 20080426/combining/cor2/1752/
+Moved gather_ells.pro to idl_codes/
+
+Wrote ELLIPSOID_SUN_PLANE.pro to save the rotated coordinates of the ellipsoid into the sun/ellipsoid_centre plane.
+Restore ells.sav to input xes, yes, zes, and save sun_ellipsoid_centre_pane.sav containing xesr, yesr, zes. Viewing this rotated ellipsoid in the ax=0 and ax=0,az=0 3d plots shows the view across this plane. Saved image sun_ellipsoid_centre_plane.tiff.
+
+angle_x=20
+angle_z=20
+surface, dist(5), /nodata, /save, xrange=[-20,20], yrange=[-20,20], $   
+  zrange=[-20,20], xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=angle_x, az=angle_z, xtit='Solar Radii'
+
+
+
+11-03-09
+
+Saw Watchmen! Wopper!!!
+Sent CME expansion data and codes to Dave to update the paper.
+Wrote PROJECT_ELL.pro to take the info saved from the rotation of ellipsoid in ellipsoid_sun_plane.pro and project the required points (either x<0 or x>0 plane depending) onto the x=0 plane to view that slice through the ellipsoid for kinematics etc.
+Made SLICE_ELLIPSOID_CENTRE.tiff image of the slices through each ellipsoid centre (average) point in the plane to the Sun centre (0,0,0).
+Wrote PLOT_X0.b in PhD/Data_Stereo/20080426/combining/cor2/.
+Made 20080426_x0_plane_slice.html movie in same.
+
+12-03-09
+
+Studying the book for book club tomorrow.
+
+13-03-09
+
+Book Club.
+
+16-03-09
+
+Going through the front_ell_kins.pro kinematics and writing x0_plane.txt in the 20080426/combining/.
+
+front_ell_kins,yesrna,zesna,1,ina,daa,2,/arcsec,/noflank    ; the a stands for arcsec by multiplying by in.rsun
+
+Compare the kinematics from Ahead and x0_plane and the expansion in Behind.
+
+18-03-09
+
+Working on the 20081113 edges.
+Talk by exoplanets guy.
+
+Looked back at the wave stuff I was doing with Alex in first Nasa internship. Defo worth including in my PhD thesis as the first introduction using wavelets in solar physics - working toward improving the automated detections of dimmings by Podladchikova & Berghmans 2005.
+
+19-03-09
+
+Working on the 20081113 edges and ellipse fits to combine. Using ell_kinematics.pro
+
+(pretty much the) GUIDE TO 3D RECONSTRUCTION
+
+restore,'xy_ells.sav'
+k=0
+daa_ell = da[*,*,k]
+print, where(daa_ell eq 888)
+print, where(daa_ell eq 988)
+x=xy_ells[*,k,0]/in[k].cdelt1+in[k].naxis1/2.-in[k].xcen/in[k].cdelt1
+y=xy_ells[*,k,1]/in[k].cdelt2+in[k].naxis2/2.-in[k].ycen/in[k].cdelt2
+res=polyfillv(x,y,sz[0],sz[1])
+daa_ell[res]=888
+for j=0,100 do daa_ell[x[j],y[j]]=988
+plot_image, sigrange(daa_ell, /use_all)
+print, in[k].date_obs
+
+restore,'xy_ells.sav'
+k=0
+dab_ell = da[*,*,k]
+print, where(dab_ell eq 888)
+print, where(dab_ell eq 988)
+x=xy_ells[*,k,0]/in[k].cdelt1+in[k].naxis1/2.-in[k].xcen/in[k].cdelt1
+y=xy_ells[*,k,1]/in[k].cdelt2+in[k].naxis2/2.-in[k].ycen/in[k].cdelt2
+res=polyfillv(x,y,2048,2048)
+dab_ell[res]=888
+for j=0,100 do dab_ell[x[j],y[j]]=988
+plot_image, dab_ell
+print, in[k].date_obs
+;
+dab_ell_1952 = dab_ell
+save,dab_ell_1952,f='dab_ell_1952.sav'
+save,x,y,f='xy_1952.sav'
+or
+daa_ell_1952 = dab_ell ; if ahead
+
+daa=sccreadfits(file_search('../*A.fts'),ina)
+dab=sccreadfits(file_search('../*B.fts'),inb)
+restore,'../daa_ell_1652.sav',/ver
+restore,'../dab_ell_1652.sav',/ver
+my_scc_measure, daa_ell, dab_ell, ina, inb
+my_scc_measure_readin, daa_ell, dab_ell, ina, inb
+get_wcs_intersects, ina, inb
+@runthru.b
+
+
+fls=file_Search('*fts')
+da=sccreadfits(fls[0],ina,/nodata)
+da=sccreadfits(fls[1],inb,/nodata)
+$mkdir my_scc_measure
+cd,'my*'
+restore,'../daa*
+restore,'../dab*
+
+
+fls=file_Search('*fts')
+daa=sccreadfits(fls[0],ina)
+dab=sccreadfits(fls[1],inb)
+.r spacecraft_location
+spacecraft_location, ina, inb
+$mkdir my_scc_measure
+cd,'my*'
+restore,'../daa*
+restore,'../dab*
+
+$mkdir slice1 slice2 slice3 slice4 slice5 slice6 slice7 slice8 slice9 slice10 slice11 slice12 slice13 slice14 slice15 slice16 slice17 slice18 slice19 slice20 slice21 slice22 slice23 slice24 slice25 slice26 slice27 slice28 slice29 slice30 slice31 slice32 slice33 slice34 slice35 slice36 slice37 slice38 slice39 slice40 slice41 slice42 slice43 slice44 slice45 slice46 slice47 slice48 slice49 slice50 slice51 slice52 slice53 slice54 slice55 slice56 slice57 slice58 slice59 slice60 slice61 slice62 slice63 slice64 slice65 slice66 slice67 slice68 slice69 slice70 slice71 slice72 slice73 slice74 slice75 slice76 slice77 slice78 slice79 slice80 slice81 slice82 slice83 slice84 slice85 slice86 slice87 slice88 slice89 slice90 slice91 slice92 slice93 slice94 slice95 slice96 slice97 slice98 slice99 slice100 slices_all bogus_slices
+.r my_scc_measure
+my_scc_measure, daa, dab, ina, inb
+.r my_scc_measure_readin
+my_scc_measure_readin, daa, dab, ina, inb
+.r get_wcs_intersects
+get_wcs_intersects, ina, inb
+@runthru.b
+cd,'slices_all
+.r plot_slices
+plot_slices, /zoom, /no_ell, /no_proj, /room_all, /nolabels
+
+Wrote the new PLOT_SLICES.pro in the 20081113/2222/ folder.
+
+20-03-09
+
+Working on the individual plot_slices.pro for each time slot under 20081113/cor2.
+Group meeting.
+
+21-03-09
+
+Wrote make_movie.b in the 20081113/combining folder for the cor2 analysis. 
+
+23-03-09
+
+Made 20081113_cor2_ell.html.
+Did the ellipse fit to 20081113_cor1a_ell.html with edges5and6.sav.
+Did the ellipse fit to 20081113_cor1b_ell.html with edges4and5.sav.
+
+restore,'xy_ells.sav'
+k=0
+k+=1
+daa_ell = da[*,*,k]
+x=xy_ells[*,k,0]/in[k].cdelt1+in[k].naxis1/2.-in[k].xcen/in[k].cdelt1
+y=xy_ells[*,k,1]/in[k].cdelt2+in[k].naxis2/2.-in[k].ycen/in[k].cdelt2
+res=polyfillv(x,y,2048,2048)
+daa_ell[res]=888
+for j=0,100 do daa_ell[x[j],y[j]]=988
+plot_image, sigrange(daa_ell, frac=0.97)
+print, in[k].date_obs
+save, daa_ell, f='daa_ell.sav'
+
+24-03-09
+
+Wrote kins_20081113a.pro and kins_20081113b.pro to make 20081113a_kins_fit_vel.pdf and 20081113b_kins_fit_vel.pdf
+
+Made MAKE_MOVIE_NOZOOM.b without the /zoom keyword in the plot_slices. Made movies 20081113_cor1and2_3D.html and 20081113_cor1and2_nozoom.html.
+
+Wrote the text file KINS_RESULTS.txt in the 20080426 analysis to compare each catalogue to my results.
+
+Doing the slice through the x0_plane of ellipse centre for 20081113:
+cd,'20081113/combining/cor2/2152/my_scc_measure/slices_all'
+gather_ells
+restore,'ells.sav'
+ellipsoid_sun_plane,xes,yes,zes
+restore, 'sun_ellipsoid_centre_plane.sav'
+project_ell, xesr, yesr, zes
+restore,'positive_x_plane.sav',/ver  ;or restore,'negative_x_plane.sav'
+da=sccreadfits(file_search('../../*fts'),in)
+xesrna=xesrn*in[0].rsun
+yesrna=yesrn*in[0].rsun
+zesna=zesn*in[0].rsun  
+front_ell_kins,yesrna,zesna,1,in[0],da[*,*,0],2,/arcsec,/noflank ;the ahead data since it doesn't matter!
+
+Wrote kins_20081113x0.pro to read in the x0_plane.txt slice through ellipsoid centre.
+
+Wrote KINS_COMPARE.pro to get the 20081113_compare.ps and 20081113_compare_full.ps.
+
+25-03-09
+
+Making talk for Friday's presentation. Want to go through it with Peter tmw.
+
+26-03-09
+
+Finished talk with Peter's comments.
+
+27-03-09
+
+ASGI Meeting.
+Group Dinner.
+
+30-03-09
+
+Reading Wood et al, 2009 about 4 Feb. 2008 CME. I should do the Point-P and Fixed-phi methods of height-time on my 3D analysis to make the comparison.
+Replied to reply on my Feb. 8 post at idl-pvwave forum comp.lang.idl-pvwave.
+
+31-03-09
+
+Reading Schwenn 1986. Shocks / CME transients / mechanisms.
+Want to write code that will give the distribution of heights along the 3D ellipsoid. Wrote ELLIPSOID_ANY_PLANE.pro which is getting at this.
+DIAS talk - asteroids, meteors etc.
+
+April Fool's
+
+Met Peter - got to get reading Science and Nature papers, and throw a draft together with 3 great images. Must work toward getting out the 'first new' physics such as the flattening (maybe estimate drag coefficient) or some grasp on the forces at play. Question of Thomson scattering?!
+
+02-04-09
+
+Transfer talks.
+Reading papers for Journal Club tomorrow.
+
+03-04-09
+
+Journal Club.
+
+06-04-09
+
+Reading Nature / Science papers recommended by Peter. Downloaded the template for Science submission and started editing it.
+
+07-04-09
+
+Finishing the codes to take a spread of angle_slices through the 3D ellipsoid structure and write out the kinematic parameters. Wrote READIN_ELL_PLANES.pro.
+So, take in the xes, yes, zes, from ells.sav.
+ellipsoid_any_plane, xes, yes, zes
+readin_ell_planes, in, da
+Then copy the final line ellipse parameters to a text file like ANGLE_SLICES.txt in 20081113/combining/cor2/2152/ with the restored angle_slices.sav info as the first column so it's a distribution of heights across the 3D structure at this given time.
+
+gather_ells
+restore,'ells.sav',/ver
+ellipsoid_any_plane, xes, yes, zes
+restore,'slice_angles.sav',/ver
+print, transpose(steps)
+dab=sccreadfits(file_search('../../*B.fts'), inb)
+.r front_ell_kins
+.r front_ell_kins
+readin_ell_planes, inb, dab
+
+For the cor1 data I used inb.rsun = 905.85959
+For the cor2 data I used inb.rsun = 905.96909
+
+Wrote KINS_ANGLES.pro to plot the different slices at angles through the ellipsoid. Made 20081113_heights_planes.pdf. Put the outputs and the CACTus to compare in file kins_all.txt.
+
+08-04-09
+
+Reading papers. 
+Emailed Peter.
+Made the front_section.pro code work for the 20081113 event. 20081113_3D_CME_front.html
+
+09-04-09
+
+Very little work done. Emails with James. Going through some papers.
+
+Easter
+
+14-04-09
+
+Found replied about 3D ellipsoid on comp.lang.idl-pvwave google group
+http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/2283745d26dce660/6c3e834ff6b6b4b3?hl=en&lnk=gst&q=jaydog#6c3e834ff6b6b4b3
+Read the Davis et al. JGR 2009 draft paper about the HI analysis of Earth-directed 20081212 CME. Very good candidate for 3D recon in Cor.
+
+15-04-09
+
+Posted a Thanks on the idl-pvwave.
+Downloading the 20081212 data. Prepping and running edge detections.
+Got 'Papers' application.
+Met Peter - keep writing up the Science paper. Brought Shane in on the 20081212 event which may be able to use my methods of reconstruction in the HI fov to get at some physics of the CME propagation.
+
+16-04-09
+
+Worked on the front detections and ellipse fits to Cor2 in 20081212. Movies made
+http://phy130192.phy.tcd.ie/~jasonbyrne/20081212_cor2b_ells.html
+Shane got the HI data prepped - notably HI1 looks promising. See today's emails with Peter and Jose re: 3D vis work.
+Bouncy Ball Tonight!
+
+17-04-09
+
+Slept in. Group meeting; Paul Conlon.
+
+18-04-09
+
+Doing some weekend work to make up for yesterday ! Making a start on combining the Cor2 data for 20081212 which can be overlaid on HI1 for comparison.
+
+20-04-09
+
+Emails with Jose about 3D Vis.
+Points ells.sav to Shane for comparison with HI1.
+Working on the edge detections in 20081212/Cor1b. Saving the fronts45.sav.
+
+21-04-09
+
+Met Jose and (see emails) going to make .dat file with ellipse info for 3D Vis.
+Working on the 20081212/Cor1a which is tricky. Have about 3 frames in both views now to combine.
+Emailed others.
+
+22-04-09
+
+Doing some 3D reconstructions on the 20081212 now. Made movie 20081212cor2front.mov.
+
+da=sccreadfits(file_search('*A.fts'),ina,/nodata)
+da=sccreadfits(file_search('*B.fts'),inb,/nodata)
+spacecraft_location,ina,inb
+$mkdir my_scc_measure
+cd,'my*
+restore,'../daa_ell_
+
+Edited ell_quadrilateral.pro and runthru.b to check the ellipse tilts in the quadrilaterals.
+
+23-04-09
+
+Seeing some works in the Stereo edition of SolPhys with efforts to model 3D CME.
+Boursier et al, DeKoning et al, Liewer et al, ...
+
+Working on the 20081212/cor1 reconstruction now.
+Best front_section.pro code is in the id_codes folder.
+
+Wrote ELL_KINEMATICS_LIMITED.pro and FRONT_ELL_LIMITED.pro to limit the size of the ellipse fit and prevent it running off the image. Current limit puts it at having axes no larger than the angular width of the input edges.
+Made 20081212_cor1a_ells_limited.html.
+
+24-04-09
+
+Book Sale!
+Working on getting the best fit ellipses for the event. Made 20081212_cor1a_ells_limited.html and cor1b.
+Made movie 20081212_cor_front.mov and emailed images all.png all_side.png and all_top.png. Wrote recon.b and recon_zoom.b in 20081212/combining/ to make these.
+Went through the Cor2b fronts to constrain the earlier frames' ellipse fits and combine the best ones.
+
+27-04-09
+
+Made 20081212_cor2b_ells_comb.html and xy_ells_comb.sav for same.
+Going through the edges in scale5 for cor2a.
+Made another movie of more Cor2 frames now included - problem with front from 11:52 - 12:22.
+
+28-04-09
+
+Redoing the edges in the 20081212/cor2a detections in folder use_these/ which has mix of scale5, 6, and rundiff. Sent ells.png to Peter.
+Worked out the HI1 1929 frame with Shane's analysis and tweaking of my_scc_measure. Emailed. It's offset though so needs fixing.
+
+29-04-09
+
+Made the 20081212_recon_all with the new pngs.
+Shane fixed the correctional offset for the HI1 images so the reconstruction is now correct. If offset of say 200pixels is made then had to change the Behind header's crpix1 by the offset
+e.g. inb.crpix1 += 200
+Made images and emailed.
+
+30-04-09
+
+Emails about curvature etc. Phone call from Peter about the 3D reconstructions others are using, the possibility of reconstructing the core of the CME as well as the front since it is optically thicker, and also the possible ETA and duration time of CME for space weather tying back into Shane's point that the back of the CME can be observed in HI.
+
+01-05-09
+
+Book Club studying two-fluid and single-fluid theories.
+
+05-05-09
+
+Meeting with Peter and Shane - discussion:
+- running difference EUVI-Behind for front low down?
+- get info sent to Jose
+- write up draft to include the images
+- CME curvature such as on http://mathpages.com/home/kmath254/kmath254.htm
+Wrote ELLIPSE_CURVATURE.pro and ELLIPSE_CURVATURE1.pro to use the tilted ellipse and sample its curvature along different parts of ellipse. Emailed image ellipse_curvature.png to Peter, James, Shane.
+
+06-05-09
+
+Wrote MAKE_3D_FILE.pro which outputs 3D_FILE.TXT which I emailed to Jose.
+Edited the Science tex file for images and captions.
+
+07-05-09
+
+Talk by Marilena Mierla on different 3D techniques.
+Going through the HI1 reconstruction. Problems with the image sizes - have to be the same each time.
+Chatted with James to fill him in and emailed the draft of paper with images and captions.
+Editing the curvature codes, had to change the rho to cos(omega) in ellipse_curvature.pro and tested the output on the cor2a images resulting in curves110_210_minmax.png and sav files.
+See movies by Jose, looking great!
+
+08-05-09
+
+Met Peter, need to get a move on the paper! 
+Group meeting.
+Met Jose about reconstructions. Put a flag in the file for which points are the CME front.
+
+11-05-09
+
+Writing up section in paper on previous/current 3D CME work.
+Images - made plot_slices_paper.pro plot_slice_paper.pro and plot_slices_paper2.pro in 2008/12/12/.../1122 folder.
+
+Going through the new HI fits files. Want to check them all though - some are dodgy. Discussed with Shane; need to redo them and might have to put a constraint on some.
+
+secchi_time2files  <-- Higgo uses for beacon data but can take any data.
+
+Emailed new draft of paper.
+
+12-05-09
+
+Worked on paper doing Abstract and Intro. Emailed.
+Tried plotting the HI data from Shane - needs tweaking after this initial run through.
+
+13-05-09
+
+Edited recon_zoom.b and recon_zoom_pauses.b for the HI data.
+Met Peter to go through the paper draft.
+
+14-05-09
+
+Preparing for Journal Club.
+
+15-05-09
+
+Journal Club.
+
+18-05-09
+
+Meeting about STEREO4 LOC. Design brand/logo!
+Finished writing the make_3dfront_file.pro and emailed file to Jose.
+Wrote FDIFF_EUVI.pro and saved the fdiffs.sav and though the eruption is more easily seen than in running difference I think it's impossible to take out a height-time for the frames! Too faint really.
+Rewrote the gather_ells.pro to include the fronts keyword for gathering only the front coords. Used this in the project_ell codes for determining the anglular width.
+
+19-05-09
+
+Email from Shane about contouring HI.
+
+plot_image, bytscl(daa[*,*,15], -0.05, 0.05)
+readcol,'HI1_rd/points/20081213T000901_HI1_STEREO_A.txt',px,py,f='F,F'
+plots, px, py, psym=1, color=0
+@pandc.b
+plots, xf, yf, psym=1, color=255
+tx = [px, xf]
+ty = [py, yf]
+plots, tx, ty, psym=2, color=0
+save, tx, ty, f='points0009a.sav'
+
+20-05-09
+
+Did the reconstructions for HI.
+Few glitches to correct!
+Wrote FLATTEN_PLANE_CHECK.pro to check the slices when the quadrilateral crosses wrongly! Use the same codes as before but run @RUNTHRU_CHECK.b instead and take the fixed slices back into the initial runthru.
+Paper emailed from Dave on numerical derivatives of noisy data by regulariszation - LosAlamos paper.
+
+21-05-09
+
+I want to take out the angular widths
+some measure of the true kinematics, apex or spread, fixed radial line or varying
+compare to the measurments made in each of the spacecraft views alone
+
+Want to see about getting another front or two in Cor2.
+
+OP_ELLS.pro from Shane used to back project the ellipses and over plot them.
+
+Went through the back projection codes to prove that my_scc_measure is right, get_wcs_intersects is right, op_ells is right, using test_coords from test_coordts.pro! Have to check the ellipse inscribing in quadrilateral codes so...
+First check reveals nothing !
+
+22-05-09
+
+Thinking maybe reading in floats with readcol is wrong and should be doubles?! Did test folder in 1452 and this doesn't seem to be the case. Some other problem maybe with the qudrilateral flattening still?!
+Writing out flatten_plane_new.pro to redo the whole procedure to check where it might be going wrong!
+
+25-05-09
+
+Wrote FLATTEN_PLANE_NEW.pro, UNFLATTEN_PLANE_NEW.pro and RUNTHRU_NEW.b to redo all the transformations and be sure they're right.
+Wrote UNFLATTEN_VERTICES_NEW.pro to make sure that I get back the exact same numbers for the vertices of each quadrilateral when I go through the transformations, and I do.
+
+26-05-09
+
+Turns out the error was in op_ells.pro needing to realise that the ellipse points were in HEEQ rather than HEE coords. New movie emailed by Shane of the HI frames properly plotted, looks ace!
+Made folder ells/ with all Cor1/2/HI1.
+
+27-05-09
+
+Wrote the code ang_width.pro in the 20081212/combining folder with the ells_fronts/ and emailed plots to others.
+Tudors casting!
+
+28-05-09
+
+Edited ang_width.pro to include plotting of the kinematics for the apex.
+Added the choose_angle keyword which can be followed by READ_IN_KINS.pro in order to plot the kinematics at that angle.
+
+29-05-09
+
+Studying and meeting Book Club.
+
+02-06-09
+
+Wrote READIN_MULTI_KINS.pro to read in a list of files of the choose_angle.txt and plot them together. Made all_angs.pdf and emailed.
+Wrote CENTRE_FRONT.pro to average the x,y,z coords of the front, saved ave_fronts.sav. Made CENTRE_FRONTS.png with averages of fronts overplotted.
+Edited read_in_kins to read_in_angs.pro for plotting the angular width against time, ang_widths.pdf.
+
+03-06-09
+
+Made the new ang_widths.pdf and emailed. Meeting about the kinematics. Want to take out just a select few of the specific angles and/or use the rest for constraining a fit (Shane's drag work). The angular width plot was corrected and shows dramatic expansion, which when plotted Theta against Height can be fit with a straight line to show expansion according to Length = Theta * radius
+Also plotted the top and bottom flank angles and this shows the deflection as well as the expansion.
+
+04-06-09
+
+Wrote READ_EXPANSION.pro from read_in_angs.pro which just includes a fit to the width against height. Made ang_expansion.pdf and ang_expansion2.pdf with linear and second_order fits to expansion. Second_order has a smaller chi-squared of 262.33589 opposed to 358.56779.
+Wrote READ_KINS_ANGS.pro from read_kins_angs1.pro and read_kins_angs2.pro in order to plot the kinematics and angular info on the same plot for the paper.
+Email from Shane with initial drag simulation plot.
+
+05-06-09
+
+Met with Peter to go over kinematics. Lots of stuff to consider for the CME deflection, expansion, changing normals for pancaking effect, bounded by high speed solar wind stream as modelled by CCMC/WSA/PFSS.
+Edited read_kins_angs.pro to include the Mean CME inclination and to ignore the edge points in the derivative for vel and accel.
+
+http://ccmc.gsfc.nasa.gov/RoR_WWW/STEREO/WSA_realtime/200812/images/20081224_103344_MWO_or_NSO.png
+
+08-06-09
+
+Finished TEMP_PERP.pro to calculate the equation of a line perpindicular through midpoint of a given line.
+Edited gather_ells.pro to include keyword max_fronts for taking only the maximum point of each slice.
+Not sure that I can see any change in the norm angles to indicate the flattenning or pancaking effect...
+
+09-06-09
+
+Editing the tex file. Emailed edit.
+Spoke to Peter about the paper and getting the kinematics at chosen anglespread along the CME. Started writing KINS_MEANSPREAD.pro for this.
+
+10-06-09
+
+Finished kins_meanspread.pro and output file kins_meanspread.txt with the info to be read in to new READ_KINS_MEANSPREAD.pro code and plot the kinematics. Emailed.
+
+11-06-09
+
+Meeting: see how the kinematics vary against height, especially where the deflection changes and how the expansion rate goes.
+
+12-06-09
+
+Edited the fig3temp and put into paper.
+Reading papers for Journal Club.
+
+15-06-09
+
+Trying to think about best way to measure expansion. Toggled out kins_meanspread_deflect_h2.pdf.
+Discussion about the jump in height measurements from Cor2 to HI1 - is it running difference scaling, instrumental, or other. Analysing it by comparing multiscale and rdiff methods on Cor2 and HI1.
+
+16-06-09
+
+Continuing work on rdiff v multi in HI1 - made sav files edg4_1649.sav and edg4_rd_1649.sav which have multiscale edges overplotted on data and rdiff data. Compare to Point&Click and ellipsefit. Email with results.
+
+17-06-09
+
+Want to compare where the edge detection on running difference in HI1 compares to user point and clicking by eye. Made sav files edg_diff_a_1649.sav and images edg_diff_pandc_a_1649.png into movie edg_diff_pandc.mov which I emailed to show the point & click fronts lie excellently close to computer edge.
+
+Measured the expansion in the linear fit regime to be 1.5 degrees per hour - included this as a legend in the plots of read_kins_meanspread_deflect.pro.
+Also stuck in quick calculation of the CME width at the maximum flank angle:
+cme_width = sqrt( (top_r)^2.+(bottom_r)^2.-(2*top_r*bottom_r)*cos(top_a*!dpi/180 - new_bot_a*!dpi/180) )
+
+18-06-09
+
+Made the projection of where the CME reconstruction in COR2 14:52 would lie at time of first HI1 frame 16:49 with a fitted velocity from cme_kins.pro of ~500 km/s. Spoke with James about the jump which then mostly must be instrumental effects. Maybe have to just treat the Cor and HI data sets separately. Emailed images cor2a_shift.png, fit_vel.png.
+
+19-06-09
+
+Group Meeting.
+
+22-06-09
+
+Read some of Billings polarimetry chapter 4B.
+Reading through the SECCHI instrument paper, notably how coronagraphs work.
+
+23-06-09
+
+Going through the SECCHI instrument paper, but mostly looking at the Billings description of K- and F-corona polarization separation.
+Meeting about the Cor2/HI1 jump which must be due mostly to the noise level, as well as bandpass/differencing/field-of-view effects. Time now to write the paper!
+
+24-06-09
+
+Studying up instruments some more. CCDs: http://www.roperscientific.de/CCD%20primer.html
+
+25-06-09
+
+Finished reading instruments papers, covering CORs and HIs.
+
+26-06-09
+
+Rewrote the abstract for science paper.
+Extended lunch instead of book club!
+
+29-06-09
+
+Working on the science paper. Big rewrite buzz today.
+
+30-06-09
+
+Read Wood et al., 2009 paper on 3D CME morphology and emailed.
+Email about the CME arrival time across distance to ACE and what speed it should have.
+Looked at the bootstrapping codes and method in Shane's work, following email or first 10,000 runs results.
+
+01-07-09
+
+Rewriting paper again, taking out the bibtex references into science_references.rtf.
+
+02-07-09
+
+Continuing rewriting. Email with Peter. Emailed Jose.
+
+03-07-09
+
+Little bit more rewriting. Working on the Fig.4 kinematic plot, and redoing the fit to the angular width as a 2nd order since the chi-squared is smaller.
+
+06-07-09
+
+No replies about paper!
+Reply from Jose about the 3D front only simulations.
+Filed all the papers on my desk.
+
+07-07-09
+
+Reading papers! bored.
+
+08-07-09
+
+Met Jose about the 3D vis. Updated the text file and resent it. Also Jose sent current movie.
+
+09-07-09
+
+Emails with Peter, Jose and Andre about the 3D files.
+Backing up PhD work.
+Skype from Peter - discussion about paper, 3D work, kinematics & drag etc.
+
+10-07-09
+
+Checked HEEQ v HEE (emailed):
+res=get_stereo_coord('2008-12-12T14:52:00','a',system='heeq')
+print, res/695508                                           
+153.66930       138.84389      -19.773292
+print, sqrt(res[0]^2.+res[1]^2.+res[2]^2.)/695508
+208.04533
+res=get_stereo_coord('2008-12-12T14:52:00','a',system='hee')
+print, res/695508
+153.88079       140.01200     -0.45172773
+print, sqrt(res[0]^2.+res[1]^2.+res[2]^2.)/695508
+208.04533
+=> Distances from the Sun to spacecraft A/B and Earth are the same in each coordinate system.
+
+Sent big email about current stage of paper and work before I go away:
+
+Paper changes/notes:
+
+1) For a research article the abstract limit is 125words which I'm way over! The paper itself is allowed be 5 pages at ~1000words/page with up to 6 figures/tables so we're well within this limit.
+
+2) re: earlier email HEEQ coordinate system is fine to work in compared to usual HEE. The 3D reconstruction coordinates to Jose/Andre have been in HEEQ. In the future if we want it should be easy to transform these to HEE.
+
+3) I included reference to Mierla et al. 2009 3D CME review paper.
+
+4) I included mention of calculating the arrival time of the CME at ACE at L1 and how it agrees with the in-situ data.
+
+5) The paragraph introducing our CME analysis has been edited to give more information on the prominence eruption as CME onset location, time, etc.
+
+6) I included a discussion on drag, with Shane's help. It's a first write so it's not edited to my satisfaction yet, but it includes room for referencing all the drag work/models and relevant equations and the results of bootstrapping which Shane says should finish running this evening.
+
+7) The kinematics plot has been changed around somewhat. I've removed the Midtop and Midbottom since they were showing the same as Middle anyway. The scatter of Top and Bottom doesn't look great but we'll have to think how to best remake this plot. Currently, except for top plot of Height against Time, it's all plotted against Height. The angular width is better fit with a quadratic instead of linear equation and this gives a predicted maximum expansion of the CME of 64degrees occurring at 112 RSun (can determine a time for this instead. Can we measure expansion in HI-2 at all?!?). If plotted against Time, the fit is pretty much linear since the squared term coefficient is almost 0 anyway. Peter said it might be worth plotting against Time and just stating the maximum expansion in the text from the Width v Height fit. Personally the plots against Time are more aesthetically pleasing but the plots against Height might be more significant to the reader.
+
+
+Things still to be done:
+
+1) I didn't have time to calculate an error bar on the kinematics from just a residual analysis of the fits, if someone gets the chance to do this.
+
+2) I didn't think of a way to end the paper - a final conclusion or insight to sum up.
+
+3) James, can you think about what we'll do with Figure 1? We need to put in a more appropriate image which shows the CME in the data and maybe fits nicer on the page. If need be we can worry about overlaying ellipse fits when I'm back, but it might be better to include another figure for that (since we can have 6) and keep Fig.1 for only showing the data.
+
+4) Peter, we spoke briefly about calculating some of the forces at play in the CME deflection from the HSSW stream or indeed in its expansion. I haven't tried this myself, and thought maybe you would have a good idea of the solar wind properties that might be at play and that would be a nice calculation to include too.
+
+5) Shane, you'll know better what the drag model is doing when the bootstrapping finishes. Just need to include the fit to the kinematics plot and go over the drag discussion in the text since you'll be more knowledgeable on that and can throw in the results.
+
+
+Attached files:
+
+The Science tex folder is attached, the most recent edit being science090710.tex
+
+I've also attached code_plots folder which contains the codes and files for making the kinematic curves.
+To recreate the current Fig.4 (removing deriv edge effects, plotting against height, not including the Midtop and Midbottom, and toggling out a postscript) run:
+
+read_kins_meanspread, 'kins_meanspread.txt',/edges,/height,/nomids,/tog
+
+
+
+K that's everything - and then some!
+
+I probably won't be at my emails while I'm away but I'm excited about how the work & paper is looking.
+
+Back on the 27th,
+Jason.
+
+24-07-09
+
+Came in today for Book Club where James Lunney and Clelia came along to talk about their plasma experiments and whether some form of MHD might apply.
+
+27-07-09
+
+Replying to emails about 3D vis and drag modeling etc.
+Started presentation for Friday's Group Meeting.
+
+28-07-09
+
+Working on the movies and graphs for presentation.
+
+29-07-09
+
+Telecon with Peter. Discussion about the Drag model and how the prediction at ACE isn't accurate. Changed around Shane's code ACE_PLOTTER3.pro and produced ACE data for presentation.
+
+30-07-09
+
+Finishing presentation. Wrote IPLOT_SLICES.pro in the 20081212/combining folder with output 20081212_fronts.isv for showing at meeting. 
+
+31-07-09
+
+SGM
+
+04-08-09
+
+Tudors.
+
+05-08-09
+
+Sent James the paper_fts folder containing the fts and front coords of the CME for paper figure.
+Edited the made_3dfront_file.pro and resent the new text file to Jose.
+Going through the Science form for latex submissions. Mostly doing the references.
+Sent cover letter draft to Peter.
+Set up my grian account, password is current pin.
+
+06-08-09
+
+Wrote READIN_ECLIPTIC_KINS.pro (not finished) to take only angle 0 through the CME kinematics for plotting it's speed in the ecliptic. I guess this comes to around 460km/s same as before which is too high again!
+Working on the figures for the paper. Doing figure 2 again myself using plot_slices_paper3,/zoom,60,15
+and working with James on figure 1 to splice together the festival images with adobe and ellipse overplot.
+Calling the cor1b image at 0735 with da=da/get_calfac(in) and bytscl(alog(da),1,6)
+Prepped the euvi 304 data according to email from James. Plotting image
+plot_image,alog(bytscl(da[*,*,9],0,2000))
+Made the euvi304b_0536.tiff and cor1b_ell_0735.tiff.
+See IDL code dump in IDLcommands09.txt.
+
+07-08-09
+
+Journal Club.
+Email from Peter about his and Alex's paper.
+
+10-08-09
+
+Working on paper.
+Replied to emails about ASR and to Jose.
+Submitted test to ENLIL with Shane.
+
+Movies at   http://grian.phy.tcd.ie/~maloney/ENIL
+
+Working on PLOT_SLICES_PAPER4.pro with 4 frames in 1 to show the extra image of many fronts together. This is all in the ~/PhD/Data_Stereo/20081212/combining/cor2/1122/my_scc_measure/slices_all/ folder.
+
+11-08-09
+
+Made loads of changes to ASR paper and emailed.
+Finished the image fig1.pdf for the Science paper. Working on fig2 from plot_slices_paper4.pro. Emailed sample figs.
+Wrote PLOT_SLICES_PAPER5.pro to achieve many fronts.
+
+12-08-09
+
+Edited the paper to remove all the descriptions of other people's models.
+Working on images etc. Emailed draft of paper.
+
+13-08-09
+
+Meeting with Jose about the 3D viz.
+Going through Peter's points about the paper - mostly changes to figures.
+
+14-08-09
+
+Re-sent paper with changes and email reply.
+Had to redo fig2 since printing chops some labels, so must save it as .eps then ps2pdf for latex file to print ok.
+SGM.
+
+17-08-09
+
+Working on the inversion code to do out kinematics - emails with Peter etc.
+See IDLcommands.txt code dump.
+
+18-08-09
+
+Reading papers, on CME kins.
+
+19-08-09
+
+Email from Jose about the ecliptic; we have the normal wrong so need to adjust for the earth's poisiont at this time in HEEQ and then do the transform to HEE.
+Code dump in IDL commands.
+Telecon with Peter, James and Shane about changes to Paper and continuing work.
+
+20-08-09
+
+Spent all day working on the ecliptic normal. Wrote ECLIPTIC_NORMAL.pro and TRANSFORM_HEEQ_HEE.pro in the 3D_vis/ folder and sent final efforts to Jose. Using get_stereo_coord and convert_stereo_coord to try to solve this.
+FINALLY emailed Bill Thompson and the result is:
+IDL> coord=[0,0,1] & convert_stereo_coord,date,coord,'HAE','HEEQ' & print,coord
+
+21-08-09
+
+Book Club.
+
+24-08-09
+
+Working through the points to change in the paper. Trying to obtain STEREO location image - don't like Orbit Tool, and SWB isn't very complete.
+Emailed Jose re: latest vis. 
+Emailed re: Davis paper which is published and has important points about our CME. Editing the paper discussion on drag mostly.
+
+25-08-09
+
+Finished writing up end paragraphs of paper to get down ideas about drag and conclusions. 
+Shane emailed the ENLIL height-time data which when shifted to match the reconstruction data provides an ETA of 08:09UT 16-Dec-08 exactly as seen in-situ at ACE.
+Working on including an illustration of where the Stereo spacecraft are in Fig1.
+
+26-08-09
+
+Discussing the ENLIL output and comparison to the ACE data.
+Made a new kinematic figure for the paper with KINS_FIGURE1.pro in folder ells_fronts/paper_figures/ and emailed.
+40 foot!
+
+27-08-09
+
+Wrote KINS_FIGURE2.pro to plot the angular width and deflection for paper.
+Wrote KINS_FIGURE3.pro to plot all the kinematics and widths etc in the one plot.
+Browse for Chia's present.
+
+28-08-09
+
+Wondering how to proceed with the error bars! Working through the wavelet codes and bit to see if Alex has some defined filter size which might be a starting point. 
+Shopping for Chia's present.
+Group Meeting.
+
+01-09-09
+
+Searching and picking journal club paper.
+
+02-09-09
+
+Working through journal club paper. Thinking about what way errors could be propagated from the ellipse fitting into 3D recon.
+Met with Peter. Quick chat on paper status. Need to put on errorbars, go with +/-3pixels, and plot the zero lines in accel and declination plots.
+
+03-09-09
+
+Working on the errorbars and the paper, bringing it all together and emailed off a first final draft to everyone. Final errorbars were +/-4pixels from idea of +/-2pixels on each plane of sky.
+
+04-09-09
+
+Journal Club --> Myself and James.
+
+07 to 09-09-09
+
+Off sick, mild flu.
+Just worked on the paper text, and some image stuff. Emails back and forth with different versions!
+
+10-09-09
+
+Back in work. Shattered!!!
+Demoulin paper (see emails) about ICME and solar wind interaction/propagation. Curvature measurements of the front useful?!
+Wrote PROJECT_ONE_ELL.pro just to take only one ellipse as in project_one_ell.pro.
+Wrote ELLIPSE_MPFIT_INDEPENDENT.pro to fit ellips to any points independent of image or header information.
+
+Curvature:
+In the folder 20081212/combining/ells_fronts/curvature/
+Call in the ells_frontsHHMM.sav and read into project_ell.pro which has been changed for Sun-Earth line.
+Then use the (x,z) coords (might be xesrn, zesn) to fit ellipse using ellipse_mpfit_independent.pro.
+Emailed sun-earth_ells.tiff
+
+E.g.
+pwd -> PhD/Data_Stereo/20081212/combining/ells_fronts/curvature
+restore,'../ells_fronts0615.sav',/ver
+ind=where(xfs ne 0 and yfs ne 0 and zfs ne 0)
+x=xfs[ind]
+y=yfs[ind]
+z=zfs[ind]
+project_one_ell, x, y, z, xp, yp, zp
+ellipse_mpfit_independent, xp, zp, xf, zf, xe, ze, p
+save, xp, zp, xf, zf, xe, ze, p, f='sun-earth_slice0615.sav'
+
+Maloti's Dinner!
+
+11-09-09
+
+Wrote ELLIPSE_CURVATURE_FRONT.pro in order to take out the curvature of the ellipse front along only the front portion from reconstruction (20081212).
+Putting everything into a batch file RUN_THRU_CURVATURE.b
+
+14-09-09
+
+Thinking I should be measuring the curvature just at the midpoint of each front?!
+Edited the codes to do this. This saves the additional info and then plot, curvatures[1,*] and emailed results. Trend is clear though numbers are hard to interpret.
+Met with Jose for hour to go through the possibilities for the 3D movies. Looks great!
+Worked on the figures at home.
+
+15-09-09
+
+Chat with Peter, about new figures changes needed and what to do with paper.
+Redid the kins_figure3.pdf using kins_figure3.pro edited.
+Trying to clip the COR1 image for Fig1 and will want to do similar (James?!) for COR2/HI1. See IDLcommands from today for clipping/bytscl/sigrange/alog etc attempts. Made diff_0735.png and then tried NRGF using nrgf_steps_one_image.pro to produce filt_0715.png and filtb_0705.png, filtb2_0705.png. Saved filt_0705_bytscl.sav and filt_0715.sav in PhD/Data_Stereo/20081212/b/cor1/median_rm/nrgf/  folder.
+
+Met Jose about 3D movies. Need to check why the first frame is still problematic - could it be mislabelling of 'f' front portions!?!
+
+See emails to myself today about edits.
+
+16-09-09
+
+Saved kins_figure3_log.pdf which is a log plot of the h(t) data in the fig3 in the paper_figures/ folder.
+
+Working on the b/cor1/ 0705 frame. Read in fits. Restore the fronts, and take out the relevant one. Call front_ell_kinematics and save front_points.sav. use
+x=xy_ells[*,k,0]/in[k].cdelt1+in[k].naxis1/2.-in[k].ycen/in[k].cdelt1
+y=xy_ells[*,k,1]/in[k].cdelt2+in[k].naxis2/2.-in[k].ycen/in[k].cdelt2
+to transform between arcsecs and pixels.
+Use mk_secchi_map and overplot arcsec with the limb for photoshopping in EUVI.
+
+Edited the figures and finished edit of paper and emailed.
+
+17-09-09
+
+Working on movie of back projected fronts / ells/recon onto data.
+Wrote MAKE_BACK_PROJ_MOVIE_FRAMES.b and BACK_PROJ_MOVIE_FRAMES.pro to output pngs. Have to first use either 
+front_ell_kinematics, fronts[*,*,i],1,in[i],bytscl(alog(da[*,*,i]), -25, -15),2,ei,re,xe,ye,pe,mhf,mhe,aa,0,/noflank
+or else
+front_ell_limited depending on which front (only cor1 mostly has this issue).
+Then save the fronts and ells as
+$mv front_points.sav front_arcsec_0625.sav
+save, xe, ye, f='ell_arcsec_0625.sav'
+
+Made folders select_front_points/ in which I put the points using keyword /noflank and then using the full points from edge detection in the movie make.
+
+Have to define the map bounds in the code to prevent jitter in the window!!!
+
+18-09-09
+
+Book Club
+
+21-09-09
+
+Edited the back_proj_movie_frames.pro to make movie of overplot recon on data.
+Using illustrator to crop frames at Cor1a (200,400), b(1141, 420) with crop window (690,420) height 800, width 860, and Cor2a(200,400), b(1141,400) with crop window (692,410) height 840 width 900, and HI1a(200,400), b(1161,400), crop window (697, 410) and the legend is at (590,78).
+
+22-09-09
+
+Met with Peter about submitting today. More edits to do - and have to redo frames for the movie (compression problem, must have correct aspect ratio).
+ACE data plot emailed from Shane showing the point clicked on CME arrival time of 08:36 UT.
+
+Redoing movie frames:
+COR1 b(1141,420) h(1000) w(1000)
+COR1 a(200,400) h(1000) w(1000)
+COR2 b(1141,410)
+COR2 a(200,410)
+HI1 b(1141,410)
+HI1 a(200,410)  and with black line vertical at (690,y) stroke 20pt
+Legend (690,84) h(806.684) w(88.868)  font:helvetica regular 24 pt
+Crop Window: w(880) h(848) xy(690,420)
+
+23-09-09
+
+Started the Science submission process. Edited movies with Jose again.
+
+24-09-09
+
+Submitted!
+Posting movies by DHL. 
+Arthur's Day!!!
+
+25-09-09
+
+Journal Club.
+
+28-09-09
+
+Studying drag papers.
+
+29-09-09
+
+Working through Cargill and Tappin drag.
+
+30-09-09
+
+Drag papers...
+
+01-09-09
+
+Reply from Science. Working on reply email...
+
+02-10-09
+
+Sent reply to Dr. Cruz at Science.
+SGM
+
+05-10-09
+
+Reading papers.
+
+Note: in my Science paper I state using (Fig.3) a standard error of 4 pixels. This comes from the following:
+Wiegelmann et al., 2009 give equations for the calculation of error surrounding a 3D reconstruction of a coronal loop as example to be defined by a trapezoid of sides  w / (2 cos(a/2) )  and  w / (2 sin(a/2) )  where w is the error in the images, and a is essentially the spacecraft separation angle (technically could be more complicated than this as it's the angle between projection surface normals but for our methods I believe spacecraft separation makes sense).
+So, because I use a median filter of width 3 pixels on the Cor data I take +/-3 as the error w, and angle a=86.7 so error-trapezoid sides measure 2.06x2.18 giving total error as their sum =~4 pixels.
+
+06-10-09
+
+More drag papers!
+
+12-10-09
+
+Nature papers needs:
+Broad Interest
+Novelty
+Unquestionable Insight
+Impact in Field
+
+What are Journal Editors looking for? 
+–Novel findings 
+–Clarity of data and conclusions 
+–Of interest to the international community 
+–Good standard of English 
+–Brevity 
+–Compliance with ethical standards and approval by Institutional Review Board if appropriate 
+–Disclosure of any possible conflicts of interests by all authors 
+–References complete and up-to-date 
+
+Science Rejection. Following week working on Nature submission.
+
+20-10-09
+
+Nature rejection. Working on response. Otherwise submit to Nature Physics.
+
+21-10-09
+
+Putting together the ApJL format in case...
+
+---
+Bit of a Log gap here. Just studying for Book Clubs, reading papers, and HaLlOwEeN BuzZ ;o)
+---
+
+04-11-09
+
+Reading papers for SJC.
+
+---
+Gap again. Going back and forth over the Nature editors replies. Working on presentation for SGM.
+---
+
+13-11-09
+
+Non-radial motion of CME mentioned in Sheeley et al. ApJ 1997 measuring flow speeds.
+Also mentioned by another paper I can't think of now  - very recent, maybe in sol phys.
+Also seen in prominence eruption movie: http://www.nasa.gov/mov/391873main_Filament_Aheadzm_4.mov
+
+SGM, my presentations.
+
+Larisza-  Deflection as a result of Magnetic Orientation:
+Poedts et al Space Weather pg 39 2007 springer.
+
+16-11-09
+
+Email to Peter, James and Shane about reservations on the Cor2 analysis from streamer deflection point of view.
+Teaching and covering Sophie's labs.
+
+17-11-09
+
+Playing around with the edge detections.
+
+20-11-09
+
+Book Club
+
+24-11-09
+
+Strike.
+Graphic Design part-time interview.
+
+25-11-09
+
+Wrote fdiff_masks.pro in PhD/Data_Stereo/20081212/a/cor2/bkg_sub_unwarp_median_rm/edg_images/fdiff
+Wrote make_masks.b to batch manually the masks.
+Made the rdiff folder with running difference masks and thinking I'll combine both masks to overlay on edges and then either pull out edges and/or point&click on them to do the best I can?!
+Made combined.sav to combined the edges5 and 6 and the fmasks and rmasks together for doign a point & click along the determined fronts.
+for k=0,15 do combined[*,*,k]=(fmasks[*,*,k]+rmasks[*,*,k])+edges5[*,*,k+1]/255.+edges6[*,*,k+1]/255.
+
+
+26-11-09
+
+Made combined6.sav with the scale6 being the most apparent.
+
+for k=0,15 do combined6[*,*,k]=(fmasks[*,*,k]+rmasks[*,*,k])+edges5[*,*,k+1]/255.+2*edges6[*,*,k+1]/255.
+
+Doing point&click using pandc.b (with 40clicks say)
+
+restore, 'combined6_0822-1552.sav'
+restore,'~/phd/data_stereo/20081212/a/cor2/bk*/edg_images/orig/use_these/fronts_0752-1452.sav',/ver
+temp=combined6[50:950,700:1600,13]
+ind=where(fronts[50:950,700:1600,14] ne 0)
+temp[ind]=6
+plot_image, temp
+@pandc.b
+plots, xf, yf, psym=1
+save, xf, yf, f='frontpandc_1452.sav'
+
+Made the scale4/ edges for the event to pull in the low Cor2 frames.
+
+frontspandc = fltarr(2048,2048,13)
+restore, 'frontpandc_0822.sav'
+help, xf
+for k=0,19 do frontspandc[xf[k]+50, yf[k]+700,0]=1
+
+Made frontspandc_0822-1452.sav
+
+Looking at the movies made from the ellipse fits, I'm currently jumping in too soon from 1100 onwards, needs redoing.
+Threw all that into folder redone1_inner_edges/.
+
+27-11-09
+
+SJC
+
+30-11-09
+
+Made folder redone2_outer_edges/ and frontspandc_0822-1452.sav but need to recheck the fronts with the epipolar plane guide from Behind.
+
+01-12-09
+
+Redid the frontspandc_0822-1452.sav with the epipolar plane guide from Behind on the southern flank. Redid the ellipse fits, making 20081212_cor2a_ells.html in the redone2_outer_edges/ folder.
+Made the 20081212_cor2a_ells_combined.html from using the ell_kinematics_limited.pro on the first frame where the fit runs off. Did this with contraint that semi-major cannot be larger than the width.
+
+
+
+
+fls=file_Search('*fts')
+daa=sccreadfits(fls[0],ina,/nodata)
+dab=sccreadfits(fls[1],inb,/nodata)
+.r spacecraft_location
+spacecraft_location, ina, inb
+restore,'daa*
+restore,'dab*
+$mkdir my_scc_measure
+cd,'my*'
+$mkdir slice1 slice2 slice3 slice4 slice5 slice6 slice7 slice8 slice9 slice10 slice11 slice12 slice13 slice14 slice15 slice16 slice17 slice18 slice19 slice20 slice21 slice22 slice23 slice24 slice25 slice26 slice27 slice28 slice29 slice30 slice31 slice32 slice33 slice34 slice35 slice36 slice37 slice38 slice39 slice40 slice41 slice42 slice43 slice44 slice45 slice46 slice47 slice48 slice49 slice50 slice51 slice52 slice53 slice54 slice55 slice56 slice57 slice58 slice59 slice60 slice61 slice62 slice63 slice64 slice65 slice66 slice67 slice68 slice69 slice70 slice71 slice72 slice73 slice74 slice75 slice76 slice77 slice78 slice79 slice80 slice81 slice82 slice83 slice84 slice85 slice86 slice87 slice88 slice89 slice90 slice91 slice92 slice93 slice94 slice95 slice96 slice97 slice98 slice99 slice100 slices_all bogus_slices
+.r my_scc_measure
+my_scc_measure, daa_ell_?, dab_ell_?, ina, inb
+.r my_scc_measure_readin
+my_scc_measure_readin, daa_ell_?, dab_ell_?, ina, inb
+.r get_wcs_intersects
+get_wcs_intersects, ina, inb
+@runthru.b
+cd,'slices_all
+plot_slices, /zoom, /no_ell, /no_proj, /room_all, /nolabels
+x2png, '?.png'
+
+
+02-12-09
+
+Finished the reconstruction of combining2/cor2/ and think the early couple of frames need redoing since the running difference effects are coming through with the bad fits...
+Redid the 0822 and 0852 and they're much better now.
+Want to look again at the ellipse fit to 0852 in cor2b because it runs off a bit...
+Take the kinematics as the furthest height on the front.
+
+03-12-09
+
+Working in the redone/ folder under the b/cor2/ files now.
+Read in the edge images and made the fixed and running difference .sav file so plotting them together and point & clicking the edges:
+plot_image,(edges6[1050:1950,700:1600,j+1]+edges5[1050:1950,700:1600,j+1])/255.+fdiff_masks[1050:1950,700:1600,j-1]+rdiff_masks[1050:1950,700:1600,j-1]
+
+Only needed to redo the behind ellipse front fits up to 1152 and use the existing fronts from 1222 on.
+
+04-12-09
+
+Made the ells_fronts/ folder and the front_arcsec_HHMM.sav and ells_frontHHMM.sav files for Cor2 redone. Ran it through back_proj_movie_frames.pro edited from previous combining.
+
+Thinking I want to redo the Cor1 reconstruction with the point and click method over edges and differencing.
+
+05-12-09
+
+Working on the Cor2 frames finalising them.
+
+06-12-09
+
+Working now on redoing the Cor1 frames in the same way.
+fdiff for cor1a based subtracting the 0405 image from 0605 and so on.
+Making fmask_0605.sav from the fixdifferencing at 1*sdev contour.
+Making r4mask_0655.sav from the 4th image running difference at 1*sdev contour. (eg. da[*,*,5]-da[*,*,1]).
+Saved r4diff_0645-0715.sav and fdiff_0605-0735.sav.
+Made frontspandc_0605-0715+0735.sav in a/cor1/median_rm/edg_images/redone
+as well as the individual xf,yf frontpandc_0605.sav files.
+
+***
+Just looking at the movie (byrneS1.mov) and I realise that the top part of the early reconstructions needs to include the front all the way back to the second tangent of the quadrilaterals because it's closed on both sides at this high declination!!!
+***
+
+07-12-09
+
+Made all the ell_arcsec_HHMM.sav and front_arcsec_HHMM.sav for cor1a and b and took out all the daa_ell_HHMM.sav and dab_ell_HHMM.sav for reconstruction again under combining2/.
+
+08-12-09
+
+Finished doing the Cor1 reconstructions.
+Made the ells_comb/ folder with the ells_combHHMM.sav files for the reconstruction. Ran this through back_proj_movie_frames.pro to produce the new images in combining2.
+
+Took ang_width.pro and renamed it ang_width_3d.pro in idl_codes/.
+
+Last time used gather_ells.pro to make max_front.sav and put into kins_meanspread.pro to output kins_meanspread.txt for kins_figure3.pro.
+This time, because I've added in full ellipse-in-quadrilateral slices at certain flanks the max_front won't work, so need to do it for the front and add in the new flanks manually I think...
+
+09-12-09
+
+Edited ang_width_3d.pro to get proper angular width from full span of CME now, not just top and bottom front points.
+Ran ang_width_3d in the ells_comb/ folder.
+Moved the 2flankpts.savs to the 2flankpts/ folder.
+Ran the batch ADD_FLANKS.b in the max_ells_fronts/ folder.
+Saved out all the max+2flankptsHHMM.sav
+Want to feed these into the kins_meanspread.
+
+10-12-09
+
+Meeting with Peter:
+
+Look at the flank points cause for outliers?
+
+Expansion; occulter points? If removed what effect will it have on the fit? Paper on power-law fit: 
+A.P. Rouillard, N.R. Sheeley, R.J. Forsyth, Davies, J.A., C. Davis, M. Lockwood
+"Estimating the trajectory of Coronal Mass Ejections in 3-D using the Heliospheric Imager"
+Astron. and Astrophys, submitted
+
+Expansion as a function of height - also plot out the arc length.
+
+Drag modelling, see Reiner's papers as a different approach than Vrsnak's parameterisation.
+
+Edited back_proj_movie_frames.pro in the combining2/ for plotting the actual max_front points too.
+Redid the max_ells_fronts for the HI fov (since they were somehow wrong)!
+As seen in hi_xy_2049.png and compared with hi_xz_2049-2529.png the flanks can jump around depending on where the angular width is taken so their kinematics are redundant. Want to take h(t) for +/- some percentage from the midpoint of front.
+
+11-12-09
+
+Edited kins_meanspread.pro to calculate the angular widths the same way as in ang_width_3d.pro which provides new plots in kins_figure3, 'kins_meanspread.txt', /edges, /tog
+
+14-12-09
+
+Teaching and graphic design course.
+
+15-12-09
+
+Working on the jitter in the HI frames - think I need to include bottom slice through 2129 frame.
+
+So, restored the ells_comb2129.sav and the ells2129.sav and put the k=0 @sub.b replacing the bottom slice. Then called ang_width_3d to write out the 2flankpts2129.sav and put into the folder 2flankpts/ and can call this into the max_ells_fronts/ folder now using add_flanks.b
+
+16-12-09
+
+Added keyword arc_length to kins_figure3.pro to plot the arc_length of CME simply as L=theta*r. Saved arc_length.png.
+Emailed version of kins_widtherrs_time.pdf. Thinking on how to quantify the angular width errors.
+
+17-12-09
+
+Ryan's talk.
+Xmas party!
+
+18-12-09 write off
+
+21-12-09
+
+Sent kinematics to Shane for bootstrapping.
+
+22-12-09
+
+Thinking on the angular width errors...
+Worth checking somehow if the relation in Michalek et al. holds up for this event: testing the V_exp by measuring the widest lateral dimension L of the CME.
+V_rad = f(w) V_exp     f(w) = 1/2(1+cot(w)) where w is cone angle.

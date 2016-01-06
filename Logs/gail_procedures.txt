@@ -1,0 +1,45 @@
+automated_gail.pro
+
+****************
+run_automated.pro
+	sort_fls.pro
+	canny_atrous2d.pro
+		canny_atrous.pro
+	reflect_inner_outer.pro
+	rm_inner_corimp.pro
+	rm_outer_corimp.pro
+	wtmm.pro
+		find_local_maxima.pro
+	cme_detection_mask_corimp_dynamic_thr.pro
+	test_contour_thresholds.pro
+run_automated2.pro
+	find_outer_peak_edges.pro
+	ellipse_mpfit_corimp.pro
+	polar.pro
+	non_zero_front.pro
+	ellipsefit.pro
+****************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTES to be done:
+
+Need to set pa_total to save out after every N images. Right now it just saves out one for the input dataset (which is broken right now into every day on gail codes).
+

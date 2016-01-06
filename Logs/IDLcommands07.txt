@@ -1,0 +1,1952 @@
+
+09-01-07
+
+Found the command findfile is deemed obsolete and file_search should be used instead.
+
+
+15-01-07
+
+Generated fixed difference images of data by subtracting the first image from subsequent images.
+The same problem with the contrast occurs for the third fdiff image.
+>fdiff.pro
+>fixeddiff.pro
+
+Also tried seeing what happens with a running difference of my fixed difference images
+>bothdiff.pro
+The same problems arise so must underlying data problem or else the way differencing is working!?!
+
+23-01-07
+
+>plot_image, im
+>tvprofile, im
+
+>colors.pro
+>!p.background=black
+
+>plot_image, im
+>legend, ['f(x)', x], linestyle=[0,2], psym=[4,0], /right
+
+24-01-07
+
+>fls=file_search('data_james/*')
+>mreadfits, fls, in, da
+>xstepper, da
+>help, in, /str
+>print, in.detector
+>print, in.naxis1
+
+25-01-07
+
+Wrote these codes:
+
+readin.bat
+blink.pro
+noinner.bat
+noblink.pro
+diff_noblink.bat
+
+01-02-07
+
+Put code of diff_noblink.bat into noblink.pro 
+Messing with contours, wrote noblink_thresh.bat
+
+05-02-07
+
+mpfitellipse.pro ; calls data fit for ellipse parameters
+
+Maps:
+plot_map, ..., /over
+polar_contour
+recpol / polrec
+fits2map
+
+06-02-07
+
+index2map, index, data, map
+map = make_map()
+plot_map, map
+plot_map, map, /over, levels=84
+
+
+16-02-07
+
+To save a plot as a postscript file:
+
+set_plot, 'ps'
+device, filename='my_filename.ps'
+...
+...plot stuff
+...
+device, /close
+
+
+19-02-07
+
+29      plots, r_mid, 327, psym=5
+30      print, a_new(87)
+31      print, where(r_new eq 3667)
+32      plots, r_mid, 244, psym=5
+33      plots, r_mid, angles
+34      plot, r_new, a_new, yr=[200,350]
+35      plots, r_mid, angles
+36      plot, r_new, a_new
+37      print, a_new(4)
+38      print, angles(4)
+39      print, where(r_new eq 3419)
+40      print, where(r_new eq 3443)
+41      print, where(r_new eq 2967)
+42      print, where(r_new eq 2890)
+43      print, where(r_new eq r_mid)
+44      print, r_new
+45      print, r_mid
+
+26-02-07
+
+Meeting with Peter on how to use the MPFITFUN program to fit for example an ellipse to my data. Must have a given coord (say x) and equation to find y. Also want it to be for inclied ellipse.
+
+1       oplot,xx,yfit
+2       oplot,x,yfit
+3       param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+yfit = yfit)
+4       oplot,x,yfit
+5       plot,x,y,psym = 4
+6       plot,x,y,psym = 3
+7       print,param
+8       param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+9       parinfo(*).value = [5.,5.]
+10      parinfo(1).limits = [0.01, 10.]
+11      parinfo(0).limits = [0.01, 10.]
+12      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+13      parinfo(*).value = [1.1,2.]
+14      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+15      parinfo(*).value = [1.1,1.1]
+16      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+17      parinfo(*).value = [1.,1.]
+18      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+19      parinfo(*).value = [4.,5.]
+20      print,a,b
+21      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+22      parinfo(*).value = [2.,2.]
+23      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+24      parinfo = replicate({value:0.D, fixed:0,limiter:[0,0],limits:[0.D,0]},2)
+25      fit = 'sqrt( P(0) - ( P(0) * x^2 ) / P(1) )'
+26      print,parinfo(*).value
+27      print,parinfo(*).info
+28      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+29      fit = 'sqrt( P(0) - ( p(0) * x^2 ) / P(1) )'
+30      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+31      fit = 'sqrt(P(0) - p(0)x^2/P(1))'
+32      param = mpfitexpr(fit,xx,yy,yy*0.1,parinfo = parinfo, perror = perror,
+fyfit = yfit)
+33      help,parinfo,/str
+34      parinfo = replicate({value:0.D, fixed:0,limited:[0,0],limits:[0.D,0]},3)
+35      help,parinfo,/str
+36      help,parinfo
+37      parinfo = replicate({value:0.D, fixed:0,limiter:[0,0],limits:[0.D,0]},3)
+38      fit = 'sqrt(P(0) - p(0)x^2/P(1)'
+39      fit = 'x^2 / P(0) + y^2 / P(1)- 1'
+40      plot,xx,yy,xr = [-2,2],yr = [-2,2],/xs,/ys
+41      plot,xx,yy
+42      xx = x(index)
+43      yy = y(index)
+44      index = where(y gt 0.)
+45      iprint,y
+46      help,x,y
+47      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+48      y = sqrt(b - b*x^2/a)
+49      a = 2
+50      print,b
+51      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+52      y = sqrt(b - b*x^2/a)
+53      a = 0.5
+54      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+55      y = sqrt(b - b*x^2/a)
+56      a = 5.
+57      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+58      y = sqrt(b - b*x^2/a)
+59      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+60      y = sqrt(a - a*x^2/b)
+61      a = 10.
+62      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+63      x = (findgen(100) - 50) /30.
+64      y = sqrt(a - a*x^2/b)
+65      x = (findgen(100) - 50) /30.
+66      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+67      print,y
+68      y = sqrt(a - a*x^2/b)
+69      x = (findgen(100)) /30.
+70      plot,x,y,xr = [-2,2],yr = [-2,2],/xs,/ys
+71      plot,x,y,xr = [-2,2],yr = [-2,2
+72      plot,x,y
+73      y = sqrt(a - a*x^2/b)
+74      plot,x,y
+75      y = sqrt(abs(a - a*x^2/b))
+76      plot,x,y
+77      print,y
+78      y = sqrt(a - a*x^2/b)
+79      print,x
+80      x = (findgen(100) - 50) /30.
+81      print,x
+82      x = findgen(100) - 50
+83      y = sqrt(a - a*x^2/b)
+84      plot,x,y
+
+28-02-07
+
+1       plot, nx, ny
+2       recpol, x, y, nx, ny, /degrees
+3       plot, x, y
+4       plot, nx, ny
+5       plot, nx, ny, psym=2
+6       polrec, x, y, nx, ny,/degrees
+7       plot, x, y
+8       plot, nx, ny, psym=2
+9       plot, nx, ny
+10      polrec, x, y, nx, ny
+11      plot, nx, ny
+12      recpol, x, y, nx, ny
+13      plot, x, y
+14      y = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*x)))
+15      b=0.5
+16      a=2.
+17      print, a=2.
+18      print, a, b
+19      y = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*x)))
+20      x=theta
+21      print, theta
+22      theta=179-theta
+23      theta=findgen(180)
+24      plot, rho, theta
+25      print, rho, theta
+26      oplot, rho, theta
+27      param=mpfitexpr(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+28      x=theta
+29      print, x
+30      param=mpfitexpr(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+31      fit='sqrt((p(0)^2*p(1)^2)/((p(0)^2+p(1)^2)/2-((p(0)^2-p(1)^2)/2)*cos(2*x)))'
+32      help, theta
+33      param=mpfitexpr(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+34      param=mpfitfun(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+35      parinfo(*).value=[2.,2.]
+36      parinfo=replicate({value:0.D,fixed:0,limited:[0,0],limits:[0.D,0]},2)
+37      fit='sqrt((p(0)^2*p(1)^2)/((p(0)^2+p(1)^2)/2-((p(0)^2-p(1)^2)/2)*cos(2*theta)))'
+38      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+39      theta=theta+1.
+40      print, theta*0.1
+41      print, theta
+42      param=mpfitfun(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+43      help, param
+44      param=mpfitexpr(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+45      parinfo(*).value=[2.,2.]
+46      param=mpfitexpr(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+47      param=mpftexpr(fit,rho,theta,theta*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+48      parinfo=replicate({value:0.D,fixed:0,limited:[0,0],limits:[0.D,0]},2)
+49      print, fit
+50      fit='sqrt((p(0)^2*p(1)^2)/((p(0)^2+p(1)^2)/2-((p(0)^2-p(1)^2)/2)*cos(2*theta)))'
+51      print, theta
+52      print, rho
+53      oplot, nx, ny
+54      plot, nx, ny,psym=2
+55      plot, nx, ny
+56      plot, nnx, nny
+57      oplot, nx, ny
+58      plot, nx, ny,psym=2
+59      plot, nx, ny                                            
+60      polrec, rho, theta, nx, ny
+61      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+62      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta,/degrees)))
+63      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta),/degrees))
+64      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cosd(2*theta)))
+65      plot, rho, theta
+66      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+67      print, theta
+68      theta=theta-1
+69      print, theta
+70      theta = 180-theta
+71      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+72      theta = findgen(180)
+73      print, theta
+74      plot, rho, theta
+75      theta=0.5*acos((rho^2*(a^2+b^2)-2*a^2*b^2)/rho^2*(a^2-b^2))
+76      theta=0.5*acosd((rho^2*(a^2+b^2)-2*a^2*b^2)/rho^2*(a^2-b^2))
+77      print, rho
+78      rho=findgen(100)/20.+5.
+79      rho=findgen(100)/20.
+80      rho=findgen(100)
+81      print, rho
+82      rho = (findgen(100)/50.)*5
+83      print, rho
+84      rho = findgen(100)/50.
+85      print, rho
+86      rho = findgen(100)/15.+5.
+87      print, rho
+88      rho = findgen(100)/10.+5.
+89      print, rho
+90      rho = findgen(100)/10.
+91      b = 5.
+92      a = 10.
+93      plot, theta, rho
+94      plot, rho, theta
+95      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+96      print, theta
+97      theta=abs(theta-3)
+98      print, theta
+99      theta=abs(theta+1)
+100     print, theta
+101     theta=abs(theta-1)
+102     print, theta
+103     theta=theta-180
+104     print, theta
+105     print, t
+106     recpol, x, y, r, t, /degrees
+107     oplot, x, y
+108     plot, nx, ny
+109     plot, nnx, nny
+110     recpol, rho, theta, nnx, nny, /degrees
+111     plot, nx, ny
+112     polrec, rho, theta, nx,ny, /degrees
+113     plot, theta, rho
+114     print, rho
+115     plot, rho, theta
+116     rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+117     print, theta
+118     theta = findgen(180)                                       
+119     print, theta
+120     theta = findgen(90)
+121     print, rho, theta
+122     plot, rho, theta
+123     recpol, xx, yy, rho, theta, /degrees
+124     plot, xx, yy
+125     yy=y(index)
+126     xx=x(index)
+127     index = where(y gt 0.)
+128     print, x, y
+
+Again:
+
+1       oplot, nnx, nny, psym=2
+2       polrec, yfit, xx, nnx, nny
+3       plot, nx, ny
+4       polrec, y, x, nx, ny
+5       oplot, xx, yfit
+6       plot, x, y, psym=2
+7       param=mpfitexpr(fit,xx,yy,yy*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+8       parinfo(*).value=[20.,2.]
+9       print, a, b
+10      param=mpfitexpr(fit,xx,yy,yy*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+11      parinfo(*).value=[2.,2.]
+12      param=mpfitexpr(fit,xx,yy,yy*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+13      yy=y(index)
+14      xx=x(index)
+15      index=where(x gt 0.)
+16      print, y
+17      print, x
+18      param=mpfitexpr(fit,x,y,y*0.1,parinfo=parinfo,perror=perror,yfit=yfit)
+19      parinfo=replicate({value:0.D,fixed:0,limited:[0,0],limits:[0.D,0]},2)
+20      fit='sqrt((p(0)^2*p(1)^2)/((p(0)^2+p(1)^2)/2-((p(0)^2-p(1)^2)/2)*cos(2*x)))'
+21      y=rho
+22      x=theta
+23      plot,nx,ny
+24      polrec,rho,theta,nx,ny
+25      plot,rho,theta
+26      plot, theta,rho
+27      print,rho
+28      print, theta
+29      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+30      print, theta
+31      print,rho
+32      plot, rho, theta
+33      oplot,nx,ny,psym=2
+34      plot, nnx,nny
+35      polrec, y,x,nnx,nny
+36      plot, y, x
+37      plot, rho, x
+38      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*x)))
+39      print, x
+40      plot, nx,ny,psym=2
+41      oplot, nx,ny,psym=2
+42      plot, nx,ny
+43      polrec, rho, theta, nx, ny
+44      plot, rho , theta
+45      rho = sqrt((a^2*b^2)/((a^2+b^2)/2 - ((a^2-b^2)/2)*cos(2*theta)))
+46      theta=findgen(180)
+
+
+29-03-07
+
+plot,findgen(10),title = '!4abc'
+
+http://www.ucolick.org/~mqk/IDLfonts/vector.html
+
+
+02-04-07
+
+Playing around with WTMM (atrous + canny) very good for 18apr00 event in scale 5.
+
+1       plot_image,tb(*,*,20)^.3
+2       plot_image,tb(*,*,23)^.3
+3       plot_image,tb(*,*,30)^.3
+4       plot_image,tb(*,*,20)^.3
+5       plot_image,tb(*,*,7)^.3
+6       plot_image,tb(*,*,5)^.3
+7       plot_image,tb(*,*,1)^.3
+8       plot_image,tb(*,*,2)^.3
+9       plot_image,tb(*,*,5)^.3
+10      plot_image,tb(*,*,10)^.3
+11      plot_image,tb(*,*,10)
+12      help,tb
+13      restore, 'tb.sav'
+14      restore, 'pb.sav'
+15      plot_image,bytscl((bytscl(da(*,*,12))),10,40)^.6
+16      plot_image,bytscl((bytscl(da(*,*,11))),10,40)^.6
+17      plot_image,bytscl((bytscl(da(*,*,10))),10,40)^.6
+18      plot_image,bytscl((bytscl(da(*,*,10))),10,40)^.5
+19      plot_image,bytscl((bytscl(da(*,*,10))),10,40)^.2
+20      plot_image,bytscl(sigrange(bytscl(da(*,*,10))),10,40)^.2
+21      plot_image,bytscl(sigrange(bytscl(da(*,*,10))),10,40)^.3
+22      plot_image,bytscl(sigrange(bytscl(da(*,*,10))),10,40)
+23      plot_image,bytscl(sigrange(bytscl(da(*,*,11))),10,40)
+24      plot_image,bytscl(sigrange(bytscl(da(*,*,12))),10,40)
+25      plot_image,bytscl(sigrange(bytscl(da(*,*,12))),10,20)
+26      plot_image,bytscl(sigrange(bytscl(da(*,*,12))),10,40)
+27      plot_image,bytscl(sigrange(bytscl(da(*,*,12))),10,10)
+28      plot_image,bytscl(sigrange(bytscl(da(*,*,12))),10,100)
+29      plot_image,bytscl(sigrange(bytscl(da(*,*,12))),10,1000)
+30      plot_image,sigrange(bytscl(da(*,*,12)))
+31      plot_image,sigrange(bytscl(da(*,*,13)))
+32      plot_image,sigrange(bytscl(da(*,*,12)))
+33      plot_image,bytscl(da(*,*,12))
+34      plot_image,bytscl(da(*,*,12),10,1000)
+35      pmm,da(0:100,0:100,12)
+36      plot_image,bytscl(da(*,*,12))
+37      plot_image,bytscl(da(*,*,12))^.2
+38      plot_image,bytscl(da(*,*,12)-da(*,*,11),0,400)^.2
+39      plot_image,bytscl(da(*,*,13)-da(*,*,12),0,400)^.2
+40      plot_image,bytscl(da(*,*,12)-da(*,*,11),0,400)^.2
+41      plot_image,bytscl(da(*,*,11)-da(*,*,10),0,400)^.2
+42      plot_image,bytscl(da(*,*,10)-da(*,*,9),0,400)^.2
+43      plot_image,bytscl(da(*,*,9)-da(*,*,8),0,400)^.2
+44      plot_image,bytscl(da(*,*,9)-da(*,*,8),0,400)^.3
+45      plot_image,bytscl(da(*,*,9)-da(*,*,8),0,400)
+46      plot_image,bytscl(da(*,*,9)-da(*,*,8),0,100)
+47      plot_image,da(*,*,9)-da(*,*,8)
+48      plot_image,da(*,*,8)-da(*,*,7)
+49      plot_image,da(*,*,8)
+50      plot_image,da(650:900,400:800,8)^2
+51      plot_image,da(650:900,400:800,8)^.3
+52      plot_image,da(650:900,400:800,8)^.6
+53      plot_image,da(650:900,400:800,8)
+54      plot_image,da(550:900,400:800,8)
+55      plot_image,da(550:900,400:800,8)^.6
+56      plot_image,da(550:900,400:800,8)
+57      plot_image,da(550:900,400:600,8)                      
+58      plot_image,da(550:900,400:600,8)^.4
+59      plot_image,da(550:900,400:600,8)
+60      plot_image,da(650:900,400:600,9)
+61      plot_image,da(650:900,400:600,8)
+62      plot_image,da(*,*,8)
+63      pmm,da(*,*,8)
+64      plot_image,bytscl(da(*,*,8),0,100000)
+65      plot_image,bytscl(da(*,*,8),0,10000)
+66      plot_image,bytscl(da(*,*,8),0,1000)
+67      plot_image,bytscl(da(*,*,8))
+68      pmm,da(*,*,8)
+69      plot_image,da(*,*,8)
+70      plot_image,da(*,*,7)
+71      plot_image,da(*,*,9)
+72      help,da
+73      plot_image,da(*,*,9)^.3
+74      plot_image,da(*,*,8)^.3
+75      plot_image,da(*,*,7)^.3
+76      plot_image,da(*,*,6)^.3
+77      plot_image,da(*,*,5)^.3
+78      plot_image,da(*,*,4)^.3
+79      plot_image,da(*,*,3)^.3
+80      plot_image,da(*,*,0)^.3
+81      plot_image,da(*,*,0)
+82      print,in.detector
+83      help,in,/str
+84      print,in
+85      help,in
+86      mreadfits, fls, in, da
+87      fls=file_search('~/PhD/Data_from_James/21apr2002-lvl1/*.fts')
+88      contour, canny(decomp8(*,*,5)),level = 0.001,/over
+89      plot_image,alog(da(*,*,8))
+90      contour, canny(decomp8(*,*,5)),level = 0.001,/over
+91      contour, canny(decomp8(*,*,5)),level = 0.01,/over
+92      contour, canny(decomp8(*,*,5)),level = 0.1,/over
+93      contour, canny(decomp8(*,*,5)),level = 0.3,/over
+94      contour, canny(decomp8(*,*,5)),level = 0,/over
+95      contour, canny(decomp8(*,*,5)),level = 1,/over
+96      plot_image,alog(da(*,*,8))
+97      contour, canny(decomp8(*,*,5)),level = 0.61,/over
+98      plot_image,alog(da(*,*,8))
+99      contour, smooth(canny(decomp8(*,*,5)),5),level = 0.61,/over
+100     contour, canny(decomp8(*,*,5)),level = 0.61,/over
+101     contour, canny(decomp8(*,*,5)),level = 1,/over
+102     plot_image,alog(da(*,*,8))
+103     plot_image,alog10(da(*,*,8))
+104     plot_image,alog(da(*,*,8))
+105     plot_image,bytscl(da(*,*,8),500,6000)^.2
+106     plot_image,bytscl(da(*,*,8),500,6000)^.6
+107     plot_image,bytscl(da(*,*,8),500,6000)^.2
+108     plot_image,bytscl(da(*,*,8),500,6000)^.3
+109     plot_image,bytscl(da(*,*,8),500,6000)
+110     plot_image,bytscl(da(*,*,8),500,4000)
+111     plot_image,bytscl(da(*,*,8),500,6000)
+112     plot_image,bytscl(da(*,*,8),500,1000)
+113     plot_image,bytscl(da(*,*,8),500,10000)
+114     pmm,da(*,*,8)                                         
+115     help,wtmm
+116     retall
+117     r = region_grow(wtmm)
+118     help,wtmm
+119     wtmm = canny(decomp8(*,*,5))
+120     contour, canny(decomp8(*,*,5)),level = 1,/over
+121     pmm,canny(decomp8(*,*,5))
+122     oplot_image, canny(decomp8(*,*,5)),/over
+123     plot_image,da(*,*,8)
+124     oplot_image, canny(decomp8(*,*,5))
+125     decomp8 = decomps(*,*,*,8)
+126     help,decomps
+127     oplot_image, canny(decomp8(*,*,5))
+128     restore,'decomps.sav',/ver
+
+
+12-04-07
+
+Codes from Peter making a fit to my height profile of CME ellipse fittings.
+
+40      tot
+41      .r tot
+42      help,yf
+43      save,yf,f = 'fit.sav'
+44      yf =-f(0)*1.5*t^2. + f(1)* t + f(2)
+45      oplot, t,-f(0)*1.5*t^2. + f(1)* t + f(2)
+46      plot,t,h,psym = 2
+47      oplot, t,-f(0)*1.5*t^2. + f(1)* t + f(2)
+48      oplot, t,-f(0)*1.8*t^2. + f(1)* t + f(2)
+49      oplot, t,-f(0)*1.1*t^2. + f(1)* t + f(2)
+50      oplot, t,-f(0)*t^2. + f(1)* t + f(2)
+51      oplot, t,f(0)*t^2. + f(1)* t + f(2)
+52      plot,t,h,psym = 2
+53      print,f
+54      plot,t,h
+55      f = mpfitexpr(yf,t,h,[0.00001,0.00001,2.])
+56      yf = 'p(0) * x^2+ p(1)*x+p(2)'
+57      print,f
+58      f = mpfitexpr(yf,t,h,[0.00001,0.00001,2.])
+59      yf = 'p(0) * x^2+ p(1)*x+p(0)'
+60      print,xf                                                      
+61      print,f
+62      doc_library,'mpfitexpr
+63      print,fit
+64      f = mpfitexpr(yf,t,h,[0.00001,0.00001,2.],fit=fit)
+65      print,fit
+66      plot,fit
+67      f = mpfitexpr(yf,t,h,[0.00001,0.00001,2.],fit)
+68      yf = 'p(0) * x^2+ p(1)*x+p(0)'
+69      yf = mpfitexpr(yf,t,h,[0.00001,0.00001,2.],fit)
+70      plot,yf
+71      plot,t,yf
+72      plot,t,hf
+73      yf = mpfitexpr(yf,t,h,[0.00001,0.00001,2.])
+74      yf = 'p(0) * x^2+ p(1)*x+p(0)'
+75      print,yf
+76      plot,t,h
+77      yf = mpfitexpr(yf,t,h,[0.00001,0.00001,2.])
+78      retall
+79      yf = mpfitexpr(yf,t,h,sqrt(h),[0.00001,0.00001,2.])
+80      print,t
+81      plot,t,h
+82      t = t - t(0)
+83      doc_library,'mpfitexpr
+84      yf = mpfitexpr(yf,t,h)
+85      yf = 'p(0) * x^2+ p(1)*x+p(0)'
+86      plot,t,h,psym = 2
+87      plot,t,0.00000001*t^2. + 0.000001*t +2.
+88      plot,t,h,psym = 2
+89      plot,t,0.0000001*t^2. + 0.000001*t +2.
+90      plot,t,h,psym = 2
+91      plot,t,0.0000001*t^2. + 0.000001*t 
+92      plot,t,0.0000001*t^2. + 0.00001*t 
+93      plot,t,0.0000001*t^2. + 0.002*t 
+94      plot,t,0.0001*t^2. + 0.002*t 
+95      plot,t,0.01*t^2. + 0.002*t 
+96      plot,t,0.01*t^2. + 0.3*t 
+97      plot,t,h,psym = 2
+98      plot,t,1.*t^2. + 0.3*t
+99      plot,t,h,psym = 2
+100     plot,t,10.*t^2. + 0.3*t
+101     plot,t,10.*t^.2 + 0.3*t
+102     plot,t,0.2*t^.2 + 0.3*t
+103     oplot,t,0.2*t^.2 + 0.3*t
+104     oplot,t,2.*t^.2 + 0.3*t
+105     oplot,t,2.*t^.2
+106     oplot,t,2*t^.2
+107     plot,t,h,psym = 2
+108     plot,t,h
+109     plot,xf,r,psym = 2
+110     plot,xf,r,psym =2
+111     plot,x,h,psym =2
+112     plot,x,deriv(r)
+113     plot,x,deriv(h)
+114     plot,x,h,psym =2
+115     oplot,xf,r,psym = 2
+116     oplot,xf,r
+117     plot,x,h,psym =2
+118     r = dspline(x,h,xf)
+119     xf  = findgen(1000)/100.
+120     pmm,xf                                                        
+121     pmm,x
+122     r = dspline(x,h,xf)
+123     oplot,xf,r
+124     r = dspline(x,h,xf,0.02)
+125     plot,x,h,psym =2
+126     r = dspline(x,h,xf,0.02)
+127     x = findgen(11)
+128     help,h
+
+
+25-04-07
+
+Peter attempting to pull down data from James' outgoing web folder using sockets.
+
+Recall buffer length: 128
+1       iprint,list
+2       print,list
+3       sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/', list,/
+no_head
+4       sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/', list
+5       which,'http__define
+6       doc_library,'sock_list
+7       print,list
+8       retall
+9       print,stregex(list[15],'*',/ext)
+10      print,stregex(list[15],'*fts',/ext)
+11      iprint,stregex(list[15],'*fts',/ext)
+12      print,strmatch(list[15],'*')
+13      print,strmatch(list[15],'I*M')
+14      print,strmatch(list[15],'<*M')
+15      print,strmatch(list[15],'2*fts')
+16      iprint,stregex(list[15],'^2*.fts')
+17      iprint,stregex(list[15],'^2007*.fts')
+18      iprint,stregex(list[15],'^2007*.fts',/ext)
+19      print,list(15)
+20      iprint,stregex(list[15],'^2007*fts',/ext)
+21      iprint,stregex(list[15],'>2007*fts',/ext)
+22      iprint,stregex(list[15],'>2007*fts')
+23      iprint,stregex(list[15],'>2007')
+24      tftd,'sock
+25      add_instr,/cds
+26      add_path,/cds
+27      tftd,'sock
+28      sock_copy, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/', outdir
+ = test
+29      sock_copy, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/*', outdi
+r = test
+30      doc_library,'sock_copy
+31      sock_copy, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/*', test
+32      sock_copy, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/', test
+33      iprint,stregex(list[15],'>2007')
+34      iprint,stregex(list[15],'2007')
+35      iprint,stregex(list[15],'>')
+36      iprint,stregex(list[15],'IMG')
+37      print,list[15]
+38      iprint,stregex(list[15],'TXT')
+39      sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/', list
+40      iprint,list
+41      sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/', list
+42      doc_library,'sock_copy                               
+43      doc_library,'sock_list
+44      iprint,list
+45      print,strmid(list(11:86),49,25)
+46      iprint,strmid(list(11:86),49,25)
+47      iprint,strmid(list(10:86),49,25)
+48      iprint,strmid(list(10:86),49,27)
+49      iprint,strmid(list(10:86),49,30)
+50      print,strmid(list(10:86),49,25)
+51      print,strmid(list(10:86),49,30)
+52      print,strmid(list(10:86),49,20)
+53      print,strmid(list(10:86),48,20)
+54      print,strmid(list(10:86),45,20)
+55      print,strmid(list(10:86),50,20)
+56      print,strmid(list(10:86),40,20)
+57      print,strmid(list(10:86),37,40)
+58      print,strmid(list(10:86),35,40)
+59      print,strmid(list(10:86),30,40)
+60      print,strmid(list(10:86),50,40)
+61      print,strmid(list(10:86),60,40)
+62      print,strmid(list(10:86),100,40)
+63      print,list(10:86)
+64      iprint,list
+65      print, list
+66      sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/', list
+67      print, list
+68      help, list
+69      sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/*.fts', list
+70      print, arm
+71      help, arm
+72      sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/*.fts', arm
+73      sock_list, 'http://hesperia.gsfc.nasa.gov/~jma/outgoing/cor1/pb/*.fts'
+
+
+07-05-07
+
+Messin on bank holiday monday
+
+1       contour, tim, lev=18, /over
+2       plot_image, tim
+3       contour, tim, lev=18, /over
+4       tim=rm_inner(t, in[7], dr_px, thr=2.8)
+5       contour, tim, lev=18, /over
+6       contour, tim, lev=17, /over
+7       plot_image, tim
+8       tim=rm_inner(t, in[7], dr_px, thr=2.5)
+9       plot_image, tim
+10      tim=rm_inner(t, in[7], dr_px, thr=2.4)
+11      plot_image, tim
+12      tim=rm_inner(t, in[7], dr_px, thr=2.3)
+13      contour, t, lev=17, /over
+14      plot_image, t^0.5
+15      contour, t, lev=20, /over
+16      plot_image, t^0.5
+17      contour, t, lev=19, /over
+18      plot_image, t^0.5
+19      contour, t, lev=18, /over
+20      plot_image, t^0.5
+21      contour, t, lev=17, /over
+22      plot_image, t^0.5
+23      contour, t, lev=17, /over
+24      contour, t, lev=15, /over
+25      plot_image, t^0.5
+26      contour, t, lev=15, /over
+27      contour, t, lev=13, /over
+28      contour, t, lev=14, /over
+29      plot_image, t^0.5
+30      plot_image, t^0.4
+31      plot_image, t^0.3
+32      plot_image, t^0.2
+33      plot_image, t^0.6
+34      plot_image, t
+35      contour, t, lev=15, /over
+36      contour, t, lev=10, /over
+37      pmm, t
+38      t= (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]+modgrad[*,*,5])
+39      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]+modgrad[*,*,5])^0.6
+40      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]+modgrad[*,*,5])^0.3
+41      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]+modgrad[*,*,5])^0.4
+42      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]+modgrad[*,*,5])
+43      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]-modgrad[*,*,0]+modgrad[*,*,5])
+44      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]-modgrad[*,*,0]+modgrad[*,*,5])^0.4
+45      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]-modgrad[*,*,0])^0.4
+46      plot_image, (modgrad[*,*,4]+modgrad[*,*,3]-modgrad[*,*,1]-modgrad[*,*,0])
+47      plot_image, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0])
+48      plot_image, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0])^2.
+49      plot_image, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0])
+50      plot_image, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0])^0.1
+51      plot_image, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0])^0.4
+52      plot_image, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0])^0.5
+53      plot_image, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0])^0.8
+54      contour, (modgrad[*,*,4]-modgrad[*,*,1]-modgrad[*,*,0]), level=3, /over
+55      contour, (modgrad[*,*,4]-modgrad[*,*,1]), level=3, /over
+56      plot_image, (modgrad[*,*,4]-modgrad[*,*,1])^0.8
+57      contour, (modgrad[*,*,4]-modgrad[*,*,1]), level=4, /over      
+58      plot_image, (modgrad[*,*,4]-modgrad[*,*,1])^0.8
+59      contour, (modgrad[*,*,4]-modgrad[*,*,1]), level=4, /over
+60      contour, (modgrad[*,*,4]-modgrad[*,*,1]), level=8, /over
+61      plot_image, (modgrad[*,*,4]-modgrad[*,*,1])^0.8
+62      plot_image, (modgrad[*,*,4]-modgrad[*,*,1])^0.7
+63      plot_image, (modgrad[*,*,4]-modgrad[*,*,1])^0.6
+64      plot_image, (modgrad[*,*,4]-modgrad[*,*,1])^0.5
+65      plot_image, (modgrad[*,*,4]-modgrad[*,*,1])^0.4
+66      plot_image, modgrad[*,*,4]-modgrad[*,*,1]
+67      contour, modgrad[*,*,4]-modgrad[*,*,1], level=7, /over
+68      contour, modgrad[*,*,4], level=7, /over
+69      plot_image, modgrad[*,*,4]^0.4
+70      contour, modgrad[*,*,4], level=7, /over
+71      contour, modgrad[*,*,4], level=8, /over
+72      plot_image, modgrad[*,*,4]^0.4
+73      contour, modgrad[*,*,5], level=8, /over
+74      plot_image, modgrad[*,*,5]^0.4
+75      contour, modgrad[*,*,6], level=8, /over
+76      plot_image, modgrad[*,*,6]^0.4
+77      contour, modgrad[*,*,6], level=6, /over
+78      plot_image, modgrad[*,*,6]^0.4
+79      contour, modgrad[*,*,6], level=8, /over
+80      contour, modgrad[*,*,6], level=10, /over
+81      plot_image, modgrad[*,*,6]^0.4
+82      plot_image, modgrad[*,*,6]
+83      help, modgrad
+84      help, tst
+85      contour, im, level=4000, /over
+86      contour, im, level=3500, /over
+87      contour, im, level=2500, /over
+88      contour, im, level=3000, /over
+89      contour, im, level=5000, /over
+90      contour, im, level=1000, /over
+91      plot_image, im^2.
+92      plot_image, im^0.4
+93      plot_image, im
+94      shade_surf, im
+95      shade_surf
+96      pmm, im
+97      plot_image, im
+98      help, im
+99      contour, tst^0.8, level=4.8, /over
+100     plot_image, tst^0.8
+101     contour, tst^0.8, level=5., /over
+102     contour, tst^0.8, level=5.5, /over
+103     contour, tst^0.8, level=5.1, /over
+104     contour, tst^0.8, level=5.15, /over
+105     contour, tst^0.8, level=5.25, /over
+106     plot_image, tst^0.8
+107     contour, tst^0.8, level=5.25, /over
+108     contour, tst^0.8, level=5.55, /over
+109     contour, tst^0.8, level=5.45, /over
+110     contour, tst^0.8, level=5.35, /over
+111     plot_image, tst^0.8
+112     contour, tst^0.8, level=5.6, /over
+113     plot_image, tst^0.8
+114     contour, tst^0.8, level=6, /over                              
+115     plot_image, tst^0.8
+116     contour, tst^0.8, level=5, /over
+117     plot_image, tst^0.8
+118     contour, tst^0.8, level=8, /over
+119     plot_image, tst^0.8
+120     contour, tst^0.8, level=12, /over
+121     plot_image, tst^0.8
+122     contour, tst^0.8, level=2, /over
+123     contour, tst^0.8, level=20, /over
+124     contour, tst^0.8, level=50, /over
+125     contour, tst^0.8, level=10, /over
+126     plot_image, tst^0.8
+127     plot_image, tst^0.7
+128     plot_image, tst^0.6
+
+
+13-07-07:
+
+Code from James' run through of obtaining Cor2 data.
+
+1       plot_image,sigrange(pbb)
+2       plot_image,sigrange(totbb)
+3       help,totbb,pbb
+4       retall
+5       plot_image,sigrange(totb)
+6       retall
+7       plot_image,sigrange(totb)
+8       plot_image,sigrange(totbg)
+9       plot_image,sigrange(totb)
+10      plot_image,sigrange(pb)
+11      plot_image,sigrange(pb))
+12      help,pb
+13      retall
+14      plot_image,sigrange(pbba)
+15      plot_image,sigrange(pbba))
+16      pbb=cor_polariz(da,in,/pb)
+17      totbb=cor_polariz(da,in)
+18      pb=cor_polariz(da,in)
+19      pb=cor_polariz(da,in))
+20      retall
+21      pb=cor_polariz(da)
+22      pb=cor_polar(da)
+23      plot_image,sigrange(da[*,*,2])
+24      plot_image,sigrange(da[*,*,1])                                   
+25      plot_image,sigrange(da[*,*,0])
+26      plot_image,sigrange(da[*,*,1])
+27      pmm,sigrange(da[*,*,1])
+28      help,da
+29      pmm,da[*,*,1]^0.5
+30      pmm,da[*,*,1]^2
+31      pmm,da[*,*,1]^0.1
+32      pmm,da[*,*,0]^0.1
+33      pmm,da[*,*,0]
+34      secchi_prep,a.sc_a[0:2],in,da,/calfac_off,/calimg_off
+35      pmm,da[*,*,0]
+36      plot_image,da[*,*,2]
+37      plot_image,da[*,*,1]
+38      plot_image,da[*,*,0]
+39      help,da
+40      secchi_prep,a.sc_a[0:2],in,da,/calfac_off
+41      retall
+42      secchi_prep,a.sc_a[0:20],in,da,/calfac_off
+43      retall
+44      secchi_prep,a.sc_a,in,da,/calfac_off
+45      xstepper,da[*,*,findgen(20)*3]
+46      help,da
+47      da=sccreadfits(a.sc_a,outsize=512)
+48      da=sccreadfits(a.sc_a,outsize=512))                               
+49      da=sccreadfits(a.sc_a.outsize=512))
+50      retall
+51      da=sccreadfits(a.sc_a)
+52      print,a.sc_a
+53      help,a.sc_a
+54      help,a.sc_a_
+55      help,a,/str
+56      help,a
+57      a=scclister()
+58      wr_movie,'Cor1_A_09feb07',mov2
+59      mov2=movie[*,*,0:8]
+60      plot_map,maps[2]
+61      wr_movie,'Cor1_A_09feb07',movie
+62      movie[*,*,9]=n5
+63      movie[*,*,8]=im5
+64      movie[*,*,7]=n4
+65      movie[*,*,6]=im4
+66      movie[*,*,5]=n3
+67      movie[*,*,4]=im3
+68      movie[*,*,3]=n2
+69      movie[*,*,2]=im2
+70      movie[*,*,1]=n1
+71      movie[*,*,0]=im1
+72      im5=tvrd()                                                        
+73      plot_map,maps[6]
+74      movie=fltarr(747,716,10)
+75      print,size(mov,/dim)
+76      im4=tvrd()
+77      plot_map,maps[5]
+78      im3=tvrd()
+79      plot_map,maps[4]
+80      im2=tvrd()
+81      plot_map,maps[3]
+82      im1=tvrd()
+83      plot_map,maps[2]
+84      index2map,in,da,maps
+85      help,in
+86      plot_image,da[*,*,2]
+87      plot_image,da[*,*,3]
+88      help
+89      mov[*,*,4]=n5
+90      mov[*,*,3]=n4
+91      mov[*,*,2]=n3
+92      mov[*,*,1]=n2
+93      mov[*,*,0]=n1
+94      mov=fltarr(747,716,5)
+95      help
+96      wr_movie,'Cor1_A_09feb07',mov                                     
+97      pwd
+98      wr_movie,'Cor1_09feb07',mov
+99      wr_movie,mov,'Cor1_09feb07'
+100     mov[*,*,3]=n4
+101     mov[*,*,2]=n3
+102     mov[*,*,1]=n2
+103     mov[*,*,0]=n1
+104     mov=fltarr(747,716,4)
+105     print, size(n5,/dim)
+106     n5 = tvrd()
+107     help
+108     front_full_ell,all,in[6],da[*,*,6]
+109     .r front_full_ell
+110     front_full_ell,all,in[6],da[*,*,6]
+111     .r front_full_ell
+112     front_full_ell,all,in[6],da[*,*,6]
+113     .r front_full_ell
+114     front_full_ell,all,in[6],da[*,*,6]
+115     .r front_full_ell
+116     front_full_ell,all,in[6],da[*,*,6]
+117     .r front_full_ell
+118     full_fronts,front1,front2,all
+119     front2=read_png('Normalised/imb2_7_b.png')
+120     front1=read_png('Normalised/imb2_7_a.png')                        
+121     front_full_ell,all,in[6],da[*,*,6]
+122     full_fronts,front1,front2,all
+123     front2=read_png('Normalised/imb2_7_b.png')
+124     front1=read_png('Normalised/imb2_7_a.png')
+125     retall
+126     my_recipe, in[6],da[*,*,6],front1,front2,splitfront=splitfront
+127     front2=read_png('Normalised/imb2_7_b.png')
+128     front1=read_png('Normalised/imb2_7_a.png')
+
+
+Code dump for when I looked for Cor2 data:
+(19-07-07)
+
+1       plot_hist, im
+2       plot_image, im^0.01
+3       plot_image, im
+4       im=pb[*,*,8]
+5       pmm, bytscl(pb[*,*,0])
+6       pmm, pb[*,*,0]
+7       shade_surf, pb[*,*,0]
+8       help, pb
+9       xstepper, pb^0.05, xs=600
+10      help
+11      xstepper, pb^0.05, xs=600
+12      delvarx, newda
+13      help
+14      retall
+15      help
+16      xstepper, pb^0.05, xs=600
+17      delvarx, da
+18      help
+19      retall
+20      xstepper, pb^0.05, xs=600
+21      help
+22      xstepper, pb^0.05, xs=600
+23      plot_image, pb[*,*,8]^0.05
+24      plot_image, pb[*,*,8]^0.1
+25      plot_image, pb[*,*,8]^0.2
+26      plot_image, pb[*,*,8]
+27      xstepper, pb, xs=600
+28      help, pb
+29      for i=0,23 do pb[*,*,i]=cor_polariz(newda[*,*,(3*i):(3*i)+2],newin[(3*i):(3*i)+2], /pb)
+30      pb=fltarr(2048,2048,24)
+31      xstepper, sigrange(totb)^0.1, xs=600
+32      plot_image, totb[*,*,8]^0.1
+33      plot_image, totb[*,*,8]^0.5
+34      plot_image, totb[*,*,8]^0.2
+35      plot_image, totb[*,*,8]
+36      xstepper, sigrange(totb), xs=600
+37      xstepper, sigr(totb), xs=600                                              
+38      xstepper, sig(totb), xs=600
+39      xstepper, totb, xs=600
+40      xstepper, totb
+41      HELP, TOTB
+42      for i=0,23 do totb[*,*,i]=cor_polariz(newda[*,*,(3*i):(3*i)+2],newin[(3*i):(3*i)+2])
+43      for i=0,23 do totb[
+44      totb=fltarr(2048,2048,24)
+45      print, 72/3
+46      help, newda
+47      plot_image, totb^0.2
+48      plot_image, totb
+49      totb=cor_polariz(newda[*,*,0:2],newin[0:2])
+50      help, newda
+51      help, totb
+52      totb=cor_polariz(newda,newin)
+53      retall
+54      totb=cor_polariz(newda,newin)
+55      totb0=cor_polariz(newda[*,*,0],newin[0])
+56      secchi_prep,a.sc_a,newin, newda, /calfac_off
+57      xstepper, da
+58      help, da
+59      da=sccreadfits(a.sc_a, in, outsize=512)
+60      print, a.sc_a
+61      print, a
+62      help, a
+63      a=scclister()
+64      scclister
+65      help, fls
+66      fls=file_search('~/Phd/data_stereo/cor1/ahead_06may07/totb/cme/normalised/*fts')
+67      stereo_norm, fls
+68      help, fls
+69      fls = file_search('~/phd/data_stereo/cor1/ahead_06may07/totb/CME/*fts')
+70      plot_image,sigrange(pbb)
+71      plot_image,sigrange(totbb)
+72      help,totbb,pbb
+73      retall
+74      plot_image,sigrange(totb)                                                 
+75      retall
+76      plot_image,sigrange(totb)
+77      plot_image,sigrange(totbg)
+78      plot_image,sigrange(totb)
+79      plot_image,sigrange(pb)
+80      plot_image,sigrange(pb))
+81      help,pb
+82      retall
+83      plot_image,sigrange(pbba)
+84      plot_image,sigrange(pbba))
+85      pbb=cor_polariz(da,in,/pb)
+86      totbb=cor_polariz(da,in)
+87      pb=cor_polariz(da,in)
+88      pb=cor_polariz(da,in))
+89      retall
+90      pb=cor_polariz(da)
+91      pb=cor_polar(da)
+92      plot_image,sigrange(da[*,*,2])
+93      plot_image,sigrange(da[*,*,1])
+94      plot_image,sigrange(da[*,*,0])
+95      plot_image,sigrange(da[*,*,1])
+96      pmm,sigrange(da[*,*,1])
+97      help,da
+98      pmm,da[*,*,1]^0.5
+99      pmm,da[*,*,1]^2
+100     pmm,da[*,*,1]^0.1
+101     pmm,da[*,*,0]^0.1
+102     pmm,da[*,*,0]
+103     secchi_prep,a.sc_a[0:2],in,da,/calfac_off,/calimg_off
+104     pmm,da[*,*,0]
+105     plot_image,da[*,*,2]
+106     plot_image,da[*,*,1]
+107     plot_image,da[*,*,0]
+108     help,da
+109     secchi_prep,a.sc_a[0:2],in,da,/calfac_off
+110     retall
+111     secchi_prep,a.sc_a[0:20],in,da,/calfac_off                                
+112     retall
+113     secchi_prep,a.sc_a,in,da,/calfac_off
+114     xstepper,da[*,*,findgen(20)*3]
+115     help,da
+116     da=sccreadfits(a.sc_a,outsize=512)
+117     da=sccreadfits(a.sc_a,outsize=512))
+118     da=sccreadfits(a.sc_a.outsize=512))
+119     retall
+120     da=sccreadfits(a.sc_a)
+121     print,a.sc_a
+122     help,a.sc_a
+123     help,a.sc_a_
+124     help,a,/str
+125     help,a
+126     a=scclister()
+127     wr_movie,'Cor1_A_09feb07',mov2
+128     mov2=movie[*,*,0:8]
+
+
+01-08-07
+Recipe for Taking the Lasco front into IDL and taking out the ellipse fit info.
+
+Recall buffer length: 128
+1       CMEmovgraphsc2,pngfls, in, da
+2       .r cmemovgraphsc2
+3       retall
+4       CMEmovgraphsc2,pngfls, in, da
+5       .r cmemovgraphsc2
+6       retall
+7       CMEmovgraphsc2,pngfls, in, da
+8       .r cmemovgraphsc2
+9       retall
+10      CMEmovgraphsc2,pngfls, in, da
+11      .r cmemovgraphsc2
+12      CMEmovgraphsc2,pngfls, in, da
+13      .r cmemovgraphsc2
+14      iprint, pngfls
+15      print, pngfls
+16      $ls
+17      retall
+18      CMEmovgraphsc2,pngfls, in, da
+19      in=in[1:5]
+20      da=da[*,*,1:5]
+21      help, da
+22      retall
+23      help, da
+24      CMEmovgraphsc2,pngfls, in, da                                    
+25      retall
+26      .r cmemovgraphsc2
+27      $ls
+28      CMEmovgraphsc2,pngfls, in, da
+29      retall
+30      .r cmemovgraphsc2
+31      .r lasco_full_fronts_ell
+32      .r lasco_front_ell
+33      CMEmovgraphsc2,pngfls, in, da
+34      .r CMEmovgraphsC2
+35      print, pngfls
+36      pngfls=file_search('*png')
+37      mreadfits, fls, in, da
+38      print, fls
+39      fls=file_Search('*fts')
+40      $ls
+41      $pwd
+42      cd, '..
+43      $ls
+44      cd, 'phd/data_vso/lasco_24jan07/c2/normalised
+45      xstepper, da, xs=600
+46      mreadfits, fls, in, da
+47      fls=file_search('norm*fts')
+
+
+26-09-07
+Dump for methods of morphological operations to get the edges out of my non-maxima image.
+
+1       for i=0,4 do plots, xy[*,info[k[i]].offset:(info[k[i]].offset+info[k[i]].n-1)
+, linestyle=0, /data
+2       plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data
+3       k=[43,86,116,153,160]
+4       window ,1
+5       endfor
+6       read, 'ok?', ans & $
+7       ans='' & $
+8       print, k & $
+9       plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data 
+ $
+10      for k=0,1000 do begin & $
+11      window, 1
+12      endfor
+13      read, 'ok?', ans & $
+14      ans='' & $
+15      print, k & $
+16      plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data 
+ $
+17      for k=0,1000 do begin & $
+18      print, k
+19      ans='' & $
+20      plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data & $
+21      for k=0,1000 do begin & $
+22      endfor
+23      read, 'ok?', ans & $
+24      ans='' & $
+25      plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data & $
+26      for k=0,1000 do begin & $
+27      window, 1
+28      endfor
+29      read, 'ok?', ans & $
+30      ans='' & $
+31      plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data & $
+32      for k=0,1000 do begin & $
+33      endfor
+34      read, 'ok?', ans & $
+35      ans='' & $
+36      plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data & $
+37      for k=0,1000 do begin & $
+38      endfor
+39      read, 'ok?', ans & $
+40      ans='' & $
+41      plots, xy[*,info[k].offset:(info[k].offset+info[k].n-1)], linestyle=0, /data & $
+42      for k=0,100 do begin & $
+43      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], linestyle=0, /data
+44      window, 1
+45      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], linestyle=0, /data
+46      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], linsetyle=0, /data
+47      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], linstyle=0, /data
+48      plot_image, morphed
+49      plot, x, y, psym=3
+50      plot, x, y
+51      y=xy[1,*]
+52      x=xy[0,*]
+53      contour, morphed, /path_data_coords, path_info=info, path_xy=xy, /overplot
+54      contour, morphed, /path_data_coords, path_info=info, path_xy=xy, /over
+55      help, xy
+56      help, info
+57      contour, morphed, /path_data_coords, path_info=info, path_xy=xy
+58      plot_image, morphed
+59      plot_image, water
+60      water=watershed(morphed, connectivity=8)
+61      plot_image, morphed
+62      plot_image, water                                            
+63      help, water
+64      water=watershed(morphed)
+65      ?
+66      plot_image, morphed
+67      retall
+68      plot_image, morphed
+69      profiles, morphed
+70      plot_image, morphed
+71      plot_image, smooth(morphed, 1)
+72      plot_image, smooth(morphed, 2)
+73      plot_image, smooth(morphed, 1.6)
+74      plot_image, smooth(morphed, 1.5)
+75      plot_image, smooth(morphed, 1.4)
+76      plot_image, smooth(morphed, 1.3)
+77      plot_image, smooth(morphed, 1.2)
+78      plot_image, smooth(morphed, 2)
+79      plot_image, smooth(morphed, 1)
+80      plot_image, smooth(morphed, 5)
+81      plot_image, smooth(morphed)
+82      plot_image, morphed
+83      morphed=dilate(morph_close(new_edg,se2),se2)                 
+84      plot_image, dilate(morph_close(new_edg,se2),se2)
+85      plot_image, dilate(dilate(morph_close(new_edg,se2),se2),se2)
+86      plot_image, dilate(morph_close(new_edg,se2),se2)
+87      plot_image, morph_close(new_edg,se2)
+88      plot_image, morph_close(dilate(new_edg,se2),se2)
+89      plot_image, new_edg
+90      new_edg[where(new_edg ne 0)]=1
+91      plot_image, new_edg
+92      new_edg=edg*mag2
+93      plot_image, mag2^0.5
+94      mag2[where(mag2 lt .02)]=0
+95      mag2=mag
+96      plot_image, mag2^0.5
+97      mag2[where(mag2 lt .05)]=0
+98      plot_image, mag2^0.5
+99      mag2[where(mag2 lt .01)]=0
+100     plot_image, mag2^0.5
+101     mag2=mag
+102     mag2[where(mag2 lt .1)]=0
+103     plot_image, mag2^0.5
+104     pmm, mag                                                     
+105     plot_image, mag2^0.5
+106     mag2[where(mag2 lt .1)]=0
+107     mag2=mag
+108     plot_image, mag2^0.5
+109     mag2[where(mag2 lt .5)]=0
+110     plot_image, mag2^0.5
+111     plot_image, mag2
+112     mag2=mag
+113     plot_image, mag2
+114     mag2=mag[where(mag lt .9) eq 0]
+115     plot_image, mag^0.5
+116     plot_image, mag^0.2
+117     plot_image, mag
+118     plot_image, edg
+119     plot_image, morph_close(dilate(edg,se2),se2)
+120     se2=[[1,1],[1,1]]
+121     se3=se
+122     plot_image, morph_close(dilate(edg,se),se)
+123     plot_image, morph_close(morph_open(edg,se),se)
+124     plot_image, morph_close(dilate(edg,se),se)
+125     plot_image, morph_close(dilate(edg,se))                      
+126     plot_image, thin(dilate(edg,se))
+127     plot_image, dilate(edg,se)
+128     plot_image, edg
+
+
+04-10-07
+
+1       plot_image, newim[*,*,8]
+2       plot_image, imb^0.2
+3       plot, imb^0.2
+4       plot, imb
+5       pmm, imb
+6       plot_image, imb
+7       help, imb
+8       endfor
+9       endfor & $
+10      imb[w]=1 & $
+11      w =where(b eq v) & $
+12      v = b[i,j] & $
+13      b = label_region(m) & $
+14      m=imb eq v & $
+15      v=imb[i,j] & $
+16      for j=0,1023 do begin & $
+17      for i=0,1023 do begin & $
+18      .r seedfillr
+19      seedfillr, imb
+20      seefillr, imb
+21      plot_image, bytscl(imb,10,255)^0.2
+22      plot_image, bytscl(imb,10,255)
+23      pmm, imb
+24      plot_image, imb
+25      plot, imb
+26      plot_image, imb
+27      plot_image, imb^0.2
+28      plot_image, imb
+29      plot_image, imb^0.2
+30      plot_image, imb                                                      
+31      polyfill, imb, imb
+32      polyfill, imb
+33      polyfill(imb,imb,imb)
+34      polyfill(imb,imb)
+35      polyfill(imb)
+36      plot_image, imb^0.2
+37      plot_image, imb
+38      plot_image, newim[*,*,8]
+39      plot_image, mor^0.2
+40      plot_image, da[*,*,8]
+41      window, 1
+42      plot_image, bin[*,*,8]
+43      plot_image, bin
+44      help
+45      plot_image, mor^0.2
+46      plot_image, mor
+47      mor= morph_close(morph_open(dif,se),se)
+48      plot_image, morph_close(morph_open(dif,se),se)
+49      plot_image, morph_open(dif,se)
+50      plot_image, sigrange(dif)^0.2
+51      plot_image, sigrange(dif)
+52      plot, dif
+53      pmm, dif
+54      dif=imb2_close-imm_close
+55      pmm, dif
+56      plot_image, imb2_close-imm_close
+57      plot_image, imb2_close
+58      plot_image, morph_close(dif,se)
+59      plot_image, dif
+60      shade_surf ,dif,ax=80                                                
+61      shade_surf ,dif
+62      plot_image, dif^2
+63      pmm, imb2_close, imm_close
+64      plot_image, dif^0.2
+65      plot_image, dif
+66      dif=imb2_close-imm_close
+67      plot_image, imm_close
+68      imm_close=morph_close(imm,[[1,1,1],[1,1,1],[1,1,1]])
+69      plot_image, imm
+70      imm[where(imm ne 0)]=1
+71      plot_image, imm
+72      imm=bytscl(imm, 30, 82)
+73      pmm, imm
+74      plot_image, imm
+75      imm=newim[*,*,7]
+76      plot_image, imm
+77      imm=newim[*,*,9]
+78      plot_image, imb2_close^0.2
+79      imb2_close=morph_close(imb,[[1,1,1],[1,1,1],[1,1,1]])
+80      imb2_open=morph_open(imb,[[1,1,1],[1,1,1],[1,1,1]])
+81      plot_image, imb2^0.2
+82      plot_image, imb^0.2
+83      plot_image, imb2^0.2
+84      plot_image, imb^0.2
+85      plot_image, imb2^0.2
+86      plot_image, imb^0.2
+87      plot_image, imb2^0.2
+88      imb2=morph_open(imb,[[1,1,1],[1,1,1],[1,1,1]])
+89      plot_image, imb2^0.2
+90      plot_image, imb^0.2                                                  
+91      plot_image, imb2^0.2
+92      plot_image, imb^0.2
+93      plot_image, imb2^0.2
+94      plot_image, imb^0.2
+95      plot_image, imb2^0.2
+96      plot_image, imb^0.2
+97      plot_image, imb2^0.2
+98      plot_image, imb^0.2
+99      plot_image, imb2^0.2
+100     plot_image, imb^0.2
+101     plot_image, imb
+102     plot_image, imb2
+103     imb2=morph_open(imb,se)
+104     imb2=morph_open(imb)
+105     plot_image, imb
+106     plot_image, imb2
+107     plot_image, imb3^0.2
+108     imb3=dilate(imb3,se)
+109     plot_image, imb3^0.2
+110     imb3=dilate(imb3,se)
+111     plot_image, imb3^0.2
+112     imb3=dilate(imb3,se)
+113     plot_image, imb3^0.2
+114     imb3=dilate(imb3,se)
+115     plot_image, imb3^0.2
+116     imb3=dilate(imb3,se)
+117     plot_image, imb3^0.2
+118     imb3=dilate(imb3,se)
+119     plot_image, imb3^0.2
+120     imb3=dilate(imb3,se)                                                 
+121     plot_image, imb3^0.2
+122     imb3=dilate(imb3,se)
+123     plot_image, imb3^0.2
+124     imb3=dilate(imb3,se)
+125     imb3=erode(imb3,se)
+126     imb3=dilate(imb3,se)
+127     imb3=erode(imb3,se)
+128     plot_image, imb3^0.2
+ 
+AND
+
+1       plot_image, bytscl(mask[*,*,3],0,3)
+2       plot_image, bytscl(mask[*,*,3],2,3)
+3       plot_image, bytscl(mask[*,*,3],1,3)
+4       plot_image, bytscl(mask[*,*,3],1,6)
+5       plot_image, bytscl(mask[*,*,3],2,6)
+6       plot_image, bytscl(mask[*,*,3],3,6)
+7       plot_image, bytscl(mask[*,*,3],4,6)
+8       plot_image, bytscl(mask[*,*,3],5,6)
+9       plot_image, mask[*,*,3]
+10      plot_image, sigrange(filtc2[*,*,3]*blob)
+11      plot_image, (filtc2[*,*,3]*blob)
+12      plot_image, (filtc2[*,*,3]*blob)^0.01
+13      plot_image, (filtc2[*,*,3]*blob)^0.1
+14      plot_image, (filtc2[*,*,3]*blob)^2
+15      plot_image, (filtc2[*,*,3]*blob)^0.5
+16      plot_image, (filtc2[*,*,3]*blob)^0.2
+17      plot_image, filtc2[*,*,3]*blob
+18      help, filtc2, blob
+19      plot_image, filtc2[*,*,3]^0.2
+20      plot_image, filtc2[*,*,3]
+21      help                                                 
+22      plot_image, blob
+23      pmm,blob
+24      blob= morph_close(morph_close(morph_close(temp, bse),bse),bse)
+25      plot_image, morph_close(morph_close(morph_close(temp, bse),bse),bse)
+26      plot_image, morph_close(morph_close(temp, bse),bse)
+27      plot_image, morph_close(temp, se)
+28      plot_image, morph_close(temp, bse)
+29      bse=[[se,se],[se,se],[se,se],[se,se]]
+30      plot_image, morph_close(temp, se)
+31      plot_image, temp
+32      plot_image, morph_close(temp, se)
+33      print, se
+34      help, se
+35      plot_image, temp
+36      pmm, smooth(temp,100)
+37      plot_image, smooth(temp,100)
+38      plot_image, smooth(temp,10)
+39      plot_image, smooth(temp,5)
+40      plot_image, smooth(temp)
+41      temp=binmask[*,*,3]
+42      plot_image, binmask[*,*,3]                                
+43      binmask[where(binmask ne 0)]=1
+44      binmask=mask
+45      plot_image, bytscl(mask[*,*,3],1,6)
+46      plot_image, mask[*,*,3]
+47      plot_image, bytscl(mask[*,*,3],1,6)
+48      plot_image, mask[*,*,3]
+49      plot_image, bytscl(mask[*,*,3],1,6)
+50      plot_image, mask[*,*,3]
+51      plot_image, bytscl(mask[*,*,3],1,6)
+52      plot_image, mask[*,*,3]
+53      plot_image, bytscl(mask[*,*,3],1,6)
+54      plot_image, mask[*,*,3]
+55      plot_image, bytscl(mask[*,*,3],1,6)
+56      plot_image, mask[*,*,3]
+57      plot_image, bytscl(mask[*,*,3],1,6)
+58      plot_image, mask[*,*,3]
+59      plot_image, bytscl(mask[*,*,3],1,6)
+60      plot_image, mask[*,*,3]
+61      plot_image, bytscl(mask[*,*,3],1,6)
+62      plot_image, mask[*,*,3]
+63      plot_image, bytscl(mask[*,*,3],1,6)                       
+64      plot_image, mask[*,*,3]
+65      plot_image, bytscl(mask[*,*,3],1,6)
+66      plot_image, bytscl(mask[*,*,3],3,6)
+67      plot_image, bytscl(mask[*,*,2],3,6)
+68      plot_image, bytscl(mask[*,*,3],3,6)
+69      plot_image, bytscl(mask[*,*,3],2,6)
+70      plot_image, bytscl(mask[*,*,3],1,6)
+71      plot_image, bytscl(mask[*,*,3],2,6)
+72      plot_image, bytscl(mask[*,*,3],3,6)
+73      plot_image, bytscl(mask[*,*,3],4,6)
+74      plot_image, bytscl(mask[*,*,3],2,3)
+75      plot_image, bytscl(mask[*,*,3],2,4)
+76      plot_image, bytscl(mask[*,*,3],2,5)
+77      plot_image, bytscl(mask[*,*,3],2,6)
+78      plot_image, bytscl(mask[*,*,3],3,6)
+79      pmm, mask[*,*,3]
+80      plot_image, mask[*,*,3]
+81      xstepper, mask, xs=700
+82      scale_chain, filtc2, mask
+83      .r scale_chain
+84      scale_chain, filtc2, mask                                 
+85      .r scale_chain
+86      print, 2 mod 1.5
+87      print, 3 mod 3
+88      print, 3 mod 2
+89      print, 2 mod 1
+90      print, 2 mod 2
+91      print, 3 mod 1
+92      print, median(mask, dim=3)
+93      print, min(mask, dim=3)
+94      help, mask
+95      help, maks
+96      xstepper, mask, xs=800
+97      scale_chain, filtc2, mask
+98      .r scale_chain
+99      xstepper, mask, xs=800
+100     scale_chain, filtc2, mask
+101     .r scale_chain
+102     xstepper, mask, xs=800
+103     scale_chain, filtc2, mask
+104     .r scale_chain
+105     xstepper, mask, xs=800                                    
+106     scale_chain, filtc2, mask
+107     .r scale_chain
+108     xstepper, mask, xs=800
+109     scale_chain, filtc2, mask
+110     .r scale_chain
+111     xstepper, mask, xs=800
+112     scale_chain, filtc2, mask
+113     .r scale_chain
+114     xstepper, mask, xs=800
+115     scale_chain, filtc2, mask
+116     .r scale_chain
+117     xstepper, mask, xs=800
+118     scale_chain, filtc2, mask
+119     .r scale_chain
+120     scale_chain, filtc2, mask
+121     .r scale_chain
+122     pmm, mask
+123     xstepper, mask, xs=600
+124     scale_chain, filtc2, mask
+125     .r scale_chain
+126     pmm, mask                                                 
+127     xstepper, mask, xs=600
+128     help, mask
+
+
+08-10-07
+
+Code dump for combining the different thresholds I've made on the scale, angle, magnitude information across time interval of CME data:
+
+1       plot_image, dilate((dilate(tempmultmask,[[se,se],[se,se]])*mult2),[[se,se],[se,se]])
+2       plot_image, dilate((dilate(tempmultmask,[[se,se],[se,se]])*mult2),se)
+3       plot_image, (dilate(tempmultmask,[[se,se],[se,se]])*mult2)^0.2
+4       plot_image, (dilate(dilate(tempmultmask,[[se,se],[se,se]])*mult2)),se))^0.2
+5       plot_image, (dilate(dilate(tempmultmask,[[se,se],[se,se]])*mult2)),se)^0.2
+6       plot_image, (dilate(dilate(tempmultmask,[[se,se],[se,se]])*mult2),se)^0.2
+7       retall
+8       plot_image, (dilate(dilate(tempmultmask,[[se,se],[se,se]])*mult2),se)^0.2
+9       plot_image, (dilate(tempmultmask,[[se,se],[se,se]])*mult2)^0.2
+10      plot_image, dilate(tempmultmask,[[se,se],[se,se]])*mult2
+11      plot_image, dilate(tempmultmask,[[se,se],[se,se]])*mult
+12      plot_image, dilate(tempmultmask,[[se,se],[se,se]])
+13      se=[[se,se],[se,se]]
+14      plot_image, dilate(tempmultmask,[[se,se],[se,se]])
+15      plot_image, dilate(tempmultmask,se)
+16      se=[[1,1],[1,1]]
+17      plot_image, tempmultmask
+18      tempmultmask=tempmask2*magchainmask
+19      plot_image, tempmask2*magchainmask
+20      plot_image, tempmask2
+21      plot_image, tempmask
+22      plot_image, tmep
+23      plot_image, magchainmask
+24      plot_image, (mult2*magchainmask)^0.2
+25      plot_image, mult2^0.2
+26      plot_image, mult2^0.
+27      plot_image, mult2
+28      pmm, mult2
+29      pmm, magchainmask
+30      plot_image, magchainmask
+31      plot_image, mult2*magchainmask^0.2
+32      plot_image, mult2*magchainmask
+33      plot_image, mult2^0.2
+34      plot_image, mult2
+35      plot_image, tempmask2
+36      plot_image, temp
+37      plot_image, scale_mask[*,*,2]
+38      help
+39      plot_image, newfilt[*,*,2]
+40      plot_image, magchainmask
+41      magchainmask=magchain_modgrads_nrgf2[*,*,2]
+42      plot_image, magchain_modgrads_nrgf2[*,*,2]
+43      plot_image, magchain_nrgf2[*,*,2]
+44      xstepper, magchain_modgrads_nrgf2, xs=700
+45      wr_movie, 'magchain_modgrads_nrgf2', magchain_modgrads_nrgf2
+46      mag_chain, modgrads_nrgf, magchain_modgrads_nrgf2
+47      wr_movie, 'magchain_modgrads2', magchain_modgrads2
+48      xstepper, magchain_modgrads2, xs=700
+49      mag_chain, modgrads, magchain_modgrads2
+50      .r mag_chain
+51      wr_movie, 'magchain_modgrads_nrgf1', magchain_modgrads_nrgf1          
+52      xstepper, magchain_modgrads_nrgf1, xs=700
+53      mag_chain, modgrads_nrgf, magchain_modgrads_nrgf1
+54      wr_movie, 'magchain_modgrads1', magchain_modgrads1
+55      xstepper, magchain_modgrads1, xs=700
+56      mag_chain, modgrads, magchain_modgrads1
+57      .r mag_chain
+58      wr_movie, 'magchain_modgrads_nrgf', magchain_modgrads_nrgf
+59      xstepper, magchain_modgrads_nrgf, xs=700
+60      mag_chain, modgrads_nrgf, magchain_modgrads_nrgf
+61      wr_movie, 'magchain_modgrads', magchain_modgrads
+62      xstepper, magchain_modgrads, xs=700
+63      mag_chain, modgrads, magchain_modgrads
+64      help
+65      .r mag_chain
+66      xstepper, magchain_da, xs=600
+67      mag_chain, da, magchain_da
+68      .r mag_chain
+69      xstepper, magchain_da, xs=600
+70      mag_chain, da, magchain_da
+71      .r mag_chain
+72      xstepper, magchain_da, xs=600
+73      help, magchain_da
+74      mag_chain, da, magchain_da
+75      magchain, da, magchain_da
+76      plot_image, bytscl(temp,1.5,6)^0.2
+77      plot_image, bytscl(temp,2,6)^0.2
+78      plot_image, bytscl(temp,2,6)
+79      plot_image, bytscl(temp,0,6)
+80      plot_image, bytscl(temp,1,6)
+81      pmm, temp
+82      plot_image, temp
+83      temp=newfilt[*,*,4]*mask4
+84      plot_image, sigrange(newfilt[*,*,4]*mask4)
+85      plot_image, sigrange(newfilt[*,*,5]*mask5)
+86      plot_image, sigrange(newfilt[*,*,4]*mask4)
+87      plot_image, sigrange(newfilt[*,*,3]*mask3)
+88      plot_image, sigrange(newfilt[*,*,2]*mask2)
+89      plot_image, sigrange(newfilt[*,*,1]*mask1)
+90      plot_image, mask1
+91      plot_image, newfilt[*,*,1]*mask1
+92      plot_image, newfilt[*,*,1]
+93      help
+94      plot_image, mask1
+95      plot_image, mask6
+96      plot_image, mask5
+97      plot_image, mask4
+98      plot_image, mask3
+99      plot_image, mask2
+100     plot_image, mask1
+101     mask6[where(mask6 ne 0)]=1
+102     mask5[where(mask5 ne 0)]=1                                            
+103     mask4[where(mask4 ne 0)]=1
+104     mask3[where(mask3 ne 0)]=1
+105     mask2[where(mask2 ne 0)]=1
+106     mask1[where(mask1 ne 0)]=1
+107     plot_image, mask1
+108     plot_image, mask2
+109     plot_image, mask3
+110     plot_image, mask4
+111     plot_image, mask5
+112     plot_image, mask6
+113     mask6[where(mask6 lt 1)]=0
+114     mask6=scale_mask[*,*,6]
+115     mask5[where(mask5 lt 2)]=0
+116     mask5=scale_mask[*,*,5]
+117     mask4[where(mask4 lt 3)]=0
+118     mask4=scale_mask[*,*,4]
+119     mask3[where(mask3 lt 4)]=0
+120     mask3=scale_mask[*,*,3]
+121     mask2[where(mask2 lt 5)]=0
+122     plot_image, mask2
+123     mask2=scale_mask[*,*,2]
+124     plot_image, mask1
+125     help, mask1
+126     mask1[where(mask1 lt 6)]=0
+127     mask1=scale_mask[*,*,1]
+128     pmm, mask1
+
+
+Performing the contouring and thinning on the front
+1       plots, rest[0,*], rest[1,*], psym=3
+2       plot_image, da[*,*,3]
+3       rest=array_indices(thinned,indext)
+4       indext=where(thinned eq 1)
+5       plots, rest[0,*], rest[1,*], psym=3
+6       plot_image, da[*,*,3]
+7       rest=array_indices(thinned,index)
+8       plots, res[0,*], res[1,*], psym=3
+9       plot_image, da[*,*,3]
+10      res=array_indices(thinned,index)
+11      plots, res[0,*], res[1,*], psym=3
+12      plot_image, da[*,*,3]
+13      plots, res[0,*], res[1,*]
+14      plot_image, da[*,*,3]
+15      help, res
+16      res=array_indices(fatthin,index)
+17      ?
+18      arrs=array_indices(index)
+19      help, index
+20      index=where(fatthin eq 1)
+21      plots, x, y
+22      plot_image, fatthin
+23      fatthin=dilate(thinned,se)
+24      plot_image, thinned
+25      plot_image, da[*,*,3]
+26      plot_image, tempmod
+27      plot_image, dilate(tempmod,se)
+28      plot_image, tempmod
+29      tempmod[index]=1
+30      index=where(thinned eq 1)
+31      oplot,thinned
+32      plot_image, tempmod                                              
+33      plot_image, dilate(thinned,se)
+34      plot_image, thinned
+35      thinned=m_thin(filled)
+36      plot_image, morph_thin(filled,hit,miss)
+37      plot_image, filled
+38      plot_image, morph_thin(filled,hit,miss)
+39      plot_image, filled
+40      plot_image, morph_thin(filled,hit,miss)
+41      plot_image, filled
+42      filled[index]=1
+43      filled=fltarr(1024,1024)
+44      index=polyfillv(x,y,1024,1024)
+45      plots, x, y
+46      plot_image, tempmod
+47      plots, x, y
+48      y=xy[1,info[0].offset:(info[0].offset+info[0].n-1)]
+49      x=xy[0,info[0].offset:(info[0].offset+info[0].n-1)]
+50      contour, bintempmod, lev=thr, /over
+51      contour, bintempmod, lev=thr, /over, path_xy=xy,path_info=info,/path_data_coords
+52      plot_image,bintempmod
+53      plot_image, oimg
+54      plot_image,bintempmod
+55      plot_image, oimg
+56      plot_image,bintempmod
+57      plot_image, oimg
+58      plot_image,bintempmod
+59      plot_image, oimg
+60      plot_image,bintempmod
+61      plot_image, oimg
+62      plot_image,bintempmod
+63      plot_image, oimg
+64      oimg=morph_thin(oimg,hit,miss)                                         
+65      plot_image, oimg
+66      oimg=morph_thin(oimg,hit,miss)
+67      plot_image, oimg
+68      oimg=morph_thin(oimg,hit,miss)
+69      plot_image, oimg
+70      oimg=morph_thin(oimg,hit,miss)
+71      plot_image, oimg
+72      help, oimg
+73      oimg=morph_thin(bintempmod,hit,miss)
+74      miss=[[1,1,1,1,1],[1,0,0,0,1],[1,0,0,0,1],[1,0,0,0,1],[1,1,1,1,1]]
+75      hit=[[0,0,0,0,0],[0,0,0,0,0],[0,0,1,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+76      plot_image, bintempmod
+77      plot_image, morph_thin(bintempmod,se,se)
+78      plot_image, morph_thin(bintempmod,se)
+79      plot_image, morph_thin(bintempmod)
+80      plot_image, bintempmod
+81      bintempmod[where(bintempmod ne 0)]=1
+82      bintempmod=tempmod
+83      plot_image, tempmod
+84      pmm, tempmod
+85      pmm, res
+86      plot_image, res^0.2
+87      plot_image, res
+88      help, res
+89      res=erode(tempmod, se)
+90      ?
+91      plot_image, da[*,*,3]*temp[*,*,3]
+92      plot_image, da[*,*,3]*temp
+93      plot_image, da[*,*,3]
+94      plot_image, tempmod
+95      contour, tempmod, lev=thr, /over
+96      contour, tempmod, lev=thr*2, /over                                     
+97      contour, tempmod, lev=thr, /over
+98      thr=mu[0]+3*sdev
+99      print, mu, sdev
+100     print, mu
+101     mu=moment(tempmod, sdev=sdev)
+102     pmm, tempmod
+103     plot_image, tempmod
+104     plot_image, morph_open(tempmod,[[se,se],[se,se]])
+105     plot_image, morph_close(tempmod,[[se,se],[se,se]])
+106     plot_image, morph_close(tempmod,se)
+107     plot_image, tempmod^0.2
+108     plot_image, (dilate(tempmod,[[se,se],[se,se]]))^0.2
+109     plot_image, (dilate(tempmod,se))^0.2
+110     plot_image, tempmod^0.2
+111     plot_image, tempmod
+112     plot_image, tempmod^0.2
+113     tempmod=combined[*,*,3]*modgrads[*,*,3]
+114     shade_surf, combined[*,*,3]*modgrads[*,*,3]
+115     plot_image, combined[*,*,3]*modgrads[*,*,3]
+116     plot_image, temp[*,*,3]*modgrads[*,*,3]
+117     plot_image, temp[*,*,3]*da[*,*,3]
+118     plot_image, temp[*,*,4]*da[*,*,4]
+119     plot_image, temp[*,*,3]*da[*,*,3]
+120     plot_image, temp[*,*,2]*da[*,*,2]
+121     plot_image, temp[*,*,1]*da[*,*,1]
+122     plot_image, temp[*,*,0]*da[*,*,0]
+123     plot_image, temp[*,*,0]
+124     temp[where(temp ne 1)]=0.5
+125     temp=combined
+126     pmm, combined
+127     $open combined.html
+128     wr_movie, 'combined', combined    
+
+
+06-12-07
+
+Code to use mpfitexpr to fit my height-time curve from ellipse fit.
+
+1       oplot, t, f[0]*0.2*t^2+f[1]*2.3*t+f[2]
+2       plot, t, h, psym=2
+3       oplot, t, f[0]*0.2*t^2+f[1]*2.3*t+f[2]
+4       oplot, t, f[0]*0.2*t^2+f[1]*2.5*t+f[2]
+5       oplot, t, f[0]*0.2*t^2+f[1]*2.*t+f[2]
+6       plot, t, h, psym=2
+7       oplot, t, f[0]*0.2*t^2+f[1]*2.*t+f[2]
+8       oplot, t, f[0]*0.3*t^2+f[1]*2.5*t+f[2]
+9       oplot, t, f[0]*0.2*t^2+f[1]*2.5*t+f[2]
+10      oplot, t, f[0]*0.2*t^2+f[1]*1.5*t+f[2]
+11      oplot, t, f[0]*0.2*t^2+f[1]*1.9*t+f[2]
+12      plot, t, h, psym=2
+13      oplot, t, f[0]*0.2*t^2+f[1]*1.9*t+f[2]
+14      oplot, t, f[0]*0.4*t^2+f[1]*1.9*t+f[2]
+15      oplot, t, f[0]*0.3*t^2+f[1]*1.9*t+f[2]
+16      oplot, t, f[0]*0.3*t^2+f[1]*2.1*t+f[2]
+17      oplot, t, f[0]*0.3*t^2+f[1]*2*t+f[2]
+18      oplot, t, f[0]*0.1*t^2+f[1]*2*t+f[2]
+19      oplot, t, f[0]*0.1*t^2+f[1]*t+f[2]
+20      oplot, t, f[0]*0.5*t^2+f[1]*t+f[2]
+21      plot, t, h, psym=2
+22      oplot, t, f[0]*0.5*t^2+f[1]*t+f[2], psym=-2
+23      plot, t, h, psym=2
+24      oplot, t, f[0]*0.5*t^2+f[1]*t+f[2]
+25      oplot, t, f[0]*t^2+f[1]*0.5*t+f[2]
+26      oplot, t, f[0]*t^2+f[1]*t+f[2]
+27      print, f
+28      plot, t, h
+29      f=mpfitexpr(yf,t,h,[0.0001,0.001,2.])
+30      help, yf
+31      plot, t, h
+32      plot, h, t
+33      t=tottimeplot                                                     
+34      plot, x, y
+35      plot, t, yf2
+36      plot, t, yf
+37      plot, t, h
+38      yf2=mpfitexpr(yf,t,h)
+39      yf='p[0]*x^2+p[1]*x+p[2]'
+40      oplot, x, r
+41      plot, x, h
+42      help, r
+43      r=dspline(x,h,xf)
+44      xf=findgen(1000)/100
+45      oplot, r, x
+46      plots, r, x
+47      plots, y, r
+48      plots, r, y
+49      plots, x, r
+50      help, r
+51      r=dspline(x,y,x*0.1)
+52      help, r
+53      r=dspline(x,y,0.1)
+54      r=dspline(x,y)
+55      retall
+56      r=dspline(x,y)
+57      plot, x, y
+58      y=t
+59      x=y
+60      t=x
+61      x=t
+62      plot, x, y
+63      plots, x,(par[0]+par[1]*h-par[2]*h^2.)/0.8e8
+64      plots, x,(par[0]+par[1]*h-par[2]*h^2.)/1.1e8
+65      plots, x,(par[0]+par[1]*h-par[2]*h^2.)/1e8
+66      plot, tottimeplot, h,yr=[0,2e4]                                   
+67      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e8
+68      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e7
+69      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e6
+70      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e5
+71      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e2
+72      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e4
+73      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e3
+74      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e6
+75      plot, x,(par[0]+par[1]*h-par[2]*h^2.)/1e12
+76      plot, x,(par[0]+par[1]*h-par[2]*h^2.)-1e12
+77      plot, x,(par[0]+par[1]*h-par[2]*h^2.)-1e6
+78      plot, x,(par[0]+par[1]*h-par[2]*h^2.)
+79      plots, x,(par[0]+par[1]*h-par[2]*h^2.)
+80      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e8
+81      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e9
+82      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e8
+83      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e7
+84      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e6
+85      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e3
+86      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e4
+87      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e5
+88      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e3
+89      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e6
+90      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e7
+91      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e6
+92      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e5
+93      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e55
+94      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e6
+95      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1.1e6
+96      plot, tottimeplot, h,yr=[0,2e4]
+97      plot, x,(par[0]+par[1]*h-par[2]*h^2.)
+98      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1.1e6
+99      plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1.1e5e                     
+100     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e5.9
+101     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e6
+102     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e6
+103     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e5
+104     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e7
+105     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e6
+106     plot, x,(par[0]+par[1]*h-par[2]*h^2.)
+107     plot, x,(par[0]+par[1]*h-par[2]*h^2.)-1e2
+108     window,2
+109     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e2
+110     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e3
+111     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e4
+112     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e5
+113     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e5
+114     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e3
+115     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e4
+116     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e4
+117     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e5
+118     plot, tottimeplot, h,yr=[0,2e4]
+119     plot, x,par[0]+par[1]*h-par[2]*h^2.
+120     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e5
+121     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-2e4
+122     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e3
+123     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e5
+124     plots, x,(par[0]+par[1]*h-par[2]*h^2.)-1e4
+125     plots, x,(par[0]+par[1]*h-par[2]*h^2.)/.5
+126     plots, x,(par[0]+par[1]*h-par[2]*h^2.)/2
+127     plots, x,(par[0]+par[1]*h-par[2]*h^2.)/3
+128     plots, x,(par[0]+par[1]*h-par[2]*h^2.)/4

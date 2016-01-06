@@ -1,0 +1,155 @@
+Copied over the separated fits files of the 20110922 for Cor2 and LASCO.
+
+Run data through automated detections (see readme_cme_model.rtf).
+
+cd Postdoc/Automated/Catalogue
+sswidl
+
+flsb=file_search('~/postdoc/data_stereo/20110922/corimp/cor2b/separated/*fits.gz')
+out_dir='~/postdoc/data_stereo/20110922/cor2b/detections/max_cme_mask_1'
+; run_automated_new with max_cme_mask=1 , sdev_factor=1.5
+run_automated_new, flsb, out_dir, /stereo, /behind
+
+fls_lasco = file_search('~/postdoc/data_stereo/20110922/corimp/lasco/separated/*fits.gz')
+out_dir='~/postdoc/data_stereo/20110922/lasco/detections/max_cme_mask_3'
+
+
+;COR2B
+
+mreadfits_corimp, flsb, inb, dab
+dab = dab[*,*,33]
+inb = inb[33]
+
+save_dir = '~/postdoc/data_stereo/20110922/combining/cor2b'
+plot_image, dab
+@pandc.b
+time = ?
+save, xf, yf, f=save_dir+'/front_'+time+'.sav'
+image=intarr(1024,1024)
+for i=0,n_elements(xf)-1 do image[xf[i],yf[i]]=1
+errs=1
+ang=2
+noplot=0
+window, xs=800, ys=800
+loadct,0
+front_ell_kinematics,image,errs,inb,dab,ang,ei,re,xe,ye,pe,mhf,mhe,aa,noplot
+save, ei, re, xe, ye, pe, mhf, mhe, aa, f=save_dir+'/ellb_arcsec_'+time+'.sav'
+x2png, save_dir+'/ellb_'+time+'.png'
+dab_ell = dab
+while where(dab_ell eq 888) ne [-1] || where(dab_ell eq 988) ne [-1] do dab_ell*=2.
+xb=xe/inb.cdelt1+inb.naxis1/2.-inb.xcen/inb.cdelt1
+yb=ye/inb.cdelt2+inb.naxis2/2.-inb.ycen/inb.cdelt2
+res=polyfillv(xb,yb,1024,1024)
+dab_ell[res]=888
+for j=0,100 do dab_ell[xb[j],yb[j]]=988
+plot_image, dab_ell
+x2png, save_dir+'/dab_ell_'+time+'.png'
+save, dab_ell, f=save_dir+'/dab_ell_'+time+'.sav'
+save, xb, yb, f=save_dir+'/xyb_ell_'+time+'.sav'
+
+
+;LASCO
+
+mreadfits_corimp, fls_lasco, inl, dal
+dal = dal[*,*,52]
+inl = inl[52]
+save_dir = '~/postdoc/data_stereo/20110922/combining/lasco'
+plot_image, dal
+@pandc.b
+time = ?
+save, xf, yf, f=save_dir+'/front_'+time+'.sav'
+image=intarr(1024,1024)
+for i=0,n_elements(xf)-1 do image[xf[i],yf[i]]=1
+errs=1
+ang=2
+noplot=0
+window, xs=800, ys=800
+loadct,0
+front_ell_kinematics,image,errs,inl,dal,ang,ei,re,xe,ye,pe,mhf,mhe,aa,noplot
+save, ei, re, xe, ye, pe, mhf, mhe, aa, f=save_dir+'/ell_arcsec_'+time+'.sav'
+x2png, save_dir+'/ell_'+time+'.png'
+dal_ell = dal
+while where(dal_ell eq 888) ne [-1] || where(dal_ell eq 988) ne [-1] do dal_ell*=2.
+xl=xe/inl.cdelt1+inl.naxis1/2.-inl.xcen/inl.cdelt1
+yl=ye/inl.cdelt2+inl.naxis2/2.-inl.ycen/inl.cdelt2
+res=polyfillv(xl,yl,1024,1024)
+dal_ell[res]=888
+for j=0,100 do dal_ell[xl[j],yl[j]]=988
+plot_image, dal_ell
+x2png, save_dir+'/dal_ell_'+time+'.png'
+save, dal_ell, f=save_dir+'/dal_ell_'+time+'.sav'
+save, xl, yl, f=save_dir+'/xyl_ell_'+time+'.sav'
+
+;COR2B
+flsb=file_search('~/postdoc/data_stereo/20110922/combining/cor2b/vso/*fts')
+mreadfits_corimp, flsb, inb
+inb = inb[5]
+; print, inb.date_d$obs
+; dab remains as above
+
+;LASCO
+flsl=file_Search('~/postdoc/data_stereo/20110922/combining/lasco/vso/*fts')
+mreadfits_corimp, flsl, inl
+inl = inl[3]
+; print, inl.time_d$obs
+; dal remains as above
+
+restore,'~/postdoc/data_stereo/20110922/combining/lasco/xyl_ell_1122.sav',/ver
+project_soho_to_stereo,temp,xl,yl,inl,inb,pos1,pos2,pos3,pos4,/plot3d
+
+
+; STEPS FOR PROJECTIONS
+
+cd Postdoc/Data_Stereo/20110922/combining/
+
+flsb=file_search('~/postdoc/data_stereo/20110922/corimp/cor2b/separated/*fits.gz')
+mreadfits_corimp, flsb, inb, dab
+da_stereo = dab[*,*,33]
+da_stereo = congrid(da_stereo, 2048,2048)
+flsb=file_search('~/postdoc/data_stereo/20110922/combining/cor2b/vso/*fts')
+mreadfits_corimp, flsb, inb
+in_stereo = inb[5]
+
+fls_lasco = file_search('~/postdoc/data_stereo/20110922/corimp/lasco/separated/*fits.gz')
+mreadfits_corimp, fls_lasco, inl, dal
+da_soho = dal[*,*,52]
+flsl=file_Search('~/postdoc/data_stereo/20110922/combining/lasco/vso/*fts')
+mreadfits_corimp, flsl, inl
+in_soho = inl[3]
+
+restore, 'lasco/xyl*sav',/ver
+
+project_soho_to_stereo, xl, yl, in_soho, in_stereo, dal, dab, /plot3d
+
+
+
+; STEPS FOR COMBINING
+
+;in combining/ folder
+
+restore, 'cor2b/da_stereo_ell_1124.sav',/ver
+restore, 'lasco/da_soho_ell_1122.sav',/ver
+
+restore, 'temp_input.sav', /ver
+project_soho_to_stereo_measure, in_soho, in_stereo, da_soho_ell, da_stereo_ell
+project_stereo_to_soho_measure_readin, in_soho, in_stereo, da_soho_ell, da_stereo_ell
+get_wcs_intersects_soho, in_soho, in_stereo
+
+spacecraft_location_soho, in_soho, in_stereo
+
+$mkdir slice1 slice2 slice3 slice4 slice5 slice6 slice7 slice8 slice9 slice10 slice11 slice12 slice13 slice14 slice15 slice16 slice17 slice18 slice19 slice20 slice21 slice22 slice23 slice24 slice25 slice26 slice27 slice28 slice29 slice30 slice31 slice32 slice33 slice34 slice35 slice36 slice37 slice38 slice39 slice40 slice41 slice42 slice43 slice44 slice45 slice46 slice47 slice48 slice49 slice50 slice51 slice52 slice53 slice54 slice55 slice56 slice57 slice58 slice59 slice60 slice61 slice62 slice63 slice64 slice65 slice66 slice67 slice68 slice69 slice70 slice71 slice72 slice73 slice74 slice75 slice76 slice77 slice78 slice79 slice80 slice81 slice82 slice83 slice84 slice85 slice86 slice87 slice88 slice89 slice90 slice91 slice92 slice93 slice94 slice95 slice96 slice97 slice98 slice99 slice100 slices_all 
+
+runthru_soho, in_soho, in_stereo
+
+cd, 'slices_all'
+plot_slices, 0, 100, '../bogus.txt'
+
+
+; STEPS ON DATA COMBINING (SHOCK V CME)
+
+
+
+;FIGURES:
+
+plot_schematic,1,82,'../bogus.txt',90,0,/tog
+

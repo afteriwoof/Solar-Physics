@@ -1,0 +1,546 @@
+2013-01-07
+
+Obtaining case-study from CORIMP for kinematics paper. See folder
+Postdoc/Kinematics_paper/case_studies/20110112/
+
+2013-01-08
+
+Finished writing draft of paper and emailed around co-authors.
+
+2013-01-09
+
+Working through feedback from Peter mostly.
+Redid the simulated Fig.1
+IDL> sim_kins, /tog
+
+2013-01-10
+
+Editing paper, rewriting intro and conclusions. More comments from James.
+
+2013-01-11
+
+Editing paper, as a whole. Email to Dave about some issues.
+Working on
+IDL> fit_kinscasestudy, 'paper_kins.sav', /quadratic, /bootstrap, /tog
+
+2013-01 rest of month
+
+Final details on the paper, as per emails and skype comments etc. and submitted.
+
+2013-02-04
+
+Started looking into the documentation on the HEK VOEvent upload and editing code to see what CE_XML.pro would produce.
+
+2013-02-05
+
+Emails with Ryan on the HEK upload and editing codes accordingly.
+
+2013-02-06
+
+More exchange with Ryan. Also looking into creating a basic version of online catalogue. Emailed first attempt to Huw as example.
+
+2013-02-07
+
+Working on CREATE_HTML.pro
+
+2013-02-08
+
+Made website and emailed it to Huw and Shadia.
+
+2013-02-11
+
+NSF SHINE proposal reviews, not funded.
+
+Saved out each automated_kins.pro by number 0-11 to run a shell script so the memory doesn't get used up. Isn't working for me!
+./run_kins
+
+Updated personal webpage.
+
+2013-02-12
+
+Scanning computer for sensitive info before making public sites available.
+Emailed Dan about GI visit to Belgium.
+Emailed Huw about possible timing of trip through Wales.
+Emailed Peter about the possible timing of Dublin visit.
+Emailed Ryan about chain-codes after looking into where they might work.
+Emailed Manuela about the kinematics that could be helped with inversion techniques.
+
+2013-02-13
+
+Got dublin.ifa.hawaii.edu/~jbyrne/CORIMP link working, and emailed it to Huw, Shadia, Peter and Alex.
+Reply to Eduard Kontar on inversion techniques.
+Looking into NASA Postdoc Program nasa.orau.org/postdoc
+
+2013-02-14
+
+Make rm_kins_files as a batch apple script.
+
+2013-02-19
+
+Going through emails, notably trying out inversion techniques from Manuela, chain-codes from Manolis, and sorting out Belgium dates/accom.
+
+2013-02-20
+
+Working on CME_MASK_INDS.pro to save only the mask indices not the whole image.
+And wrote CME_MASK_RECOVER.pro to recover the cme_mask image from the saved cme_mask_str given by cme_mask_inds.pro.
+Finished run of automated_kins.pro through all of 2011.
+
+2013-02-21
+
+Added cme_mask_inds.pro and the updated run_automated_new.pro to gail for processing.
+Wrote 	CHANGE_CME_MASKS.pro to try looping over the cme_masks/ folders and save the cme_mask_str structures but can't deal with structure in a loop.
+
+2013-02-22
+
+Writing MODEL_JPB.pro in Postdoc/inversion/reg_new/ folder. Testing out the saved test_jpb/model.sav from the fig_hva.pro code (in Postdoc/Kinematics_paper/codes/ folder).
+
+2013-02-25
+
+Updated the cme_mask_inds.pro and cme_mask_recover.pro from Huw's email about pointers.
+Edited change_cme_masks.pro and set it running.
+Set automated_kins running and it's the first time it's run non-stop so far!
+Sent email to confirm ROB accom.
+Sent output of model_jpb.pro to Manuela and Ed; model_jpb.ps
+
+2013-02-26
+
+Wrote change_cme_masks.pro on Gail and set it running.
+Wrote CHANGE_PLOT_KINS_QUARTILES.pro after editing plot_kins_quartiles.pro to have a more appropriate range on the plotted kinematics (e.g. 10% above max value).
+Edited the CORIMP html.
+
+2013-02-27
+
+Working on the redo of the plots and CORIMP html. 
+Emails with Peter & Huw about trip. And Shadia about proposal.
+
+2013-02-28
+
+Running codes in this order:
+1) change_plot_kins_quartiles
+2) rsync -avuSH --delete-after Postdoc_largefiles/detections_dublin/2011/01/ Sites/CORIMP/2011/01/
+3) create_html, '~/Sites/CORIMP/2011'
+Chat with Shadia about travel, proposal, etc. Emailed Lori on flights.
+
+2013-03-01
+
+Copying over the data from gail, so that I can set up the online folder to contain the old version of processing for the previous years, and the latest version of processing for the 2011/2012 datasets, until Huw gets it all running again.
+
+2013-03-04
+
+Building the rest of the catalogue entries, mostly the new 2012 and the first of the old versions 2008. Set the 2009 and 2010 old versions running on gail too.
+Sorting out flights and travel justification for Europe (emailed Lori, Faye and Debra).
+Trying to get a batch procedure together to copy files in bunches from gail to dublin.
+
+2013-03-05
+
+Referee's report back on kinematics paper.
+Email from Eoin about the CME masses over time.
+Email from Erik about how to use ssh-keygen so that I can set up a way to scp files without the password interrupt.
+Wrote RUN_BATCH.pro on gail to copy over the fits files for the older data 1997-2007.
+ssh -i /Users/jbyrne/.ssh/id_dsa_test jbyrne@gail
+ssh -i /home/gail/jbyrne/.ssh/id_dsa_jpb jbyrne@dublin
+Wrote BATCH_TAR.pro on dublin to un-tar the fits files.
+Wrote RUN_BATCH_DETS.pro on gail to tar and copy the old detections.
+
+2013-03-06
+
+Emailed Hardi Peter about referee report.
+Running the rest of 2012 detections.
+Looking into 3D recons again. Issues with secchi_prep.
+
+2013-03-07
+
+Workplace Conduct workshop!
+
+2013-03-08
+
+Reply from Peter Hardi - fwd to co-authors.
+Working on detections for 2007, overcoming bugs.
+Looking at the original fits files Huw set running for recent years now.
+
+2013-03-11
+
+Made changes to paper and emailed it with draft reply to co-authors.
+
+2013-03-12
+
+Working out how to fix issues with scchi_prep.
+
+2013-03-13 to 15
+
+Off sick.
+Setting different parts of 2011 running with new original fits files but they still have the issues that Huw highlighted (off center images, and blurry).
+Working on fixing the issue with detections that cross the 0/360 line in plot_kins_quartiles.pro.
+Paper review from ApJ again.
+
+2013-03-18 to 22
+
+Working through secchi_prep issues (ssw updates, doubles of codes in Huw's procedures, etc) and emails with Robin on some issues with scc_getbkgimg and preps.
+Worked through the smaller issues with the CORIMP outputs (movie problems, made quadratic and linear outputs available too for online).
+Edited create_html.pro to create_htmls.pro for the option of which kinematic fit.
+Re-running 2011.
+A&A sent paper to second reviewer.
+Emails with Huw about the new processing, and the new secchi processing.
+Been trying to get the 3D codes in gear for when the prcessing is done.
+Emails with Eoin on CME properties distributions (vel etc).
+Discussion about Comet Lovejoy in the automated detections - what could be done with it, if anything. Chats with Henry.
+
+
+2013-03-25 (sick)
+2013-04-36 (Prince Kuhio Day)
+
+Trying to get the secchi_preps working, testing on different events, and recording the outputs in STEREO_events.rtf, emailing Robin Colannino back and forth.
+
+2013-03-27
+
+Wrote RUN_AUTOMATED_NEW_STEREO.pro to deal with the latest processed Cor2 images from Huw, namely testing on 2011/03/03 event.
+Refereeing paper.
+
+2013-03-28
+
+Writing GATHER_DETECTIONS_INSET_ALL_STEREO.pro to output the secchi/cor images with the detections overlaid. (want to come back to this - not vital right now!)
+
+Days
+Writing referee's report for ApJ paper.
+
+2013-04-02
+
+SHINE annual report.
+
+2013-04-08
+
+Arrived at ROB. Debrief on the spacecraft and meet'n'greets.
+
+2013-04-09
+
+Dan went through calibrations and prepping of SWAP data. See 'swap_example_dan.txt' in Postdoc/SWAP/.
+Downloading case-studies and prepping to lv1.
+
+2013-04-10
+
+Paper by Regnier on the 2010-06-13 cavity event. (email from Laurel)
+Downloaded MK4 data of 2010-06-13 our of curiosity.
+Case study from proposal: 2011-03-08, downloading SWAP data, to prep to lv1.
+Wrote COMBINE_MK4_SWAP.pro and COMBINE_MK4_SWAP_FILES.pro to see how the overlap of the MK4 and SWAP data might look. Saving output in folder Postdoc/Events_combines/20110308/.
+Saved da_combines_2011-03-08.sav to play movie of combined MK4 and SWAP images.
+
+2013-04-11
+
+Level 1 data from Dan for 2011-03-08.
+Wrote cartesian2polar_swap.pro
+Wrote SWAP_PROFILES.pro and running it as follows
+device, retain=2
+fls=file_Search('20110308/lv1/*fits')
+swap_profiles, fls, mov
+Writing PREP_MK4_ATTEMPTS.pro.
+
+2013-04-12
+
+Saved out da_20110308_1922.png, edges_20110308_1922.png, edges2_20110308_1922.png, edges3_20110308_1922.png, mod6_20110308_1922.png, mults_20110308_1922.png
+mov_edges1.sav, mov_edges2.sav, mov_edges3.sav, mov_mults.sav
+
+2013-04-15
+
+Analysing the inner loop structure of 2011-03-08 event, with point&click edges as per FIT_ELLS.b saving out pngs.
+Saving all outputs in the relevants folders under Events_combined/20110308/ instruments.
+
+2013-04-16
+
+Fitting ellipses to the LASCO, as done for the SWAP and MK4. Looking at how they overlap, swap_mk4_ells.png with make_plots.b in Postdoc/Events_combined/20110308/ells_combined/.
+
+2013-04-17
+
+Working on two-channel images, in Postdoc/Events_combined/20110308/combine_images.b
+
+2013-04-18
+
+Fixed the header info for combining images (closest in time step, manually fixed) in combine_ims.b and then combine_images.b in Postdoc/Events_combined/20110308/ with output pngs saved to Postdoc/Events_combined/20110308/combined_images/.
+
+2013-04-22
+
+Writing propagate_forward.pro
+Emailed update to Huw and Shadia.
+
+2013-04-23
+
+Chats with Marilena & Dan about possible 3D reconstruction of the loops underlying this eruption.
+Saving lasco_forwards.sav.
+
+2 weeks in TCD
+
+Chats with Eoin and Peter about CME masses. Not sure it's worth Eoin's effort if a paper won't come out of it, but the codes can be used in the catalogue when he's able to adapt them after thesis.
+Chats with Shaun about the Proba2 observation and work. Ideas for code the does some form of loop analysis with codes from Ian Hannah?! Not sure.
+Chats with Shaun about the referee's report and the idea of block bootstrapping.
+Chats with Eoin about the nature physics paper. Nice event, that could be showing the wave material is the same as the CME material in C3.
+Working through referee's report and reading up on the block bootstrap.
+Wrote blockbootstrap.pro in Postdoc/Kinematics_paper/case_studies/ to see how the random numbers should be generated for blocks of residuals.
+Wrote FIT_KINSCASESTUDY_BLOCKBOOT.pro to run e.g.
+fit_kinscasestudy_blockboot,'paper_kins.sav',/sav_gol,/bootstrap,/tog
+saving fit_kinscasestudy_blockboot_1.eps etc.
+
+1st week in Aber
+
+Working on reconstruction of the CME with the fluxrope input from Huw's codes, as set up in the folders:
+~/Postdoc/Data_Stereo/cme_model/*.                                               See the readme.rtf file.
+
+Working through referee's report, editing text - emailed version to Dave.
+
+Wrote GATHER_DETECTIONS_COR2.pro to show the output of the detections on the Cor2 images after processing the detections on gail.
+Used in AUTOMATED_KINS_STEREO.	pro that now created the full kinematics output for the stereo detections.
+
+Set 2010 detections running on gail (issue with the 2013 fits files).
+
+2nd week in Aber
+
+Working on the newest sets of model CMEs. Checking out put via idea of kinematics profiles; heights might be offset, so a different slope could skew the velocity profiles but only by a set amount dependent on the orientation of the flux-rope and the spacecraft separations, to be tested.
+
+Looked into kins_3d.pro with a view to writing kins_model.pro buried in the cme_model folder for the test case initially.
+
+1st week back in Hawaii
+
+Mega To Do List!
+
+Looking into event for Eoin. Brainstormed ideas and emailed him and Peter. Ran automated detections on the COR and LASCO images of the event 2011-09-22. Digging through back-projection codes etc. Emailed Bill Thomson about SOHO location, and Huw about the missing C3 fits.
+
+Wrote PROJECT_SOHO_TO_STEREO.pro.
+
+2013-06-03
+
+Emailed Eoin epipolar_sun.png as example testing the Sun's limb.
+
+Finished writing project_soho_to_stereo.pro with advice from Bill on just using get_stereo_coord instead of my own derivations from the fits headers, and emailed images to Eoin & Peter to try be clearer on the method.
+
+Major focus on NASA Review Panel proposal reports
+Coding for Eoin's event.
+Corrections and resubmission on Kinematics paper.
+
+2013-06-17
+
+Edited codes as outlined in Postdoc/Data_Stereo/20110922/Read_me.rtf and made pptx and pdf of Reconstruction_outline.
+
+NASA Review Panel
+SHINE
+
+Week back:
+Working on codes for Eoin's event.
+
+2013-07-11
+
+Emailed about PROBA2 possible next visit.
+Testing the detections on 2010-08-14 event for Hazel. See emails.
+
+2013-07-12
+
+Going through the detection codes to be pacakged up for running in Aber.
+
+2013-07-15
+
+Meeting with Shadia about recent travels, papers, proposals, student, etc.
+Emailed Huw 'all_codes_20130715.zip' containing all the codes used in the automated_detections as tested on LASCO and COR2 data.
+
+2013-07-16
+
+Working on automated_kins_stereo.pro including gather_detections_cor2.pro and emailed Huw, and Hazel.
+Testing:
+fls=file_search('~/Postdoc_largefiles/2010/08/14/*dynamics*')
+fls=file_search('~/Postdoc_largefiles/secchi_cor2_a/2010/08/14/*dynamics*') ;count = 34 ; CME
+fls=file_search('~/Postdoc_largefiles/secchi_cor2_b/2010/08/14/*dynamics*')
+
+Email from Shadia about position change to RCUH Researcher.
+
+2013-07-17
+
+Working on the prepping of 20130607 event. Performing ellipse fit to frame 0108 and initial reconstruction of the CME front. Emailed Huw.
+
+2013-07-18
+
+Perform the 3D reconstruction of the shock bubble ahead of the CME in the 0108 frame.
+See readme_20130607.rtf
+Wrote iplot_slices_shock_20130607.pro and IPLOT_SLICES_SHOCK.pro.
+
+2013-07-19
+
+Wrote STEPS_TO_COMBINE.pro for running in the relevant folder (e.g. postdoc/data_stereo/20130607/a/cor2/) with the relevant inputs to call the already point&click fronts.
+Writing COMBINING.txt to cut and paste for multiple frames.
+
+2013-07-22
+
+Final submission to A&A.
+Working on event 20130607. See readme_20130607.rtf.
+
+2013-07-23
+
+Email to Piet about A&A paper and plans to travel to SAO and/or GSFC for SDO FFT work.
+Working on NSF proposal.
+Wrote MAKE_PRETTY_PIC.b for the 20130607 event CME+shock images.
+
+2013-07-24 to 26
+
+Working on the 2013-05-22 reconstruction, point&click CME images from Ahead and Behind.
+Also doing final paper corrections for A&A.
+
+2013-07-29
+
+A&A final changes.
+Working on the CORIMP catalogue website a bit.
+
+2013-07-30
+
+Working with the LASCO data for the 2013-05-22 event observed with STEREO.
+
+2013-07-31
+
+Kinematics paper on arXiv.
+Corrected the y=mx+c issue with the y_epi, x_epi and c_epi coords in project_soho_to_stereo etc.
+Point&clicking the CME front in C2 on 2013-05-22.
+Writing plot_ell_info.pro 
+
+2013-08-01
+
+Writing plot_ell_info_images.pro.
+
+2013-08-02
+
+Eoin's paper accepted to Nature Physics!
+Library fine, visit, appeal.
+
+2013-08-05
+
+Working on NSF proposal.
+Edited plot_ell_info_images.pro to give the output images ellipse_params.pdf.
+Replied to Joe about the computer resources for automated CORIMP.
+
+2013-08-06
+
+Writing KINS_INSPECT.pro in the Postdoc/Data_Stereo/20081212/ folder.
+
+2013-08-07
+
+Reply to Huw about forward plan.
+Working with kins_inspect.pro as follows:
+
+Set plot_kins_quartiles_rsun.pro to save out the kinematics of each plot. Generating 3D kinematics plot to email Huw and Shadia.
+
+2013-08-08
+
+Working on kins_inspect.pro to tidy it up for proposal.
+Ordered hard drive.
+Writing readme_images.rtf in NSFproposal2013/.
+
+2013-08-09 to 18
+
+Working on NSF proposal.
+
+2013-08-19
+
+Working on Eoin's nature figure.
+And small corrections for NSF final submission.
+
+2013-08-20
+
+Working on PROBA2 GI proposal.
+
+
+Irish visitors!
+
+
+2013-09-09
+
+1 min colloquium slide.
+
+2013-09-12
+
+Wrote automated_codes_copy2gail.txt
+
+2013-09-16&17
+
+(Oral surgeon appt)
+NSF Proposal Review.
+
+2013-09-18 into October
+Studying up shock physics.
+Nature Physics press release etc.
+Working on the SWAP paper.
+Guiding Louis' work.
+Review SolPhys paper.
+Get codes for CORIMP running between laptop, dublin, gail, holly. Some playing around with htmls.
+
+2013-10-23 to 29 
+Tokyo!
+
+2013-10-30
+
+Wrote SWAP_STACK.pro in Events_Combined/20110308/ saving out the stack_cube.sav and others.
+Writing INSPECT_STACK.pro
+
+2013-10-31
+HaLlOwEeN lunch!
+
+Issues with automated_kins.pro running on dublin.
+Integrated inspect_stack.pro into swap_stack for ease of implementation. Fixed to save out cube with time-step gaps.
+
+2013-11-01
+
+Comp class, apps etc
+Wrote make_mults.pro to save mults.sav of the zoom-in on mult modgrads of SWAP event for tracking at different angles to compare with the stacks.
+
+2013-11-04
+
+Brief report from Louis.
+Editing plot_kins_for_paper_accel_inset_goes.pro to make plot_kins_quartiles_savgol_20110308T194136_goes.eps for the paper.
+Skype with Hazel.
+
+2013-11-05
+
+Researching CME models, notably breakout events for SWAP paper.
+
+2013-11-06
+
+Rewrote conclusions, abstract and intro to SWAP paper and circulated.
+
+2013-11-07
+
+Fixed the GOES plotting for the SWAP paper.
+Wrote MAKE_MOVIE_SWAP_FRONT.pro to see if a movie for the fronts along the multiscale images would be useful - can't get the scaling to look right.
+Made movie 20110308_combined.mov for paper.
+
+2013-11-08
+
+Finished and sent paper draft out to the coauthors.
+
+2013-11-12
+
+Working on movies of SWAP event for paper.
+
+2013-11-13
+
+Inspecting the kinematics of the SWAP event with regards emails from Huw on jump in acceleration and idea that force acting could be of interest.
+
+2013-11-14
+
+Started work on revisit of 3D work, especially CME model.
+
+2013-11-18
+
+Went through Huw's stack images, and worked on new draft of SWAP paper.
+Set kinematics codes running after bug issues and copying over more files.
+
+2013-11-19
+
+Huw's stack codes received.
+Wrote the following codes in Postdoc/Events_combined/20110308/
+HUW_STACK_SWAP.pro
+HUW_STACK_AIA.pro
+DISPSTACK_SWAP.pro and DISPSTACK2_SWAP.pro
+DISPSTACK_AIA.pro and DISPSTACK2_AIA.pro
+and made illustrator file stackplots.ai and corresponding figure for paper, stackplots.eps
+
+2013-11-20
+
+Finished new draft of SWAP paper, and sent to collaborators, including skype with Hazel.
+
+2013-11-21
+
+Working on AUTOMATED_3D.pro to step through the model CME codes for automatically generating the 3D reconstructions.
+
+

@@ -1,0 +1,314 @@
+02/11/06
+
+MREADFITS:
+
+Read files into an array.
+
+>files=findfile('directory/*.fits')
+
+>mreadfits, files, index, data
+
+
+Claire's commands for viewing fits files.
+
+>a=readfits(file, h)  //h for header
+>plot_image, a
+>print, h
+
+>index2map, h, a, map   //converting to map format
+>plot_map, map
+>plot_map, map, /log   //log plot shows more detail (log of the pixel values)
+
+>help, map, /str   //help shows info on the structure of the map
+>print, map.xc   //can print out individual bits of map info by this .info command
+
+>image=readfits('00apr18_imgA.fits', hdr)   //hdr is what we've called the header
+>plot_image, alog(image)   //command for show log of the image now
+>print, hdr   //display header info
+
+>mreadfits, 'file.fits', index, data   //index~header, data~image
+>window, 0
+>plot_image, alog(data)
+
+
+Peter's commands:
+
+>help, /recall   //to view all the previous commands entered
+
+>.r routine_name   //to compile a routine 
+
+>retall    //restores all the variables
+
+>plot_image, a
+>save, file='my_array.sav', a   //saving the image for future analysis
+
+>plot_image, bytscl(image,10) ... or ... bytscl(image,1000)   //different scalings
+
+>plot_image, sigrange(a)   //selects the most significant data range in an image
+
+
+
+03-11-06
+
+Commands from Peter: (reading images and viewing them and roberts edge detection with histogram thresholding)
+
+>print, anytim('12-mar-2000')                 ...(may need to compile module by running file2time first)
+>print, anytim('12-mar-2000',/vms) ... ,/cc (,/ut ,/uct   ...might not work)
+>file='lasco_20090827.fits'
+>print, file
+>print, file2time(file)
+>print, anytim(file2time(file),/vms)
+
+>print, time2file('1-apr-1999')
+>print, time2file('1-apr-1999')+'.fits'
+>print, 'lasco_'+time2file('1-apr-1999')+'.fits'
+
+>files=findfile('*.fits')
+>mreadfits, files, index, data
+>xstepper, data, ys=512, xs=512
+>help, data
+
+>im=data(*,*,9)
+>plot_image, im
+>loadct, 1
+>plot_image, im
+
+>pmm, im   //pixel max & min
+
+>plot_hist, im
+>plot_hist, im, yr=[0,1000], xr=[0,6000]
+>plot_hist, bytscl(im, 100, 6000)
+
+>rim=roberts(im)   //roberts edge detection on image
+>plot_hist, rim
+>plot_image, rim
+>plot_hist, rim, xr=[0,300]
+>plot_image, bytscl(rim, 0, 300)
+
+>!p.multi=[0,2,1]
+>plot_image, im
+>plot_image, bytscl(rim, 0, 300)
+
+
+20-11-06
+
+Signal / Image Analysis -edge detection
+
+Plotting a signal and can add in noise.
+Let a=list of zeroes and then add in ones at certain intervals for steps (edges)
+>a=fltarr(0)
+>a[30:60]=1.
+>a[300:600]=1.
+
+>plot, a+randomu(10), yr=[0,30]
+>a=a+randomu(seed, 1000)*10
+>plot, a, yr=[0,30]
+>plot, deriv(a)
+>plot, deriv(a)^2
+>g=deriv(a)^2
+>plot, g
+>help, g
+
+Sort can be used to sort the indices of the entries of the array into descending order
+
+>plot, a
+>m=deriv(a)^2
+>plot, m
+>k=sort(m)
+>iprint, k
+>print, max(m)
+>print, where(m eq max(m))
+>plot, sort(m)
+>print, min(m)
+>print, max(m)
+
+Can also reverse(sort(m))
+>print, reverse(sort(m))
+>rs=reverse(sort(m))
+>plot, rs
+>plot, m(rs)
+>plot, m(rs), psym=10
+>print, m(0)
+>print, m(1)
+>print, rs(0)
+>print, rs(1)
+
+>im=fltarr(512, 512)
+>plot_image, im
+>print, im
+>im[200:400, 250:370] = 1
+>plot_image, im
+>plot_image, deriv(im)
+>plot_image, roberts(im)
+>plot_image, sobel(im)
+>plot_image, laplacian(im)
+>shade_surf, laplacian(im)
+>sim=sobel(im)
+>plot_image, sim
+>pmm, sim
+>edge=where(sim eq 6.)
+>help, edge
+>shade_surf, sim
+>$
+>edge=where(sim gt 2.)
+>print, edge
+>plot_image, im
+>help, edge
+>print, edge
+>?
+>tftd, 'index2xy'
+>xy=array_indices(sim, edge)
+>help, xy
+>help, index
+>help, edge
+>plot, xy(0,*), xy(1,*)
+>help, xy
+>plot, xy(0, *), xy(1, *), psym=2
+>plot_image, im
+>oplot, xy(0,*), xy(1,*), psym=3
+>set_line_color
+>oplot, xy(0,*), xy(1,*), psym=3, color=4
+
+>im=gauss_put(512, 512)
+>im=gauss_put(512, 512, 10, 200, 50, 100, 100)
+>plot_image, im
+>loadct, 0
+>plot_image, im
+>shade_surf, im
+>loadct, 3
+>shade_surf, im
+
+
+
+What I want to do now is write a program / algorithm that will perform this edge detection and characterisation on different squares and circles.
+
+Also can try adding in noise up until the point where edge detection fails.
+
+Look at Gaussians and see where to define an edge detection on this, considering the derivative and looking at zero-crossings.
+
+
+
+21-11-06
+
+>plot_image, sigdiff9, /log
+>plot_image, sigdiff9 > 200
+>plot_image, sigdiff9(400:700, 200:400)
+>plot_hist, sigdiff9(400:700, 200:400), /log
+
+>contour, sigdiff9, level=150, /over
+
+>contour, smooth(sigdiff9, 3, /ed), level=80, /over
+
+>contour, smooth(sigdiff9, 5, /ed), level=80, /over, path_xy=path_xy, path_info=path_info
+
+Can look at how contour works and see about getting rid of unwanted bits and what information contour yields... can/want to look at moments, size, curvature...
+
+22-11-06
+
+Myself just messing around with contour stuff...
+
+>s=smooth(sigdiff9, 5, /ed)
+>plot_image, s
+>contour, s, level=1, /over
+>contour, s, levels=[1,100,200], /over
+>plot_image, sigdiff9
+>plot_image, s
+>shade_surf, s
+>show3, s
+>live_surface, s
+>shade_surf, s, shade=bytscl(s)
+
+
+>rs=roberts(s)
+>plot_image, rs
+>ss=sobel(s)
+>plot_image, ss
+>sigss=sigrange(ss)
+>plot_image, sigss
+>contour, sigss, level=1, /over
+
+
+23-11-06
+
+>srs=sigrange(rs)
+>plot_image, srs
+>contour, srs, level=findgen(6), /over
+
+
+24-11-06
+
+>plot_image, sigdiff9
+>s = sobel(smooth(sigdiff9, 5, /ed))
+>plot_image, s
+>contour, s, level=findgen(10*5), /over
+
+
+27-11-06
+
+http://idlastro.gsfc.nasa.gov/idl_html_help/Analyzing_Image_Shapes.html
+
+>im=smooth(sigdiff9, 5, /ed)
+>contour, im, level=50, /over, closed=0, path_info=info, path_xy=xy, /path_data
+
+>plot_image, im
+>s=size(im, /dimensions)
+>print, s
+
+>contour, im, /xstyle, /ystyle, levels=40, path_info=info, path_xy=xy, /path_data_coords
+
+>print, info
+>help, info
+>help, xy
+
+>for i=0,(N_ELEMENTS(info)-1) do plots, $
+>xy[*,info[i].offset:(info[i].offset+info[i].n-1)], linestyle=(i<5), /data
+
+>for i=0,3 do plots, $
+>xy[*,info[i].offset:(info[i].offset+info[i].n-1)], linestyle=(i<5), /data
+
+>help, info[0], /str
+
+>x=xy[0,info[0].offset:(info[0].offset+info[0].n)-1]
+>y=xy[1,info[0].offset:(info[0].offset+info[0].n)-1]
+>plot, x, y
+>plot, x, y, xr=[300,900], yr=[0,600]
+
+So have the CME front, which if gotten for each set of difference images can show a movie of the propagating front.
+Determine it's curvature/origin/ height-time profile (for chosen points on the front edge)
+
+
+29-11-06
+
+Made test2.pro and saved images using tvrd() and wr_movie.
+Save windows by 
+>x2jpeg, 'im.jpg'
+
+
+30-11-06
+
+Made movies
+www.maths.tcd.ie/~jaydog/CMEfront_only_movie.html
+www.maths.tcd.ie/~jaydog/CMEimage_movie.html
+www.maths.tcd.ie/~jaydog/movie5.html
+
+
+01-12-06
+
+Use recpol to make straight lines on image by r, theta coords trans.
+
+
+ >print, moment(image)   ...prints first four moments of the image(mean,var,skew,kurtosis)
+
+>draw_circle, 511, 511, 150, /data
+
+Discussions with Peter; want to normalise all my images, to make sure they have the same mean and variance/sigma so that there are no discrepencies with the difference images.
+
+Looking at the top left corner to see just the background intensity which can be used to say what the normalised image intensities should be...
+
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+LOG OF BASIC CME MODULE
+
+
+
+*****************************************
+
+; First run automated_dublin.pro ( / automated_gail.pro / automated_solarwind.pro / …)
+	
+	-- this does the detections on the already processed fits files from Huw.
+
+; Then run automated_kins.pro
+
+	-- this separates the automated detections via the regions in the detection stacks, and outputs a det_info_str_yyyymmdd.sav per day with the information corresponding to the CME detections that begin on that specific day, whenever they might end.
+
+
+*****************************************
+
+
+
+cd Postdoc/Automation/Catalogue
+
+;dir = '~/Postdoc/Automation/candidates/20100227-0305'
+;dir = '~/Postdoc/Automation/CME_Module_basic/test'
+dir = '~/Postdoc_largefiles/detections_gail/20110113'
+
+; fls = file_search(dir+'/dyn*fits.gz')
+fls = file_search('~/Postdoc_largefiles/2011/01/01/*fits*')
+
+out_dir = dir
+
+if ~dir_exist(out_dir) then spawn, 'mkdir -p '+out_dir
+
+; run_automated_new, fls, out_dir, /gail
+
+stack_fl = file_Search(out_dir+'/det_stack*')
+;restore, dir+'/detections/det_stack*'
+restore, stack_fl
+
+pa_total = det_stack.stack
+
+clean_pa_total, pa_total, pa_mask
+
+pa_total *= pa_mask
+
+separate_pa_total, pa_total, det_info
+
+; Need an indication of whenever a detection stack goes off the edge, that the adjoining day needs to be inspected (via read_daily_stacks.pro).
+; if where(det_info[2,*] eq 0) ne [-1] then flag_prev_day=1
+; if where(det_info[3,*] eq n_elements(fls)-1) ne [-1] then flag_next_day=1
+if (where(det_info[2,*] eq 0) ne [-1]) OR (where(det_info[3,*] eq n_elements(fls)-1) ne [-1]) then flag_adjoining=1 else flag_adjoining=0
+
+det_fls = file_Search(out_dir+'/cme_dets/dets*')
+
+if ~dir_exist(out_dir+'/cme_profs') then spawn, 'mkdir -p '+out_dir+'/cme_profs'
+
+find_pa_heights_all_redo,fls,pa_total,det_info,det_fls,out_dir+'/det_stack*sav',out_dir+'/cme_profs'
+; saves out txt files of info on "Time, Height, Pos.Ang."
+
+;readcol, dir+'/detections/cme_profs/yyyy-mm-dd_NN.txt', datetimes, heights, angs, f='A,D,F'
+;readcol, out_dir+'/cme_profs/2010-02-28_02.txt', datetime, heights, angs, f='A,D,F'
+
+cme_prof_fls=file_Search(out_dir+'/cme_profs/cme_prof_*sav')
+
+if ~dir_exist(out_dir+'/cme_profs/cme_kin_profs') then spawn, 'mkdir -p '+out_dir+'/cme_profs/cme_kins_profs'
+
+find_pa_heights_masked,fls,pa_total,det_info,det_fls,stack_fl,cme_prof_fls,out_dir+'/cme_profs/cme_kins_profs', /no_plots
+
+;if flag_adjoining eq 1 then read_daily_stacks, stack_fl, ?
+
+; *** Steps bifurcate here, into case of clustering multiple detections that overlap, and just taking the single CME parameters out of the detection region.
+
+; (1) Reading in the cme_profs/yyyy-mm-dd_NN.txt
+
+if ~dir_exist(out_dir+'/cme_kin_plots') then spawn, 'mkdir -p '+out_dir+'/cme_kins_plots'
+kin_fls = file_search(out_dir+'/cme_profs/*txt')
+for i=0,n_elements(kin_fls)-1 do begin & $
+	readcol, kin_fls[i], datetimes, heights, angs, f='A, D, F' & $
+	clean_heights, datetimes, heights, angs & $
+	plot_kins_quartiles, datetimes, heights, angs, out_dir+'/cme_kins_plots', /sav_gol, /plot_median, /tog & $
+endfor
+
+
+; (2) Huw's clustering codes:
+
+in_dir = out_dir+'/cme_profs/cme_kin_profs'
+
+d = read_jason_detections(in_dir)
+
+d2 = wrap_sort_velocities(d)
+
+d3 = expand_cme_structure(d2)
+
+disp3, d3
+disp2, d3
+
+cme_id = uniq_huw(d3.cme_id, ncme)
+
+if ~dir_exist(out_dir+'/cme_kins') then spawn, 'mkdir -p '+out_dir+'/cme_kins'
+
+for i=0,ncme-1 do begin & $
+	ind = where(d3.cme_id eq cme_id[i]) & $
+	t = d3.t[ind] & $
+	ht = d3.ht[ind] & $
+	pa = d3.pa[ind] & $
+	save, t, ht, pa, f=out_dir+'/cme_kins/cme'+int2str(i)+'_kin_info.sav' & $
+endfor
+
+
+;*****************************************************************
+
+; After having run   run_automated_new
+; in folder Postdoc/Automated/Catalogue/
+
+automated_kins
+
+; then in folder 
+
+create_html
