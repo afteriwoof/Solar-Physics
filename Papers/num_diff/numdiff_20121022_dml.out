@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Numerical Differentiation \046 Error Propagation \(recap\)}{}
+\BOOKMARK [1][-]{section.3}{Simulations}{}
+\BOOKMARK [2][-]{subsection.3.1}{Effect of noisy scatter on deriving kinematics}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Effect of sampling cadence on deriving kinematics}{section.3}
+\BOOKMARK [1][-]{section.4}{Bootstrapping}{}
+\BOOKMARK [1][-]{section.5}{Case Studies}{}
+\BOOKMARK [2][-]{subsection.5.1}{CORIMP}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{CorPITA}{section.5}
+\BOOKMARK [1][-]{section.6}{Conclusions}{}

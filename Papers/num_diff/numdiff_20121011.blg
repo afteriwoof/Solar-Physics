@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99c (TeX Live 2009)
+The top-level auxiliary file: numdiff_20121011.aux
+The style file: aa.bst
+I found no \bibdata command---while reading file numdiff_20121011.aux
+Warning--I didn't find a database entry for "2007ApJ...657.1117W"
+Warning--I didn't find a database entry for "2012ApJ...752..145B"
+Warning--I didn't find a database entry for "2003ApJ...588L..53G"
+Warning--I didn't find a database entry for "Long:2008"
+Warning--I didn't find a database entry for "Muhr:2011"
+Warning--I didn't find a database entry for "Veronig:2008"
+Warning--I didn't find a database entry for "Warmuth:2004"
+Warning--I didn't find a database entry for "Efron:1979p1831"
+Warning--I didn't find a database entry for "Ma:2009"
+You've used 0 entries,
+            2947 wiz_defined-function locations,
+            663 strings with 4816 characters,
+and the built_in function-call counts, 23 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 2
+:= -- 8
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 4
+num.names$ -- 0
+pop$ -- 0
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 1
+stack$ -- 0
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 3
+(There was 1 error message)

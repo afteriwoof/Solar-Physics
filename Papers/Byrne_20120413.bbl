@@ -1,0 +1,7 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Wen} {et~al.}(2007){Wen}, {Maia}, \& {Wang}}]{2007ApJ...657.1117W}
+{Wen}, Y., {Maia}, D.~J.~F., \& {Wang}, J. 2007, \apj, 657, 1117
+
+\end{thebibliography}

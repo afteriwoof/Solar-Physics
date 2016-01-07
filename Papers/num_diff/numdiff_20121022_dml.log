@@ -1,0 +1,571 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.6.1)  22 OCT 2012 17:13
+entering extended mode
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**numdiff_20121022_dml.tex
+(./numdiff_20121022_dml.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, german-x-2009-06-19, ngerman-x-2009-06-19, ancientgreek, ibycus, ar
+abic, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danish, dutc
+h, esperanto, estonian, farsi, finnish, french, galician, german, ngerman, mono
+greek, greek, hungarian, icelandic, indonesian, interlingua, irish, italian, ku
+rmanji, latin, latvian, lithuanian, mongolian, mongolian2a, bokmal, nynorsk, po
+lish, portuguese, romanian, russian, sanskrit, serbian, slovak, slovenian, span
+ish, swedish, turkish, ukenglish, ukrainian, uppersorbian, welsh, loaded.
+(./aa.cls
+Document Class: aa 2006/06/01 v6.1 
+LaTeX document class for Astronomy and Astrophysics journal
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/fleqn.clo
+File: fleqn.clo 1998/08/17 v1.1c Standard LaTeX option (flush left equations)
+\mathindent=\dimen102
+)
+\logodepth=\dimen103
+\headerboxheight=\dimen104
+\betweenumberspace=\dimen105
+\aftertext=\dimen106
+\headlineindent=\dimen107
+\c@inst=\count79
+\c@auth=\count80
+\instindent=\dimen108
+\authrun=\box26
+\authorrunning=\toks14
+\titrun=\box27
+\titlerunning=\toks15
+\number@fw@rds=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@theorem=\count87
+\figgap=\dimen109
+\c@append=\count88
+\c@figure=\count89
+\c@table=\count90
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\figcapgap=\dimen110
+\tabcapgap=\dimen111
+\bibindent=\dimen112
+) (./natbib.sty
+Package: natbib 2006/03/22 7.3 (PWD)
+\bibhang=\skip43
+\bibsep=\skip44
+LaTeX Info: Redefining \cite on input line 541.
+\c@NAT@ctr=\count91
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count92
+))
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2009/10/17 v2.4 Conversion with epstopdf on the fly (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2009/10/17 v2.4 Base part for package epstopdf
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2007/09/30 v1.0 Managing graphics extensions (HO)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)
+
+Package epstopdf Warning: Shell escape feature is not enabled.
+
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 433.
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2009/10/26 v1.1 Configuration of epstopdf for TeX Live
+)))
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode detected.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/hycolor.sty
+Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
+O)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/xcolor-patch.sty
+Package: xcolor-patch 2009/10/02 xcolor patch
+))
+\@linkdim=\dimen115
+\Hy@linkcounter=\count93
+\Hy@pagecounter=\count94
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 2975.
+Package hyperref Info: Link nesting OFF on input line 2980.
+Package hyperref Info: Hyper index ON on input line 2983.
+Package hyperref Info: Plain pages OFF on input line 2990.
+Package hyperref Info: Backreferencing OFF on input line 2995.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 3191.
+(/usr/local/texlive/2009/texmf-dist/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 3428.
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/intcalc.sty
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+))
+\Fld@menulength=\count95
+\Field@Width=\dimen116
+\Fld@charsize=\dimen117
+\Field@toks=\toks17
+Package hyperref Info: Hyper figures OFF on input line 4377.
+Package hyperref Info: Link nesting OFF on input line 4382.
+Package hyperref Info: Hyper index ON on input line 4385.
+Package hyperref Info: backreferencing OFF on input line 4392.
+Package hyperref Info: Link coloring OFF on input line 4397.
+Package hyperref Info: Link coloring with OCG OFF on input line 4402.
+Package hyperref Info: PDF/A mode OFF on input line 4407.
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+)
+\Hy@abspage=\count96
+\c@Item=\count97
+\c@Hfootnote=\count98
+)
+*hyperref using default driver hpdftex*
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
+\Fld@listcount=\count99
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 8.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip45
+\subfigcapskip=\skip46
+\subfigcaptopadj=\dimen118
+\subfigbottomskip=\skip47
+\subfigcapmargin=\dimen119
+\subfiglabelskip=\skip48
+\c@subfigure=\count100
+\c@lofdepth=\count101
+\c@subtable=\count102
+\c@lotdepth=\count103
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2009/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip49
+\subfig@bottom=\skip50
+)
+
+LaTeX Warning: Unused global option(s):
+    [structabstract].
+
+(./numdiff_20121022_dml.aux
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+)
+\openout1 = `numdiff_20121022_dml.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+ (/usr/local/texlive/2009/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count104
+\scratchdimen=\dimen120
+\scratchbox=\box28
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen121
+\MPnumerator=\count108
+\everyMPtoPDFconversion=\toks19
+)
+Package hyperref Info: Link coloring ON on input line 35.
+ (/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+\c@section@level=\count109
+)
+LaTeX Info: Redefining \ref on input line 35.
+LaTeX Info: Redefining \pageref on input line 35.
+
+(./numdiff_20121022_dml.out) (./numdiff_20121022_dml.out)
+\@outlinefile=\write3
+\openout3 = `numdiff_20121022_dml.out'.
+
+\AtBeginShipoutBox=\box29
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 80.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 80.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <9> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 80.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2009/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+<images/sim_vels_thesis1.pdf, id=133, 614.295pt x 794.97pt>
+File: images/sim_vels_thesis1.pdf Graphic file (type pdf)
+
+<use images/sim_vels_thesis1.pdf>
+<images/sim_vels_thesis2.pdf, id=134, 614.295pt x 794.97pt>
+File: images/sim_vels_thesis2.pdf Graphic file (type pdf)
+
+<use images/sim_vels_thesis2.pdf> [2]
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <10> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 157.
+
+
+Package epstopdf Info: Source file: <images/noise_hist_weight.eps>
+(epstopdf)                    date: 2012-10-19 17:17:09
+(epstopdf)                    size: 55524 bytes
+(epstopdf)             Output file: <images/noise_hist_weight-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2012-10-22 16:46:30
+(epstopdf)                    size: 26475 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/noise_hist_weight-ep
+s-converted-to.pdf images/noise_hist_weight.eps>
+(epstopdf)             \includegraphics on input line 170.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/noise_hist_weight-eps-converted-to.pdf, id=158, 426.59375pt x 568.1225p
+t>
+File: images/noise_hist_weight-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/noise_hist_weight-eps-converted-to.pdf>
+Package epstopdf Info: Source file: <images/cad_hist_weight.eps>
+(epstopdf)                    date: 2012-10-22 16:03:39
+(epstopdf)                    size: 67658 bytes
+(epstopdf)             Output file: <images/cad_hist_weight-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2012-10-22 16:46:53
+(epstopdf)                    size: 33895 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/cad_hist_weight-eps-
+converted-to.pdf images/cad_hist_weight.eps>
+(epstopdf)             \includegraphics on input line 178.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/cad_hist_weight-eps-converted-to.pdf, id=160, 426.59375pt x 568.1225pt>
+File: images/cad_hist_weight-eps-converted-to.pdf Graphic file (type pdf)
+<use images/cad_hist_weight-eps-converted-to.pdf>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <./images/sim_vels_thesis1.pdf> <./images/sim_vels_thesis2.pdf>]
+Package epstopdf Info: Source file: <images/fig_cadence_hva_12min.eps>
+(epstopdf)                    date: 2012-10-16 16:37:49
+(epstopdf)                    size: 315679 bytes
+(epstopdf)             Output file: <images/fig_cadence_hva_12min-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2012-10-22 16:47:10
+(epstopdf)                    size: 105591 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/fig_cadence_hva_12mi
+n-eps-converted-to.pdf images/fig_cadence_hva_12min.eps>
+(epstopdf)             \includegraphics on input line 204.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/fig_cadence_hva_12min-eps-converted-to.pdf, id=193, 426.59375pt x 568.1
+225pt>
+File: images/fig_cadence_hva_12min-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use images/fig_cadence_hva_12min-eps-converted-to.pdf>
+Package epstopdf Info: Source file: <images/fig_cadence_hva_50min.eps>
+(epstopdf)                    date: 2012-10-16 16:38:46
+(epstopdf)                    size: 303655 bytes
+(epstopdf)             Output file: <images/fig_cadence_hva_50min-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2012-10-22 16:47:19
+(epstopdf)                    size: 99978 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/fig_cadence_hva_50mi
+n-eps-converted-to.pdf images/fig_cadence_hva_50min.eps>
+(epstopdf)             \includegraphics on input line 205.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/fig_cadence_hva_50min-eps-converted-to.pdf, id=194, 426.59375pt x 568.1
+225pt>
+File: images/fig_cadence_hva_50min-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use images/fig_cadence_hva_50min-eps-converted-to.pdf>
+Package epstopdf Info: Source file: <images/fig_cadence_1.eps>
+(epstopdf)                    date: 2012-10-18 13:50:01
+(epstopdf)                    size: 19968 bytes
+(epstopdf)             Output file: <images/fig_cadence_1-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2012-10-22 16:47:28
+(epstopdf)                    size: 11739 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/fig_cadence_1-eps-co
+nverted-to.pdf images/fig_cadence_1.eps>
+(epstopdf)             \includegraphics on input line 206.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/fig_cadence_1-eps-converted-to.pdf, id=195, 511.9125pt x 226.8475pt>
+File: images/fig_cadence_1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/fig_cadence_1-eps-converted-to.pdf> [4 <./images/noise_hist_weight-
+eps-converted-to.pdf> <./images/cad_hist_weight-eps-converted-to.pdf>]
+<images/bootstrap.pdf, id=213, 216.81pt x 216.81pt>
+File: images/bootstrap.pdf Graphic file (type pdf)
+ <use images/bootstrap.pdf>
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 230--231
+ [] 
+ []
+
+
+LaTeX Warning: Text page 5 contains only floats.
+
+[5 <./images/bootstrap.pdf> <./images/fig_cadence_hva_12min-eps-converted-to.pd
+f> <./images/fig_cadence_hva_50min-eps-converted-to.pdf> <./images/fig_cadence_
+1-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `subsect:num_diff' on page 6 undefined on input line 2
+48.
+
+<images/fig_bootstrap_quadratic.pdf, id=236, 426.59375pt x 568.1225pt>
+File: images/fig_bootstrap_quadratic.pdf Graphic file (type pdf)
+
+<use images/fig_bootstrap_quadratic.pdf>
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 256--257
+ [] 
+ []
+
+<images/fig_residuals_quadratic.pdf, id=238, 426.59375pt x 226.8475pt>
+File: images/fig_residuals_quadratic.pdf Graphic file (type pdf)
+
+<use images/fig_residuals_quadratic.pdf>
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 264--265
+ [] 
+ []
+
+<images/fig_bootstrap_lagrangian.pdf, id=240, 426.59375pt x 568.1225pt>
+File: images/fig_bootstrap_lagrangian.pdf Graphic file (type pdf)
+
+<use images/fig_bootstrap_lagrangian.pdf>
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 272--273
+ [] 
+ []
+
+<images/fig_residuals_lagrangian.pdf, id=242, 426.59375pt x 226.8475pt>
+File: images/fig_residuals_lagrangian.pdf Graphic file (type pdf)
+
+<use images/fig_residuals_lagrangian.pdf>
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 280--281
+ [] 
+ []
+
+<images/fig_bootstrap_savgol.pdf, id=244, 426.59375pt x 568.1225pt>
+File: images/fig_bootstrap_savgol.pdf Graphic file (type pdf)
+
+<use images/fig_bootstrap_savgol.pdf>
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 288--289
+ [] 
+ []
+
+<images/fig_residuals_savgol.pdf, id=246, 426.59375pt x 226.8475pt>
+File: images/fig_residuals_savgol.pdf Graphic file (type pdf)
+
+<use images/fig_residuals_savgol.pdf>
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 296--297
+ [] 
+ []
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 316--317
+\OT1/cmr/m/n/8 project is an in-ter-na-tional con-sor-tium of the Naval Researc
+h
+ []
+
+
+Underfull \hbox (badness 3525) in paragraph at lines 316--317
+\OT1/cmr/m/n/8 Appleton Laboratory (UK), University of Birmingham (UK),
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./images/fig_bootstrap_quadratic.pdf> <./images/fig_residuals_quadratic.pd
+f>]
+[7 <./images/fig_bootstrap_lagrangian.pdf> <./images/fig_residuals_lagrangian.p
+df> <./images/fig_bootstrap_savgol.pdf> <./images/fig_residuals_savgol.pdf>]
+(./numdiff_20121022_dml.bbl) [8
+
+] (./numdiff_20121022_dml.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5237 strings out of 493848
+ 76231 string characters out of 3149208
+ 171689 words of memory out of 3000000
+ 8358 multiletter control sequences out of 15000+200000
+ 12579 words of font info for 43 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 41i,13n,36p,1702b,367s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></u
+sr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
+/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
+ocal/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
+al/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/
+texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2009
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2009/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2009
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2009
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2009/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2009/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2009/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2009/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2009/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2009/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on numdiff_20121022_dml.pdf (8 pages, 6039047 bytes).
+PDF statistics:
+ 412 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,36 @@
+; Determine the numerical derivative of an input, giving the truncation error for the forward derivative only.
+
+; Created: 25-11-2010
+
+; Last edited: 21-01-2011  to include trunc_err
+
+function choose_deriv, x, y, trunc_err, forward=forward, centre=centre, lagrangian=lagrangian
+
+print, 'Choose_Deriv.pro assuming equal stepsizes in order to calculate the truncation errors for forward & centre differencing.'
+
+if keyword_set(forward) then begin
+	z = dblarr(n_elements(x)-1)
+	for i=0,n_elements(z)-1 do z[i] = (y[i+1]-y[i]) / (x[i+1]-x[i])
+	;www.cs.unc.edu/~dm/UNC/COMP205/LECTURES/DIFF/lec17/node3.html
+	trunc_err = dblarr(n_elements(x)-2)
+	for i=0,n_elements(trunc_err)-1 do trunc_err[i] = (y[i+2]-2*y[i+1]+y[i])/(2.*(x[i+1]-x[i]))
+endif
+
+if keyword_set(centre) then begin
+	z = dblarr(n_elements(x)-2)
+	for i=1,n_elements(z) do z[i-1] = (y[i+1]-y[i-1]) / (x[i+1]-x[i-1])
+	trunc_err = dblarr(n_elements(x)-3)
+	for i=3,n_elements(trunc_err)-1 do trunc_err[i] = (1/48.)*(y[i+3]-3*y[i+1]+3*y[i-1]-y[i-3])/(x[i+1]-x[i])
+endif
+
+if keyword_set(lagrangian) then begin
+	z = deriv(x, y)
+	trunc_err = dblarr(n_elements(x)-3)
+	for i=3,n_elements(trunc_err)-1 do trunc_err[i] = (1/6.)*((x[i+1]-x[i])^2.)*(1/(x[i+1]-x[i-1]))*((1/(x[i+2]-x[i]))*((y[i+3]-y[i+1])/(x[i+3]-x[i+1])-(y[i+1]-y[i-1])/(x[i+1]-x[i-1]))-(1/(x[i]-x[i-2]))*((y[i+1]-y[i-1])/(x[i+1]-x[i-1])-(y[i-1]-y[i-3])/(x[i-1]-x[i-3])))
+endif
+
+
+return, z
+
+
+end

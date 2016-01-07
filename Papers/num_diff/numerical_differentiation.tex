@@ -1,0 +1,30 @@
+\chapter{Numerical differencing techniques}
+\label{chap:numdiff}
+
+Several different numerical differencing techniques were studied for this report. The Taylor expansion method was used to derive the forward, reverse and centre differencing techniques, while the built-in IDL numerical differencing technique (\textsc{deriv}) uses a three-point Lagrangian technique. 
+
+A Taylor series is the expansion of the real function $f(t)$ about the point $t=a$ and generally takes the form
+\begin{equation}
+f(t) = f(a) + f'(a)(t-a) +  \frac{f''(a)}{2!}(t-a)^{2} + \frac{f'''(a)}{3!}(t-a)^{3}  + ...
+\end{equation}
+The difference between points $(t-a)$ is defined as $\Delta t$. This expansion can be used to determine the numerical derivative of a given point using a variety of different methods, each of which is outlined in the following sections.
+
+
+% Numerical Differencing Techniques
+
+\input{forward_diff}
+\input{reverse_diff}
+\input{centre_diff}
+\input{lagrange_diff}
+
+% Kinematical model for the simulation work
+
+\input{models}
+
+% Discussion and explanation of the application of noise for the simulation
+
+\input{noise}
+
+% Presentation and analysis of the simulations
+
+\input{sim_and_analysis}

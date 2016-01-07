@@ -1,0 +1,14 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Numerical Differentiation \046 Error Propagation \(recap\)}{}% 2
+\BOOKMARK [1][-]{section.3}{Simulations}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Kinematic models}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Testing for non-constant acceleration with the 3-point Lagrangian}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Bootstrapping}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Inversion Techniques?}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Sources of error?}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Cadence effects}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Positional uncertainty?}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Case Studies}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{CORIMP}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{CorPITA}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 14

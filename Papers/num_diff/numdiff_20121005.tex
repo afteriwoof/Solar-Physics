@@ -1,0 +1,276 @@
+ \documentclass[structabstract]{aa}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{color}
+
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand{\myemail}{jbyrne@ifa.hawaii.edu}
+
+%%I'm adding these -JPB
+%\newcommand{\solphys}{{\it Solar Physics}}
+%\newcommand{\aap}{    {\it Astronomy \& Astrophysics}}
+%\newcommand{\aaps}{   {\it Astronomy \& Astrophysics Supplemental}}
+%\newcommand{\apj}{    {\it Astrophysical Journal}}
+%\newcommand{\apjl}{    {\it Astrophysical Journal Letters}}
+%\newcommand{\jgr}{    {\it Journal of Geophysical Research}}
+%\newcommand{\aapr}{    {\it Astronomy \& Astrophysics Review}}
+%\newcommand{\grl}{    {\it Geophysical Research Letters}}
+\newcommand{\lrsp}{    {\it Living Rev. Solar Phys.}}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\usepackage{subfigure}
+
+%\makeatletter
+%\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+%\makeatother
+
+
+\begin{document}
+
+\title{Numerical methods for determining the kinematics of CMEs and ``EIT Waves''}
+
+\author{J.P.~Byrne\inst{1}
+	\and D.M.~Long\inst{2}
+	\and P.T.~Gallagher\inst{3}
+	\and S.A.~Maloney?\inst{4}
+	\and S.D.~Bloomfield?\inst{3}
+	\and H.~Morgan\inst{5,1}
+	\and S.R.~Habbal\inst{1}}
+\institute{Institute for Astronomy, University of Hawai'i, 2680 Woodlawn Drive, Honolulu, HI 96822, USA.\\
+		\email{jbyrne@ifa.hawaii.edu}
+		\and
+		UCL--Mullard Space  Science Laboratory, Holmbury St. Mary, Dorking, Surrey, RH5 6NT, UK.
+		\and 
+		School of Physics, Trinity College Dublin, College Green, Dublin 2, Ireland.
+		\and
+		Skytek, 51/52 Fitzwilliam Square West, Dublin 2, Ireland
+		\and
+		Institute of Mathematics and Physics, Aberystwyth University, Ceredigion, SY23 3BZ, UK.
+		}
+
+\date{Received ?; accepted ?}
+%%Abstract
+\abstract
+% Context (optional)
+{Why are we doing this work?}
+% Aims (mandatory)
+{The aims of the paper}
+% Methods (mandatory)
+{The methods used in the paper}
+% Results (mandatory)
+{The results of this analysis}
+% Conclusions (optional)
+{What are our conclusions?}
+
+%% Keywords 
+
+\keywords{Sun: activity -- Sun: corona -- Sun: coronal mass ejections (CMEs)}
+
+\maketitle
+
+%
+%________________________________________________________________
+
+\section{Introduction}
+\label{sect_intro}
+
+\begin{figure*}[!ht]
+\centering
+\subfigure{\includegraphics[scale=0.43, trim=110 50 70 70]{images/sim_vels_thesis1.pdf}}
+\subfigure{\includegraphics[scale=0.43, trim=70 50 110 70]{images/sim_vels_thesis2.pdf}}
+\caption{A theoretical model for a CME with constant acceleration 2~m~s$^{-2}$ and initial velocity 300~km~s$^{-1}$, and two simulations of how the resulting profiles for a noisy sample of datapoints behave using 3-point Lagrangian interpolation.}
+\label{sim_vels_thesis}
+\end{figure*}
+
+\section{Numerical Differentiation \& Error Propagation (recap)}
+When presented with a moving object through a sequence of image frames such that it is possible to measure its position at each time step, the technique of numerical differentiation is often used to derive the velocity and acceleration of the object. In the standard 2-point approach, it should be possible to derive the time evolution of a system at time step $t+\delta t$ according to the system values at time step $t$. This may be applied through the technique of forward, reverse or centre differencing, resulting in an estimate of the speed of the object at a specific time step given its positional information. More commonly, a 3-point Lagrangian interpolation is applied to better approximate the kinematics of a moving object by solving for the Lagrange polynomials that best fit across three given datapoints (e.g. \textsc{deriv.pro} in IDL). Each of these schemes is based upon the Taylor series expansion of a real function $f(t)$:
+\begin{equation}
+\label{taylor1}
+f(t_0+\delta t) \; = \; f(t_0)+f'(t_0)\delta t +  \frac{f''(t_0)}{2!}(\delta t)^{2}  + ...
+\end{equation}
+but due to the approximation of an infinite series with a finite number of terms and iterations, an error must be associated with the result, based on its deviation from the true solution. Generally the Euler method is employed, using the formula:
+\begin{equation}
+y_{n+1} \; = \; y_n + h f(t_n, y_n)
+\end{equation}
+to solve the initial value problem $y'=f(t,y)$ given $y(t_0)=y_0$, where $h$ is the stepsize such that $t_n=t_0+nh$. The convergence of such an approximation to the actual solution is prone to two sources of error; truncation error (the difference between the true solution and the approximation) and round-off error (the limited precision of the approximation). Add to this fact that the data measurements themselves are subject to uncertainties in both the positional and temporal information, and the ability of the numerical differentiation techniques to derive kinematics becomes highly jeopardised, as shall be shown.
+
+Given a function $x=f(u,\,v)$, the error propagation equation (based on the standard deviations $\sigma$ of the variables) is written:
+\begin{equation}
+\label{eqn_errorprop}
+\sigma_x^2 \; = \; \sigma_u^2 \left(\frac{\partial x}{\partial u}\right) ^2 + \sigma_v^2 \left( \frac{\partial x}{\partial v} \right) ^2 + 2 \sigma_{uv}^2 \left( \frac{\partial x}{\partial u} \right) \left( \frac{\partial x}{\partial v} \right) + ...
+\end{equation}
+Specifically in the case of kinematic analyses, this is used to propagate the errors on the height-time data $r(t)$ into the velocity $v(t)$ and acceleration $a(t)$ profiles to determine the associated uncertainties. In the case of height-time data the covariance terms are zero because the quantities are uncorrelated.
+
+In the case of relatively low sampling of the data, as in the case of coronagraph observations of CMEs, it is generally found that the simplest differentiation techniques are not applicable. The forward and/or reverse differencing techniques act to shift the kinematic profiles by one time-step, which is substantial enough to be of concern here (i.e., they derive a result at the current time-step, based on the pro-/preceding time-step). Centre differencing employs the two neighbouring data--points of the point under examination, and so is a better indication of the result at that time-step, but it fails at both endpoints. In any case these should not be employed when the spacing of the data--points is unequal, i.e., when the cadence $\delta t$ is not constant, and so the 3-point Lagrangian interpolation technique is used for such cases (and gives the same result as the centre-difference otherwise, but includes the endpoints). The Lagrangian interpolation polynomial is given by:
+\begin{eqnarray}
+L(x) \; &=\; \sum_{j=0}^2 y_j l_j(x) \\ \quad \mbox{where} \quad
+l_j(x) \; &=\; \prod_{i=0, i\neq j}^2 \frac{x-x_i}{x_j-x_i} 
+\end{eqnarray}
+The derivative at point $x$ is given by $L'=\partial_x L(x)$. So for the case of height-time data being used to derive velocity (and similarly for acceleration) the associated error is given by:
+\begin{equation}
+\sigma_{v_1}^2 \,=\, \frac{\sigma_{r(t_2)}^2+\sigma_{r(t_0)}^2}{(t_2-t_0)^2} + v^2 \left( \frac{\sigma_{t_2}^2+\sigma_{t_0}^2}{(t_2-t_0)^2} \right)
+\label{vel_err}
+\end{equation}
+with the endpoint errors derived from a weighting of the pro-/preceding two data--points, that is therefore larger to reflect the uncertainty of the trend beyond the sample points.
+
+Although the 3-point Lagrangian is mathematically sound, its application to CME data has proved problematic due to the limitations of the data. The main drawback is that the noise level across the few, low-cadence measurements, often belies the actual trends of the data such that the numerical derivations of velocity and acceleration become untrustworthy and even misleading. As an example of this, we simulate a height-time profile of a CME that propagates with a constant acceleration of 2~m~s$^{-2}$ and initial velocity 300~km~s$^{-1}$, and add random noise of various levels up to a maximum of $\sim$20\%. An errorbar on each datapoint is determined by its distance from the true height-time profile, to represent the worst best-case scenario wherein all measurements lie on the very edge of the known error. Various instances of datapoint scatters result in erroneous trends in the velocity and acceleration profiles - even with the proper error treatment ascribed by the 3-point Lagrangian interpolation technique. Two such cases are shown in Figure~\ref{sim_vels_thesis} where completely opposing acceleration trends are revealed, indicating that the nature of the scatter in the samples is not satisfactorily reflected in the derived kinematics and associated errors. The worry here is that for CMEs undergoing non-constant acceleration, the resulting trends in the derived profiles may be completely intractable via these methods. One possible assurance has been that instead of trusting the endpoints, even given their larger errorbars, they be removed. Figure~\ref{sim_vels_thesis} would then show three datapoints for CME velocity and one for acceleration, that would in the left case go somewhat toward removing the biased trend and implying a constant acceleration, while in the right case it would remain inconclusive. So qualitatively this might achieve a more accurate result and avoid assigning erroneous trends, especially to fast CMEs for which there are few data--points.
+
+Beyond the interest certainly in the initial acceleration from the forces that drive a CME to erupt, there is a real physical motivation to resolve the subsequent low or zero acceleration as precisely as possible. This is important for determining whether the predominant forces acting are such that the CME is, in general, undergoing continued driving (internal) forces, or positive or negative drag (external) forces, or most assuredly some interplay of both. Any changes to its acceleration that result from different phases of dominating force, and where or why this occurs, are of great interest. Yet this all remains somewhat elusive given the limitations of current CME data, especially as \citet{2007ApJ...657.1117W} demonstrate that the errors in the acceleration values can be of the same order as the accelerations typically measured. 
+
+
+
+We investigate the output of the recently developed CORIMP catalogue with new techniques (and stringent error analyses) for deriving CME kinematics. %\citep{2012Paper1, 2012Paper2}
+
+
+
+\section{Simulations}
+
+\subsection{Kinematic models}
+
+A theoretical CME with non-constant acceleration is modelled by the following kinematic profile equations (as used in \citealt{2012ApJ...752..145B}, based on a variation of the acceleration function chosen by \citealt{2003ApJ...588L..53G}):
+
+\begin{eqnarray}
+h(t)\,=&\,\sqrt{2x}\,t\tan^{-1}\left(\frac{e^{t/2x}}{\sqrt{2x}}\right) \\
+v(t)\,=&\,\sqrt{2x}\tan^{-1}\left(\frac{e^{t/2x}}{\sqrt{2x}}\right)+\frac{e^{t/2x}t}{e^{t/x}+2x} \\
+a(t)\,=&\,\frac{e^{t/2x}\left(2x\left(t+4x\right)-e^{t/x}\left(t-4x\right)\right)}{2x\left(e^{t/x}+2x\right)^2}
+\end{eqnarray}
+
+where $x$ is just a scaling factor, set to be constant. The resulting acceleration profile exhibits an initial peak followed by a deceleration and then levelling to zero. This is akin to a general impulsive CME that undergoes an initial high-acceleration eruptive phase, and then decelerates to match the solar wind speed during its propagation phase. Thus a model CME height-time profile is generated enabling synthetic observation samples to be taken at different cadences from 1\,--\,47~mins. 
+
+Simulating the kinematics of the on--disk ``EIT Wave'' poses a slightly different problem as the theoretical interpretation of this phenomenon is not yet fully codified. As a result, two distinct kinematic forms were simulated here: a quadratic model and a power--law model. Both of these models are typically used to determine the kinematics of these disturbances and have been used extensively in previous work \citep[e.g.,][]{Long:2008,Veronig:2008,Warmuth:2004,Muhr:2011}. The quadratic model takes the form,
+\begin{equation}
+r(t) = r_0 + v_0 t + \frac{1}{2}a_0 t^2
+\end{equation}
+where $r_0$ is the initial distance of the pulse from the source, $v_0$ is the initial velocity of the pulse and $a_0$ is the acceleration of the pulse. This may then be used to identify the situation where the pulse has constant acceleration (either positive or negative) or zero acceleration (where the error associated with the acceleration term passes through zero). The power--law fit may be used to identify variable acceleration and is of the form,
+\begin{equation}
+r(t) = c(t - t_0)^{\delta}
+\end{equation}
+where $c$ is a constant, $t_0$ is the starting time given by the fit and $\delta$ is the exponent.
+
+
+\subsection{Testing for non-constant acceleration with the 3-point Lagrangian}
+
+\begin{figure}[!t]
+\centering
+{\includegraphics[scale=0.55, trim=0 50 0 40, clip=true]{images/fig_peaked_accel_kins.eps}}
+\caption{The height, velocity and acceleration profiles for a theoretical event with non-constant acceleration peaking at 437~m~s$^{-2}$.}
+\label{fig_peaked_accel_kins}
+\end{figure}
+
+We investigate the effect of the cadence of the observations on the derivation of the kinematics and associated errorbars using the standard 3-point Lagrangian interpolation. In the first instance fixed 1~$\sigma$ errorbars of approximately $\pm$~25~Mm are applied to the height-time points, without any noise added. This is useful to simply test the effects of the cadence on the derived velocity and acceleration profiles and their associated errors. Figure~\ref{fig_cadence_4} shows a sample output of the test. Figures~\ref{fig_cadence_4}($a$) and ($b$) show the model CME acceleration profile sampled at cadences of 3 and 10~mins respectively, relative to the initial point at 0~mins (blue) held fixed while the varying cadence changes the locations of the other sample points along the profile. Note that the errorbars of the two points at both the start and end of the interval are larger than the rest to account for not having enough points to interpolate across them (the endpoints of velocity having already undergone the same treatment). As the cadence is reduced, i.e., the cadence time is increased, the errorbars become smaller due to the inverse dependence of the Lagrangian error treatment on the time between points ($\Delta t^{-2}$). However, reducing the cadence reduces the resolution with which it is able to detect the acceleration peak, and so the peak is smoothed out until the interval is eventually approximated as being one of constant zero acceleration, as demonstrated in Figure~\ref{fig_cadence_4}($d$) (where the non-smooth transition and errorbar sizes are as a result of stepping down in sample size such that the fixed point at 9~mins eventually becomes the start-point of the interval). Figure~\ref{fig_cadence_4}($c$) shows the trend of derived acceleration on the fixed point at 0~mins for increasing cadence time, corresponding directly to the start-point (blue) of the top two plots ($a$) and ($b$). In this case, as the cadence time is increased the derived acceleration value at the fixed 0~mins point approaches the true acceleration peak as the points average across the general peaked trend, before it is smoothed out and the interval is again approximated as having constant zero acceleration. Figures~\ref{fig_cadence_4}($c$) and ($d$) clearly show the effect of the $\Delta t^{-2}$ dependence of the errorbars derived through the 3-point Lagrangian interpolation, wherein the errors would become infinitely large for infinitely high cadence, and imply erroneously high precision for very low cadence sampling of the data. The importance of where along the profile the sample points are taken is also highlighted here.
+
+\begin{figure*}[!t]
+\centering
+{\includegraphics[scale=0.55, trim=0 30 0 10, clip=true]{images/fig_cadence_4landscape.eps}}
+\caption{A demonstration of the effects of cadence on the error propagation according to the 3-point Lagrangian interpolation. A theoretical model for a CME with non-constant acceleration peaking at 437~m~s$^{-2}$ is tested for varying cadences of 1 to 47~mins. Plots ($a$) and ($b$) show the cases when the cadence is 3~mins and 10~mins respectively, relative to a fixed point at the 0~mins frame (start-point). Plots ($c$) and ($d$) show the derived acceleration values and associated errorbars as a function of cadence, relative to fixed points at 0~mins and 9~mins (peak acceleration point). The dotted line represents the peak acceleration value, and the dashed line represents the true acceleration expected in each case (which is the peak acceleration anyway for the case of the fixed point at 9~mins).}
+\label{fig_cadence_4}
+\end{figure*}
+
+It is also noted that the trend of the acceleration profile at high-cadence samplings is also revealed by the errorbars' span across the interval, as is shown in Figure~\ref{fig_cadence_4}($a$) for example. This fundamentally implies that the errors do not truly reflect a 1~$\sigma$ uncertainty on the data in this case, but recall here that no noise has been added to the dataset. The addition of noise, even to only a small degree, creates large problems for derivatives.
+
+\subsection{Bootstrapping/Spline Fits?}
+
+\subsection{Inversion Techniques?}
+
+\section{Sources of error?}
+
+\subsection{Cadence effects?}
+
+\emph{\textcolor{red}{Note that this is lifted directly from my thesis so would need to be completely re-written and joined with the rest of the text -- Dave.}}
+
+In the absence of a numerical technique to determine the kinematics of a CBF pulse, the cadence of the observing instrument and the degree of uncertainty in the data must also be considered. Here, the influence of both cadence and uncertainty are examined using the simulated data discussed in Section~\ref{subsect:num_diff}. The effects of varying image cadence were the first to be examined; this is shown in Figures~\ref{fig:num_diff_cad} and \ref{fig:num_diff_vary_cad}. 
+
+\begin{figure}[!t]
+\begin{center}
+\includegraphics[clip=,trim=0mm 5mm 0mm 0mm,width = 0.5\textwidth]{images/num_diff_cad.pdf}
+\caption{Simulated data (crosses) for cadences of 720~s (\emph{top}; comparable to EIT), 300~s  (\emph{middle}; comparable to EUVI) and 12~s  (\emph{bottom}; comparable to AIA). In each case, the fit to the data is shown in red with derived kinematics in the bottom right of each panel.}
+\label{fig:num_diff_cad}
+\end{center}
+\end{figure}
+
+The same data--set was used for each of the panels shown in Figure~\ref{fig:num_diff_cad}, with the cadence varied to best reflect data from \emph{SOHO}/EIT (top panel at 720~s), \emph{STEREO}/EUVI (middle panel at 300~s) and \emph{SDO}/AIA (bottom panel at 12~s). The derived kinematics are given in the bottom right of each panel with the fit to the data shown by the red line. It is immediately apparent that the higher cadence data allows a better fit to the data despite the uncertainty in the data (which was kept at $\pm$5\% of the model for each data--set). This implies that higher cadence data is required to derive the true kinematics of a CBF pulse.
+
+\begin{figure}[!t]
+\begin{center}
+\includegraphics[clip=,trim=0mm 5mm 0mm 0mm,width = 0.5\textwidth]{images/num_diff_vary_cad.pdf}
+\caption{Derived kinematics for varying image cadence with $\pm$5\% uncertainty. Distance, velocity and acceleration are shown in the top, middle and bottom panels respectively, with the x--axis shown using logarithmic scaling to highlight the effects of varying the image cadence.}
+\label{fig:num_diff_vary_cad}
+\end{center}
+\end{figure}
+
+The variation in derived kinematics with cadence is shown in Figure~\ref{fig:num_diff_vary_cad} (again for $\pm$5\% uncertainty). As the cadence decreases, the derived velocity and acceleration approach the model values, with the scatter showing a dramatic reduction below $\sim$50~s cadence. These results are consistent with the observations made by both \citet{Long:2008} and \citet{Ma:2009} and show that the effects of image cadence must be accounted for when trying to derive the true kinematics of a CBF pulse.
+
+\begin{figure}[!t]
+\begin{center}
+\includegraphics[clip=,trim=0mm 5mm 0mm 0mm,width = 0.5\textwidth]{images/num_diff_noise.pdf}
+\caption{Simulated data (crosses) for noise distributions with widths of $\pm$20\% (\emph{top}), $\pm$10\%  (\emph{middle}) and $\pm$5\%  (\emph{bottom}) of the data value. In each case, the fit to the data is shown in red with derived kinematics in the bottom right of each panel.}
+\label{fig:num_diff_noise}
+\end{center}
+\end{figure}
+
+The effects of varying uncertainty in the data were also examined for constant image cadence with the results of this analysis shown in Figures~\ref{fig:num_diff_noise} and \ref{fig:num_diff_vary_noise}. Figure~\ref{fig:num_diff_noise} shows the derived kinematics for the simulated data--set with the top panel showing uncertainties of $\pm$20\%, the middle panel showing uncertainties of $\pm$10\% and the bottom panel showing uncertainties of $\pm$5\%. The variation in uncertainty has a noticeable effect on the derived kinematics in each case, with the acceleration in particular exhibiting significant variation with uncertainty. 
+
+\begin{figure}[!t]
+\begin{center}
+\includegraphics[clip=,trim=0mm 5mm 0mm 0mm,width = 0.5\textwidth]{images/alt_num_diff_vary_noise.pdf}
+\caption{Derived kinematics for varying uncertainty at 150~s image cadence. Distance, velocity and acceleration are shown in the top, middle and bottom panels respectively.}
+\label{fig:num_diff_vary_noise}
+\end{center}
+\end{figure}
+
+The variation in the derived kinematics with uncertainty is shown in Figure~\ref{fig:num_diff_vary_noise}, with the variation in offset distance (r$_{0}$), initial velocity (v$_{0}$) and acceleration (a$_{0}$) shown in the top, middle and bottom panels respectively. Some variation is apparent in each case, with the acceleration again showing the strongest variation. The derived kinematics are seen to approach the model kinematics as the noise reduces to 0\% as expected. 
+
+It is clear that the variation in both noise and imaging cadence can strongly influence the derived kinematics of a CBF pulse, while the different numerical differencing techniques do not return accurate estimates of the pulse kinematics. However, it is possible to use a bootstrapping approach to overcome these issues as this is a statistically significant technique that has been optimised for small data-sets such as those typically obtained when studying CBF pulses. 
+
+
+\subsection{Positional uncertainty?}
+
+\section{CORIMP Case Studies}
+
+\section{Conclusions}
+\label{sect_conclusions}
+
+
+\begin{acknowledgements}
+This work is supported by SHINE grant 0962716 and NASA grant NNX08AJ07G to the Institute for Astronomy. The SOHO/LASCO data used here are produced by a consortium of the Naval Research Laboratory (USA), Max-Planck-Institut fuer Aeronomie (Germany), Laboratoire d'Astronomie (France), and the University of Birmingham (UK). SOHO is a project of international cooperation between ESA and NASA. The STEREO/SECCHI project is an international consortium of the Naval Research Laboratory (USA), Lockheed Martin Solar and Astrophysics Lab (USA), NASA Goddard Space Flight Center (USA), Rutherford Appleton Laboratory (UK), University of Birmingham (UK), Max-Planck-Institut f\"{u}r Sonnen-systemforschung (Germany), Centre Spatial de Liege (Belgium), Institut d'Optique Th\'{e}orique et Appliqu\'{e}e (France), and Institut d'Astrophysique Spatiale (France). 
+\end{acknowledgements}
+
+
+\begin{thebibliography}{}
+
+\bibitem[Byrne et al.(2012)]{2012ApJ...752..145B}
+Byrne, J.~P., Morgan, H., Habbal, S.~R., \& Gallagher, P.~T.\ 2012, \apj, 752, 145 
+
+\bibitem[Gallagher et al.(2003)]{2003ApJ...588L..53G}
+Gallagher, P.~T., Lawrence, G.~R., \& Dennis, B.~R.\ 2003, \apjl, 588, L53 
+
+\bibitem[Long et al.(2008)]{Long:2008}
+Long, D.~M., Gallagher, P.~T., McAteer, R.~T.~J., \& Bloomfield, D.~S.\ 2008, \apjl, 680, L81 
+
+\bibitem[Ma et al.(2009)]{Ma:2009}
+Ma, S., Wills-Davey, M.~J., Lin, J., et al.\ 2009, \apj, 707, 503 
+
+\bibitem[Muhr et al.(2011)]{Muhr:2011}
+Muhr, N., Veronig, A.~M., Kienreich, I.~W., Temmer, M., \& Vr{\v s}nak, B.\ 2011, \apj, 739, 89 
+
+\bibitem[Veronig et al.(2008)]{Veronig:2008}
+Veronig, A.~M., Temmer, M., \& Vr{\v s}nak, B.\ 2008, \apjl, 681, L113 
+
+\bibitem[Wen et al.(2007)]{2007ApJ...657.1117W}
+Wen, Y., Maia, D.~J.~F., \& Wang, J.\ 2007, \apj, 657, 1117 
+
+\bibitem[Warmuth et al.(2004)]{Warmuth:2004}
+Warmuth, A., Vr{\v s}nak, B., Magdaleni{\'c}, J., Hanslmeier, A., \& Otruba, W.\ 2004, \aap, 418, 1101 
+
+
+\end{thebibliography}
+
+%\bibliographystyle{apj}
+%\bibliography{kins_ref}  
+
+
+
+\end{document}

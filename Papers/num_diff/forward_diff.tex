@@ -1,0 +1,50 @@
+\section{Forward differencing}
+\label{sect:forward}
+
+The forward differencing technique involves the computation of the derivative at the point $t + \Delta t$ by extrapolating forward from the point $t$. This uses the Taylor series:
+\begin{equation}
+r(t + \Delta t) = r(t) + r'(t)\Delta t +  \frac{r''(t)}{2!}(\Delta t)^{2} + \frac{r'''(t)}{3!}(\Delta t)^{3}  + ...
+\end{equation}
+This equation can be re-arranged to give
+\begin{equation}
+r'(t)\Delta t = r(t + \Delta t) - r(t) -  \frac{r''(t)}{2!}(\Delta t)^{2} - \frac{r'''(t)}{3!}(\Delta t)^{3}  + ...
+\end{equation}
+which then gives
+\begin{equation}
+r'(t) = \frac{r(t + \Delta t) - r(t)}{\Delta t} -  \frac{r''(t)}{2!}(\Delta t) - \frac{r'''(t)}{3!}(\Delta t)^{2}  + ...
+\end{equation}
+This is usually written as
+\begin{equation}
+r'(t) = v = \frac{r(t + \Delta t) - r(t)}{\Delta t} + O(\Delta t)
+\end{equation}
+where $O(\Delta t)$ is the truncation error term, determined by the distance between neighbouring points ($\Delta t$). This technique assumes a straight line gradient between points. 
+
+This estimate of the velocity is dependent on the initial units used for the distance. In the case of the simulation work done here, the units of distance are mega-metres (1~Mm = $10^6$~m). This produces an estimate of velocity in units of Mm~s$^{-1}$. To convert this to acceptable units of km~s$^{-1}$ requires multiplying the estimated velocity values by $10^{3}$. This has been done in all plots showing the numerically derived velocity. Similarly, converting the acceleration from units of Mm~s$^{-2}$ requires multiplying the estimated acceleration values by $10^{6}$.
+
+%The forward-difference technique may be used to obtain the velocity and acceleration of the data numerically, without the use of fits. If the data can be modeled as a linear function of the form $r(t) = r_0 + v_0 t$, with a noise term of the form $\delta r$ added to the distance data (i.e.:\ $r(t) = r_0 + v_0 t + \delta r$), the velocity of the data can be estimated as
+%\begin{equation}
+%v = v_{0} + \frac{\delta r_{(t + \Delta t)} - \delta r_{t}}{\Delta t}
+%\end{equation} 
+%In this case, the velocity is estimated as the initial velocity $v_0$ with a correction term that accounts for the variation in the original data-set due to noise. This correction term is unique to each data-point due to the random nature of the applied noise.
+
+It is possible to derive the value of the truncation error term in terms of the original $r(t)$ values. The truncation error is given as
+\begin{equation}
+O(\Delta t) = \frac{r''(t)}{2!}(\Delta t)
+\end{equation}
+The $r''(t)$ term may be decomposed using the original forward-difference definition:
+\begin{equation}
+r''(t) = \frac{r'(t + \Delta t) - r'(t)}{\Delta t}
+\end{equation}
+Rewriting each term using the original functional forms produces
+\begin{equation}
+O(\Delta t) = \frac{r(t + 2\Delta t) - 2r(t + \Delta t) + r(t)}{2!\Delta t}
+\end{equation}
+The error term associated with the velocity estimate using the forward-difference technique is therefore dependent on the value of the function $r(t)$ at the points $t$, $t+\Delta t$ and $t+2\Delta t$.
+
+This equation must be modified when dealing with the error associated with the acceleration estimate. In this case, the truncation error term would be given as:
+\begin{equation}
+O(\Delta t) = \frac{v(t + 2\Delta t) - 2v(t + \Delta t) + v(t)}{2!\Delta t}
+\end{equation}
+Here, the velocity function $v(t)$ is treated as the base function, rather than the distance function $r(t)$ as above. 
+
+The forward-difference technique is a very simplistic technique that produces spiky plots, with large variation between points. This is a result of the inherent assumption made by the forward-difference technique that there is a straight-line gradient between points. In addition, the forward-difference technique removes a point from the end of the data-set with each differentiation due to the way it calculates the derivative.

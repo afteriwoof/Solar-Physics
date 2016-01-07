@@ -1,0 +1,44 @@
+\section{Reverse differencing}
+\label{sect:reverse}
+
+A similar method to the forward difference method is the reverse differencing technique. In this case, the derivative at the point $t - \Delta t$ is estimated by extrapolating backwards from the point $t$, rather than forwards (hence the name). This method again uses the Taylor series:
+\begin{equation}
+r(t - \Delta t) = r(t) - r'(t)\Delta t +  \frac{r''(t)}{2!}(\Delta t)^{2} - \frac{r'''(t)}{3!}(\Delta t)^{3}  + ...
+\end{equation}
+This equation can be re-arranged to give
+\begin{equation}
+r'(t)\Delta t = r(t ) - r(t - \Delta t) +  \frac{r''(t)}{2!}(\Delta t)^{2} - \frac{r'''(t)}{3!}(\Delta t)^{3}  + ...
+\end{equation}
+which then gives
+\begin{equation}
+r'(t) = \frac{r(t ) - r(t - \Delta t)}{\Delta t} +  \frac{r''(t)}{2!}(\Delta t) - \frac{r'''(t)}{3!}(\Delta t)^{2}  + ...
+\end{equation}
+This is usually written as
+\begin{equation}
+r'(t) = v = \frac{r(t ) - r(t - \Delta t)}{\Delta t} + O(\Delta t)
+\end{equation}
+where $O(\Delta t)$ is the truncation error term which, as with the forward difference method, is determined by the distance between neighbouring points ($\Delta t$), assuming a straight line gradient between points.
+
+The units of the velocity estimate produced using this method once again depend on the units used for the distance. The velocity estimate produced using this method must again be multiplied by $10^{3}$ to give an estimate of velocity in units of km~s$^{-1}$, while the acceleration estimate must be multiplied by $10^{6}$ to give an estimate in units of m~s$^{-2}$. As with the forward-difference technique, this has been done for all plots showing the velocity derived numerically using the reverse-difference technique.
+
+Once again, the truncation error can be estimated in terms of the original distance function $r(t)$. The truncation error is defined as:
+\begin{equation}
+O(\Delta t) = \frac{r''(t)}{2!}(\Delta t)
+\end{equation}
+Using the definition of the reverse-difference technique, the $r''(t)$ term may be defined as
+\begin{equation}
+r''(t) = \frac{r'(t ) - r'(t - \Delta t)}{\Delta t}
+\end{equation}
+It is possible to re-write each term using the the original functional form and the definition of the reverse-difference technique. When this is done, and the values substituted into the equation for the truncation error term, this produces
+\begin{equation}
+O(\Delta t) = \frac{r(t) - 2r(t - \Delta t) + r(t - 2\Delta t)}{2!\Delta t}
+\end{equation}
+This shows a similar form to the truncation error estimate for the forward-difference technique. Both techniques are quite similar and it is not unexpected that they should show a similar form for the truncation error estimate. However, despite the similar form, the two estimates are not necessarily equal.
+
+As before, this equation can be modified to find the truncation error associated with the acceleration term by taking the velocity function $v(t)$ as the base function rather than the distance function $r(t)$. When this is done, this produces a truncation error of:
+\begin{equation}
+O(\Delta t) = \frac{v(t) - 2v(t - \Delta t) + v(t - 2\Delta t)}{2!\Delta t}
+\end{equation}
+
+Both the forward and reverse difference techniques are very similar and use two adjacent points ($t$ \& $t+\Delta t$ and $t$ \& $t-\Delta t$ respectively) to find the derivative at a chosen point. They are both very simplistic techniques and are only applicable in very simplistic cases. The reverse-difference technique is also observed to remove a point from the beginning of the data-set with each numerical derivative due to the way the technique is calculated. 
+

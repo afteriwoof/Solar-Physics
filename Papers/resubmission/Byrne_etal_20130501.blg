@@ -1,0 +1,146 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Byrne_etal_20130501.aux
+The style file: apj.bst.bst
+Database file #1: references.bib.bib
+Warning--string name "a18" is undefined
+--line 132 of file references.bib.bib
+Warning--string name "a18" is undefined
+--line 1298 of file references.bib.bib
+You're missing a field name---line 1384 of file references.bib.bib
+ :   
+ :   % volume = 257,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1502 of file references.bib.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1740 of file references.bib.bib
+ :    
+ :    %editor = "{Priest, E.~\& Forbes, T.}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1893 of file references.bib.bib
+ :      
+ :      adsnote    = {written by JPB}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1962 of file references.bib.bib
+ :   
+ :   % volume = 4853,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1986 of file references.bib.bib
+ :    
+ :    % pages = {322},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2023 of file references.bib.bib
+ :  
+ :  %  volume = 4,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2110 of file references.bib.bib
+ :   
+ :   % volume = 4139,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2134 of file references.bib.bib
+ :  
+ :  %  volume = 5171,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 2364 of file references.bib.bib
+ : @article{2007ApJ...657.1117W
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2505 of file references.bib.bib
+ :     
+ :     %pages = {1044-1086},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2539 of file references.bib.bib
+ :   
+ :   % series = {Astrophysics and Space Science Library},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2680 of file references.bib.bib
+ :    
+ :    %volume = 6,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2897 of file references.bib.bib
+ :  
+ :  %  volume = 40,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3054 of file references.bib.bib
+ :    
+ :    %editor = "{}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 3265 of file references.bib.bib
+ : @article{2011AdSpR..47.2118G
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3401 of file references.bib.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3428 of file references.bib.bib
+ :     
+ :     %month = oct,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 4071 of file references.bib.bib
+ : @article{2009ApJS..183..225T
+ :                             ,
+I'm skipping whatever remains of this entry
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--empty publisher in 2003drea.book.....B
+Warning--empty publisher in 2010heliophysics
+You've used 47 entries,
+            3010 wiz_defined-function locations,
+            955 strings with 14353 characters,
+and the built_in function-call counts, 22082 in all, are:
+= -- 1901
+> -- 1558
+< -- 20
++ -- 524
+- -- 574
+* -- 1846
+:= -- 4149
+add.period$ -- 47
+call.type$ -- 47
+change.case$ -- 336
+chr.to.int$ -- 47
+cite$ -- 49
+duplicate$ -- 881
+empty$ -- 1291
+format.name$ -- 643
+if$ -- 4362
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 46
+newline$ -- 145
+num.names$ -- 189
+pop$ -- 374
+preamble$ -- 1
+purify$ -- 336
+quote$ -- 0
+skip$ -- 735
+stack$ -- 0
+substring$ -- 917
+swap$ -- 2
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 411
+warning$ -- 2
+while$ -- 178
+width$ -- 0
+write$ -- 468
+(There were 19 error messages)

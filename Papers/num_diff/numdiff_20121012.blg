@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99c (TeX Live 2009)
+The top-level auxiliary file: numdiff_20121012.aux
+The style file: aa.bst
+Illegal, another \bibstyle command---line 82 of file numdiff_20121012.aux
+ : \bibstyle
+ :          {aa}
+I'm skipping whatever remains of this command
+Database file #1: kins_refs.bib
+Warning--string name "a18" is undefined
+--line 279 of file kins_refs.bib
+Warning--I didn't find a database entry for "Ma:2009"
+You've used 25 entries,
+            2947 wiz_defined-function locations,
+            812 strings with 9391 characters,
+and the built_in function-call counts, 11516 in all, are:
+= -- 965
+> -- 849
+< -- 11
++ -- 277
+- -- 252
+* -- 966
+:= -- 2126
+add.period$ -- 25
+call.type$ -- 25
+change.case$ -- 184
+chr.to.int$ -- 25
+cite$ -- 25
+duplicate$ -- 470
+empty$ -- 650
+format.name$ -- 337
+if$ -- 2264
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 24
+newline$ -- 79
+num.names$ -- 101
+pop$ -- 196
+preamble$ -- 1
+purify$ -- 184
+quote$ -- 0
+skip$ -- 399
+stack$ -- 0
+substring$ -- 502
+swap$ -- 2
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 225
+warning$ -- 0
+while$ -- 98
+width$ -- 0
+write$ -- 251
+(There was 1 error message)

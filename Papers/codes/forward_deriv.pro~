@@ -1,0 +1,27 @@
+; Determine the forward derivative of an input
+
+; Created: 22-11-2010
+
+function choose_deriv, x, y, forward_diff=forward_diff, reverse_diff=reverse_diff, centre_diff=centre_diff, lagrangian=lagrangian
+
+
+if keyword_set(forward_diff) then begin
+	z = dblarr(n_elements(x)-1)
+	for i=0,n_elements(z)-1 do z[i] = (y[i+1]-y[i]) / (x[i+1]-x[i])
+endif
+
+if keyword_set(reverse_diff) then begin
+	z = dblarr(n_elements(x)-1)
+	for i=1,n_elements(z) do z[i-1] = (y[i]-y[i-1]) / (x[i]-x[i-1])
+endif
+
+if keyword_set(centre_diff) then begin
+	z = dblarr(n_elements(x)-2)
+	for i=0,n_elemnts(z) do z[
+
+
+
+
+
+
+end

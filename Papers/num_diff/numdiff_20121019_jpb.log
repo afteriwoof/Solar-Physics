@@ -1,0 +1,707 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.8.20)  22 OCT 2012 15:55
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**numdiff_20121019_jpb.tex
+(./numdiff_20121019_jpb.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
+ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
+rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
+kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
+ polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
+lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
+welsh, loaded.
+(./aa.cls
+Document Class: aa 2006/06/01 v6.1 
+LaTeX document class for Astronomy and Astrophysics journal
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/fleqn.clo
+File: fleqn.clo 1998/08/17 v1.1c Standard LaTeX option (flush left equations)
+\mathindent=\dimen102
+)
+\logodepth=\dimen103
+\headerboxheight=\dimen104
+\betweenumberspace=\dimen105
+\aftertext=\dimen106
+\headlineindent=\dimen107
+\c@inst=\count79
+\c@auth=\count80
+\instindent=\dimen108
+\authrun=\box26
+\authorrunning=\toks14
+\titrun=\box27
+\titlerunning=\toks15
+\number@fw@rds=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@theorem=\count87
+\figgap=\dimen109
+\c@append=\count88
+\c@figure=\count89
+\c@table=\count90
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\figcapgap=\dimen110
+\tabcapgap=\dimen111
+\bibindent=\dimen112
+) (./natbib.sty
+Package: natbib 2006/03/22 7.3 (PWD)
+\bibhang=\skip43
+\bibsep=\skip44
+LaTeX Info: Redefining \cite on input line 541.
+\c@NAT@ctr=\count91
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count92
+))
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/08/18 v6.83b Hypertext links for LaTeX
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
+Package hobsub Info: Skipping package `kvdefinekeys' (already loaded).
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen115
+\Hy@linkcounter=\count93
+\Hy@pagecounter=\count94
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/08/18 v6.83b Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count95
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4262.
+Package hyperref Info: Link nesting OFF on input line 4267.
+Package hyperref Info: Hyper index ON on input line 4270.
+Package hyperref Info: Plain pages OFF on input line 4277.
+Package hyperref Info: Backreferencing OFF on input line 4282.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4500.
+\c@Hy@tempcnt=\count96
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4853.
+\XeTeXLinkMargin=\dimen116
+\Fld@menulength=\count97
+\Field@Width=\dimen117
+\Fld@charsize=\dimen118
+Package hyperref Info: Hyper figures OFF on input line 6093.
+Package hyperref Info: Link nesting OFF on input line 6098.
+Package hyperref Info: Hyper index ON on input line 6101.
+Package hyperref Info: backreferencing OFF on input line 6108.
+Package hyperref Info: Link coloring OFF on input line 6113.
+Package hyperref Info: Link coloring with OCG OFF on input line 6118.
+Package hyperref Info: PDF/A mode OFF on input line 6123.
+LaTeX Info: Redefining \ref on input line 6163.
+LaTeX Info: Redefining \pageref on input line 6167.
+\Hy@abspage=\count98
+\c@Item=\count99
+\c@Hfootnote=\count100
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/08/18 v6.83b Hyperref driver for pdfTeX
+\Fld@listcount=\count101
+\c@bookmark@seq@number=\count102
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip45
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 8.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip46
+\subfigcapskip=\skip47
+\subfigcaptopadj=\dimen119
+\subfigbottomskip=\skip48
+\subfigcapmargin=\dimen120
+\subfiglabelskip=\skip49
+\c@subfigure=\count103
+\c@lofdepth=\count104
+\c@subtable=\count105
+\c@lotdepth=\count106
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2012/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip50
+\subfig@bottom=\skip51
+)
+
+LaTeX Warning: Unused global option(s):
+    [structabstract].
+
+(./numdiff_20121019_jpb.aux
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+
+LaTeX Warning: Label `fig:bootstrap' multiply defined.
+
+)
+\openout1 = `numdiff_20121019_jpb.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+ (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count107
+\scratchdimen=\dimen121
+\scratchbox=\box28
+\nofMPsegments=\count108
+\nofMParguments=\count109
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count110
+\MPscratchDim=\dimen122
+\MPnumerator=\count111
+\makeMPintoPDFobject=\count112
+\everyMPtoPDFconversion=\toks18
+)
+\AtBeginShipoutBox=\box29
+Package hyperref Info: Link coloring ON on input line 35.
+ (/usr/local/texlive/2012/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/07/31 v2.42 Cross-referencing by name of section
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count113
+)
+LaTeX Info: Redefining \ref on input line 35.
+LaTeX Info: Redefining \pageref on input line 35.
+LaTeX Info: Redefining \nameref on input line 35.
+
+(./numdiff_20121019_jpb.out) (./numdiff_20121019_jpb.out)
+\@outlinefile=\write3
+\openout3 = `numdiff_20121019_jpb.out'.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 80.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 80.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <9> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 80.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+<images/sim_vels_thesis1.pdf, id=134, 614.295pt x 794.97pt>
+File: images/sim_vels_thesis1.pdf Graphic file (type pdf)
+
+<use images/sim_vels_thesis1.pdf>
+Package pdftex.def Info: images/sim_vels_thesis1.pdf used on input line 145.
+(pdftex.def)             Requested size: 186.45277pt x 290.03783pt.
+
+<images/sim_vels_thesis2.pdf, id=135, 614.295pt x 794.97pt>
+File: images/sim_vels_thesis2.pdf Graphic file (type pdf)
+
+<use images/sim_vels_thesis2.pdf>
+Package pdftex.def Info: images/sim_vels_thesis2.pdf used on input line 146.
+(pdftex.def)             Requested size: 186.45277pt x 290.03783pt.
+ [2]
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <10> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 157.
+
+
+Package epstopdf Info: Source file: <images/noise_hist_weight.eps>
+(epstopdf)                    date: 2012-10-19 17:17:09
+(epstopdf)                    size: 55524 bytes
+(epstopdf)             Output file: <images/noise_hist_weight-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2012-10-22 15:55:30
+(epstopdf)                    size: 26475 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/noise_hist_weight-e
+ps-converted-to.pdf images/noise_hist_weight.eps>
+(epstopdf)             \includegraphics on input line 170.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/noise_hist_weight-eps-converted-to.pdf, id=159, 426.59375pt x 568.1225p
+t>
+File: images/noise_hist_weight-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/noise_hist_weight-eps-converted-to.pdf>
+Package pdftex.def Info: images/noise_hist_weight-eps-converted-to.pdf used on 
+input line 170.
+(pdftex.def)             Requested size: 261.76535pt x 339.89612pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 170--171
+ [] 
+ []
+
+Package epstopdf Info: Source file: <images/cad_hist_weight.eps>
+(epstopdf)                    date: 2012-10-19 17:11:50
+(epstopdf)                    size: 67649 bytes
+(epstopdf)             Output file: <images/cad_hist_weight-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2012-10-22 15:55:30
+(epstopdf)                    size: 33849 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/cad_hist_weight-eps
+-converted-to.pdf images/cad_hist_weight.eps>
+(epstopdf)             \includegraphics on input line 178.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/cad_hist_weight-eps-converted-to.pdf, id=161, 426.59375pt x 568.1225pt>
+File: images/cad_hist_weight-eps-converted-to.pdf Graphic file (type pdf)
+<use images/cad_hist_weight-eps-converted-to.pdf>
+Package pdftex.def Info: images/cad_hist_weight-eps-converted-to.pdf used on in
+put line 178.
+(pdftex.def)             Requested size: 261.76535pt x 339.89612pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 178--179
+ [] 
+ []
+
+
+LaTeX Warning: Reference `noise_cad_hist_weight' on page 3 undefined on input l
+ine 185.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <./images/sim_vels_thesis1.pdf> <./images/sim_vels_thesis2.pdf>]
+
+LaTeX Warning: Reference `alt_num_diff_vary_noise' on page 4 undefined on input
+ line 187.
+
+Package epstopdf Info: Source file: <images/fig_cadence_hva_12min.eps>
+(epstopdf)                    date: 2012-10-16 16:37:49
+(epstopdf)                    size: 315679 bytes
+(epstopdf)             Output file: <images/fig_cadence_hva_12min-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2012-10-16 16:39:06
+(epstopdf)                    size: 105599 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/fig_cadence_hva_12m
+in-eps-converted-to.pdf images/fig_cadence_hva_12min.eps>
+(epstopdf)             \includegraphics on input line 206.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/fig_cadence_hva_12min-eps-converted-to.pdf, id=186, 426.59375pt x 568.1
+225pt>
+File: images/fig_cadence_hva_12min-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use images/fig_cadence_hva_12min-eps-converted-to.pdf>
+Package pdftex.def Info: images/fig_cadence_hva_12min-eps-converted-to.pdf used
+ on input line 206.
+(pdftex.def)             Requested size: 213.29634pt x 231.36368pt.
+Package epstopdf Info: Source file: <images/fig_cadence_hva_50min.eps>
+(epstopdf)                    date: 2012-10-16 16:38:46
+(epstopdf)                    size: 303655 bytes
+(epstopdf)             Output file: <images/fig_cadence_hva_50min-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2012-10-16 16:39:06
+(epstopdf)                    size: 99978 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/fig_cadence_hva_50m
+in-eps-converted-to.pdf images/fig_cadence_hva_50min.eps>
+(epstopdf)             \includegraphics on input line 207.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/fig_cadence_hva_50min-eps-converted-to.pdf, id=187, 426.59375pt x 568.1
+225pt>
+File: images/fig_cadence_hva_50min-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use images/fig_cadence_hva_50min-eps-converted-to.pdf>
+Package pdftex.def Info: images/fig_cadence_hva_50min-eps-converted-to.pdf used
+ on input line 207.
+(pdftex.def)             Requested size: 213.29634pt x 231.36368pt.
+Package epstopdf Info: Source file: <images/fig_cadence_1.eps>
+(epstopdf)                    date: 2012-10-18 13:50:01
+(epstopdf)                    size: 19968 bytes
+(epstopdf)             Output file: <images/fig_cadence_1-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2012-10-18 13:50:12
+(epstopdf)                    size: 11739 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/fig_cadence_1-eps-c
+onverted-to.pdf images/fig_cadence_1.eps>
+(epstopdf)             \includegraphics on input line 208.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/fig_cadence_1-eps-converted-to.pdf, id=188, 511.9125pt x 226.8475pt>
+File: images/fig_cadence_1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/fig_cadence_1-eps-converted-to.pdf>
+Package pdftex.def Info: images/fig_cadence_1-eps-converted-to.pdf used on inpu
+t line 208.
+(pdftex.def)             Requested size: 255.95563pt x 90.8391pt.
+ [4 <./images/noise_hist_weight-eps-converted-to.pdf> <./images/cad_hist_weight
+-eps-converted-to.pdf>]
+<images/num_diff_cad.pdf, id=206, 216.81pt x 216.81pt>
+File: images/num_diff_cad.pdf Graphic file (type pdf)
+
+<use images/num_diff_cad.pdf>
+Package pdftex.def Info: images/num_diff_cad.pdf used on input line 226.
+(pdftex.def)             Requested size: 261.76535pt x 244.62001pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 226--227
+ [] 
+ []
+
+<images/num_diff_vary_cad.pdf, id=208, 216.81pt x 216.81pt>
+File: images/num_diff_vary_cad.pdf Graphic file (type pdf)
+
+<use images/num_diff_vary_cad.pdf>
+Package pdftex.def Info: images/num_diff_vary_cad.pdf used on input line 236.
+(pdftex.def)             Requested size: 261.76535pt x 244.62001pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 236--237
+ [] 
+ []
+
+
+Underfull \vbox (badness 1789) has occurred while \output is active []
+
+
+<images/bootstrap.pdf, id=215, 216.81pt x 216.81pt>
+File: images/bootstrap.pdf Graphic file (type pdf)
+ <use images/bootstrap.pdf>
+Package pdftex.def Info: images/bootstrap.pdf used on input line 255.
+(pdftex.def)             Requested size: 256.53291pt x 239.72977pt.
+
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 255--256
+ [] 
+ []
+
+[5 <./images/fig_cadence_hva_12min-eps-converted-to.pdf> <./images/fig_cadence_
+hva_50min-eps-converted-to.pdf> <./images/fig_cadence_1-eps-converted-to.pdf>]
+Overfull \vbox (6.14238pt too high) has occurred while \output is active []
+
+
+
+LaTeX Warning: Reference `subsect:num_diff' on page 6 undefined on input line 2
+73.
+
+[6 <./images/num_diff_cad.pdf> <./images/num_diff_vary_cad.pdf> <./images/boots
+trap.pdf>]
+<images/fig_bootstrap_quadratic.pdf, id=254, 426.59375pt x 568.1225pt>
+File: images/fig_bootstrap_quadratic.pdf Graphic file (type pdf)
+
+<use images/fig_bootstrap_quadratic.pdf>
+Package pdftex.def Info: images/fig_bootstrap_quadratic.pdf used on input line 
+281.
+(pdftex.def)             Requested size: 256.53291pt x 333.10934pt.
+
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 281--282
+ [] 
+ []
+
+<images/fig_residuals_quadratic.pdf, id=256, 426.59375pt x 226.8475pt>
+File: images/fig_residuals_quadratic.pdf Graphic file (type pdf)
+
+<use images/fig_residuals_quadratic.pdf>
+Package pdftex.def Info: images/fig_residuals_quadratic.pdf used on input line 
+289.
+(pdftex.def)             Requested size: 256.53291pt x 127.8689pt.
+
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 289--290
+ [] 
+ []
+
+<images/fig_bootstrap_lagrangian.pdf, id=258, 426.59375pt x 568.1225pt>
+File: images/fig_bootstrap_lagrangian.pdf Graphic file (type pdf)
+
+<use images/fig_bootstrap_lagrangian.pdf>
+Package pdftex.def Info: images/fig_bootstrap_lagrangian.pdf used on input line
+ 297.
+(pdftex.def)             Requested size: 256.53291pt x 333.10934pt.
+
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 297--298
+ [] 
+ []
+
+<images/fig_residuals_lagrangian.pdf, id=260, 426.59375pt x 226.8475pt>
+File: images/fig_residuals_lagrangian.pdf Graphic file (type pdf)
+
+<use images/fig_residuals_lagrangian.pdf>
+Package pdftex.def Info: images/fig_residuals_lagrangian.pdf used on input line
+ 305.
+(pdftex.def)             Requested size: 256.53291pt x 127.8689pt.
+
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 305--306
+ [] 
+ []
+
+<images/fig_bootstrap_savgol.pdf, id=262, 426.59375pt x 568.1225pt>
+File: images/fig_bootstrap_savgol.pdf Graphic file (type pdf)
+
+<use images/fig_bootstrap_savgol.pdf>
+Package pdftex.def Info: images/fig_bootstrap_savgol.pdf used on input line 313
+.
+(pdftex.def)             Requested size: 256.53291pt x 333.10934pt.
+
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 313--314
+ [] 
+ []
+
+<images/fig_residuals_savgol.pdf, id=264, 426.59375pt x 226.8475pt>
+File: images/fig_residuals_savgol.pdf Graphic file (type pdf)
+
+<use images/fig_residuals_savgol.pdf>
+Package pdftex.def Info: images/fig_residuals_savgol.pdf used on input line 321
+.
+(pdftex.def)             Requested size: 256.53291pt x 127.8689pt.
+
+Overfull \hbox (0.76756pt too wide) in paragraph at lines 321--322
+ [] 
+ []
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 341--342
+\OT1/cmr/m/n/8 project is an in-ter-na-tional con-sor-tium of the Naval Researc
+h
+ []
+
+
+Underfull \hbox (badness 3525) in paragraph at lines 341--342
+\OT1/cmr/m/n/8 Appleton Laboratory (UK), University of Birmingham (UK),
+ []
+
+(./numdiff_20121019_jpb.bbl [7 <./images/fig_bootstrap_quadratic.pdf> <./images
+/fig_residuals_quadratic.pdf> <./images/fig_bootstrap_lagrangian.pdf>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 351.
+
+[8 <./images/fig_residuals_lagrangian.pdf> <./images/fig_bootstrap_savgol.pdf> 
+<./images/fig_residuals_savgol.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 351.
+ (./numdiff_20121019_jpb.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 351.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 351.
+Package rerunfilecheck Info: File `numdiff_20121019_jpb.out' has not changed.
+(rerunfilecheck)             Checksum: 1822C07D78E7F0110D4F85077449592A;632.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 351.
+ ) 
+Here is how much of TeX's memory you used:
+ 6072 strings out of 493488
+ 89822 string characters out of 3141326
+ 187091 words of memory out of 3000000
+ 9226 multiletter control sequences out of 15000+200000
+ 12579 words of font info for 43 fonts, out of 3000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 42i,13n,28p,1702b,424s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></u
+sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
+/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
+al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2012/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2012/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on numdiff_20121019_jpb.pdf (8 pages, 6114839 bytes).
+PDF statistics:
+ 427 PDF objects out of 1000 (max. 8388607)
+ 355 compressed objects within 4 object streams
+ 71 named destinations out of 1000 (max. 500000)
+ 227 words of extra memory for PDF output out of 10000 (max. 10000000)
+
