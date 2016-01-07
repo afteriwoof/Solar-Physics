@@ -1,0 +1,166 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Byrne_swsc_final.aux
+The style file: swsc.bst
+Illegal, another \bibstyle command---line 154 of file Byrne_swsc_final.aux
+ : \bibstyle
+ :          {swsc}
+I'm skipping whatever remains of this command
+Database file #1: references.bib
+You're missing a field name---line 36 of file references.bib
+ :  
+ :  %url = {http://dx.doi.org/10.1016/j.patrec.2009.07.011},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 990 of file references.bib
+ : 
+ : %URL = {http://www.ann-geophys.net/27/4491/2009/},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--string name "a18" is undefined
+--line 1288 of file references.bib
+You're missing a field name---line 1374 of file references.bib
+ :   
+ :   % volume = 257,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1492 of file references.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1730 of file references.bib
+ :    
+ :    %editor = "{Priest, E.~\& Forbes, T.}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1883 of file references.bib
+ :      
+ :      adsnote    = {written by JPB}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1952 of file references.bib
+ :   
+ :   % volume = 4853,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1976 of file references.bib
+ :    
+ :    % pages = {322},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2013 of file references.bib
+ :  
+ :  %  volume = 4,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 2027 of file references.bib
+ : 
+ : %url = {http://www.opticsinfobase.org/abstract.cfm?URI=ao-14-3-743}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 2087 of file references.bib
+ :       
+ :       doi = {10.1038/ncomms1077},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2099 of file references.bib
+ :   
+ :   % volume = 4139,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2123 of file references.bib
+ :  
+ :  %  volume = 5171,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2506 of file references.bib
+ :     
+ :     %pages = {1044-1086},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2540 of file references.bib
+ :   
+ :   % series = {Astrophysics and Space Science Library},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2681 of file references.bib
+ :    
+ :    %volume = 6,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2898 of file references.bib
+ :  
+ :  %  volume = 40,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3055 of file references.bib
+ :    
+ :    %editor = "{}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 3266 of file references.bib
+ : @article{2011AdSpR..47.2118G
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3400 of file references.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3427 of file references.bib
+ :     
+ :     %month = oct,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 4475 of file references.bib
+ : @article{2011LRSP....8....1C
+ :                             ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 4588 of file references.bib
+ :    volume = in 
+ :                review,
+I'm skipping whatever remains of this entry
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+You've used 35 entries,
+            3260 wiz_defined-function locations,
+            900 strings with 13839 characters,
+and the built_in function-call counts, 39918 in all, are:
+= -- 4305
+> -- 1742
+< -- 12
++ -- 1137
+- -- 495
+* -- 2303
+:= -- 4366
+add.period$ -- 130
+call.type$ -- 35
+change.case$ -- 370
+chr.to.int$ -- 35
+cite$ -- 35
+duplicate$ -- 3783
+empty$ -- 2054
+format.name$ -- 608
+if$ -- 7976
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 446
+newline$ -- 207
+num.names$ -- 140
+pop$ -- 1763
+preamble$ -- 1
+purify$ -- 345
+quote$ -- 0
+skip$ -- 2075
+stack$ -- 0
+substring$ -- 1616
+swap$ -- 2944
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 315
+warning$ -- 0
+while$ -- 167
+width$ -- 0
+write$ -- 511
+(There were 24 error messages)

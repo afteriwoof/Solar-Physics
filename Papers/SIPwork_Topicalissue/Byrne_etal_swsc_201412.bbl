@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{{Byrne} et~al.(2009){Byrne}, {Gallagher}, {McAteer}, and
+  {Young}}]{2009A&A...495..325B}
+{Byrne}, J.~P., P.~T. {Gallagher}, R.~T.~J. {McAteer}, and C.~A. {Young}.
+\newblock {The kinematics of coronal mass ejections using multiscale methods}.
+\newblock \emph{\aap}, \textbf{495}, 325--334, 2009.
+\newblock 10.1051/0004-6361:200809811, \eprint{0901.3392}.
+
+\end{thebibliography}

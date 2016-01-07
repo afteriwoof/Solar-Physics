@@ -1,0 +1,269 @@
+\begin{thebibliography}{35}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{{Brueckner} et~al.(1995){Brueckner}, {Howard}, {Koomen}, {Korendyke},
+  {Michels} et~al.}]{1995SoPh..162..357B}
+{Brueckner}, G.~E., R.~A. {Howard}, M.~J. {Koomen}, C.~M. {Korendyke}, D.~J.
+  {Michels}, et~al.
+\newblock {The Large Angle Spectroscopic Coronagraph (LASCO)}.
+\newblock \emph{\solphys}, \textbf{162}, 357--402, 1995.
+\newblock 10.1007/BF00733434.
+
+\bibitem[{{Byrne} et~al.(2009){Byrne}, {Gallagher}, {McAteer}, and
+  {Young}}]{2009A&A...495..325B}
+{Byrne}, J.~P., P.~T. {Gallagher}, R.~T.~J. {McAteer}, and C.~A. {Young}.
+\newblock {The kinematics of coronal mass ejections using multiscale methods}.
+\newblock \emph{\aap}, \textbf{495}, 325--334, 2009.
+\newblock 10.1051/0004-6361:200809811.
+
+\bibitem[{{Byrne} et~al.(2013){Byrne}, {Long}, {Gallagher}, {Bloomfield},
+  {Maloney}, {McAteer}, {Morgan}, and {Habbal}}]{2013A&A...557A..96B}
+{Byrne}, J.~P., D.~M. {Long}, P.~T. {Gallagher}, D.~S. {Bloomfield}, S.~A.
+  {Maloney}, R.~T.~J. {McAteer}, H.~{Morgan}, and S.~R. {Habbal}.
+\newblock {Improved methods for determining the kinematics of coronal mass
+  ejections and coronal waves}.
+\newblock \emph{\aap}, \textbf{557}, A96, 2013.
+\newblock 10.1051/0004-6361/201321223.
+
+\bibitem[{{Byrne} et~al.(2010){Byrne}, {Maloney}, {McAteer}, {Refojo}, and
+  {Gallagher}}]{2010NatCo...1E..74B}
+{Byrne}, J.~P., S.~A. {Maloney}, R.~T.~J. {McAteer}, J.~M. {Refojo}, and P.~T.
+  {Gallagher}.
+\newblock {Propagation of an Earth-directed coronal mass ejection in three
+  dimensions}.
+\newblock \emph{Nature Communications}, \textbf{1}, 2010.
+\newblock 10.1038/ncomms1077.
+
+\bibitem[{{Byrne} et~al.(2012){Byrne}, {Morgan}, {Habbal}, and
+  {Gallagher}}]{2012ApJ...752..145B}
+{Byrne}, J.~P., H.~{Morgan}, S.~R. {Habbal}, and P.~T. {Gallagher}.
+\newblock {Automatic Detection and Tracking of Coronal Mass Ejections. II.
+  Multiscale Filtering of Coronagraph Images}.
+\newblock \emph{\apj}, \textbf{752}, 145, 2012.
+\newblock 10.1088/0004-637X/752/2/145.
+
+\bibitem[{{Carley} et~al.(2013){Carley}, {Long}, {Byrne}, {Zucca},
+  {Bloomfield}, {McCauley}, and {Gallagher}}]{2013NatPh...9..811C}
+{Carley}, E.~P., D.~M. {Long}, J.~P. {Byrne}, P.~{Zucca}, D.~S. {Bloomfield},
+  J.~{McCauley}, and P.~T. {Gallagher}.
+\newblock {Quasiperiodic acceleration of electrons by a plasmoid-driven shock
+  in the solar atmosphere}.
+\newblock \emph{Nature Physics}, \textbf{9}, 811--816, 2013.
+\newblock 10.1038/nphys2767.
+
+\bibitem[{{Chen}(2011)}]{2011LRSP....8....1C}
+{Chen}, P.~F.
+\newblock {Coronal Mass Ejections: Models and Their Observational Basis}.
+\newblock \emph{Living Reviews in Solar Physics}, \textbf{8}, 1, 2011.
+
+\bibitem[{{Colaninno} and {Vourlidas}(2006)}]{2006ApJ...652.1747C}
+{Colaninno}, R.~C., and A.~{Vourlidas}.
+\newblock {Analysis of the Velocity Field of CMEs Using Optical Flow Methods}.
+\newblock \emph{\apj}, \textbf{652}, 1747--1754, 2006.
+\newblock 10.1086/507943.
+
+\bibitem[{{Davis} et~al.(2009){Davis}, {Davies}, {Lockwood}, {Rouillard},
+  {Eyles}, and {Harrison}}]{2009GeoRL..3608102D}
+{Davis}, C.~J., J.~A. {Davies}, M.~{Lockwood}, A.~P. {Rouillard}, C.~J.
+  {Eyles}, and R.~A. {Harrison}.
+\newblock {Stereoscopic imaging of an Earth-impacting solar coronal mass
+  ejection: A major milestone for the STEREO mission}.
+\newblock \emph{\grl}, \textbf{36}, 8102, 2009.
+\newblock 10.1029/2009GL038021.
+
+\bibitem[{{Domingo} et~al.(1995){Domingo}, {Fleck}, and
+  {Poland}}]{1995SoPh..162....1D}
+{Domingo}, V., B.~{Fleck}, and A.~I. {Poland}.
+\newblock {The SOHO Mission: an Overview}.
+\newblock \emph{\solphys}, \textbf{162}, 1--2, 1995.
+\newblock 10.1007/BF00733425.
+
+\bibitem[{{Gallagher} et~al.(2011){Gallagher}, {Young}, {Byrne}, and
+  {McAteer}}]{2011AdSpR..47.2118G}
+{Gallagher}, P.~T., C.~A. {Young}, J.~P. {Byrne}, and R.~T.~J. {McAteer}.
+\newblock {Coronal mass ejection detection using wavelets, curvelets and
+  ridgelets: Applications for space weather monitoring}.
+\newblock \emph{Advances in Space Research}, \textbf{47}, 2118--2126, 2011.
+\newblock 10.1016/j.asr.2010.03.028.
+
+\bibitem[{{Gopalswamy} et~al.(2009){Gopalswamy}, {Yashiro}, {Michalek},
+  {Stenborg}, {Vourlidas}, {Freeland}, and {Howard}}]{2009EM&P..104..295G}
+{Gopalswamy}, N., S.~{Yashiro}, G.~{Michalek}, G.~{Stenborg}, A.~{Vourlidas},
+  S.~{Freeland}, and R.~{Howard}.
+\newblock {The SOHO/LASCO CME Catalog}.
+\newblock \emph{Earth Moon and Planets}, \textbf{104}, 295--313, 2009.
+\newblock 10.1007/s11038-008-9282-7.
+
+\bibitem[{Goussies et~al.(2010)Goussies, Mejail, Jacobo, and
+  Stenborg}]{Goussies:2010:DTC:1749630.1750150}
+Goussies, N.~A., M.~E. Mejail, J.~Jacobo, and G.~Stenborg.
+\newblock Detection and Tracking of Coronal Mass Ejections Based on Supervised
+  Segmentation and Level Set.
+\newblock \emph{Pattern Recognition Letters}, \textbf{31}(6), 496--501, 2010.
+
+\bibitem[{{Hough}(1962)}]{Hough1962}
+{Hough}, P.~V.~C.
+\newblock {A Method and Means for Recognizing Complex Patterns}.
+\newblock US Patent: 3,069,654, 1962.
+
+\bibitem[{{Howard} et~al.(2008){Howard}, {Moses}, {Vourlidas}, {Newmark},
+  {Socker} et~al.}]{2008SSRv..136...67H}
+{Howard}, R.~A., J.~D. {Moses}, A.~{Vourlidas}, J.~S. {Newmark}, D.~G.
+  {Socker}, et~al.
+\newblock {Sun Earth Connection Coronal and Heliospheric Investigation
+  (SECCHI)}.
+\newblock \emph{Space Science Reviews}, \textbf{136}, 67--115, 2008.
+\newblock 10.1007/s11214-008-9341-4.
+
+\bibitem[{{Howard} and {Tappin}(2005)}]{2005A&A...440..373H}
+{Howard}, T.~A., and S.~J. {Tappin}.
+\newblock {Statistical survey of earthbound interplanetary shocks, associated
+  coronal mass ejections and their space weather consequences}.
+\newblock \emph{\aap}, \textbf{440}, 373--383, 2005.
+\newblock 10.1051/0004-6361:20053109.
+
+\bibitem[{{Hundhausen}(1993)}]{1993JGR....9813177H}
+{Hundhausen}, A.~J.
+\newblock {Sizes and locations of coronal mass ejections - SMM observations
+  from 1980 and 1984-1989}.
+\newblock \emph{\jgr}, \textbf{98}, 13,177, 1993.
+\newblock 10.1029/93JA00157.
+
+\bibitem[{{Illing} and {Hundhausen}(1985)}]{1985JGR....90..275I}
+{Illing}, R.~M.~E., and A.~J. {Hundhausen}.
+\newblock {Observation of a coronal transient from 1.2 to 6 solar radii}.
+\newblock \emph{\jgr}, \textbf{90}, 275--282, 1985.
+\newblock 10.1029/JA090iA01p00275.
+
+\bibitem[{Kilpua et~al.(2009)Kilpua, Pomoell, Vourlidas, Vainio, Luhmann, Li,
+  Schroeder, Galvin, and Simunac}]{angeo-27-4491-2009}
+Kilpua, E. K.~J., J.~Pomoell, A.~Vourlidas, R.~Vainio, J.~Luhmann, Y.~Li,
+  P.~Schroeder, A.~B. Galvin, and K.~Simunac.
+\newblock STEREO observations of interplanetary coronal mass ejections and
+  prominence deflection during solar minimum period.
+\newblock \emph{Annales Geophysicae}, \textbf{27}(12), 4491--4503, 2009.
+
+\bibitem[{{Koomen} et~al.(1975){Koomen}, {Detwiler}, {Brueckner}, {Cooper}, and
+  {Tousey}}]{1975Koomen}
+{Koomen}, M.~J., C.~R. {Detwiler}, G.~E. {Brueckner}, H.~W. {Cooper}, and
+  R.~{Tousey}.
+\newblock {White Light Coronagraph in OSO-7}.
+\newblock \emph{Applied Optics}, \textbf{14}, 743--751, 1975.
+
+\bibitem[{{Liu} et~al.(2014){Liu}, {Luhmann}, {Kajdi{\v c}}, {Kilpua}, {Lugaz}
+  et~al.}]{2014NatCo...5E3481L}
+{Liu}, Y.~D., J.~G. {Luhmann}, P.~{Kajdi{\v c}}, E.~K.~J. {Kilpua}, N.~{Lugaz},
+  et~al.
+\newblock {Observations of an extreme storm in interplanetary space caused by
+  successive coronal mass ejections}.
+\newblock \emph{Nature Communications}, \textbf{5}, 3481, 2014.
+\newblock 10.1038/ncomms4481.
+
+\bibitem[{{Lugaz} and {Kintner}(2012)}]{2012SoPh..tmp...47L}
+{Lugaz}, N., and P.~{Kintner}.
+\newblock {Effect of Solar Wind Drag on the Determination of the Properties of
+  Coronal Mass Ejections from Heliospheric Images}.
+\newblock \emph{\solphys}, 47, 2012.
+\newblock 10.1007/s11207-012-9948-1.
+
+\bibitem[{{MacQueen} et~al.(1980){MacQueen}, {Csoeke-Poeckh}, {Hildner},
+  {House}, {Reynolds}, {Stanger}, {Tepoel}, and {Wagner}}]{1980SoPh...65...91M}
+{MacQueen}, R.~M., A.~{Csoeke-Poeckh}, E.~{Hildner}, L.~{House}, R.~{Reynolds},
+  A.~{Stanger}, H.~{Tepoel}, and W.~{Wagner}.
+\newblock {The High Altitude Observatory Coronagraph/Polarimeter on the Solar
+  Maximum Mission}.
+\newblock \emph{\solphys}, \textbf{65}, 91--107, 1980.
+\newblock 10.1007/BF00151386.
+
+\bibitem[{{Morgan} et~al.(2012){Morgan}, {Byrne}, and
+  {Habbal}}]{2012ApJ...752..144M}
+{Morgan}, H., J.~P. {Byrne}, and S.~R. {Habbal}.
+\newblock {Automatically Detecting and Tracking Coronal Mass Ejections. I.
+  Separation of Dynamic and Quiescent Components in Coronagraph Images}.
+\newblock \emph{\apj}, \textbf{752}, 144, 2012.
+\newblock 10.1088/0004-637X/752/2/144.
+
+\bibitem[{{Olmedo} et~al.(2008){Olmedo}, {Zhang}, {Wechsler}, {Poland}, and
+  {Borne}}]{2008SoPh..248..485O}
+{Olmedo}, O., J.~{Zhang}, H.~{Wechsler}, A.~{Poland}, and K.~{Borne}.
+\newblock {Automatic Detection and Tracking of Coronal Mass Ejections in
+  Coronagraph Time Series}.
+\newblock \emph{\solphys}, \textbf{248}, 485--499, 2008.
+\newblock 10.1007/s11207-007-9104-5.
+
+\bibitem[{{Plunkett} et~al.(2001){Plunkett}, {Thompson}, {St.~Cyr}, and
+  {Howard}}]{2001JASTP..63..389P}
+{Plunkett}, S.~P., B.~J. {Thompson}, O.~C. {St.~Cyr}, and R.~A. {Howard}.
+\newblock {Solar source regions of coronal mass ejections and their geomagnetic
+  effects}.
+\newblock \emph{Journal of Atmospheric and Solar-Terrestrial Physics},
+  \textbf{63}, 389--402, 2001.
+\newblock 10.1016/S1364-6826(00)00166-8.
+
+\bibitem[{{Pulkkinen}(2007)}]{2007LRSP....4....1P}
+{Pulkkinen}, T.
+\newblock {Space Weather: Terrestrial Perspective}.
+\newblock \emph{Living Reviews in Solar Physics}, \textbf{4}, 1, 2007.
+
+\bibitem[{{Robbrecht} and {Berghmans}(2004)}]{2004A&A...425.1097R}
+{Robbrecht}, E., and D.~{Berghmans}.
+\newblock {Automated recognition of coronal mass ejections (CMEs) in
+  near-real-time data}.
+\newblock \emph{\aap}, \textbf{425}, 1097--1106, 2004.
+\newblock 10.1051/0004-6361:20041302.
+
+\bibitem[{{Savitzky} and {Golay}(1964)}]{Savitzky-Golay1964}
+{Savitzky}, A., and M.~{Golay}.
+\newblock {Smoothing and differentiation of data by simplified least squares
+  procedures}.
+\newblock \emph{Analytical Chemistry}, \textbf{36}, 1627--1639, 1964.
+
+\bibitem[{{Schwenn} et~al.(2005){Schwenn}, {dal Lago}, {Huttunen}, and
+  {Gonzalez}}]{2005AnGeo..23.1033S}
+{Schwenn}, R., A.~{dal Lago}, E.~{Huttunen}, and W.~D. {Gonzalez}.
+\newblock {The association of coronal mass ejections with their effects near
+  the Earth}.
+\newblock \emph{Annales Geophysicae}, \textbf{23}, 1033--1059, 2005.
+
+\bibitem[{{Sheeley} et~al.(1980){Sheeley}, {Michels}, {Howard}, and
+  {Koomen}}]{1980ApJ...237L..99S}
+{Sheeley}, N.~R., Jr., D.~J. {Michels}, R.~A. {Howard}, and M.~J. {Koomen}.
+\newblock {Initial observations with the SOLWIND coronagraph}.
+\newblock \emph{\apjl}, \textbf{237}, L99--L101, 1980.
+\newblock 10.1086/183243.
+
+\bibitem[{{St.~Cyr} et~al.(2000){St.~Cyr}, {Plunkett}, {Michels}, {Paswaters},
+  {Koomen} et~al.}]{2000JGR...10518169S}
+{St.~Cyr}, O.~C., S.~P. {Plunkett}, D.~J. {Michels}, S.~E. {Paswaters}, M.~J.
+  {Koomen}, et~al.
+\newblock {Properties of coronal mass ejections: SOHO LASCO observations from
+  January 1996 to June 1998}.
+\newblock \emph{\jgr}, \textbf{105}, 18,169--18,186, 2000.
+\newblock 10.1029/1999JA000381.
+
+\bibitem[{{Stenborg} and {Cobelli}(2003)}]{2003A&A...398.1185S}
+{Stenborg}, G., and P.~J. {Cobelli}.
+\newblock {A wavelet packets equalization technique to reveal the multiple
+  spatial-scale nature of coronal structures}.
+\newblock \emph{\aap}, \textbf{398}, 1185--1193, 2003.
+\newblock 10.1051/0004-6361:20021687.
+
+\bibitem[{{Webb} and {Howard}(2012)}]{2012LRSP....9....3W}
+{Webb}, D.~F., and T.~A. {Howard}.
+\newblock {Coronal Mass Ejections: Observations}.
+\newblock \emph{Living Reviews in Solar Physics}, \textbf{9}, 3, 2012.
+
+\bibitem[{{Yashiro} et~al.(2004){Yashiro}, {Gopalswamy}, {Michalek}, {St.~Cyr},
+  {Plunkett}, {Rich}, and {Howard}}]{2004JGRA..10907105Y}
+{Yashiro}, S., N.~{Gopalswamy}, G.~{Michalek}, O.~C. {St.~Cyr}, S.~P.
+  {Plunkett}, N.~B. {Rich}, and R.~A. {Howard}.
+\newblock {A catalog of white light coronal mass ejections observed by the SOHO
+  spacecraft}.
+\newblock \emph{Journal of Geophysical Research (Space Physics)}, \textbf{109},
+  7105, 2004.
+\newblock 10.1029/2003JA010282.
+
+\end{thebibliography}

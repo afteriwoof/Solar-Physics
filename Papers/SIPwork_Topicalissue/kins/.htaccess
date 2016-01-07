@@ -1,0 +1,4 @@
+AuthName "temp" 
+AuthType Basic 
+AuthUserFile /u3/maths/2006/jaydog/www/temp/.htpasswd
+require valid-user

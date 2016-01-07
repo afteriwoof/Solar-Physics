@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<voe:VOEvent ivorn="ivo://helio-informatics.org/CE_CORIMP_20140605_235259" role="observation" version="1.1" xmlns:voe="http://www.ivoa.net/xml/VOEvent/v1.1" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:lmsal="http://www.lmsal.com/helio-informatics/lmsal-v1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v1.1 http://www.lmsal.com/helio-informatics/VOEvent-v1.1.xsd">
+
+
+    <Who>
+       <!-- Data pertaining to curation -->
+        <AuthorIVORN>ivo://helio-informatics.org/CE_CORIMP_20140605_235259</AuthorIVORN>
+        <Author>
+              <contactName>jbyrne at ifa dot hawaii dot edu</contactName>
+        </Author>
+       <Date>2014-06-05T23:52:59.752</Date>
+    </Who>
+
+
+    <What>
+       <!-- Data about what was measured/observed. -->
+       <Group name="CME_required">
+           <Param name="CME_RADIALLINVEL" value="455.135"/>
+           <Param name="CME_RADIALLINVELUNCERT" value="0.00000"/>
+           <Param name="CME_RADIALLINVELMIN" value="268.990"/>
+           <Param name="CME_RADIALLINVELMAX" value="660.477"/>
+           <Param name="CME_RADIALLINVELSTDDEV" value="63.7936"/>
+           <Param name="CME_RADIALLINVELUNIT" value="km/s"/>
+           <Param name="CME_ANGULARWIDTH" value="81.0000"/>
+           <Param name="CME_ANGULARWIDTHUNIT" value="deg"/>
+       </Group>
+              <Description></Description>
+       <Group name="CME_optional">
+           <Param name="CME_ACCEL" value="1.01350"/>
+           <Param name="CME_ACCELUNIT" value="m/s/s"/>
+       </Group>
+    </What>
+
+
+    <WhereWhen>
+        <!-- Data pertaining to when and where something occured -->
+        <ObsDataLocation xmlns="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+             <ObservatoryLocation>
+                     <AstroCoordSystem></AstroCoordSystem>
+                     <AstroCoords id="UTC-HRC-TOPO" coord_system_id="UTC-HRC-TOPO">
+                     </AstroCoords>
+             </ObservatoryLocation>
+         <ObservationLocation id="SOHO">
+            <AstroCoordSystem></AstroCoordSystem>
+            <AstroCoords coord_system_id="UTC-HRC-TOPO">
+                <Time>
+                    <TimeInstant>
+                         <ISOTime>2000-01-01T14:52:25.000</ISOTime>
+                    </TimeInstant>
+                </Time>
+
+                <Position2D unit="0"> 
+                       <Value2>
+                           <C1>249.500</C1>
+                           <C2>2.20000</C2>
+                       </Value2>
+                       <Error2>
+                           <C1>0.00000</C1>
+                           <C2>0.00000</C2>
+                       </Error2>
+                </Position2D> 
+            </AstroCoords>
+            <AstroCoordArea coord_system_id="UTC-HRC-TOPO">
+                    <TimeInterval>
+                         <StartTime>
+                              <ISOTime>2000-01-01T14:52:25.000</ISOTime>
+                         </StartTime>
+                         <StopTime>
+                              <ISOTime>2000-01-02T15:03:13.000</ISOTime>
+                         </StopTime>
+                    </TimeInterval>
+                    <Box2>
+                        <Center>
+                           <C1>249.500</C1>
+                           <C2>13.6000</C2>
+                        </Center>
+                        <Size>
+                           <C1>81.0000</C1>
+                           <C2>22.8000</C2>
+                        </Size>
+                    </Box2>
+            </AstroCoordArea>
+        </ObservationLocation>
+        </ObsDataLocation>
+
+    </WhereWhen>
+
+
+    <How>
+       <!-- Data pertaining to how the feature/event detection was performed -->
+       <lmsal:data>
+           <lmsal:OBS_ChannelID>C2 orange filter, C3 clear filter</lmsal:OBS_ChannelID>
+           <lmsal:OBS_Instrument>LASCO</lmsal:OBS_Instrument>
+           <lmsal:OBS_MeanWavel>600.000</lmsal:OBS_MeanWavel>
+           <lmsal:OBS_WavelUnit>nm</lmsal:OBS_WavelUnit>
+       </lmsal:data>
+       <lmsal:method>
+           <lmsal:FRM_Contact>jbyrne at ifa dot hawaii dot edu</lmsal:FRM_Contact>
+           <lmsal:FRM_DateRun>2014-06-05T23:52:59.749</lmsal:FRM_DateRun>
+           <lmsal:FRM_HumanFlag>F</lmsal:FRM_HumanFlag>
+           <lmsal:FRM_Identifier>jbyrne</lmsal:FRM_Identifier>
+           <lmsal:FRM_Institute>IfA</lmsal:FRM_Institute>
+           <lmsal:FRM_Name>CORIMP</lmsal:FRM_Name>
+           <lmsal:FRM_ParamSet>0</lmsal:FRM_ParamSet>
+       </lmsal:method>
+    </How>
+
+
+    <Why>
+       <Concept>CME</Concept>
+       <lmsal:EVENT_TYPE>CE: CME</lmsal:EVENT_TYPE>
+       <Description>
+          Beta version CORIMP CME detections
+       </Description>
+    </Why>
+
+    <Reference name="FRM_URL" uri="http://solar.physics.montana.edu/sol_phys/fft/fft-modules/cme-detection-module"/>
+    <Reference name="Publication" type="html" uri="http://adsabs.harvard.edu/abs/2012ApJ...752..144M"/>
+    <Reference name="Publication" type="html" uri="http://adsabs.harvard.edu/abs/2012ApJ...752..145B"/>
+
+</voe:VOEvent>

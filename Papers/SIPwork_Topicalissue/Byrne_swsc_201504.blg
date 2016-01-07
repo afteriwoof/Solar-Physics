@@ -1,0 +1,146 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Byrne_swsc_201504.aux
+The style file: swsc.bst
+Illegal, another \bibstyle command---line 155 of file Byrne_swsc_201504.aux
+ : \bibstyle
+ :          {swsc}
+I'm skipping whatever remains of this command
+Database file #1: /Users/qzs00392/idl_codes/references.bib
+Warning--string name "a18" is undefined
+--line 1290 of file /Users/qzs00392/idl_codes/references.bib
+You're missing a field name---line 1376 of file /Users/qzs00392/idl_codes/references.bib
+ :   
+ :   % volume = 257,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1494 of file /Users/qzs00392/idl_codes/references.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1732 of file /Users/qzs00392/idl_codes/references.bib
+ :    
+ :    %editor = "{Priest, E.~\& Forbes, T.}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1885 of file /Users/qzs00392/idl_codes/references.bib
+ :      
+ :      adsnote    = {written by JPB}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1954 of file /Users/qzs00392/idl_codes/references.bib
+ :   
+ :   % volume = 4853,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1978 of file /Users/qzs00392/idl_codes/references.bib
+ :    
+ :    % pages = {322},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2015 of file /Users/qzs00392/idl_codes/references.bib
+ :  
+ :  %  volume = 4,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2102 of file /Users/qzs00392/idl_codes/references.bib
+ :   
+ :   % volume = 4139,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2126 of file /Users/qzs00392/idl_codes/references.bib
+ :  
+ :  %  volume = 5171,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2511 of file /Users/qzs00392/idl_codes/references.bib
+ :     
+ :     %pages = {1044-1086},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2545 of file /Users/qzs00392/idl_codes/references.bib
+ :   
+ :   % series = {Astrophysics and Space Science Library},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2686 of file /Users/qzs00392/idl_codes/references.bib
+ :    
+ :    %volume = 6,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2903 of file /Users/qzs00392/idl_codes/references.bib
+ :  
+ :  %  volume = 40,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3060 of file /Users/qzs00392/idl_codes/references.bib
+ :    
+ :    %editor = "{}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 3271 of file /Users/qzs00392/idl_codes/references.bib
+ : @article{2011AdSpR..47.2118G
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3407 of file /Users/qzs00392/idl_codes/references.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3434 of file /Users/qzs00392/idl_codes/references.bib
+ :     
+ :     %month = oct,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 4482 of file /Users/qzs00392/idl_codes/references.bib
+ : @article{2011LRSP....8....1C
+ :                             ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 4595 of file /Users/qzs00392/idl_codes/references.bib
+ :    volume = in 
+ :                review,
+I'm skipping whatever remains of this entry
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+You've used 35 entries,
+            3260 wiz_defined-function locations,
+            909 strings with 14122 characters,
+and the built_in function-call counts, 39426 in all, are:
+= -- 4219
+> -- 1742
+< -- 12
++ -- 1129
+- -- 495
+* -- 2304
+:= -- 4350
+add.period$ -- 134
+call.type$ -- 35
+change.case$ -- 372
+chr.to.int$ -- 35
+cite$ -- 35
+duplicate$ -- 3709
+empty$ -- 2039
+format.name$ -- 608
+if$ -- 7881
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 446
+newline$ -- 211
+num.names$ -- 140
+pop$ -- 1723
+preamble$ -- 1
+purify$ -- 345
+quote$ -- 0
+skip$ -- 2028
+stack$ -- 0
+substring$ -- 1570
+swap$ -- 2858
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 315
+warning$ -- 0
+while$ -- 164
+width$ -- 0
+write$ -- 524
+(There were 20 error messages)

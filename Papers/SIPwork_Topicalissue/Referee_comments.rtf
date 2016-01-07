@@ -1,0 +1,229 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fnil\fcharset0 Cambria;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red26\green26\blue26;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12000\viewh11240\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs26 \cf2 The author thanks the referees for their supportive words and helpful comments that are individually addressed below. The relevant changes to the paper have been marked in bold. I believe it is a better piece of work in light of this feedback.
+\i \cf2 \ul \ulc2 \
+\
+\
+Referee 1:\
+\
+\pard\pardeftab720
+\cf2 \ulnone This is a very well written and presented paper on the automatic detection of CMEs in SOHO/LASCO data, which is also available as an online catalogue (CORIMP). CORIMP particularly goes beyond previous catalogues in showing the kinematics along many position angles. The previous research in this field is very well discussed, the new results are presented well and I particularly like a section on the application of a machine learning algorithm to distinguish between problem events where CMEs are launched close to one another in time and space. I think that this type of methodology will be used in many future studies on space weather because the amount of available solar and heliospheric data is already so big, and adequate artificial intelligence applications in space weather have almost not been introduced yet. In this respect the paper and the catalogue form a basis for likely many future studies on CMEs and I can definitely recommend the paper for publication with minor revision.
+\i0 \
+
+\i \
+\
+Minor points:\
+\
+- the abstract is too long (About 300 words) - please make it more concise and to the point (about 200 should be fine). For instance, it is not needed to discuss the advantages of the drawbacks of the previous catalogues in the abstract, the introduction is good enough for that. It would also be good to write all the abbreviations in full the first time they are introduced, throughout the text.\
+\
+
+\i0 The abstract has been shortened and edited accordingly.\
+
+\i \
+- line 64: a reference for the Hough transform, please.\
+\
+
+\i0 Reference added.
+\i \
+\
+- line 77: if possible add a note on how to get the realtime alerts.\
+\
+
+\i0 Footnote added.\
+
+\i \
+- please add some more details on the Savitzky-Golay filter because it is very often mentioned, and I do not think many readers are familiar with it; e.g. whats the difference to a spline?\
+\
+
+\i0 Details added where the Savitzky-Golay filter is first mentioned in Sect. 2.1.
+\i \
+\
+- there are 6 case studies of events, compared between the different catalogues. There is a table for every one of them. I think it would streamline the presentation to put all these into 1 table, divided by horizontal lines so the events are separated, along with an indicator of the event date and what the event should demonstrate.\
+\
+
+\i0 That is much better, thank you.
+\i \
+\
+- it might also be good to revisit if every of the 6 events that are discussed in a subsection in section 3 are actually needed, and show something important. When reading the paper, its not immediately clear at the beginning of section 3 why the events have been chosen to demonstrate a particular point. A discussion at the beginning of section 3 on this point would be helpful.\
+\
+
+\i0 At the beginning of section 3 it is stated that these events were chosen based on their varying styles of eruption and appearance, and I add another line to indicate this means they simply have different morphologies to be characterised and different kinematics to be derived. There is not much more significance to the choice of events than this, simply serving as an example of typical CMEs of interest.  
+\i \
+\
+- at the end of each of the subsections 3.1 3.2 etc. the wording is almost completely similar. Please rephrase this so it does not look like its copy-pasted, or leave the concluding sentences for the end of that section or the conclusion section 5; or summarize for each event what it should demonstrate, but in its own words.\
+\
+
+\i0 I have edited the final lines of each subsection now to avoid this repetition. 
+\i \
+\
+- Concerning the section 3.5, it should be emphasized that there is a very large range of detected speeds: SEEDS gives 703 and CDAW 2393 km/s. For outside-users this is rather surprising.\
+\
+
+\i0 This is true, though I do state in that section that SEEDS cannot be trusted as the CME front is only visible in two C2 frames.\
+
+\i \
+- Section 4: When reading this section, I wondered how k is chosen, and then it is explained at the very end of the section. Please indicate in the beginning somewhere that choosing k=3 or 4 is actually given by the human observation of the number of CMEs.\
+\
+
+\i0 I have added to an earlier part of this section that the k clusters are manually prescribed by the user.
+\i \
+\
+ Are there any ideas on how to figure out k automatically? I am aware that this is beyond the scope of the current work and I leave it to the author to include a comment on this or not.\
+\
+
+\i0 I have been finding it challenging to implement any form of reasonable determination of k automatically. It is certainly something to aspire to, as the manual prescription of k is not ideal (which is why I am not currently using it in the catalog). I think this would need to be investigated with supervised machine learning; if one could build a large and dedicated training set for example. I have added a comment on this in the final conclusions. \
+
+\i \
+- It took me a while to figure out exactly what is shown in Figures 10 and 11. Similar to figures 1 and 2, please describe for each panel what is seen (or just use (a), (b), ...) . Alternatively, I suggest to present these 2 plots in this way: show the CORIMP height-time measurements used as input on top, then a vertical arrow pointing to the the current top panel of Figures 10 / 11 as the new middle panel, and then another arrow to the height-time measurements with the clustering results indicated by colors and symbols as the bottom panel. In this way, it would be immediately clear to see how the data were treated and what the output is.\
+\
+
+\i0 Figures 10 and 11 and their captions have been changed in line with these suggestions and should now be more readily understood.\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720
+
+\i \cf2 \ul Referee 2:\
+\
+\pard\pardeftab720\sl380
+
+\f1\fs32 \cf0 \ulnone The author begins by comparing various CME catalogs for the LASCO data set; CDAW, CACTus, SEEDS, and CORIMP. All of these catalogs use different methods for determining the line-of-sight velocity. All these methods have various advantages and disadvantages. With the expectation of CORIMP, all these catalogs use running difference images that are subject \'93spatiotemporal crosstalk.\'94 The author then goes on the compare the kinematics from CORIMP and the other catalogs for six example CMEs with various kinematic profiles. These comparisons highlight the advantages and disadvantages of using the Savitzky-Golay filter and the CORIMP detection methods. One of the main issues of the CORIMP detections method (and other automatic methods) is the separation of CMEs that are close in space and time. 
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl380
+
+\f1\fs32 \cf0 This paper presents an interesting comparison of the kinematics produced with CORIMP catalog to other catalogs and a new technique for separating CMEs a common problem in automated methods. This article is essential to validate and document the kinematic data generated by the CORIMP catalog. The current version of this article is acceptable for publication. I have provided some comments on the clarity of the text for the author to consider. I hope these comments are helpful to the author. I do not need to review this article further.
+\f0\i0\fs26 \cf2 \
+\pard\pardeftab720
+
+\i \cf2 \
+\pard\pardeftab720\sl120\slmult1
+\cf2 \
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Figure 1 \'a0(Top left): This image is a background model subtracted image. The caption implies that these images are used to calculate the velocity in CDAW, which in not correct. CDAW uses running difference movies at the cadence taken by the instrument the same as CACTus.
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 The caption has been edited for clarification to remove this implication.\
+
+\i \
+\
+\pard\pardeftab720\sl380
+
+\f1\fs32 \cf0 Line 135: While CACTus cannot calculate the acceleration of the CME front, it does have the advantage of calculating the velocity of the front over a range of PAs, which can also be an important aspect of the CME kinematics. 
+\f2\i0\fs24 \
+\pard\pardeftab720
+
+\f0\i\fs26 \cf2 \
+
+\i0 A line had been added to this section noting this advantage.
+\i \
+\
+\
+\pard\pardeftab720\sl380
+
+\f1\fs32 \cf0 Line 154: How does this assumption affect the derived velocity? I assume that on average the SEEDS velocities are lower since all CME fronts become dimmer as they propagate out.
+\f2\i0\fs24 \
+\pard\pardeftab720
+
+\f0\i\fs26 \cf2 \
+
+\i0 The referee is correct in understanding that the CMEs become dimmer and so the SEEDS velocities may be lower, however in the text it is explained that it is the resulting increased error on the height-time profile that affects the accuracy of the derived velocity. There is probably some semantics at play here, so I leave the text unchanged.
+\i \
+\
+\
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Section 2: In the introduction you mention that running difference images suffer from \'93spatiotemporal crosstalk.\'94 However, you never discuss how this can affect the velocity measurements. The time between the images limits the velocities that can be detected in the images. Additional, changes in the image cadence changes the width and intensity increase created by the CME. Do you see a change in the detected CME velocities for these catalogs when the LASCO image cadence changed in 2010? (i.e. similar to the problem in detections found by Wang & Colaninno 2014 ApJL)
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 This is an interesting question and worth investigating in a larger-scale study of the overall trends in the CORIMP catalog rather than the specific case-studies used for the purposes of this paper.\
+On the issue of spatiotemporal cross-talk, some details have been added to the text in the introduction.\
+
+\i \
+\
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Fig 4: The black lines in the HT plots are not explained. The lines in the velocity and acceleration plots are impossible to see when printed on paper (old fashion).
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 I have edited the caption to explain the black lines in the HT plots. And yes, since these plots are quite busy they can be challenging to read, but the black lines are mostly just to imply a trend in the data (which print okay for me albeit without the ability to zoom-in as preferred).\
+\
+
+\i \
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Table 1: The abbreviation AW is ambiguous. Define the abbreviation in the text or add another line to the table headings to avoid abbreviations.
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 AW changed to Width, and explanations for the Table parameters have been added to the Table caption.
+\i \
+\
+\
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Line 201: Here you report accelerations from 50 to 0 m s
+\fs20 \super -2
+\fs32 \nosupersub  but in the table you give a value of 1 m s
+\fs20 \super -2 
+\fs32 \nosupersub with a range of 14 to -17 m s
+\fs20 \super -2
+\fs32 \nosupersub . Please explain in the text what values from CORIMP are listed in the tables.
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 The added explanations in the Table caption go towards distinguishing the Table values (of linear or second-order fitted speeds) from those of the Savitzky-Golay filter values discussed at that point.\
+
+\i \
+\
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Line 222: When was this data gap, in which instrument?
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 A comment on the data gap (in the LASCO/C3 images between 19:42 and 21:24 UT on 2000 Apr. 18) has been added to the text.\
+\
+
+\i \
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Line 262: Again you need to explain how the values in the tables are generated from the data presented in the figures. Especially for this event where the table values are very different form the \'93real\'94 values for the CME.
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 Resolved, for the point above, by the added explanation in the Table caption.\
+
+\i \
+\
+\pard\pardeftab720
+
+\f1\fs32 \cf0 Line 310: I assume that the deceleration seen for this event is the algorithm no longer identifying the leading edge of the CME as it becomes fainter. Are the data points after 15 Rsun unreliable?
+\f0\fs26 \cf2 \
+\
+\pard\pardeftab720
+
+\i0 \cf2 By inspection of the kinematic plots for this event, there is a deceleration occurring before the CME reaches 15 Rsun, so the more unreliable HT points thereafter are not creating an artificial deceleration (although they can contribute to such a measure, which is part of the overall message of the paper to not believe single-value quoted measurements without inspecting the kinematic profiles to be sure such effects are not completely to blame).}

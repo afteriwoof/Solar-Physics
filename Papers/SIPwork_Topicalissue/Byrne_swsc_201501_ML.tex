@@ -1,0 +1,1026 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                
+%%      SWSC LaTeX class for Journal of Space Weather and Space Climate
+%%      
+%%                                      (c) Springer-Verlag HD
+%%                                      revised by EDP Sciences
+%%                                      further revised by J. Watermann 
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%      This demonstration file was derived from aa.dem
+%%  
+%%      AA vers. 7.0, LaTeX class for Astronomy & Astrophysics
+%%      demonstration file
+%%                                                (c) Springer-Verlag HD
+%%                                                revised by EDP Sciences
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%      modified for Journal of Space Weather and Space Climate
+%%      by Jurgen Watermann, Editorial Advisor to SWSC
+%%
+%%      01-04-2012
+%%      02-04-2012 revision 1
+%%      12-07-2012 revision 2
+%%      06-12-2012 revision 3 
+%%      01-01-2014 revision 4
+%%      06-03-2014 revision 4.1
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%      The two sub-figures referenced in this template are of eps and png type,
+%%      respectively, in order to demonstrate the usepackages subfigure and
+%%      epstopdf and thus create pdf-only output 
+%%
+%%      If you want to use TexLive or MikTex together with a bibtex bibliography 
+%%      file you may run Latex2e from the command line 
+%%          pdflatex -shell-escape swsc.tex
+%%          bibtex swsc (do not include an extension such as .tex or .bib)
+%%          pdflatex -shell-escape swsc.tex
+%%          pdflatex -shell-escape swsc.tex
+%%
+%%      A double call to pdflatex after calling bibtex is necessary in order to
+%%      set citations and references correctly and insure that foreward/backward  
+%%      linkage (backref option) is properly applied
+%%      If you use MikTex you may need to make a triple call to pdflatex
+%%
+%%      If you are using TexLive or MikTex but not a bibtex type of bibliography
+%%      you may simply run Latex2e twice from the command line 
+%%          pdflatex -shell-escape swsc.tex
+%%          pdflatex -shell-escape swsc.tex
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%   single column 12-point version for review
+%%
+
+%%  with traditional abstract
+\documentclass[referee,a4paper,12pt,traditabstract]{swsc} 
+
+%%  with structured abstract 
+%\documentclass[referee,a4paper,12pt,structabstract]{swsc} 
+
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{subfigure}
+\usepackage{epstopdf}
+\usepackage{lineno}
+\usepackage[authoryear,round]{natbib}
+\usepackage[backref]{hyperref}
+\usepackage{url}
+
+%%    This version assumes using bibtex with the swsc bibliography style file
+\bibliographystyle{swsc}
+
+\hypersetup{colorlinks=true,citecolor=cyan,urlcolor=cyan,linkcolor=blue}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{linenumbers}
+
+   \title{Investigating the Kinematics of Coronal Mass Ejections with the Automated CORIMP Catalog}
+%\title{Comparing Events in the CORIMP CME Catalog with other Automated Catalogs and Manual Studies}
+   
+   \titlerunning{Investigating the Kinematics of CMEs with the Automated CORIMP Catalog}
+
+   \authorrunning{J. P. Byrne}
+
+   \author{Jason P. Byrne}%, H. Morgan$^{3,4}$,  P. T. Gallagher$^{5}$, S. R. Habbal$^{2}$}
+          %\and
+          %C. Ptolemy\inst{2}\fnmsep\thanks{Just to show the usage
+          %of the elements in the author field}
+          %}
+
+   \institute{Rutherford Appleton Laboratory, STFC: RAL Space, Harwell Oxford, OX11 0QX, UK. \\
+              \email{\href{mailto:jason.byrne@stfc.ac.uk}{jason.byrne@stfc.ac.uk}}
+         %\and
+            % Institute for Astronomy, University of Hawaii, 2680 Woodlawn Drive, Honolulu, HI 96822, USA.
+            % \email{\href{mailto:c.ptolemy@hipparch.uheaven.space}{c.ptolemy@hipparch.uheaven.space}}
+            % \thanks{The university of heaven temporarily does not
+            %         accept e-mails}
+             }
+
+%%   \date{Received September 15, 1996; accepted March 16, 1997}
+
+  % \abstract{}{}{}{}{}        %% uncomment if structured abstract is desired
+ %% 5 {} token are mandatory
+ 
+  \abstract
+  {
+  Studying coronal mass ejections (CMEs) in coronagraph data can be challenging due to their diffuse structure and transient nature, compounded by the variations in their dynamics, morphology, and frequency of occurrence. The large amounts of data available from missions like SOHO makes manual cataloging of CMEs tedious and prone to human error, and so a robust method of detection and analysis is required and often preferred. This has led to the development of automated CME detection and tracking algorithms such as those implemented in the CACTus and SEEDS catalogs. However, drawbacks do exist: for example, the CACTus method of detection fails to resolve CME acceleration profiles; the SEEDS method of detection is limited to the LASCO/C2 field-of-view; and both CACTus and SEEDS running-difference images suffer from spatiotemporal crosstalk. The new CORIMP catalog was developed in an effort to overcome these drawbacks, through the implementation of a dynamic background separation technique and multiscale edge detection, that together isolate and characterise CME structure throughout the LASCO field-of-view. CORIMP also applies a Savitzky-Golay filter, along with quadratic and linear fits, to the height-time measurements for better revealing the true CME velocity and acceleration profiles across the plane-of-sky. Here we present a sample of new results from the CORIMP CME catalog, and directly compare them with the other automated CACTus and SEEDS catalogs, as well as the manual CDAW catalog and a previous study of the sample events. We further investigate a form of unsupervised machine learning by means of a $k$-means clustering algorithm to distinguish detections of multiple CMEs that occur close together in space and time. While challenges still exist, this investigation and comparison of results demonstrates the reliability and robustness of the CORIMP catalog, proving its efficacy in detecting and tracking CMEs throughout the LASCO dataset.
+  }
+  
+ %% context heading (optional). leave {} empty if necessary  
+   
+   %CMEs are long known to be significant drivers of adverse space weather at Earth, but the physics governing their propagation is not fully understood. 
+   
+   %}        %% uncomment if structured abstract is selected
+ %% aims heading (mandatory)
+   %{        %% uncomment if structured abstract is selected
+   
+   %text.
+   
+   %}        %% uncomment if structured abstract is selected
+ %% methods heading (mandatory)
+   %{        %% uncomment if structured abstract is selected
+   
+   %text.
+   
+   %}        %% uncomment if structured abstract is selected
+ %% results heading (mandatory)
+   %{        %% uncomment if structured abstract is selected
+   
+   %text.
+   
+   %}        %% uncomment if structured abstract is selected
+ %% conclusions heading (optional), leave {} empty if necessary 
+   %}        %% replace by pair of curly brackets, {}, if structured abstract is selected
+   
+
+   \keywords{Sun -- Coronal Mass Ejection (CME) -- Space weather -- Solar image processing -- Machine learning}
+
+   \maketitle
+%%
+%%________________________________________________________________
+
+\section{Introduction}
+
+Coronal mass ejections (CMEs) represent the largest, most dynamic phenomena that originate from the Sun \citep{2011LRSP....8....1C,2012LRSP....9....3W}. Propagating at speeds of up to thousands of kilometres per second, with energies on the order of 10$^{32}$\,ergs, they can drive adverse space weather throughout the solar system \citep{2005A&A...440..373H,2007LRSP....4....1P}. Given their potentially hazardous impact on Earth's geomagnetic environment, the physics governing their eruption and propagation needs to be understood so that their effects may be predicted in the guise of space-weather forecasting. To this end, observations of CMEs must be rigorously inspected in order to determine their dynamics, and this is most generally undertaken with the use of coronagraph instruments \citep[e.g.,][]{1975Koomen,1980ApJ...237L..99S,1980SoPh...65...91M,1985JGR....90..275I,1993JGR....9813177H, 1995SoPh..162..357B, 2008SSRv..136...67H}. 
+
+CMEs tend to be faint, transient phenomena, observed in white-light images that are prone to noise and user-dependent bias in their interpretation. During solar minimum they can occur every few days, but at solar maximum there can be several per day \citep{2000JGR...10518169S, 2004JGRA..10907105Y}. They exhibit a wide variety of morphologies, moving in unpredictable directions and speeds in the solar wind, with differing levels of possible geo-effectiveness \citep{2001JASTP..63..389P, 2005AnGeo..23.1033S, 2009GeoRL..3608102D, 2012SoPh..tmp...47L}. A wealth of image processing techniques have been explored to study CMEs in remote-sensing image data provided by such instruments as the Large Angle Spectroscopic Coronagraph \citep[LASCO;][]{1995SoPh..162..357B} onboard the Solar and Heliospheric Observatory \citep[SOHO;][]{1995SoPh..162....1D}. These techniques generally rely on some form of image differencing to highlight moving features in the observed intensities, but this introduces spatiotemporal crosstalk and scaling issues that affect the accuracy of CME characterisations. More advanced image processing methods have thus been explored, such as optical flow techniques \citep{2006ApJ...652.1747C}, supervised segmentation techniques \citep{Goussies:2010:DTC:1749630.1750150}, wavelets \citep{2003A&A...398.1185S} and curvelets \citep{2011AdSpR..47.2118G}. The large volume of data available has made it necessary to automate such techniques for detecting and tracking CMEs across images, with a view to cataloging their kinematics and morphologies. This allows for more robust CME detections by avoiding the troublesome effects of standard image differencing techniques. It is therefore possible to maintain a non-biased characterisation of the CME structure in every event, since automated techniques are self-consistent.
+
+To date, a point-and-click catalog of CMEs in LASCO data has been undertaken at the Coordinated Data Analysis Workshop (CDAW) Data Center \citep{2009EM&P..104..295G}, which operates by tracking CMEs in running difference images to produce information on the dynamics of each event. It is a wholly manual procedure and is therefore subject to user bias in interpreting the data. Automated catalogs have since been developed to overcome this bias and tedium. The Computer Aided CME Tracking routine \cite[CACTus;][]{2004A&A...425.1097R} is the first such automated catalog, that works by using a Hough transform to detect intensity ridges corresponding to CME tracks in time-height stacks (J-maps) of polar-unwrapped running-difference LASCO images. The Solar Eruptive Events Detection System \cite[SEEDS;][]{2008SoPh..248..485O} is another automated catalog that similarly uses polar-unwrapped running-difference LASCO images but with a form of threshold segmentation to approximate the shape of the CME leading edge in every image. A new automated catalog has recently been developed from a unique set of coronal image processing techniques, called CORIMP, that overcomes many of the limitations of current catalogs in operation \citep{2012ApJ...752..144M,2012ApJ...752..145B}. An online database has been produced for the SOHO/LASCO data and event detections therein; providing information on CME onset time, position angle, angular width, speed, acceleration, and mass, along with kinematic plots and observation movies. By investigating the catalog output it is intended that this work will lead to an improved understanding of the dynamics of CMEs. Furthermore, a realtime version of the algorithm has been implemented to provide CME detection alerts to the interested space weather community.
+
+In Sect.\,\ref{sect_catalogs} the CME catalogs are discussed in greater detail to highlight their methodologies and drawbacks. A sample of CMEs is then investigated in Sect.\,\ref{sect_events} in order to compare the outputs of each catalog, paying particular interest to the robustness and reliability of the new CORIMP catalog. In Sect.\,\ref{sect_clusters} a first effort is made to use a form of unsupervised machine learning to isolate spatially and temporally overlapping CME detections. The conclusions of this investigation are presented in Sect.\,\ref{sect_conclusions}.
+
+\section{Cataloging CMEs}
+\label{sect_catalogs}
+
+\begin{figure}[!h]
+\centerline{\includegraphics[width=\linewidth]{images/20000102_four.pdf}}
+\caption{LASCO/C2 observations of a CME on 2000\,Jan.\,02 at 07:54\,UT. \emph{Top left:} Level 2 processed image reproduced from the CDAW catalog. \emph{Top right:} Running difference image reproduced from the CACTus catalog with the angular span of the CME detection indicated in white. \emph{Bottom left:} Running difference image reproduced from the SEEDS catalog with the CME front detection highlighted in red (and the extended `half-max lead' in purple). \emph{Bottom right:} Normalised radial-gradient filtered (NRGF) image taken from the CORIMP catalog with the angular span of the CME detection indicated in blue, the pixel-chained CME structure in yellow, and the CME front in red.}
+\label{20000102_four}
+\end{figure}
+
+\begin{figure}[!h]
+\centerline{\includegraphics[scale=0.68, trim=20 0 0 0, clip=true]{images/20000102_kins_plots.pdf}}
+\caption{The kinematic outputs for the 2000\,Jan.\,02 CME reproduced from the CDAW, SEEDS and CACTus catalogs. \emph{Top left:} The CDAW catalog height-time measurements of the CME chosen manually along the running-difference bright front (at position angle 240) with a second-order fit. \emph{Bottom left:} The corresponding CDAW velocity profile plotted against height, showing an acceleration of $21.57\,m\,s^{-2}$. \emph{Top right:} The automated SEEDS height-time measurements and second-order fit resulting in an acceleration of 18.6\,$m\,s^{-2}$, in the LASCO/C2 field-of-view. \emph{Bottom right:} The automated CACTus velocities determined along the angular span of the CME, with a corresponding box-and-whisker plot to highlight the median (548\,$km\,s^{-1}$) and interquartile range.}
+\label{20000102_kins_plots}
+\end{figure}
+
+In coronagraph images CMEs are observed as outwardly moving regions of stronger brightness intensities than the background corona (see the example in Fig.\,\ref{20000102_four}). Different methods for thresholding the CME intensity in such images have been employed by different catalogs. This is in order to detect their appearance and track their motion through the field-of-view, leading to a determination of the CME kinematics and morphology. However, each method suffers from drawbacks and, as such, the resulting CME catalogs can vary significantly in their characterisations and measurements of each event. 
+
+
+\subsection{CORIMP Automated Catalog}
+\label{sect_corimp}
+
+The CORIMP\footnote{http://alshamess.ifa.hawaii.edu/CORIMP/} catalog was developed with a method of dynamic signal separation and multiscale edge detection to overcome certain drawbacks of previous detection and tracking methods that rely on running-difference images. The CME signal is separated from the more quiescent streamers and coronal structures in LASCO/C2 and C3 images, such that a multiscale filtering technique may be used to suppress noise in order to characterise the CME structure and track its motion. A spread of heights is then measured across the angular span of the CME. A type of cleaning algorithm is applied to the height-time measurements before the kinematics are determined. This is required to overcome cases where pixels along the CME front edges at a specific position angle are not correctly identified, but rather a pixel corresponding to core material behind the CME front is measured, which causes unnecessary scatter in the height-time datapoints. The cleaning algorithm works by stepping along the height-time measurements at each position angle and requiring that only sequentially increasing heights are plotted. This helps remove the detections of trailing CME material from the height-time plots such that only the kinematics of the main CME front are determined. The kinematics are then derived in three ways: using a Savitzky-Golar filter (similar to a spline), a quadratic fit (second-order), and a linear fit (first-order/straight-line). The importance of a robust method for determining the kinematics of a transient event is discussed in \cite{2013A&A...557A..96B}, wherein the often-used method of 3-point Lagrangian interpolation and associated error-propagation were shown to behave counter-intuitively and provide misleading kinematic results. Given the large variety of CMEs that can occur with differing kinematic profiles, the inspection of these three automatic fitting techniques in CORIMP can better reveal the true trends of CME motion.
+
+
+\subsection{CACTus Automated Catalog}
+
+The CACTus\footnote{http://sidc.oma.be/cactus/} catalog was the first automated CME detection algorithm, in operation since 2004. It is based upon the detection of CMEs as bright ridges in time-height slices at each angle around a coronagraph image. A running-difference technique is applied and each image is transformed into Sun-centred polar coordinates, re-binned, and the C2 and C3 fields-of-view are combined. These are then stacked in time, and for each angle the corresponding time-height slice undergoes a modified Hough transform for detecting intensity ridges across it. Thresholding the most significant ridges filters out the progression of CMEs, with the variables for each ridge characterised by onset time, velocity, and position angle. A median velocity across the angular span of each event is quoted as the CME speed.
+
+The running-difference cadence, the ridge intensity threshold, and the imposed limit on how many frames a CME may exist all affect how successful the automated detection can be. However, \citet{2004A&A...425.1097R} show the algorithm to be robust in reproducing the detections of a human user by directly comparing with the CDAW catalog. The main drawback of the CACTus catalog for studying CMEs is the imposed zero acceleration of the detection algorithm, since the Hough transform thresholds the ridges as straight lines whose slopes provide a constant velocity. The velocity itself may also be an underestimate since it is a median across the span of the CME (see the example velocity-plot at the bottom right of Fig.\,\ref{20000102_kins_plots}). The angular spans are possibly over-estimated since side outflows in the images are enhanced by the running-difference and may include streamer deflections. It is also difficult to distinguish when one CME has fully progressed from the field-of-view and another CME has entered it, so in some cases trailing portions of a CME are detected as separate events.
+
+\subsection{SEEDS Automated Catalog}
+
+The SEEDS\footnote{http://spaceweather.gmu.edu/seeds/} catalog employs an automated CME detection algorithm for tracking an intensity thresholded CME front in running-difference images from LASCO/C2. The images are unwrapped into Sun-centred polar coordinates, and a normalised running-difference technique is applied (such that the mean intensity of the new image is effectively zero). The pixel intensities (positive values only) are then summed along angles and thresholded at a certain number of standard deviations above the mean intensity. This determines the ``core angles" of the CME, and a region growing technique based on a secondary threshold of intensities in the rest of the image is applied to open the angular span to include the full CME. An issue arises when streamer deflections occur that offset the region growing technique and overestimate the CME angular width. An intensity average across the angles within the span of the CME is then determined, and where the forward portion of this intensity profile equals half its maximum value is taken as the CME height. The velocity and acceleration are determined from the heights through consecutive images and these results are output with the CME position angle and angular width in the SEEDS catalog (see the example height-time plot at the top right of Fig.\,\ref{20000102_kins_plots}).
+
+Along with the issues of streamer deflections and the tracking being limited to only the C2 field-of-view, the choice of the ``Half-Max-Lead" as the CME height is dependant on the overall CME brightness, and thus any brightness change during its propagation will affect this measurement. This adds to the error on the height-time profile, which affects the accuracy of the derived velocity and acceleration.
+
+\subsection{CDAW Manual Catalog}
+
+The CME catalog hosted at the CDAW Data Center\footnote{http://cdaw.gsfc.nasa.gov/CME\_list}  grew out of a necessity to record a simple but effective description and analysis of each event observed with LASCO \citep{2009EM&P..104..295G}. The catalog is wholly manual in its operation, with a user tracking the CME through C2 and C3 running-difference images and producing a ``point-\&-click" height-time plot of each event. A linear fit to the height-time profiles provides a 1st-order estimate for the plane-of-sky velocity, and a quadratic fit provides a 2nd-order velocity fit and an acceleration for the event. The central position angle and angular width of the CME are also deduced from the images, and the event is flagged as a halo if it spans 360$^{\circ}$, partial halo if it spans $\ge$\,120$^{\circ}$, and wide if it spans $\ge$\,60$^{\circ}$. The catalog itself lists each CME's first appearance in C2, central position angle, angular width, linear speed, 2nd-order speed at final height, 2nd-order speed at 20~R$_{\odot}$, acceleration, mass, kinetic energy, and measurement position angle (the angle along which the heights of the CME are determined; see the example height-time and velocity-height plots in the left of Fig.\,\ref{20000102_kins_plots}). While the human eye is supremely effective at distinguishing CMEs in coronagraph images, errors may be introduced to the manual cataloging procedure through the biases of different operators; for example, in deciding how the images are scaled, where along the CME the heights are measured, or whether a CME is worth including in, or discarding from, the catalog.
+
+
+\section{CME Event Sample and Catalog Results}
+\label{sect_events}
+
+A selection of CMEs from the SOHO/LASCO data was chosen in the analysis of \cite{2009A&A...495..325B}, wherein multiscale methods of edge detection and a resulting ellipse characterisation of the CME front were used to track its apex. These events were chosen based on their varying styles of eruption and appearance, in order to compare with the measurements of the manual CDAW catalog (see images of each CME in Fig.\,5 of \citealt{2009A&A...495..325B}). The images were not differenced to avoid spatiotemporal cross-talk and associated scaling issues. The uncertainties on the height measurements were quantified by the multiscale filter size and subsequent ellipse-fitting, and propagated into the kinematics via numerical differentiation using 3-point Lagrangian interpolation. However, it has since been demonstrated by \cite{2013A&A...557A..96B} that this method for deriving kinematics is not wholly reliable, and other approaches must be considered as discussed in Sect.\,\ref{sect_corimp} above. Following the development of the automated CORIMP algorithms, these events are now revisited in this new catalog and directly compared with the other automated CACTus and SEEDS catalogs, the manual CDAW catalog, and the results of \cite{2009A&A...495..325B}. In each case below, the tabled information and kinematic plots are reproduced directly from the online catalogs, and not rescaled or otherwise manipulated, for a fair comparison. Note, in the tables some values have a corresponding maximum and/or minimum ($x_{min}^{max}$) as specified in the respective catalogs.
+
+
+%\begin{figure}[!h]
+%\centerline{\includegraphics[scale=0.68]{images/20000418_kins_plots.pdf}}
+%\caption{The kinematic outputs for the 2000\,Apr.\,18 CME from the CDAW, SEEDS and CACTus catalogs. \emph{Top left:} The CDAW catalog height-time measurements of the CME chosen manually along the running-difference bright front (at position angle 181) with a second-order fit. \emph{Bottom left:} The corresponding CDAW velocity profile plotted against height, showing an acceleration of 23.14\,$m\,s^{-2}$. \emph{Top right:} The automated SEEDS height-time measurements and second-order fit resulting in an acceleration of 17.7\,$m\,s^{-2}$, in the LASCO/C2 field-of-view. \emph{Bottom right:} The automated CACTus velocities determined along the angular span of the CME, with a corresponding box-and-whisker plot to highlight the median (463\,$km\,s^{-1}$) and interquartile range.}
+%\label{20000418_kins_plots}
+%\end{figure}
+
+\subsection{Arcade eruption: 2000 January 2}
+\label{sect_20000102}
+
+\begin{figure}[t]
+\centerline{\includegraphics[scale=0.5, trim=20 70 0 140, clip=true]{images/pa_total.pdf}}
+\caption{Daily detection stacks reproduced from the CORIMP CME catalog for the SOHO/LASCO observations in the date range 2000~Jan.~01\,--\,03. These stacks are generated from the automatically measured CME front heights at every position angle in an image, stacked in time. CMEs appear as groupings of colour-graded pixels, as indicated by the boxed regions. The overlapping CMEs in this time interval are boxed in red, corresponding to the height-time profiles in Fig.\,\ref{20000102_corimp_kins} (that have been put through the ``cleaning algorithm").}
+\label{pa_total}
+\end{figure}
+
+\begin{table}[h]
+\begin{tabular}{l*{4}{c}r}
+\multicolumn{5}{c}{} \\
+%\hline
+Catalog              & CPA [$deg.$] & AW [$deg.$] & Lin. Speed [$km\,s^{-1}$] & Accel. [$m\,s^{-2}$]  \\
+\hline
+CORIMP         & 250   & 81$^{83}$   & 454$^{743}$ &  1$_{-17}^{14}$  \\
+CACTus          & 250 & 106 & 548$_{231}^{744}$ &     \\
+SEEDS        & 257 & 96 & 292 & 18.6  \\
+CDAW     & 253 & 107 & 603 & 21.6 \\
+\end{tabular}
+\caption{Catalog measurements of a CME observed by SOHO/LASCO on 2000\,Jan.\,02 from $\sim$06:06\,UT. Note, some values have a corresponding maximum and/or minimum ($x_{min}^{max}$) as specified in the respective catalogs.}
+\label{table_20000102}
+\end{table}
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=\linewidth]{images/20000102_corimp_kins.pdf}}
+\caption{Kinematic plots of the 2000\,Jan.\,02 CME from the automatic detection and tracking in the CORIMP catalog. The top plots show the height-time measurements with a colorbar to indicate the angular span of the data points. The middle and bottom plots show the velocity and acceleration profiles of the CME with the median (solid line), interquartile range (inner dashed lines) and upper and lower fences (outer dashed lines) over-plotted. The left plots are determined by a Savitzky-Golar filter applied to the height-time measurements with a 7-point moving window, while the right plots are determined with a second-order quadratic fit.}
+\label{20000102_corimp_kins}
+\end{figure}
+
+The CME that erupted off the southeast limb of the Sun on 2000~Jan.~02 from $\sim$06:06\,UT in LASCO exhibited an arcade-type structure consisting of multiple bright loops. CORIMP identified the bulk of the CME through the LASCO field-of-view to $\sim$24\,$R_\odot$. However, this CME may be deemed the third in a series of four CMEs that occurred in succession off the southeast limb, that CORIMP failed to separate due to their spatial and temporal overlap (essentially a smaller CME in between two large ones connects their detections along with a fourth smaller one afterwards, as seen in the CORIMP CME detection stacks reproduced in Fig.\,\ref{pa_total} - see \citealt{2012ApJ...752..145B} for details). This therefore serves as an example of the need to inspect the catalog output before trusting the quoted values listed in Table\,\ref{table_20000102}. The CORIMP height-time measurements (in the time range $\sim$06:00\,--\,16:00\,UT in Fig.\,\ref{20000102_corimp_kins}) reveal a non-linear trend indicative of an early acceleration that the Savitzky-Golay filter determines decreases from a maximum of $\sim$50\,$m\,s^{-2}$ to 0\,$m\,s^{-2}$, as the maximum velocity levels off in the range of $\sim$500\,--\,600\,$km\,s^{-1}$. This is consistent with the measurements of \cite{2009A&A...495..325B} shown in their Fig.\,6. The quadratic (and linear) fits in CORIMP agree with a maximum velocity in this range of $\sim$500\,--\,600\,$km\,s^{-1}$ and an acceleration in the range of approximately $\pm$20\,$m\,s^{-2}$. CACTus determined a linear velocity of 548\,$km\,s^{-1}$ (in the range 231\,--\,744\,$km\,s^{-1}$). SEEDS determined a linear velocity of 292\,$km\,s^{-1}$ and an acceleration of 18.6\,$m\,s^{-2}$ (in the C2 field-of-view). And CDAW determined a linear velocity of 603\,$km\,s^{-1}$ and an overall acceleration of 21.6\,$m\,s^{-2}$. These catalog measurements are listed in Table\,\ref{table_20000102}. (Note that the slightly lower angular width in CORIMP is due to the exclusion of part of the questionable streamer deflection/interaction along the southern flank of the CME.) Therefore, by inspection, the results of the CORIMP CME catalog are in relative agreement with the other catalogs and manual analysis, and CORIMP is deemed robust albeit unreliable at separating overlapping events.
+
+
+\subsection{Gradual/expanding CME: 2000 April 18}
+
+
+\begin{table}[h]
+\begin{tabular}{l*{4}{c}r}
+\multicolumn{5}{c}{} \\
+
+Catalog              & CPA [$deg.$] & AW [$deg.$] & Lin. Speed [$km\,s^{-1}$] & Accel. [$m\,s^{-2}$]  \\
+\hline
+CORIMP      & 210 & 98 & 431$^{537}$ & 4$_{-11}^{15}$   \\
+CACTus     & 198 & 102 & 463$_{227}^{744}$ &     \\
+SEEDS        & 195 & 108 & 338 & 17.7    \\
+CDAW         & 195 & 105 & 668 & 23.1    \\
+\end{tabular}
+\caption{Catalog measurements of a CME observed by SOHO/LASCO on 2000\,Apr.\,18 from $\sim$14:54\,UT.}
+\label{table_20000418}
+\end{table}
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=\linewidth]{images/20000418_corimp_kins.pdf}}
+\caption{Kinematic plots of the 2000\,Apr.\,18 CME from the automatic detection and tracking in the CORIMP catalog, as in Fig.\,\ref{20000102_corimp_kins}.}
+\label{20000418_corimp_kins}
+\end{figure}
+
+The CME that erupted off the south limb of the Sun on 2000~Apr.~18 from $\sim$14:54\,UT in LASCO exhibited a typical 3-part structure of leading CME front, cavity and bright core. CORIMP identified the bulk of the CME through the LASCO field-of-view to $\sim$25\,$R_\odot$, though it did not detect a southern portion of the faint CME front in the latter C3 observations. A western portion of material also erupted as a delayed part of the northern flank of the CME, that appears as a somewhat secondary height-time profile in the CORIMP kinematic plots in Fig.\,\ref{20000418_corimp_kins} (at position angles $\sim$250$^{\circ}$ in the redder end of the colorbar). The CORIMP height-time measurements reveal a non-linear trend indicative of an early acceleration that the Savitzky-Golay filter determines to be approximately 20\,$m\,s^{-2}$ as the velocity increases to over 400\,$km\,s^{-1}$ before the data gaps cause a large scatter in the derived kinematics (e.g., an artificial acceleration peak of $>$100\,$m\,s^{-2}$). The initial increasing velocity profile up to a maximum in the range $\sim$600\,--\,800\,$km\,s^{-1}$ by $\sim$20:00\,UT agrees with that of \cite{2009A&A...495..325B} as shown in their Fig.\,7. The quadratic (and linear) fits in CORIMP are not as prone to the scattering effects of the data gap, and thus derive a slightly lower maximum velocity range of $\sim$500\,--\,550\,$km\,s^{-1}$ and an acceleration in the range of approximately $\pm$15\,$m\,s^{-2}$. CACTus determined a linear velocity of 463$\,km\,s^{-1}$ (in the range 227\,--\,744\,$km\,s^{-1}$). SEEDS determined a linear velocity of 338$\,km\,s^{-1}$ and an acceleration of 17.7\,$m\,s^{-2}$ (in the C2 field-of-view). And CDAW determined a linear velocity of 668$\,km\,s^{-1}$ and an overall acceleration of 23.1\,$m\,s^{-2}$. These catalog measurements are listed in Table\,\ref{table_20000418}. Therefore, by inspection, the results of the CORIMP CME catalog are in relative agreement with the corresponding results of the other catalogs and manual analysis, and CORIMP is deemed robust and reliable.
+
+
+%\begin{figure}[!h]
+%\centerline{\includegraphics[width=\linewidth, trim=0 250 0 0]{images/plot_kins_quartiles_linear_20000418_152817.pdf}}
+%\caption{Kinematic plots of the 2000\,Apr.\,18 CME from the automatic detection and tracking in the CORIMP catalog, as in Fig.\,\ref{20000418_fits} but with linear (straight-line) fits to the height-time measurements at each position angle in the span of the CME.}
+%\label{20000418_linear_fit}
+%\end{figure}
+
+
+
+
+\subsection{Impulsive CME: 2000 April 23}
+
+
+\begin{table}[h]
+\begin{tabular}{l*{4}{c}r}
+\multicolumn{5}{c}{} \\
+%\hline
+Catalog              & CPA [$deg.$] & AW [$deg.$] & Lin. Speed [$km\,s^{-1}$] & Accel. [$m\,s^{-2}$]  \\
+\hline
+CORIMP   & 287 & 119$^{125}$ & 836$^{1706}$ & -11$_{-154}^{50}$       \\
+CACTus  & 144 & 360 & 1114$_{245}^{1849}$ &            \\
+SEEDS  & 275 & 130 & 594 & -8.5        \\
+CDAW      & 281 & 360 & 1187 & -48.5 \\
+\end{tabular}
+\caption{Catalog measurements of a CME observed by SOHO/LASCO on 2000\,Apr.\,23 from $\sim$12:54\,UT}
+\label{table_20000423}
+\end{table}
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=\linewidth]{images/20000423_corimp_kins.pdf}}
+\caption{Kinematic plots of the 2000\,Apr.\,23 CME from the automatic detection and tracking in the CORIMP catalog, as in Fig.\,\ref{20000102_corimp_kins}.}
+\label{20000423_corimp_kins}
+\end{figure}
+
+
+The large and fast CME that erupted off the west limb of the Sun on 2000~Apr.~23 from $\sim$12:54\,UT in LASCO underwent a hugely impulsive acceleration as it exploded into the corona. CORIMP identified the bulk of the CME through the LASCO field-of-view to $\sim$20\,$R_\odot$ after which the CME front became too faint. Strong streamer deflections occurred to the north and south flanks of the CME, with very faint material visible as a full halo or shock around the east limb separate to the bulk flux-rope structure in the west. The CORIMP height-time measurements (Fig.\,\ref{20000423_corimp_kins}) reveal an initial acceleration that the Savitzky-Golay filter determines to be $\gtrsim$150\,$m\,s^{-2}$ dropping quickly to a range of approximately $-100$ to 0\,$m\,s^{-2}$, as the velocity decreases from $\sim$1000 to 500\,$km\,s^{-1}$; though this is an underestimate since the filter overly smoothes the relatively under-sampled height-time measurements. The quadratic fits in CORIMP better handle this data and derive an initial velocity range of $\sim$1200\,--\,1500\,$km\,s^{-1}$, while the linear fits derive an initial velocity range of $\sim$1000\,--\,1200\,$km\,s^{-1}$, which are consistent with the measurements of \cite{2009A&A...495..325B} shown in their Fig.\,8. The resulting deceleration is determined to have a median of approximately $-50\,m\,s^{-2}$, reaching as low as $-150\,m\,s^{-2}$. CACTus determined a linear velocity of 1114$\,km\,s^{-1}$ (in the range 245\,--\,1849\,$km\,s^{-1}$). SEEDS determined a linear velocity of 594\,$km\,s^{-1}$ and a deceleration of $-8.5\,m\,s^{-2}$ (in the C2 field-of-view). And CDAW determined a linear velocity of 1187$\,km\,s^{-1}$ and an overall deceleration of $-48.5\,m\,s^{-2}$. These catalog measurements are listed in Table\,\ref{table_20000423}. Therefore, by inspection and careful consideration of the low sampling of the event, the results of the CORIMP CME catalog are in relative agreement with the corresponding results of the other catalogs and manual analysis, and CORIMP is deemed robust and reliable.
+
+
+\subsection{Faint CME: 2001 April 23}
+\label{sect_20010423}
+
+\begin{table}[h]
+\begin{tabular}{l*{4}{c}r}
+\multicolumn{5}{c}{} \\
+
+Catalog              & CPA [$deg.$] & AW [$deg.$] & Lin. Speed [$km\,s^{-1}$] & Accel. [$m\,s^{-2}$]  \\
+\hline
+CORIMP   & 232 & 72$^{74}$ & 187$^{283}$ & 3$_{-13}^{15}$ \\
+CACTus  & 231 & 88 & 459$_{315}^{602}$ &  \\
+SEEDS    & 224 & 77 & 408 & -46.6  \\
+CDAW      & 228 & 91 & 530 & -0.7 \\
+\end{tabular}
+\caption{Catalog measurements of a CME observed by SOHO/LASCO on 2001\,Apr.\,23 from $\sim$12:39\,UT}
+\label{table_20010423}
+\end{table}
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=\linewidth]{images/20010423_corimp_kins.pdf}}
+\caption{Kinematic plots of the 2001\,Apr.\,23 CME from the automatic detection and tracking in the CORIMP catalog, as in Fig.\,\ref{20000102_corimp_kins}.}
+\label{20010423_corimp_kins}
+\end{figure}
+
+
+The CME that erupted off the southwest limb of the Sun on 2001~Apr.~23 from $\sim$12:54\,UT in LASCO appeared relatively faint behind multiple streamers in the line-of-sight, some of which deflected especially along the southern flank of the CME. CORIMP identified the bulk of the CME through the LASCO field-of-view to $\sim$20\,$R_\odot$ after which the CME front became too faint. However, this CME was the first of two that occurred in close succession off the southwest limb, that CORIMP failed to separate due to their spatial and temporal overlap (plus some ejecta ahead of this CME was detected from $\sim$08:16\,UT). Therefore the kinematic profiles must be inspected before trusting the quoted catalog values listed in Table\,\ref{table_20010423}. Investigating the relevant portion of the plots in Fig.\,\ref{20010423_corimp_kins}, in the time interval $\sim$12:00\,--\,18:00\,UT, the CORIMP height-time measurements reveal an initial acceleration that the Savitzky-Golay filter determines to be $\sim$10\,$m\,s^{-2}$ dropping to scatter about zero as the maximum velocity levels off at $\sim$350\,$km\,s^{-1}$; though this is an underestimate since the measurements are dominated by the material ahead of the CME front that the algorithm detected as part of the main event (from $\sim$08:00\,--\,12:00\,UT). The quadratic fits to the measurements are more dominated by the overall deceleration of the CME (approx. $-10\,m\,s^{-2}$ from 12:00\,UT onwards) as the velocity drops from an initial range of $\sim$550\,--\,650\,$km\,s^{-1}$ (consistent with \citealt{2009A&A...495..325B} shown in their Fig.\,9) to $\sim$400\,$km\,s^{-1}$ by 18:00\,UT; though this appears biased to lower values by the overlapping measurements of the second CME. The linear fits are less trustworthy as they tend to fit across the two CMEs and preceding ejected material, resulting in the underestimated CORIMP linear speed in Table\,\ref{table_20010423}. CACTus determined a linear velocity of 459$\,km\,s^{-1}$ (in the range 315\,--\,602\,$km\,s^{-1}$). SEEDS determined a linear velocity of 408$\,km\,s^{-1}$ and a deceleration of $-46.6\,m\,s^{-2}$ (in the C2 field-of-view), however it failed to detect the CME front in the final frames which accounts for this erroneously large deceleration. And CDAW determined a linear velocity of 530$\,km\,s^{-1}$ and an overall deceleration of $-0.7\,m\,s^{-2}$. These catalog measurements are listed in Table\,\ref{table_20010423}. Therefore, by inspection and careful consideration of the appropriate measurements of this event, the results of the CORIMP CME catalog are in relative agreement with the other catalogs and manual analysis where valid, and CORIMP is deemed robust albeit unreliable at separating overlapping events.
+
+
+
+\subsection{Fast CME: 2002 April 21}
+\label{sect_20020421}
+
+\begin{table}[h]
+\begin{tabular}{l*{4}{c}r}
+\multicolumn{5}{c}{} \\
+
+Catalog              & CPA [$deg.$] & AW [$deg.$] & Lin. Speed [$km\,s^{-1}$] & Accel. [$m\,s^{-2}$]  \\
+\hline
+CORIMP   & 235 & 154$^{177}$ & 1129$^{2300}$ & 61$_{-619}^{345}$ \\
+CACTus   & 322 & 352 & 1103$_{298}^{1913}$ &  \\
+SEEDS    & 250 & 186 & 703 & 31.8 \\
+CDAW      & 282 & 360 & 2393 & -1.4 \\
+\end{tabular}
+\caption{Catalog measurements of a CME observed by SOHO/LASCO on 2002\,Apr.\,21 from $\sim$01:26\,UT}
+\label{table_20020421}
+\end{table}
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=\linewidth]{images/20020421_corimp_kins.pdf}}
+\caption{Kinematic plots of the 2002\,Apr.\,21 CME from the automatic detection and tracking in the CORIMP catalog, as in Fig.\,\ref{20000102_corimp_kins}.}
+\label{20020421_corimp_kins}
+\end{figure}
+
+
+The CME that erupted off the west limb of the Sun on 2002~Apr.~21 from $\sim$01:27\,UT in LASCO propagated very fast through the field-of-view. CORIMP identified the bulk of the CME through the LASCO field-of-view to $\sim$17\,$R_\odot$ after which the CME front became too faint, and only the southern flank material continued to be detected. Figure\,\ref{20020421_corimp_kins} shows the CORIMP height-time measurements, which the Savitzky-Golay filter struggles to fit appropriately due to the small window-size available at each position angle (as the filter requires a minimum of 7 data points). The quadratic fits to the data reveal a high initial acceleration of $\gtrsim$1000\,$m\,s^{-2}$ followed by a deceleration in the range of approximately $-500$ to $0\,m\,s^{-2}$. The velocity shows an initial range of $\sim$2000\,--\,2500\,$km\,s^{-1}$ possibly reaching $\sim$3000\,$km\,s^{-1}$ before dropping to $\sim$1000\,$km\,s^{-1}$, which is consistent with the measurements of \cite{2009A&A...495..325B} shown in their Fig.\,10. The linear fits also reveal an initial velocity range of $\sim$2000\,--\,2500\,$km\,s^{-1}$ dropping to $\sim$1000\,$km\,s^{-1}$. CACTus determined a linear velocity of 1103$\,km\,s^{-1}$ (in the range 298\,--\,1913\,$km\,s^{-1}$). SEEDS determined a linear velocity of 703\,$km\,s^{-1}$ and an acceleration of $31.8\,m\,s^{-2}$ (in the C2 field-of-view), however these cannot be trusted as the CME front is only visible in two C2 frames. And CDAW determined a linear velocity of 2393$\,km\,s^{-1}$ and an overall deceleration of $-1.4\,m\,s^{-2}$. These catalog measurements are listed in Table\,\ref{table_20020421}. Therefore, by inspection and careful consideration of the appropriate measurements of this event, the results of the CORIMP CME catalog are in relative agreement with the other catalogs and manual analysis where valid; and CORIMP is deemed reliable albeit problematic at handling low-sampled events (with the Savitzky-Golay filter anyway, as the quadratic and linear fits remain robust).
+
+
+\subsection{Flux-rope/Slow CME: 2004 April 1}
+
+
+\begin{table}[h]
+\begin{tabular}{l*{4}{c}r}
+\multicolumn{5}{c}{} \\
+
+Catalog              & CPA [$deg.$] & AW [$deg.$] & Lin. Speed [$km\,s^{-1}$] & Accel. [$m\,s^{-2}$]  \\
+\hline
+CORIMP   & 58 & 42$^{44}$ & 401$^{502}$ & 2$_{-22}^{18}$ \\
+CACTus  & 60 & 70 & 485$_{244}^{829}$ & \\
+SEEDS     & 60 & 59 & 261 & 19.7 \\
+CDAW      & 59 & 79 & 460 & 7.1 \\
+\end{tabular}
+\caption{Catalog measurements of a CME observed by SOHO/LASCO on 2004\,Apr.\,01 from $\sim$23:04\,UT}
+\label{table_20040401}
+\end{table}
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=\linewidth]{images/20040401_corimp_kins.pdf}}
+\caption{Kinematic plots of the 2004\,Apr.\,01 CME from the automatic detection and tracking in the CORIMP catalog, as in Fig.\,\ref{20000102_corimp_kins}.}
+\label{20040401_corimp_kins}
+\end{figure}
+
+The CME that erupted off the northeast limb of the Sun on 2004~Apr.~01 from $\sim$23:05\,UT in LASCO, exhibited a clear flux-rope structure and propagated relatively slowly. CORIMP identified the bulk of the CME through the LASCO field-of-view to $\sim$20\,$R_\odot$ after which the CME front became too faint. Figure\,\ref{20040401_corimp_kins} shows the CORIMP height-time measurements, which are plentiful given the slow motion and clean detection of the event. These measurements reveal an initial acceleration that the Savitzky-Golay filter determines to be $\gtrsim$25\,$m\,s^{-2}$ dropping to 0\,$m\,s^{-2}$ by the time the CME reaches $\sim$15\,$R_\odot$ and the maximum velocity levels off in the range $\sim$500\,--\,600\,$km\,s^{-1}$. The quadratic fits to the data reveal a bulk velocity in the range $\sim$400\,--\,600\,$km\,s^{-1}$, with an overall deceleration of the CME of approximately $-5\,m\,s^{-2}$. The linear fits also produce a velocity in this range. These results are consistent with the measurements of \cite{2009A&A...495..325B} shown in their Fig.\,11, though without reproducing the ``staggered" velocity profile. CACTus determined a linear velocity of 485$\,km\,s^{-1}$ (in the range 244\,--\,829\,$km\,s^{-1}$). SEEDS determined a linear velocity of 261\,$km\,s^{-1}$ and overall acceleration of $19.7\,m\,s^{-2}$ (in the C2 field-of-view). And CDAW determined a linear velocity of 460$\,km\,s^{-1}$ and an overall acceleration of $7.1\,m\,s^{-2}$. These catalog measurements are listed in Table\,\ref{table_20040401}. Therefore, by inspection, the results of the CORIMP CME catalog are in relative agreement with the other catalogs and manual analysis, and CORIMP is deemed robust and reliable.
+
+
+\section{Separating Multiple CME Detections via $K$-means Clustering}
+\label{sect_clusters}
+
+\begin{figure}[ht]
+\centerline{\includegraphics[width=\linewidth]{images/20000101_cluster_kins.pdf}}
+\caption{A $k$-means clustering algorithm applied to the height-time data in Fig.\,\ref{20000102_corimp_kins} of the 2000\,Jan.\,01 CME, in an effort to distinguish the multiple CMEs detected as a single event due to their close proximity in space and time. The top plots show the resulting clusters for the instances of $k$\,=\,3 (left) and $k$\,=\,4 (right). The clustering is applied to the normalised parameters of the slope of a linear fit to the height-time profile at each position angle, and the mean time in the height-time profile at each position angle. The clusters are distinguished by different plot symbols and colours, and the black asterisks in the top plots indicate the mean of each cluster.}
+\label{20000101_cluster_kins}
+\end{figure}
+
+\begin{figure}[ht]
+\centerline{\includegraphics[width=\linewidth]{images/20010423_cluster_kins.pdf}}
+\caption{A $k$-means clustering algorithm applied to the height-time data in Fig.\,\ref{20010423_corimp_kins} of the 2001\,Apr.\,23 CME, as in Fig.\,\ref{20000101_cluster_kins}. The top plots show the resulting clusters for two instances of $k$\,=\,4, to highlight the different possible results for the same $k$ value, depending on how the algorithm converges on the optimum $k$-means. The bottom plots show the resulting height-time profiles corresponding to the separate CMEs distinguished by the clustering algorithm, shown by the different plot symbols and colours.}
+\label{20010423_cluster_kins}
+\end{figure}
+
+
+The case studies in the previous section highlight a key issue in the automatic detection, tracking and cataloging of CMEs: namely the difficulties in distinguishing between multiple events that occur close together in space and time. The events of Sect.\,\ref{sect_20000102} and \ref{sect_20010423} demonstrate how the CORIMP catalog can fail to separately characterise CMEs that a human user would label as distinct events (although even this can be a non-trivial task since projection effects can make it hard to determine if two CMEs are truly merging in space or simply overlapping on the plane-of-sky). The reason for this, is that the thresholds in place to identify the beginning of a new CME detection cannot readily determine the end of a previous CME detection whose trailing material overlaps the subsequent CME material on the plane-of-sky. Other observational factors can help a human user distinguish the two, such as the differing speeds, densities, brightness and cohesiveness of the structure. However, these differences are too subtle to employ in an automated algorithm that must be able to characterise all manner of CMEs with a large variety of such properties; and so the overlapping CMEs are classified as a single event. While it is still possible to investigate their separate kinematic trends, as in Sect.\,\ref{sect_20000102} and \ref{sect_20010423}, this is not ideal for accurately counting CMEs nor for reliably producing independent CME detection alerts. It therefore remains a challenge to employ some form of machine intelligence in cataloging CMEs, which can use the CME detection parameters to reveal instances when multiple CMEs occur together.
+
+An initial effort to do this has been made using a clustering algorithm in the field of unsupervised machine learning. Specifically, the method of $k$-means clustering was investigated, which works by partitioning $n$ observations into $k$ clusters that are distinguished by minimising the within-cluster sum of squares, i.e., using Euclidean distance as a metric on the parameter space. It is well suited to generating globular, non-hierarchical, non-overlapping clusters, and may be computational fast if $k$ remains small. This approach could work with the parameters available in the CME detection analysis, such as the time, location/direction, size and speed of a CME. For example, the bulk of the overlapping CMEs may have different average propagation times as one may be proceeding slightly later in time than another. Or if the CMEs are propagating at different speeds, then a linear fit to each of their height-time profiles would have a different slope. Choosing these parameters of ``average time" and ``slope of a linear fit", determined at every position angle in the span of the event detection, it is possible to cluster the height-time measurements into separate CMEs.
+
+This is demonstrated in Figs.\,\ref{20000101_cluster_kins} and \ref{20010423_cluster_kins} for the two events discussed in Sects.\,\ref{sect_20000102} and \ref{sect_20010423}, respectively. These figures show top plots of the $k$-means clustering algorithm applied to the parameters of ``average time" and ``slope of a linear fit", where the means are plotted as black asterisks and the associated groups of points in separate clusters are plotted with different symbols and colours. The bottoms plots of these figures show the corresponding height-time profiles that have been separated according to their clusters. In Fig.\,\ref{20000101_cluster_kins} the results are shown for both $k$\,=\,3 (left plots) and $k$\,=\,4 (right plots), to illustrate the effect of changing $k$. By inspection, the clustering algorithm works well at distinguishing the separate events. The bulk measurements of the case-study CME beginning at $\sim$06:06\,UT on 2000\,Jan.\,02 are quite well clustered, though some of its later C3 measurements are wrongly determined as part of a separate CME. For this event the $k$\,=\,3 case fares better at grouping the CMEs, while the $k$\,=\,4 case splits apart the profile of the first CME (shown as the green and blue datapoints in the bottom right plot of Fig.\,\ref{20000101_cluster_kins}). Similarly in Fig.\,\ref{20010423_cluster_kins} the clustering algorithms go some way towards distinguishing multiple CMEs in the event detection on 2001\,Apr.\,23, but there are datapoints that are wrongly classified, even for the two instances of $k$\,=\,4 shown for this event. These results highlight the difficulty in applying an automatic extraction of separate CME height-time profiles when detected so close together in space and time. Furthermore, there is an inherent limitation to $k$-means clustering by having to specify the number of clusters required from the data, which is not known a priori - especially not for an automated methodology such as in the CORIMP catalog. Further investigation into the parameters to be clustered, alternative clustering, or different machine learning algorithms, may produce better results.
+
+
+\section{Conclusions}
+\label{sect_conclusions}
+
+As the wealth of coronagraph data and CME observations has increased dramatically since the launch of SOHO in 1995, it has become important to develop robust and reliable methods of detecting and tracking CMEs in white-light images. Since CMEs are faint and transient phenomena that prove difficult to consistently isolate from the background corona, manual inspection of the images is open to interpretation and prone to user-specific biases. Similarly, it is challenging to fix the criteria and thresholds necessary in a computerised methodology for automating this task, although advances have been made to achieve this and provide the benefit of having a self-consistent catalog of results. Efforts to both manually and automatically catalog CMEs have been discussed in Sect.\,\ref{sect_catalogs} with the aim of comparing how each fares in light of the newly developed CORIMP catalog, which was built to overcome some of the drawbacks of current catalogs. To this end, a selection of CMEs was chosen from a previous study by \cite{2009A&A...495..325B}, and the new results in the CORIMP catalog were investigated alongside the results of the automated CACTus and SEEDS catalogs and the manual CDAW catalog. 
+
+In the previous study of \cite{2009A&A...495..325B}, the CMEs were characterised with the use of a multiscale edge-detection filter, whereby an ellipse was fitted to the isolated CME front and its apex tracked to produce height-time measurements. Since this approach avoided differencing the images, it was possible to quantify single-image uncertainties for the resulting height-time measurements, to be used for gauging a confidence interval on the derived CME kinematics. However, \cite{2013A&A...557A..96B} demonstrated that the often-used method of numerical differentiation using 3-point Lagrangian interpolation, and its associated error propagation, is not wholly reliable at deriving the true CME kinematics. This motivated the use of the Savitzky-Golay filter along with quadratic and linear fits to the height-time measurements in CORIMP, across the angular span of the CME such that the statistical spread in the kinematics of each event may better indicate the true underlying trends. It is therefore warranted to compare these new automatically-generated results with the outputs of the other catalogs.
+
+The spread of measurements along the angular span of the CME proves more useful than choosing a single fixed apex of the CME, because it propagates as an impermanent, evolving structure that can undergo various rates of expansion across the plane-of-sky. The variety of events chosen here as a subset of the thousands in the LASCO data is enough to demonstrate this. Having the angular spread of kinematics also provides insight to the bulk motion of the CME as well as its flanks and front: with the angular extent indicating the flanks and the upper values on the velocities indicating the CME front (usually the fastest part of its structure). Therefore a greater amount of information is available on the overall CME motion.
+
+The Savitzky-Golay filter provides an indication of the kinematic trends that a first or second-order fit cannot necessarily produce. Since this filter is applied in a moving-window on the datapoints, it can be problematic in cases of events with low-sampling (as in Sect.\,\ref{sect_20020421}), but otherwise performs very well at automatically quantifying the different phases of acceleration of a CME. Therefore the dynamics of the eruption may be better quantified and understood.  
+
+While the robustness of the CORIMP catalog is clear (in so far as it can demonstrably produce results that are accurate and consistent across the data), there is a reliability issue that arises in cases of multiple CMEs that overlap in space and time. The problem with such cases is that another CME can erupt in the same direction as a previous one, close enough in time that the two detections are merged, as though the second CME were part of the trailing material of the first (as shown in Fig.\,\ref{pa_total}). The opposite problem to this is that harsher thresholds would split apart single CMEs into multiple events, especially large CMEs with substantial trailing material. Indeed such problems can affect all automated catalogs, such that CORIMP appears to suffer from the former issue, while CACTus and SEEDS suffer from the latter. A form of unsupervised machine learning was explored, by applying a $k$-means clustering algorithm to certain parameters in the CME detections, in an effort to distinguish overlapping events. While these first results shown in Sect.\,\ref{sect_clusters} are promising, they highlight the difficulty of the task, and warrant further investigation. So for now, this issue is only overcome by a manual inspection of the data, as highlighted in the events of Sect.\,\ref{sect_20000102} and \ref{sect_20010423}. In conclusion, any catalog should not be quoted blindly, as the thresholds cannot always distinguish the exact eruption that a user would isolate by eye. However, knowing this, CORIMP still offers the most rigorous details on the kinematics and morphologies of CMEs in a catalog to date, from which a user can infer a wealth of information.
+
+%1. The robustness of CORIMP is clear (noting that where Savitzky-Golay fails, quadratic and linear are still useable).
+
+%2. CORIMP is reliable to the extent that it detects events with great accuracy, but has the drawback of struggling to separate events that overlap spatially and temporally.
+
+%3. The spread of measurements is much more useful than single apex kinematics, giving an idea of the bulk CME motion as well as a determination of the upper speed (corresponding to the CME front).
+
+%4. Automated catalogs cannot and should not be quoted blindly, as they inevitably suffer drawbacks that lead to errors in any given event detection. CORIMP, by inspection, offers the most rigorous details on the kinematics and morphology of CMEs, from which a user can infer a wealth of information.
+
+%5. The previous work used deriv.pro and derivsig.pro which are problematic as highlighted in Byrne et al. 2013?
+
+%\section{Appendix: Clustering Techniques to Separate Overlapping CME Detections}
+
+
+\begin{acknowledgements}
+     
+The SOHO/LASCO data used here are produced by a consortium of the Naval Research Laboratory (USA), Max-Planck-Institut fuer Aeronomie (Germany), Laboratoire d'Astronomie (France), and the University of Birmingham (UK). SOHO is a project of international cooperation between ESA and NASA.
+The CACTus CME catalog is generated and maintained by the SIDC at the Royal Observatory of Belgium.
+The SEEDS CME catalog has been supported by NASA Living With a Star Program and NASA Applied Information Systems Research Program.
+The CDAW Data Center CME catalog is generated and maintained by NASA and The Catholic University of America in cooperation with the Naval Research Laboratory.      
+     
+\end{acknowledgements}
+
+%%    This version assumes use of bibtex with the swsc.bib file being present
+%%    If your bib file has a different name you need to change the following line
+
+%\bibliography{swsc}
+\bibliographystyle{swsc}
+\bibliography{/Users/qzs00392/idl_codes/references}  
+
+\end{linenumbers}
+
+\end{document}
+
+%%    If you wish to include your bibliography items in your tex file 
+%%    using {thebibliography} as shown below you must out-comment the 
+%%    three lines above (insert % at the start of each line) 
+
+\begin{thebibliography}{}
+
+   \bibitem[Baker(1966)]{baker} Baker, N., Solar Evolution,
+      in Stellar Evolution, ed.\ R. F. Stein and A. G. W. Cameron,
+      Plenum, New York, 333, 1966.
+
+   \bibitem[Balluch(1988)]{balluch} Balluch, M., A paper on something, 
+      {\it Astron. Astrophys}, {\bf 200}, 58-63, 1988.
+
+   \bibitem[Cox(1980)]{cox} Cox, J. P.,
+      Theory of Stellar Pulsation,
+      Princeton University Press, Princeton, 1980.
+
+   \bibitem[Cox and Stewart(1969)]{cox69} Cox, A. N., and J. N. Stewart,
+      Academia Nauk, {\it Scientific Information}, {\bf 15}, 1-11, 1969.
+
+   \bibitem[Dumm and Kopf(2014)]{dummkopf} Dumm, Z., and Z. Kopf, A new self-inconsistent 
+      core stability model, 
+      {\it J. Space Weather Space Clim.}, {\bf 4}, A00, 2014, DOI: 10.1051/swsc/2014000,
+      \url{http://dx.doi.org/10.1051/swsc/2014000}.
+
+   \bibitem[Fool(2012)]{fool} Fool, X. Y., All earlier results are wrong, 
+      {\it J. Space Weather Space Clim.}, {\bf 2}, A00, 2012, DOI: 10.1051/swsc/2012000,
+      \url{http://dx.doi.org/10.1051/swsc/2012000}.
+
+   \bibitem[Fou(2013)]{fou} Fou, Y. X., No earlier results were right, 
+      {\it J. Space Weather Space Clim.}, {\bf 3}, A00, 2013, DOI: 10.1051/swsc/2013000,
+      \url{http://dx.doi.org/10.1051/swsc/2013000}.
+
+   \bibitem[Kr\"ugel et al.(1971)]{krugel71} Kr\"ugel, A. H., A. F. Davidsen, D. Tytler, and G. A. Kriss, 
+      Summary of Project Achievements, Technical Report 08-11, 
+      Fake Company, Nowherecity, Nowhereland, 1971.
+
+   \bibitem[Mizuno(1980)]{mizuno} Mizuno, H., A further step backward in scientific understanding, 
+      {\it Prog. Theor. Phys.}, {\bf 64}, 544-545, 1980.
+   
+   \bibitem[Tscharnuter(1987)]{tscharnuter} Tscharnuter, W. M., Who knows about astronomy?, 
+      {\it Astron. Astrophys}, {\bf 188}, 55-57, 1987.
+
+   \bibitem[Yorke(1980a)]{yorke80a} Yorke, H. W., A paper on nothing, 
+      {\it Astron. Astrophys}, {\bf 86}, 286, 1980a.
+
+   \bibitem[Yorke(1980b)]{yorke80b} Yorke, H. W., A paper on everything, 
+      {\it Astron. Astrophys}, {\bf 86}, 291, 1980b.
+
+\end{thebibliography}
+
+\end{linenumbers}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%   Below are examples of how to use particular document layout features
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Examples for figures using graphicx
+%%  A guide "Using Imported Graphics in LaTeX2e"  (Keith Reckdahl)
+%%  is available on a lot of LaTeX public servers or ctan mirrors.
+%%  The file is : epslatex.pdf 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%_____________________________________________________________
+%                 A figure as large as the width of the column
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%                                    One column rotated figure
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[angle=-90,width=3cm]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%                        Figure with caption on the right side 
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[width=3cm]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%
+%_____________________________________________________________
+%                                Figure with a new BoundingBox 
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[bb=10 20 100 300,width=3cm,clip]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%
+%_____________________________________________________________
+%                                      The "resizebox" command 
+%-------------------------------------------------------------
+   \begin{figure}
+   \resizebox{\textwidth}{!}
+            {\includegraphics[bb=10 20 100 300,clip]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%______________________________________________________________
+%
+%_____________________________________________________________
+%                                             Simple A&A Table
+%_____________________________________________________________
+%
+\begin{table}
+\caption{Nonlinear Model Results}             % title of Table
+\label{table:1}      % is used to refer this table in the text
+\centering                          % used for centering table
+\begin{tabular}{c c c c}        % centered columns (4 columns)
+\hline\hline                 % inserts double horizontal lines
+HJD & $E$ & Method\#2 & Method\#3 \\    % table heading 
+\hline                        % inserts single horizontal line
+   1 & 50 & $-837$ & 970 \\      % inserting body of the table
+   2 & 47 & 877    & 230 \\
+   3 & 31 & 25     & 415 \\
+   4 & 35 & 144    & 2356 \\
+   5 & 45 & 300    & 556 \\ 
+\hline                                   %inserts single line
+\end{tabular}
+\end{table}
+%
+%_____________________________________________________________
+%                                             Two column Table 
+%_____________________________________________________________
+%
+\begin{table*}
+\caption{Nonlinear Model Results}             
+\label{table:1}      
+\centering          
+\begin{tabular}{c c c c l l l }     % 7 columns 
+\hline\hline       
+                      % To combine 4 columns into a single one 
+HJD & $E$ & Method\#2 & \multicolumn{4}{c}{Method\#3}\\ 
+\hline                    
+   1 & 50 & $-837$ & 970 & 65 & 67 & 78\\  
+   2 & 47 & 877    & 230 & 567& 55 & 78\\
+   3 & 31 & 25     & 415 & 567& 55 & 78\\
+   4 & 35 & 144    & 2356& 567& 55 & 78 \\
+   5 & 45 & 300    & 556 & 567& 55 & 78\\
+\hline                  
+\end{tabular}
+\end{table*}
+%
+%-------------------------------------------------------------
+%                                          Table with notes 
+%-------------------------------------------------------------
+%
+% A single note
+\begin{table}[h]
+\caption{\label{t7}Spectral types and photometry for stars in the
+  region.}
+\centering
+\begin{tabular}{lccc}
+\hline\hline
+Star&Spectral type&RA(J2000)&Dec(J2000)\\
+\hline
+69           &B1\,V     &09 15 54.046 & $-$50 00 26.67\\
+49           &B0.7\,V   &*09 15 54.570& $-$50 00 03.90\\
+LS~1267~(86) &O8\,V     &09 15 52.787&11.07\\
+24.6         &7.58      &1.37 &0.20\\
+\hline
+LS~1262      &B0\,V     &09 15 05.17&11.17\\
+MO 2-119     &B0.5\,V   &09 15 33.7 &11.74\\
+LS~1269      &O8.5\,V   &09 15 56.60&10.85\\
+\hline
+\end{tabular}
+\tablefoot{ The top panel shows likely members of Pismis~11. The second
+panel contains likely members of Alicante~5. The bottom panel
+displays stars outside the clusters.}
+\end{table}
+%
+% More notes
+%
+\begin{table}[h]
+\caption{\label{t7}Spectral types and photometry for stars in the
+  region.}
+\centering
+\begin{tabular}{lccc}
+\hline\hline
+Star&Spectral type&RA(J2000)&Dec(J2000)\\
+\hline
+69           &B1\,V     &09 15 54.046 & $-$50 00 26.67\\
+49           &B0.7\,V   &*09 15 54.570& $-$50 00 03.90\\
+LS~1267~(86) &O8\,V     &09 15 52.787&11.07\tablefootmark{a}\\
+24.6         &7.58\tablefootmark{1}&1.37\tablefootmark{a}   &0.20\tablefootmark{a}\\
+\hline
+LS~1262      &B0\,V     &09 15 05.17&11.17\tablefootmark{b}\\
+MO 2-119     &B0.5\,V   &09 15 33.7 &11.74\tablefootmark{c}\\
+LS~1269      &O8.5\,V   &09 15 56.60&10.85\tablefootmark{d}\\
+\hline
+\end{tabular}
+\tablefoot{ The top panel shows likely members of Pismis~11. The second
+panel contains likely members of Alicante~5. The bottom panel
+displays stars outside the clusters.\\
+\tablefoottext{a}{Photometry for MF13, LS~1267 and HD~80077 from
+Dupont et al.}
+\tablefoottext{b}{Photometry for LS~1262, LS~1269 from
+Durand et al.}
+\tablefoottext{c}{Photometry for MO2-119 from
+Mathieu et al.}
+}
+\end{table}
+%
+%-------------------------------------------------------------
+%                                       Table with references 
+%-------------------------------------------------------------
+%
+\begin{table*}[h]
+ \caption[]{\label{nearbylistaa2}List of nearby SNe used in this work.}
+\begin{tabular}{lccc}
+ \hline \hline
+  SN name &
+  Epoch &
+ Bands &
+  References \\
+ &
+  (with respect to $B$ maximum) &
+ &
+ \\ \hline
+1981B   & 0 & {\it UBV} & 1\\
+1986G   &  $-$3, $-$1, 0, 1, 2 & {\it BV}  & 2\\
+1989B   & $-$5, $-$1, 0, 3, 5 & {\it UBVRI}  & 3, 4\\
+1990N   & 2, 7 & {\it UBVRI}  & 5\\
+1991M   & 3 & {\it VRI}  & 6\\
+\hline
+\noalign{\smallskip}
+\multicolumn{4}{c}{ SNe 91bg-like} \\
+\noalign{\smallskip}
+\hline
+1991bg   & 1, 2 & {\it BVRI}  & 7\\
+1999by   & $-$5, $-$4, $-$3, 3, 4, 5 & {\it UBVRI}  & 8\\
+\hline
+\noalign{\smallskip}
+\multicolumn{4}{c}{ SNe 91T-like} \\
+\noalign{\smallskip}
+\hline
+1991T   & $-$3, 0 & {\it UBVRI}  &  9, 10\\
+2000cx  & $-$3, $-$2, 0, 1, 5 & {\it UBVRI}  & 11\\ %
+\hline
+\end{tabular}
+\tablebib{(1)~\citet{branch83};
+(2) \citet{phillips87}; (3) \citet{barbon90}; (4) \citet{wells94};
+(5) \citet{mazzali93}; (6) \citet{gomez98}; (7) \citet{kirshner93};
+(8) \citet{patat96}; (9) \citet{salvo01}; (10) \citet{branch03};
+(11) \citet{jha99}.
+}
+\end{table}
+%_____________________________________________________________
+%                                 A rotated Table in landscape  
+%  In the preamble, use:   \usepackage{lscape}
+%-------------------------------------------------------------
+\begin{landscape}
+\begin{table*}
+\caption{Summary for ISOCAM sources with mid-IR excess 
+(YSO candidates).}\label{YSOtable}
+\centering
+\begin{tabular}{crrlcl} 
+\hline\hline             
+ISO-L1551 & $F_{6.7}$~[mJy] & $\alpha_{6.7-14.3}$ 
+& YSO type$^{d}$ & Status & Comments\\
+\hline
+  \multicolumn{6}{c}{\it New YSO candidates}\\ % To combine 6 columns into a single one
+\hline
+  1 & 1.56 $\pm$ 0.47 & --    & Class II$^{c}$ & New & Mid\\
+  2 & 0.79:           & 0.97: & Class II ?     & New & \\
+  3 & 4.95 $\pm$ 0.68 & 3.18  & Class II / III & New & \\
+  5 & 1.44 $\pm$ 0.33 & 1.88  & Class II       & New & \\
+\hline
+  \multicolumn{6}{c}{\it Previously known YSOs} \\
+\hline
+  61 & 0.89 $\pm$ 0.58 & 1.77 & Class I & \object{HH 30} & Circumstellar disk\\
+  96 & 38.34 $\pm$ 0.71 & 37.5& Class II& MHO 5          & Spectral type\\
+\hline
+\end{tabular}
+\end{table*}
+\end{landscape}
+%
+%_____________________________________________________________
+%                              Table longer than a single page  
+%  In the preamble, use:              \usepackage{longtable}
+%-------------------------------------------------------------
+%          All long tables have to be placed at the end, after 
+%                                        \end{thebibliography}
+%
+% In the text, at the place where the large table should appear
+% add the command:
+\addtocounter{table}{1}
+% Tables counters will be well numbered.
+%
+\end{thebibliography}
+% If table 2
+\longtab{2}{
+\begin{longtable}{lllrrr}
+\caption{\label{kstars} Sample stars with absolute magnitude}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endfirsthead
+\caption{continued.}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endhead
+\hline
+\endfoot
+%%
+Gl 33    & 6.37 & K2 V & 7.46 & S & 0.043170\\
+Gl 66AB  & 6.26 & K2 V & 8.15 & S & 0.260478\\
+Gl 68    & 5.87 & K1 V & 7.47 & P & 0.026610\\
+         &      &      &      & H & 0.008686\\
+Gl 86 
+\footnote{Source not included in the HRI catalog. See Sect.~5.4.2 for details.}
+         & 5.92 & K0 V & 10.91& S & 0.058230\\
+\end{longtable}
+}% End \longtab
+%
+%_____________________________________________________________
+%                              Table longer than a single page
+%                                             and in landscape 
+%  In the preamble, use:       \usepackage{longtable,lscape}
+%-------------------------------------------------------------
+%          All long tables have to be placed at the end, after
+%                                        \end{thebibliography}
+%
+% In the text, at the place where the large table should appear
+% add the command:                        
+\addtocounter{table}{1} 
+% Tables counters will be well numbered.
+%
+\end{thebibliography}
+% If table 2
+\longtabL{2}{
+\begin{landscape}
+\begin{longtable}{lllrrr}
+\caption{\label{kstars} Sample stars with absolute magnitude}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endfirsthead
+\caption{continued.}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endhead
+\hline
+\endfoot
+%%
+Gl 33    & 6.37 & K2 V & 7.46 & S & 0.043170\\
+Gl 66AB  & 6.26 & K2 V & 8.15 & S & 0.260478\\
+Gl 68    & 5.87 & K1 V & 7.47 & P & 0.026610\\
+         &      &      &      & H & 0.008686\\
+Gl 86
+\footnote{Source not included in the HRI catalog. See Sect.~5.4.2 for details.}
+         & 5.92 & K0 V & 10.91& S & 0.058230\\
+\end{longtable}
+\end{landscape}
+}% End \longtabL
+%
+% Online Material
+%_____________________________________________________________
+%        Online appendices have to be placed at the end, after
+%                                        \end{thebibliography}
+%-------------------------------------------------------------
+\end{thebibliography}
+
+\Online
+
+\begin{appendix} %First online appendix
+\section{Background galaxy number counts and shear noise-levels}
+Because the optical images used in this analysis...
+
+\begin{figure*}
+\centering
+\includegraphics[width=16.4cm,clip]{1787f24.ps}
+\caption{Plotted above...}
+\label{appfig}
+\end{figure*}
+
+Because the optical images...
+\end{appendix}
+
+\begin{appendix} %Second online appendix
+These studies, however, have faced...
+\end{appendix}
+
+\end{document}
+%
+%_____________________________________________________________
+%        Some tables or figures are in the printed version and
+%                      some are only in the electronic version
+%-------------------------------------------------------------
+%
+% Leave all the tables or figures in the text, at their right place 
+% and use the commands \onlfig{}{} and \onltab{}{}. These elements
+% will be automatically placed at the end, in the section
+% Online material.
+
+\documentclass{swsc}
+...
+\begin{document}
+text of the paper...
+\begin{figure*}%f1
+\includegraphics[width=10.9cm]{1787f01.eps}
+\caption{Shown in greyscale is a...}
+\label{cl12301}}
+\end{figure*}
+...
+from the intrinsic ellipticity distribution.
+% Figure 2 available electronically only
+\onlfig{2}{
+\begin{figure*}%f2
+\includegraphics[width=11.6cm]{1787f02.eps}
+\caption {Shown in greyscale...}
+\label{cl1018}
+\end{figure*}
+}
+
+% Figure 3 available electronically only
+\onlfig{3}{
+\begin{figure*}%f3
+\includegraphics[width=11.2cm]{1787f03.eps}
+\caption{Shown in panels...}
+\label{cl1059}
+\end{figure*}
+}
+
+\begin{figure*}%f4
+\includegraphics[width=10.9cm]{1787f04.eps}
+\caption{Shown in greyscale is...}
+\label{cl1232}}
+\end{figure*}
+
+\begin{table}%t1
+\caption{Complexes characterisation.}\label{starbursts}
+\centering
+\begin{tabular}{lccc}
+\hline \hline
+Complex & $F_{60}$ & 8.6 &  No. of  \\
+...
+\hline
+\end{tabular}
+\end{table}
+The second method produces...
+
+% Figure 5 available electronically only
+\onlfig{5}{
+\begin{figure*}%f5
+\includegraphics[width=11.2cm]{1787f05.eps}
+\caption{Shown in panels...}
+\label{cl1238}}
+\end{figure*}
+}
+
+As can be seen, in general the deeper...
+% Table 2 available electronically only
+\onltab{2}{
+\begin{table*}%t2
+\caption{List of the LMC stellar complexes...}\label{Properties}
+\centering
+\begin{tabular}{lccccccccc}
+\hline  \hline
+Stellar & RA & Dec & ...
+...
+\hline
+\end{tabular}
+\end{table*}
+}
+
+% Table 3 available electronically only
+\onltab{3}{
+\begin{table*}%t3
+\caption{List of the derived...}\label{IrasFluxes}
+\centering
+\begin{tabular}{lcccccccccc}
+\hline \hline
+Stellar & $f12$ & $L12$ &...
+...
+\hline
+\end{tabular}
+\end{table*}
+}
+%
+%-------------------------------------------------------------
+%     For the online material, table longer than a single page
+%                 In the preamble, use: \usepackage{longtable}
+%       or for landscape option: \usepackage{longtable,lscape}
+%-------------------------------------------------------------
+\documentclass{swsc}
+\usepackage[varg]{txfonts}
+\usepackage{graphicx}
+\usepackage{longtable}
+
+\begin{document}
+text of the paper
+% Table will be print automatically at the end, in the section Online material.
+\onllongtab{3}{
+\begin{longtable}{lrcrrrrrrrrl}
+\caption{Line data and abundances ...}\\
+\hline
+\hline
+Def & mol & Ion & $\lambda$ & $\chi$ & $\log gf$ & N & e &  rad & $\delta$ & $\delta$ 
+red & References \\
+\hline
+\endfirsthead
+\caption{Continued.} \\
+\hline
+Def & mol & Ion & $\lambda$ & $\chi$ & $\log gf$ & B & C &  rad & $\delta$ & $\delta$ 
+red & References \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+A & CH & 1 &3638 & 0.002 & $-$2.551 &  &  &  & $-$150 & 150 &  Jorgensen et al. (1996) \\                    
+\end{longtable}
+}% End onllongtab
+
+% Or for landscape, large table:
+
+\onllongtabL{3}{
+\begin{landscape}
+\begin{longtable}{lrcrrrrrrrrl}
+...
+\end{longtable}
+\end{landscape}
+}% End onllongtabL
+
