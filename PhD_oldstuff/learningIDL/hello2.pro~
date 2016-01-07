@@ -1,0 +1,5 @@
+pro hello2, name, include_name=inlcude
+if(keyword_set(include))then print, 'hello world from '+ name
+else print, 'hello2'
+end
+

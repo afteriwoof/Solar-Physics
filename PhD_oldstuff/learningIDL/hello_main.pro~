@@ -1,0 +1,6 @@
+PRO hello_main
+name=''
+READ, name, prompt='Enter Name: '
+str=Hello_who(name)
+print, str
+END
