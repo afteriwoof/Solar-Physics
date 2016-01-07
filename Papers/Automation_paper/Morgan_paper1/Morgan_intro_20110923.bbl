@@ -1,0 +1,375 @@
+\begin{thebibliography}{21}
+% BibTex style file: spr-mp-sola.bst (nameyear), 2011-02-21
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{\textit{#1}}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \href  \undefined \def \href#1#2{\textsf{#2}}\fi
+\ifx \doiurl  \undefined \def
+  \doiurl#1{\href{http://dx.doi.org/#1}{\textsf{#1}}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{\textit{#1}}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{\textbf{#1}}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{\textit{#1}}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{}\fi
+\ifx \botherref \undefined \def \botherref#1{}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{}\fi
+\ifx \bbook \undefined \def \bbook#1{}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\def \endbibitem {}
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1} \fi
+
+\bibitem[\protect\citeauthoryear{{Brueckner}
+  \textit{et~al.}}{1995}]{1995SoPh..162..357B}
+\begin{barticle}
+\bauthor{\bsnm{{Brueckner}}, \binits{G.E.}},
+\bauthor{\bsnm{{Howard}}, \binits{R.A.}},
+\bauthor{\bsnm{{Koomen}}, \binits{M.J.}},
+\bauthor{\bsnm{{Korendyke}}, \binits{C.M.}},
+\bauthor{\bsnm{{Michels}}, \binits{D.J.}},
+\bauthor{\bsnm{{Moses}}, \binits{J.D.}},
+\bauthor{\bsnm{{Socker}}, \binits{D.G.}},
+\bauthor{\bsnm{{Dere}}, \binits{K.P.}},
+\bauthor{\bsnm{{Lamy}}, \binits{P.L.}},
+\bauthor{\bsnm{{Llebaria}}, \binits{A.}},
+\bauthor{\bsnm{{Bout}}, \binits{M.V.}},
+\bauthor{\bsnm{{Schwenn}}, \binits{R.}},
+\bauthor{\bsnm{{Simnett}}, \binits{G.M.}},
+\bauthor{\bsnm{{Bedford}}, \binits{D.K.}},
+\bauthor{\bsnm{{Eyles}}, \binits{C.J.}}:
+\byear{1995},
+\batitle{{The Large Angle Spectroscopic Coronagraph (LASCO)}}.
+\bjtitle{\solphys}
+\bvolume{162},
+\bfpage{357}\,--\,\blpage{402}.
+doi:\doiurl{10.1007/BF00733434}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Chen}}{2011}]{2011LRSP....8....1C}
+\begin{barticle}
+\bauthor{\bsnm{{Chen}}, \binits{P.F.}}:
+\byear{2011},
+\batitle{{Coronal Mass Ejections: Models and Their Observational Basis}}.
+\bjtitle{Living Reviews in Solar Physics}
+\bvolume{8},
+\bfpage{1}\,--\,.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Committee On The Societal} and {Economic
+  Impacts Of Severe Space Weather Events}}{2008}]{2008sswe.rept.....C}
+\begin{botherref}
+\oauthor{\bsnm{{Committee On The Societal}}},
+\oauthor{\bsnm{{Economic Impacts Of Severe Space Weather Events}}}:
+2008,
+{Severe Space Weather Events--Understanding Societal and Economic Impacts: A
+  Workshop Report}.
+Technical report.
+\end{botherref}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Domingo}, {Fleck}, and
+  {Poland}}{1995}]{1995SoPh..162....1D}
+\begin{barticle}
+\bauthor{\bsnm{{Domingo}}, \binits{V.}},
+\bauthor{\bsnm{{Fleck}}, \binits{B.}},
+\bauthor{\bsnm{{Poland}}, \binits{A.I.}}:
+\byear{1995},
+\batitle{{The SOHO Mission: an Overview}}.
+\bjtitle{\solphys}
+\bvolume{162},
+\bfpage{1}\,--\,\blpage{2}.
+doi:\doiurl{10.1007/BF00733425}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Eddy}}{1974}]{1974A&A....34..235E}
+\begin{barticle}
+\bauthor{\bsnm{{Eddy}}, \binits{J.A.}}:
+\byear{1974},
+\batitle{{A Nineteenth-century Coronal Transient}}.
+\bjtitle{\aap}
+\bvolume{34},
+\bfpage{235}\,--\,.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Filippov} and
+  {Koutchmy}}{2008}]{2008AnGeo..26.3025F}
+\begin{barticle}
+\bauthor{\bsnm{{Filippov}}, \binits{B.}},
+\bauthor{\bsnm{{Koutchmy}}, \binits{S.}}:
+\byear{2008},
+\batitle{{Causal relationships between eruptive prominences and coronal mass
+  ejections}}.
+\bjtitle{Annales Geophysicae}
+\bvolume{26},
+\bfpage{3025}\,--\,\blpage{3031}.
+doi:\doiurl{10.5194/angeo-26-3025-2008}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Frazin}
+  \textit{et~al.}}{2009}]{2009ApJ...695..636F}
+\begin{barticle}
+\bauthor{\bsnm{{Frazin}}, \binits{R.A.}},
+\bauthor{\bsnm{{Jacob}}, \binits{M.}},
+\bauthor{\bsnm{{Manchester}}, \binits{W.B.} \bsuffix{IV}},
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Wakin}}, \binits{M.B.}}:
+\byear{2009},
+\batitle{{Toward Reconstruction of Coronal Mass Ejection Density from Only
+  Three Points of View}}.
+\bjtitle{\apj}
+\bvolume{695},
+\bfpage{636}\,--\,\blpage{641}.
+doi:\doiurl{10.1088/0004-637X/695/1/636}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Howard}, {Moses}, and
+  {Socker}}{2000}]{2000SPIE.4139..259H}
+\begin{bchapter}
+\bauthor{\bsnm{{Howard}}, \binits{R.A.}},
+\bauthor{\bsnm{{Moses}}, \binits{J.D.}},
+\bauthor{\bsnm{{Socker}}, \binits{D.G.}}:
+\byear{2000},
+\bctitle{{Sun-Earth Connection Coronal and Heliospheric Investigation
+  (SECCHI)}}.
+In: \bbtitle{Society of Photo-Optical Instrumentation Engineers (SPIE)
+  Conference Series, \emph{{\bf 4139}, 259-283}}.
+\end{bchapter}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Howard} and
+  {Tappin}}{2009}]{2009SSRv..147...31H}
+\begin{barticle}
+\bauthor{\bsnm{{Howard}}, \binits{T.A.}},
+\bauthor{\bsnm{{Tappin}}, \binits{S.J.}}:
+\byear{2009},
+\batitle{{Interplanetary Coronal Mass Ejections Observed in the Heliosphere: 1.
+  Review of Theory}}.
+\bjtitle{Space Science Reviews}
+\bvolume{147},
+\bfpage{31}\,--\,\blpage{54}.
+doi:\doiurl{10.1007/s11214-009-9542-5}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Kaiser}
+  \textit{et~al.}}{2008}]{2008SSRv..136....5K}
+\begin{barticle}
+\bauthor{\bsnm{{Kaiser}}, \binits{M.L.}},
+\bauthor{\bsnm{{Kucera}}, \binits{T.A.}},
+\bauthor{\bsnm{{Davila}}, \binits{J.M.}},
+\bauthor{\bsnm{{St.~Cyr}}, \binits{O.C.}},
+\bauthor{\bsnm{{Guhathakurta}}, \binits{M.}},
+\bauthor{\bsnm{{Christian}}, \binits{E.}}:
+\byear{2008},
+\batitle{{The STEREO Mission: An Introduction}}.
+\bjtitle{Space Science Reviews}
+\bvolume{136},
+\bfpage{5}\,--\,\blpage{16}.
+doi:\doiurl{10.1007/s11214-007-9277-0}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Kunow}
+  \textit{et~al.}}{2006}]{2006SSRv..123....1K}
+\begin{barticle}
+\bauthor{\bsnm{{Kunow}}, \binits{H.}},
+\bauthor{\bsnm{{Crooker}}, \binits{N.U.}},
+\bauthor{\bsnm{{Linker}}, \binits{J.A.}},
+\bauthor{\bsnm{{Schwenn}}, \binits{R.}},
+\bauthor{\bsnm{{von Steiger}}, \binits{R.}}:
+\byear{2006},
+\batitle{{Foreword}}.
+\bjtitle{\ssr}
+\bvolume{123},
+\bfpage{1}\,--\,\blpage{2}.
+doi:\doiurl{10.1007/s11214-006-9007-z}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Lockwood} and
+  {Hapgood}}{2007}]{2007A&G....48f..11L}
+\begin{barticle}
+\bauthor{\bsnm{{Lockwood}}, \binits{M.}},
+\bauthor{\bsnm{{Hapgood}}, \binits{M.}}:
+\byear{2007},
+\batitle{{The Rough Guide to the Moon and Mars}}.
+\bjtitle{Astronomy and Geophysics}
+\bvolume{48}(\bissue{6}),
+\bfpage{060000}\,--\,\blpage{6}.
+doi:\doiurl{10.1111/j.1468-4004.2007.48611.x}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Ma}
+  \textit{et~al.}}{2010}]{2010ApJ...722..289M}
+\begin{barticle}
+\bauthor{\bsnm{{Ma}}, \binits{S.}},
+\bauthor{\bsnm{{Attrill}}, \binits{G.D.R.}},
+\bauthor{\bsnm{{Golub}}, \binits{L.}},
+\bauthor{\bsnm{{Lin}}, \binits{J.}}:
+\byear{2010},
+\batitle{{Statistical Study of Coronal Mass Ejections With and Without Distinct
+  Low Coronal Signatures}}.
+\bjtitle{\apj}
+\bvolume{722},
+\bfpage{289}\,--\,\blpage{301}.
+doi:\doiurl{10.1088/0004-637X/722/1/289}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{MacQueen}
+  \textit{et~al.}}{1974}]{1974ApJ...187L..85M}
+\begin{barticle}
+\bauthor{\bsnm{{MacQueen}}, \binits{R.M.}},
+\bauthor{\bsnm{{Eddy}}, \binits{J.A.}},
+\bauthor{\bsnm{{Gosling}}, \binits{J.T.}},
+\bauthor{\bsnm{{Hildner}}, \binits{E.}},
+\bauthor{\bsnm{{Munro}}, \binits{R.H.}},
+\bauthor{\bsnm{{Newkirk}}, \binits{G.A.} \bsuffix{Jr.}},
+\bauthor{\bsnm{{Poland}}, \binits{A.I.}},
+\bauthor{\bsnm{{Ross}}, \binits{C.L.}}:
+\byear{1974},
+\batitle{{The Outer Solar Corona as Observed from Skylab: Preliminary
+  Results}}.
+\bjtitle{\apjl}
+\bvolume{187},
+\bfpage{L85+}.
+doi:\doiurl{10.1086/181402}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Morgan} and
+  {Habbal}}{2010a}]{2010ApJ...711..631M}
+\begin{barticle}
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.}}:
+\byear{2010}a,
+\batitle{{A Method for Separating Coronal Mass Ejections from the Quiescent
+  Corona}}.
+\bjtitle{\apj}
+\bvolume{711},
+\bfpage{631}\,--\,\blpage{640}.
+doi:\doiurl{10.1088/0004-637X/711/2/631}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Morgan} and
+  {Habbal}}{2010b}]{2010ApJ...710....1M}
+\begin{barticle}
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.R.}}:
+\byear{2010}b,
+\batitle{{Observational Aspects of the Three-dimensional Coronal Structure Over
+  a Solar Activity Cycle}}.
+\bjtitle{\apj}
+\bvolume{710},
+\bfpage{1}\,--\,\blpage{15}.
+doi:\doiurl{10.1088/0004-637X/710/1/1}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Morgan}, {Habbal}, and
+  {Lugaz}}{2009}]{2009ApJ...690.1119M}
+\begin{barticle}
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.R.}},
+\bauthor{\bsnm{{Lugaz}}, \binits{N.}}:
+\byear{2009},
+\batitle{{Mapping the Structure of the Corona Using Fourier Backprojection
+  Tomography}}.
+\bjtitle{\apj}
+\bvolume{690},
+\bfpage{1119}\,--\,\blpage{1129}.
+doi:\doiurl{10.1088/0004-637X/690/2/1119}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Prang{\'e}}
+  \textit{et~al.}}{2004}]{2004Natur.432...78P}
+\begin{barticle}
+\bauthor{\bsnm{{Prang{\'e}}}, \binits{R.}},
+\bauthor{\bsnm{{Pallier}}, \binits{L.}},
+\bauthor{\bsnm{{Hansen}}, \binits{K.C.}},
+\bauthor{\bsnm{{Howard}}, \binits{R.}},
+\bauthor{\bsnm{{Vourlidas}}, \binits{A.}},
+\bauthor{\bsnm{{Courtin}}, \binits{R.}},
+\bauthor{\bsnm{{Parkinson}}, \binits{C.}}:
+\byear{2004},
+\batitle{{An interplanetary shock traced by planetary auroral storms from the
+  Sun to Saturn}}.
+\bjtitle{\nat}
+\bvolume{432},
+\bfpage{78}\,--\,\blpage{81}.
+doi:\doiurl{10.1038/nature02986}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Sawyer}}{1985}]{1985SoPh...98..369S}
+\begin{barticle}
+\bauthor{\bsnm{{Sawyer}}, \binits{C.}}:
+\byear{1985},
+\batitle{{Visibility and rate of coronal mass ejections}}.
+\bjtitle{\solphys}
+\bvolume{98},
+\bfpage{369}\,--\,\blpage{378}.
+doi:\doiurl{10.1007/BF00152466}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Schwenn}
+  \textit{et~al.}}{2005}]{2005AnGeo..23.1033S}
+\begin{barticle}
+\bauthor{\bsnm{{Schwenn}}, \binits{R.}},
+\bauthor{\bsnm{{dal Lago}}, \binits{A.}},
+\bauthor{\bsnm{{Huttunen}}, \binits{E.}},
+\bauthor{\bsnm{{Gonzalez}}, \binits{W.D.}}:
+\byear{2005},
+\batitle{{The association of coronal mass ejections with their effects near the
+  Earth}}.
+\bjtitle{Annales Geophysicae}
+\bvolume{23},
+\bfpage{1033}\,--\,\blpage{1059}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Zhang} and
+  {Wang}}{2002}]{2002ApJ...566L.117Z}
+\begin{barticle}
+\bauthor{\bsnm{{Zhang}}, \binits{J.}},
+\bauthor{\bsnm{{Wang}}, \binits{J.}}:
+\byear{2002},
+\batitle{{Are Homologous Flare-Coronal Mass Ejection Events Triggered by Moving
+  Magnetic Features?}}
+\bjtitle{Astrophysical Journal}
+\bvolume{566},
+\bfpage{117}\,--\,\blpage{120}.
+\burl{http://adsabs.harvard.edu/abs/2002ApJ...566L.117Z}.
+\end{barticle}
+\endbibitem
+
+\end{thebibliography}

@@ -1,0 +1,567 @@
+%\documentclass[12pt]{emulateapj}
+
+\documentclass[preprint]{aastex}
+
+\usepackage{natbib}
+\bibliographystyle{apj}
+
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\bibliographystyle{apj}
+\usepackage{enumitem}
+
+%% Local definitions
+%% please place your own definitions here and don't use \def but
+%% \newcommand{}{} or 
+%% \renewcommand{}{} if it is already defined in LaTeX
+
+\newcommand{\Rs}{$ R_{\odot}$}
+\newcommand{\msb}{$ B_{\odot}$}
+\newcommand{\de}{$^{\circ}$}
+\newcommand{\deday}{$^{\circ}$d$^{-1}$}
+\newcommand{\pB}{\textit{pB}}
+\newcommand{\upB}{\textit{upB}}
+\newcommand{\Btot}{$B_{t}$}
+\newcommand{\Bn}{$\tilde{B}$}
+\newcommand{\aupB}{$<$\upB$>$}
+\newcommand{\Bo}{B$_0$}
+\newcommand{\kms}{~km~$s^{-1}$}
+\newcommand{\paperii}{Paper II}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+\shorttitle{Automatically Detecting and Tracking CMEs I}
+\shortauthors{Morgan, Byrne \& Habbal}
+\title{Automatically Detecting and Tracking CMEs I:\\
+Separation of dynamic and quiescent components in coronagraph images}
+\author{Huw Morgan\altaffilmark{1,2}, Jason P. Byrne\altaffilmark{2} \& Shadia Rifai Habbal\altaffilmark{2}} 
+\affil{\altaffilmark{1}Sefydliad Mathemateg a Ffiseg, Prifysgol Aberystwyth, Ceredigion, Cymru, SY23 3BZ}
+\affil{\altaffilmark{2}Institute for Astronomy, University of Hawaii, 2680 Woodlawn Drive, Honolulu, HI 96822, USA}
+\email{hmorgan@aber.ac.uk}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+Automated techniques for detecting and tracking CMEs in coronagraph data are of ever-increasing importance for space weather monitoring and forecasting. They serve to remove the biases and tedium of human interpretation, and provide the robust analysis necessary for statistical studies across large numbers of observations. An important requirement in their operation is that they satisfactorily distinguish the CME structure from the background quiescent coronal structure (streamers, coronal holes). Many studies resort to some form of time-differencing to achieve this, despite the errors inherent in such an approach - notably spatiotemporal crosstalk. This article describes a new deconvolution technique that separates coronagraph images into quiescent and dynamic components. A set of synthetic observations made from a sophisticated model corona and CME demonstrates the validity and effectiveness of the technique in isolating the CME signal. Applied to observations by the LASCO C2 and C3 coronagraphs, the structure of a faint CME is revealed in detail despite the presence of background streamers that are several times brighter than the CME. The technique is also demonstrated to work on SECCHI/COR2 data, and new possibilities for estimating the 3D structure of CMEs using the multiple viewing angles are discussed. Although quiescent coronal structures and CMEs are intrinsically linked, and although their interaction is an unavoidable source of error in any separation process, we show in a companion paper that the deconvolution approach outlined here is a robust and accurate method for rigorous CME analysis. Such an approach is a prerequisite to the higher-level detection and classification of CME structure and kinematics.
+\end{abstract}
+\keywords{Sun: corona---sun: CMEs---sun: solar wind}
+
+\maketitle
+
+
+
+\section{Introduction}
+
+A coronal mass ejection (CME) was first observed scientifically during the total solar eclipse of 1860, but it was not recognized at the time as an important dynamic phenomenon (see \citet{eddy1974}). The first modern discovery of CMEs, and the frequency of their occurence, was made by the white light coronagraphic observations of the Skylab mission in the early 1970s (see \citet{gosling1974}, and references within). CMEs are energetic clouds of magnetic plasma ejected by the Sun into interplanetary space, with a large range of sizes, masses and velocities. They are associated with the eruption of filaments, and/or solar flares or no apparent trigger. The Large Angle Spectrometric Coronagraph (LASCO, \citet{brueckner1995}) onboard the Solar and Heliospheric Observatory (SOHO, \citet{domingo1995}) enabled a great advance in our understanding of the dynamic corona, and paved the way for the Sun Earth Connection Coronal and Heliospheric Investigation (SECCHI,  \citet{howard2002}) coronagraphs on the Solar TErrestrial RElations Observatory spacecraft  (STEREO, \citet{kaiser2005}). In the last decade, CME events (and their spatial size, type and distribution, velocity and acceleration) have been detected and catalogued using manual \citep{yashiro2004} and automated \citep{robbrecht2004,olmedo2008} methods, enabling detailed statistical analyses and revealing correlation with other solar events (e.g. \citet{gopalswamy2001} or \citet{bewsher2008}). A more detailed introduction to the field is given in a companion paper: \citet{byrne2011}, referred to as \paperii\ throughout this article.
+
+Many aspects of CME initiation and subsequent evolution demand better understanding, and this can only be gained by more information on CME structure, density, and other physical attributes. When viewed in white light coronagraph images, their emission is integrated over an extended line-of-sight (LOS) which includes other non-CME structures as well as the CME itself. Despite the increasing sophistication of solar tomography techniques (see \citet{morgan2009,morgan2010structure}, and references within), in general, detailed information is lacking on these non-CME structures (i.e. the quiescent coronal structure of streamers and coronal holes). Therefore CMEs are observed, not in isolation, but in the presence of the fine structural detail of the quiescent corona. This makes even the basic steps of detailed CME analysis (for example, automated detection/cataloging, or an estimate of 3D density structure) difficult, if not impossible at times. For example \citet{frazin2009} showed that, given reasonable assumptions on the nature of CME structure, it is possible to reconstruct the 3D density structure of CMEs from only three fields of view (FOVs). Such an approach is currently not feasible due to the inherent complexity of coronagraph images.
+
+Many works describe various techniques to successfully enhance CME structure in coronagraph images. The most commonly used technique is time-differencing: either a frame-by-frame subtraction (running difference) or a subtraction of a pre-CME observation (long-term or base difference). These are quick and easy ways to effectively reveal the presence of a CME but are prone to several errors. Running-differences show a time derivative, not the true CME structure. It is difficult therefore to use running-difference images for a structural interpretation of CMEs. Long-term difference images include any changes, even gradual, which occur in the quiescent corona as well as the CME itself. Edge-enhancement techniques are effective in revealing coronal and CME structure \citep{koutchmy1988,koutchmy1992}. A more sophisticated approach, multiscale wavelet decomposition, is also effective in revealing CME structure \citep{stenborg2003,byrne2009}. Such techniques work since CMEs are high-frequency objects in the corona, but other high-frequency components are also enhanced such as the edges of streamers. Nevertheless, it is a useful step in detecting CMEs \citep{gallagher2011}. The goal of such image processing is to facilitate automated detection, and eventually to develop better tools to analyse the density structure and kinematics of CMEs, similar to the analysis of \citet{byrne2010}. 
+
+This work is the first of two papers that aim to improve the automated detection and cataloging of CMEs. \paperii\ is concerned with a sophisticated set of algorithms, based on wavelet edge detection techniques outlined by \citet{byrne2009}, which automatically detect and track CMEs in coronagraph data. To greatly improve the detection process, the coronagraph data are first processed via the technique outlined in this article, to reduce (or, in most cases, remove) the signal of quiescent coronal structure. This process is based on an iterative deconvolution in time and space that aims to isolate the CME from the background in a white light image, resulting in separate images of the dynamic and quiescent components of the corona. Another process based on least-squares fitting of quiescent coronal structure to polynomials was introduced by \citet{morgan2010cme}. In contrast to this work, that method did not take full advantage of the time dimension of the data, and was not rigorously tested on a model dataset. To test the validity of the new technique, section \ref{method1} constructs a model CME and corona from which synthetic coronagraph observations can be made. Section \ref{method2} describes a deconvolution-based process to separate the quiescent structure from the dynamic events. Section \ref{results} shows the results of applying the process to both the model observations and real observations made by the LASCO C2 and C3 coronagraphs. The process is discussed in section \ref{discussion} and conclusions are given in section \ref{conclusions}.
+
+
+\section{A Model Corona and CMEs}
+\label{method1}
+The description of the method is aided by the use of a time series of synthetic coronagraph observations. These are created from a 3D density model of the corona through which model CMEs of various shapes and orientation are propagated. Later in the article, the synthetic data can be used to test the effectiveness of the separation method. Here we describe the model corona, and the synthetic observations made from the model densities. The aim is to create coronagraph-type images, with FOV properties similar to the observations made by the LASCO C2 and C3 coronagraphs.
+
+To create the model corona observations, a 3D $xyz$ grid of size $1024^3$ is constructed. Model coronal densities are distributed throughout the cube so that the centre voxel of the cube is at the position of Sun center (a voxel is the 3D equivalent of a pixel, forming one element of the grid). As the corona rotates and the B$_0$ angle (relative angle of the Sun's rotation axis and the Sun-Earth line) changes with time, the model densities are rotated within the cube, so that the $x$ axis always lies along the Sun-observer direction. The densities are integrated using appropriate geometrical scattering weights along the $x$-axis (or LOS), resulting in a $1024\times1024$ image along the $y$ and $z$ axes. The whole process is repeated twice for different sized cubes giving two FOVs. For the LASCO C2-type synthetic observations, the extent of the $y$ and $z$ axes is $\pm6$\Rs, whilst $\pm30$\Rs\ is used for the C3-type observations. The extent of the $x$ axis (along the LOS) depends on $\sqrt{y^2+z^2}$, or the height of the pixel in the final image, so that pixels at large heights have an appropriately long LOS. 
+
+The density distributed through the model cube is determined empirically. Tomographic reconstructions have been made of the solar corona over a whole solar cycle using LASCO C2 observations \citep{morgan2009,morgan2010structure}. A map of the coronal density structure reconstructed for a two-week set of observations centered on 2005/01/18 (CR 2025.6) is shown in Figure \ref{tomo}. The choice of date is arbitrary, but a clean reconstruction with streamers distributed up to high mid-latitudes was preferred. This longitude-latitude map is a shell of the corona at 4\Rs, and the density is in normalized units (not absolute electron density, see \citet{morgan2009}). The depicted structure shows accurately the distribution of streamers during the observational period, and the structure is used as a basis to create a set of synthetic coronal observations. To achieve this, the coronal structure is assumed to be radial, so the structure shown at 4\Rs\ is extrapolated appropriately through all heights above 1\Rs\ in the model corona. At any given height, the highest density point has value 1 and lowest has value 0 since the density is normalized. 
+
+
+The normalized density distribution must be converted to an appropriate absolute electron density. To achieve this, regions of the corona with low density (values close to zero), are given the density height profile found by \citet{doyle1999} for polar coronal holes. Regions with high density (values close to one) are given the density height profile found by \citet{guhathakurta1996}. Regions with values between 0 and 1 are given a weighted sum of the two height-density profiles, in a manner similar to \citet{gibson2003}. Specifically, the density $\rho(\theta,\phi,r)$ at a given longitude $\theta$, latitude $\phi$ and heliocentric height $r$, is given by 
+\begin{equation}
+\rho(\theta,\phi,r)=\rho_n(\theta,\phi)n_{st}(r)+[1 - \rho_n(\theta,\phi)]n_{ch}(r),
+\end{equation}
+where $\rho_n(\theta,\phi)$ is the normalized longitude-latitude density map shown in Figure \ref{tomo}, $n_{st}(r)$ is the height profile of density described by \citet{guhathakurta1996}:
+\begin{equation}
+\label{gh}
+n_{st}(r)=[3.6r^{-15.3}+0.99r^{-7.34}+0.365r^{-4.31}+(5.8\times10^{-3})r^{-2}]\times10^8,
+\end{equation}
+and $n_{ch}(r)$ is the height profile of density described by \citet{doyle1999}:
+\begin{equation}
+n_{ch}(r)=(1\times10^8)r^{-8}+(2.5\times10^3)r^{-4}+(2.9\times10^5)r^{-2}.
+\end{equation}
+Note that an $r^{-2}$ term has been added to the \citet{guhathakurta1996} density profile, in order to achieve a well-behaved density profile at large heights.
+
+For a given date, the Carrington longitude and $B_0$ angle of the Sun-observer direction is calculated, and the 3D density profile rotated appropriately within the $xyz$ grid. The geometric scattering coefficients for total brightness Thomson scattering \citep{van1950,quemerais2002} are calculated, and are multiplied by the density and the LOS increment throughout the grid. The grid is integrated along the $x$ axis, forming a total brightness image. Examples of synthetic images are shown in Figure \ref{coronamodel}. A time series of such images is formed by rotating the density model, with a cadence of one observation per half-hour, similar to the LASCO coronagraphs. These form the quiescent coronal images to which a propagating CME will be added.
+
+
+To test the model, six CMEs are launched. Three are simple small blobs of varying density. These are spheres with a Gaussian drop in density with distance from the sphere center. The other three are hollow flux tubes which loop from two footpoints on the Sun into the corona. By parameterizing the normalized height $z_{cme}$ along the central axis of the flux tube by a path length $s$ which ascends from the Sun's surface ($z_{cme}=0, s=0.0$) to the maximum CME height ($z_{cme}=1,s=0.5$) then descends along the same path to the Sun's surface ($z_{cme}=0,s=1.0$), the shape of the loop may be easily adapted. For a given observation time, the CME structure is scaled according to the maximum height of the CME ($z_{cme}=1$) which is a function of CME launch time, velocity and acceleration. Given the set of $xyz$ coordinates that describe the central path of the hollow flux tube through the corona, a regularly-spaced set of $y-z$ points are defined to encompass all points within the desired final image, which will contain any appreciable CME signal. Typically, this is a set of several hundred pixels for which the CME brightness will be calculated. For each pixel, a line of sight is defined which, again, is limited to a range that will contain some CME structure. Each line of sight has a hundred or so points, therefore a computing space of around a million voxels is used to create the CME images. Limiting the number of voxels in this way greatly increases the computational efficiency in comparison to, for example, simply calculating the images for a whole-corona FOV. The minimum distance $d$ from each voxel to the central CME axis is calculated. Given $d$, it is simple to define a normalized CME density structure $\rho_{cme}$ as
+\begin{equation}
+\rho_{cme}=\exp(-[(d-w(r))/\sigma(r)]^2),
+\end{equation}
+where $w(r)$ sets the radius of the hollow flux tube (set to expand with height $r$), and $\sigma(r)$ sets the width of the density profile from the tube edges, similarly set to expand with height. This hollow flux tube, looping out into the corona, is similar to the flux rope model used by \citet{thernisien2006}.
+
+An adjustment is made to account for the disappearance of the CME with time, by multiplying by the function
+\begin{equation}
+\rho_{cme}^\prime=\rho_{cme}\exp(-[(r-r_{max})/\sigma^\prime(r)]^2),
+\end{equation}
+where $r_{max}$ is the height of the leading edge of the CME. This adjustment ensures that the legs of the CME fade and disappear as the CME propagates to large heights.  The normalized CME density structure is changed to absolute electron density by simply multiplying by the density height profile (equation \ref{gh}) and a constant factor. Given geometrical scattering coefficients, LOS integrations are made along the $x$ axis, to produce a set of $y-z$ points describing the CME image brightness. Similar to the coronal model, the $xyz$ coordinate system is adapted according to the propagation of the CME and the slow rotation of the corona, and a time series of CME observations is made. Since the CME images are composed of non-gridded $y-z$ points, they are interpolated (using a cubic spline) to the regular $y-z$ grid of the model coronal images. Example images of the CMEs are shown in Figure \ref{cmemodel}. Details of all six CMEs are listed in Table \ref{cmetable}. Each CME is labeled for convenience A-F. They are all launched on 2005/01/18 with constant velocities: the loops at 600\kms\ and the blobs at 500\kms. The three blobs are identical except for varying density (listed as $\rho_{rel}$ in the Table \ref{cmetable}), to test the sensitivity of the procedures.
+
+  %ftw=[0.025,0.005,0.25,0,0,0]
+  %w=[0.05,0.01,0.1,0.1,0.1,0.1]
+ 
+  
+
+\begin{table}
+\begin{tabular}{ c | c | c | c | c | c | c | c | c }
+{\bf CME } & {\bf Type } & {\bf Launch} & {\bf V} & {\bf V$_{app}$} & {\bf Lon} & {\bf Co-lat} & {\bf Inc} & ${\bf \rho_{rel}}$\\
+A & Loop & 00:09 & 600 & 600 & -90 & 90 & 90 & 1\\ 
+B & Loop & 00:09 & 600 & 300 & 30 & 80 & 70 & 1\\ 
+C & Loop & 07:12 & 600 & 460 & -50 & 60 & 50 & 1\\ 
+D & Blob & 08:43 & 500 & 500 & 90 & 135 & - & 1/2\\ 
+E & Blob & 11:44 & 500 & 500 & 90 & 135 & - & 1/4\\
+F & Blob & 16:16 & 500 & 500 & 90 & 135 & - & 1/10\\
+\end{tabular} 
+\caption{Details of the six model CMEs. Negative/positive longitudes are towards the east/west relative to the Sun-observer line. An inclination of 0\de\/90\de means the loop is edge-on/face-on to the observer. The `Loop' type is the hollow flux tube described in the text. `Blob' is the spherically symmetric Gaussian. $\rho_{rel}$ is the relative density of the CME at a given height compared with the density specified in equation \ref{gh}. The launch column gives the time the CME is launched from the Sun on date 2005/01/18. All angles are in degrees, and velocities in \kms. V$_{app}$ is an approximation of the apparent (or observed) velocity, given as the true velocity V times the sine of the longitude.}
+\label{cmetable}
+\end{table}
+
+
+Finally, the coronal and CME images are combined by summing. Examples of the combined coronal and CME images are shown in the following section. The combined images are used as a test for the CME-quiescent coronal separation process, and, further, as a test for the higher-level automated detection and tracking procedures in Paper II. For this purpose, three days of model coronal images are created, at a cadence of 30 minutes (a total of 144 images per FOV). The dates of these observations are 2005/01/17 00:00 through to 2005/01/19 23:59. The CMEs are launched on the second day, according to the launch times given in Table \ref{cmetable}. Random Gaussian noise with a standard deviation of $3\times10^{-14}$\msb, smoothed by a $3\times3$ sliding window, is added to each image. Noise of this nature replicates well the appearance of noise in LASCO C3 images, as can be seen in the following figures. The same noise level is added to the C2-type model images but the noise level is very small compared to the signal at low heights, as is the case with the real data.
+
+\section{The Separation Process}
+\label{method2}
+
+\subsection{The Normalising Radial Graded Filter (NRGF)}
+
+The CME-quiescent corona separation process is based on the fact that the quiescent corona is extended radially in structure above $\sim$2.5\Rs, and changes only slowly in time. CMEs, on the other hand, are not extended radial structures, and change rapidly in time. Therefore the first step in the separation process is to reveal the radial structure of the corona. This is achieved using the Normalizing Radial Graded Filter (NRGF) described by \citet{morgan2006}. Figure \ref{nrgf}a shows an unprocessed model coronal image (no CMEs). The image is dominated by the steep radial drop in brightness. The mean brightness as a function of height is plotted as the solid line in Figure \ref{nrgf}b, and the standard deviation is shown as a dashed line. Any structural information contained in the image is lost since the contrast within the image is dominated by these functions, which range over several orders of magnitude. Whilst the important physical information is contained in the original calibrated brightness units (absolute electron density, for example), the image is not useful for viewing the underlying coronal structure. The coronal structure can be effectively (and correctly) revealed by the simple equation
+\begin{eqnarray}
+\label{nrgfeq}
+I'(r,\phi)\,=\,\frac{I(r,\phi)-I(r)_{<\phi>}}{\sigma(r)_{<\phi>}}
+\end{eqnarray}
+where $I'(r,\phi)$ is the processed and $I(r,\phi)$ is the original intensity at height $r$ and position angle $\phi$, and $I(r)_{<\phi>}$ and $\sigma(r)_{<\phi>}$ are the mean and standard deviation of intensities calculated over all position angles at height $r$. In this paper, the term `NRGF brightness' is often used, and it means $I'(r,\phi)$, or the image brightness values after transformation using equation \ref{nrgfeq}.
+
+The application of equation \ref{nrgfeq} to Figure \ref{nrgf}a is shown in Figure \ref{nrgf}c. The true radial nature of the model corona has been effectively revealed using a simple transformation. An important property of this transformation is that  it can be reversed so that the original brightness units can be regained. Since the average and standard deviation of brightness, as functions of height, have been calculated for large groups of pixels, the process does not amplify noise within an image. The NRGF has been used as a tool for revealing coronal structure in many studies (\citet{morgan2007empiricalmodel,morgan2007twistingsheets,morgan2010structure,he2009, wang2010,kienreich2009, lugaz2009, frazin2009,habbal2007,habbal2011}, for example), and has been further developed in the sophisticated Fourier-NRGF \citep{druckmullerova2011}. 
+
+
+Despite the simplicity of equation \ref{nrgfeq}, some care needs to be taken with its application to real data. The following steps describe how the NRGF is applied to large sets of LASCO data:
+\begin{itemize}
+\item Bad regions within images must be identified and avoided in subsequent processing. 
+\item Point filters are applied to avoid spikes. 
+\item The mean and standard deviation of brightness are calculated for approximately a hundred height bins throughout the field of view. This ensures a large number of pixels to each height bin.
+\item The mean and standard deviation profiles are smoothed using a wide sliding window median to avoid bad values caused by errors in the image. 
+\item Before processing the image with equation \ref{nrgfeq}, mean and standard deviation profiles collected over several dozen observations (a day or even several days) are recorded. From these a median, mean and standard deviation are created. These are the profiles that are then used to process the images. Calculating a long-term mean and standard deviation in this way reduces the influence of large CMEs and other sources of errors on the height profiles.
+\end{itemize}
+Many of these steps are unnecessary for model data, but are nevertheless applied to the set of synthetic images. Figure \ref{nrgfproc} shows the result of applying the NRGF process to combined model corona, CME and noise C2 and C3-type images.
+
+
+\subsection{Quiescent-dynamic separation by deconvolution}
+An iterative scheme is applied to the synthetic data to separate the quiescent and CME components. For computational convenience, the images are converted to polar coordinates. An example is shown in Figure \ref{polar}a for the C2-type FOV. Figure \ref{polar}b shows four radial cuts through the polar image. The two cuts without CMEs are close to constant across all heights. This shows that the model corona is radial and that the NRGF is an effective process to reveal the large-scale structure. The CME is clearly seen in the other two profiles as a large enhancement in brightness. Figure \ref{polar}c shows brightness time profiles throughout 2005/01/18 at a height of 5.5\Rs\ at each of the four position angles. The coronal hole brightness remains constant, whilst the streamer (without CME) brightness decreases slowly throughout the day. The CME profiles show a sharp enhancement during the passage of the CME. The CME front edge is enhanced for one observation only at this height ($\sim$half hour). The CME leg remains enhanced for three observations ($\sim$hour and a half). 
+
+Time-differencing is a commonly used method to reveal CMEs in coronagraph images, and these time profiles illustrate both the strength and weakness of this method. The CME is a sharp enhancement in time, so time-differencing will reveal the CME clearly. However, a simple frame-to-frame time-differencing will almost always create unwanted artifacts which can easily be misintepreted as CME structure. The fact that the CME front edge occupies one observation whilst the leg remains for three is one simple argument that illustrates this error. In addition, quiescent coronal structure changes brightness considerably (even for a model CME where the actual density structure remains the same), therefore long-term time-differencing will always contain considerable unwanted signal from the quiescent corona.
+
+The CME component is separated from the quiescent component by the following iterative scheme. The scheme is based on the assumption that the quiescent corona will always be smoother than the CME component in both radial and time dimensions. Smoothing the original signal in these dimensions therefore gives a signal closer to the original corona if the CME had not occured. Subtracting this estimate of the quiescent corona from the original signal gives an estimate of the CME signal. 
+\begin{enumerate}
+\item Choose one radial and time cut $X(r,t)$ at a given position angle. $X$ is a bidimensional array with dimensions radius $r$ and time $t$. Typically, $r$ has 500 bins and $t$ $\sim$50 bins (one day's worth of observation given a regular half-hour cadence). The size of $X$ varies with real data. To avoid edge effects in the time dimension, the time dimension of $X$ is allowed to overlap with the previous and following day.
+\item Set first estimate of background as $B^0=X$
+\item Convolve $B^0$ with kernel $k$ to give the smoothed array $B^0_s$, 
+\begin{equation}
+B^0_s=B^0\otimes k.
+\end{equation}
+$k$ has a Gaussian profile in the radial dimension, with FWHM of 0.67\Rs. This width is chosen for the Gaussian to be wider than most CME structure, whilst allowing large-scale variation in the background coronal brightness.
+\item Subtract $B^0_s$ from $X$ and constrain the result to be either zero or positive to gain the first estimate of CME signal $C^0$:
+\begin{equation}
+C^0=(X-B^0_s)>0
+\end{equation}
+\item Make next estimate of background as $B^1=X-C^0$.
+\end{enumerate}
+\noindent
+The process is iterated from steps 3-5. In summary, the quiescent component is calculated at iteration number $n$ as
+\begin{equation}
+B^n=X-[(X-[B^{n-1}\otimes k])>0].
+\label{deconvolve}
+\end{equation}
+This is a deconvolution of the CME signal and convergence is swift. At each iteration a convergence rate is calculated as the average absolute difference between the current and previous quiescent components. When the convergence rate drops below a preset level ($10^{-5}$ of the maximum value of $B^0$), a deconvolution is applied along the time direction. That is, a single iteration with steps identical to the above, is applied. The only difference is that the smoothing is applied along the time dimension of the datacube, rather than the spatial (i.e. radial) direction. After the single temporal iteration, the process returns to the spatial deconvolution described above. Whilst the spatial deconvolution uses a Gaussian kernel, the time deconvolution uses a top-hat kernel of width 3 observations in the time direction. In the regular case of the model data, this means a sliding window average of width $\sim$1.5 hours. This time interval of course varies for real data. The whole process is terminated according to a preset convergence rate threshold ($10^{-6}$ of the maximum value of $B^0$) or a maximum number of iterations (30), and the final CME component is given by $C=X-B^n$. Figure \ref{convergence} shows how the radial profile at position angle 90\de\ (a cut through CME A's front edge, shown in Figure \ref{polar}), gradually converges from the original signal to a CME and a quiescent component.
+
+This process is repeated for each position angle bin throughout the polar image. The result is an array in polar coordinates containing the estimate of the background quiescent corona. Due to the nature of the separation process, this array is smooth in the time and radial direction, relative to the original polar array. This polar array is interpolated back to the cartesian coordinates of the original NRGF images, and is then subtracted to give the CME component in full spatial resolution. 
+
+
+\section{Results}
+\label{results}
+
+\subsection{Application to synthetic data}
+The obvious advantage of testing the separation process on model data is that synthetic observations can be made of the CME in the absence of the background quiescent corona, against which the separated images can be compared. For the purpose of automatically detecting and tracking CMEs, the most important aspect for accuracy is a qualitative depiction of CME structure. A good quantitative agreement is also desirable, particularly for further analysis of CME density.
+
+Figure \ref{res1}a-c shows a comparison of the model CME brightness compared to the CME component obtained by the separation method for the C2-type FOV for each of the three structured loop-type CMEs. The top two panels show simple contrast-enhanced images of the CMEs. There is excellent qualitative agreement between the images. The third panel shows brightness profiles, or `cuts' across the images. These show that the NRGF brightness of the separated CME component is quantitatively very accurate. The bottom panel shows the relative error  throughout the CME region of the image, given by $100\times(B_{sep}-B_{mod})/B_{mod}$, where $B_{mod}$ is the model CME brightness (NRGF brightness), and $B_{sep}$ is the separated CME component brightness. The average and standard deviation of the relative error is  $-$0.6$\pm2.6$, $-$2.7$\pm3.1$, and 1.5$\pm3.7$\% for CME A, B, and C respectively. 
+
+
+Figure \ref{res1}d-f shows similar results for the C3-type FOV. The average and standard deviation of the relative error in this case is $-$4.2$\pm3.5$, $-$6.8$\pm3.4$, and 2.0$\pm4.5$\%. In general, the average relative error is small, and is a systematic error due to inaccuracies in the separation process. The spread of the relative error becomes greater for lower brightness CMEs as the signal-to-noise decreases. CME B (the large halo CME) has the most negative relative error due to the CME being a large, smooth structure, with a greater smooth radial extent than the other CMEs. Since this is a halo CME (moving towards the observer), the apparent velocity is small, and so the CME has smaller changes in time. Both the slow time changes and the smoother radial profile cause more of the CME component to be wrongly included with the quiescent component. In contrast, CME C has a positive relative error. CME C is more finely structured than the other CMEs, and is overlaid on a region of the corona containing many fine streamer substructures. The separation process includes some of this quiescent structure in the CME component leading to an overestimation of CME brightness.
+
+Figure \ref{res3} shows a comparison of model and separated NRGF brightness for the three blob-type CMEs (D, E and F). The separation process gives excellent results for these CMEs, with only a few percent relative error for the faintest CME (F) in the LASCO C3 FOV. The systematic error is a small overestimation of the CME brightness by the separation process for the LASCO C3 FOV. Note that CME F is very faint, with a density only 10\%\ that of streamers at the same height.
+
+\subsection{Application to LASCO C2 and C3 data}
+
+Figures \ref{c2res} and \ref{c3res} show the result of applying the CME separation process to LASCO C2 and C3 observations of a faint CME during 2010/03/12. This CME is a challenging test of the method for two main reasons: it is a relatively faint CME, and it is propagating in the same region of the image as a complicated streamer structure. As can be seen from the figures, the separation method is very effective at revealing the CME structure. In the original image, it is almost impossible to interpret CME structure since the image is dominated by the bright streamers. The separated CME component shows how faint the CME is compared to the streamers. The brightest part of the CME is the knotted inner core, centered at 3\Rs\ in the C2 image. By the C3 image, this knotted structure is not apparent. The front edge of the CME is very faint, as can be seen in Figure \ref{c3res}f, being only about 20\% of the background streamer signal at the same height. The fact that the separation process is successful in revealing the structure of this faint CME proves its effectiveness as a tool for CME study, as will be demonstrated fully in \paperii.
+
+It is important that the technique can effectively reveal halo CMEs since these are often the most intensely studied CMEs due to their potential for interaction with Earth. Figure \ref{halo} shows an example of applying the separation process to a LASCO C2 observation of a halo CME on 2005/05/13. This halo CME was studied in detail by \citet{bisi2010}. All parts of the halo, even the faintest, are effectively revealed in the separated component. The deconvolution separation will work well with halo CMEs despite their faintness because most of the halo structure is highly nonradial and is therefore easily separable from the radial background. 
+
+\subsection{Application to STEREO SECCHI data}
+The technique is successfully applied to the SECCHI/COR 2 coronagraphs aboard the STEREO spacecraft, but the results lack the cleanliness of the LASCO separated images. This is due to the larger noise level in the COR 2 instruments when compared to the LASCO coronagraphs at a similar height. However, combining separated dynamic component images for the COR 2 and LASCO instruments leads to a good foundation for analysis of CME structure. A simple example is demonstrated in Figure \ref{secchi} for a CME observed during 2011/01/13. At this time, the ahead and behind STEREO spacecraft were separated by almost $\pm$90\de\ in Carrington longitude from Earth. What is seen as a bright loop-shaped CME in LASCO data, is seen as a broad, diffuse halo CME in the COR 2 A and B coronagraphs. Since the background quiescent structure (i.e. streamers) is absent from the images, the way is paved for a straightforward 3D analysis given some realistic assumptions about the CME structure, such as smoothness, continuation and curvature (see \citet{frazin2009}, for example). This approach will be addressed in future work.
+
+
+\section{Discussion}
+\label{discussion}
+
+The multiscale detection algorithms presented in \paperii\ work best on the normalized brightness images, that is, images which are NRGF-processed to remove the radial gradient. It is important to realize, however, that once the separation process is applied, the CME or background quiescent component can be converted back to absolute brightness units. As the NRGF is applied using equation \ref{nrgfeq}, the average and standard deviation of brightness as functions of height are recorded. After the separation process, the quiescent component in NRGF brightness units $B_{norm}$ can be converted back to absolute brightness $B_{abs}$ by  
+\begin{eqnarray}
+\label{nrgfeqinv}
+B_{abs}(r,\phi)\,=B_{norm}(r,\phi)\sigma(r)_{<\phi>}+I(r)_{<\phi>}, 
+\end{eqnarray}
+which is simply the reverse of equation \ref{nrgfeq}. This component is suitable for density analyses of the large-scale coronal structure using inversion or tomography, with greatly reduced unwanted contamination by CMEs. Large and bright CMEs can seriously disrupt tomographical reconstructions, particularly during solar maximum. Observational studies of the large-scale coronal structure throughout the solar cycle are made possible by removing CMEs from the coronagraph data \citep{morgan2011rotation,morgan2011solmin,morgan2010structure}.
+
+The CME component is most simply converted to absolute brightness by 
+\begin{eqnarray}
+\label{nrgfeqinv2}
+C_{abs}(r,\phi)\,=C_{norm}(r,\phi)\sigma(r)_{<\phi>}, 
+\end{eqnarray}
+where $C_{abs}$ is the absolute brightness and $C_{norm}$ is the NRGF brightness of the separated CME component. This simple equation is possible since the CMEs have not contributed to the estimate of $I(r)_{<\phi>}$.
+This component is appropriate for density analysis of the CME in isolation of the background streamer structure, whilst the NRGF brightness CME component is most appropriate for structural and detection analysis. The validity of inverting the NRGF process to reclaim absolute brightness is illustrated by Figure \ref{absb}, where the absolute brightness of the separated CME component of two of the model CMEs (gained by NRGF, the separation technique, then applying equation \ref{nrgfeqinv2}) is compared directly with the target absolute brightness CMEs calculated directly from the model. The agreement is excellent.
+
+
+There are three main developments which will improve the CME separation process in future work:
+\begin{itemize}
+\item Non-radial quiescent structure can be wrongly included as part of the CME separated image. The technique as presented in this article, therefore, is not suitable for instruments which observe the lower corona. However, if the quiescent coronal structure has a persistent non-radial shape, which changes only slowly, it is possible to envisage a scheme which allows deconvolution along appropriate non-radial directions. The authors are considering such an approach for the high-quality observations of the Atmospheric Imaging Assembly (AIA) instrument aboard the Solar Dynamics Observatory (SDO) \citep{lemen2011}.
+\item CME-streamer interaction makes it difficult to distinguish between CME activity and changes in streamer brightness and position. The model used to test the method in this article had CMEs propagating in the same space as quiescent coronal structures, but without interaction. CMEs affect streamer density and distribution, and such changes are rapid. The CME separation process, similarly to time-differencing or other CME analysis techniques (including human recognition), cannot distinguish such effects. Since the quiescent structure can change rapidly, such events will be included in the dynamic component images, although they are not part of a propagating CME. Higher level criteria, such as consideration of outward propagation, may help in discarding such events in the case of automated CME detection and tracking (see \paperii).
+\item As shown for the model tests, small systematic errors may occur depending on the apparent propagation speed and type of CME. These are not errors which will hinder the automated detection and analysis routines presented in \paperii, but will influence any density diagnostic. Despite this, separation must be used to achieve effective density diagnostics. The errors involved are far less than those introduced by using simple time differencing to reveal CME signal, for example. In fact, the errors inherent in the radiometric calibration of coronagraphs, and other uncertainties related to F-corona and stray light subtraction (see \citet{morgan2007fcorona} for example) will in the case of most bright CMEs outweigh any systematic errors introduced by the separation method.
+\end{itemize}
+
+The accuracy of the separation technique is not truly limited by the brightness, shape or velocity of the CME under analysis. Any feature in the coronagraph data which is not smooth in the radial and time dimensions (that is, higher frequency spatial and temporal components including noise) will be seen in the final separated CME component. Even very faint dynamic events, therefore, are present in the CME component images. Such faint events are almost at the noise level, and can currently only be distinguished from background noise by an examination of a sequence of separated images. One can envisage a situation where the separation method can fail to include parts of an observed CME if those parts are very smooth and elongated in the radial direction, and are similarly smooth and elongated in the time direction. But such an object is not truly a CME by their general definition. CMEs are objects which are not smooth in both the radial and time direction. The biggest problem with the separation method, therefore, lies in higher-level procedures that identify CMEs in the separated images. Such procedures must be sophisticated enough to distinguish CMEs from all the other features contributing to the separated images, the most prominent of these being noise, sporadic instrumental artifacts, non-radial components of background streamers appearing in the separated images (as discussed in the bullet points above) and non-CME dynamic objects (comets, planets). Such sophisticated procedures are described in Paper II.
+
+\section{Conclusions}
+\label{conclusions}
+By means of synthetic coronagraph observations gained from a model corona through which flux-rope and blob-type CMEs are propagated, a deconvolution-based technique is shown to be an effective method for separating the images into quiescent and dynamic components. The dynamic component contains the CME signal which is shown to have excellent agreement (to within a few percent) with direct observations of the CME model made in the absence of the quiescent corona. The technique is effective with halo, highly-structured CMEs, and small blob-type CMEs, even with density as low as 10\%\ that of streamers at a similar height. 
+
+The method is applied to C2 and C3 observations of a very faint CME which is propagating in the same region as a complex arrangement of bright streamers. The method works well despite this challenging data, and the faint CME structure is isolated. We also show the method to be effective with the noisier data of the COR 2 A and B coronagraphs which are part of the SECCHI package of the STEREO mission. This will enable straightforward analysis of 3D CME structure using the dynamic images from three points of view, without the distraction of background streamer structure. 
+
+The separation method involves normalizing the data to remove the sharp radial gradient of brightness prior to separation. After separation, the CME and quiescent components can be easily transformed back into absolute brightness units for further density analysis if this is desired. Using the synthetic model images we show this reverse transformation to be very accurate, and faithful to the original model brightness to within a few percent. 
+
+The separation of quiescent corona and dynamic events in coronagraph images described in this paper is a necessary prerequisite for higher level CME detection, tracking and classification procedures to be described in \paperii. In the near future, the whole LASCO C2 and C3, and the SECCHI COR 2 datasets will be processed, and both quiescent and dynamic component images will be made available to the community. 
+
+
+
+ \begin{acknowledgements}
+Valuable comments by an anonymous referee greatly improved this article. This work is supported by SHINE grant 0962716 and NASA grant NNX08AJ07G to the Institute for Astronomy. The SOHO/LASCO data used here are produced by a consortium of the Naval Research Laboratory (USA), Max-Planck-Institut fuer Aeronomie (Germany)), Laboratoire d'Astronomie (France), and the University of Birmingham (UK). SOHO is a project of international cooperation between ESA and NASA. The STEREO/SECCHI project is an international consortium of the Naval Research Laboratory (USA), Lockheed Martin Solar and Astrophysics Lab (USA), NASA Goddard Space Flight Center (USA), Rutherford Appleton Laboratory (UK), University of Birmingham (UK), Max-Planck-Institut fu\"r Sonnen-systemforschung (Germany), Centre Spatial de Liege (Belgium), Institut d’Optique Th\'eorique et Appliq\'uee (France), and Institut d'Astrophysique Spatiale (France).
+ \end{acknowledgements}
+
+
+% \bibliography{../bibliography/biblio.bib}  
+
+\begin{thebibliography}{41}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Bewsher} {et~al.}(2008){Bewsher}, {Harrison}, \&
+  {Brown}}]{bewsher2008}
+{Bewsher}, D., {Harrison}, R.~A., \& {Brown}, D.~S. 2008, \aap, 478, 897
+
+\bibitem[Bisi et al.(2010)]{bisi2010} Bisi, M.~M., Breen, A.~R., 
+Jackson, B.~V., et al.\ 2010, \solphys, 265, 49 
+
+\bibitem[{{Brueckner} {et~al.}(1995){Brueckner}, {Howard}, {Koomen},
+  {Korendyke}, {Michels}, {Moses}, {Socker}, {Dere}, {Lamy}, {Llebaria},
+  {Bout}, {Schwenn}, {Simnett}, {Bedford}, \& {Eyles}}]{brueckner1995}
+{Brueckner}, G.~E., {et~al.} 1995, \solphys, 162, 357
+
+\bibitem[{{Byrne} {et~al.}(2009){Byrne}, {Gallagher}, {McAteer}, \&
+  {Young}}]{byrne2009}
+{Byrne}, J.~P., {Gallagher}, P.~T., {McAteer}, R.~T.~J., \& {Young}, C.~A.
+  2009, \aap, 495, 325
+
+\bibitem[{{Byrne} {et~al.}(2010){Byrne}, {Maloney}, {McAteer}, {Refojo}, \&
+  {Gallagher}}]{byrne2010}
+{Byrne}, J.~P., {Maloney}, S.~A., {McAteer}, R.~T.~J., {Refojo}, J.~M., \&
+  {Gallagher}, P.~T. 2010, Nature Communications, 1
+
+\bibitem[{{Byrne} {et~al.}(2011){Byrne}, {Morgan}, \& {Habbal}}]{byrne2011}
+{Byrne}, J.~P., {Morgan}, H., \& {Habbal}, S.~R. 2011, \apj, 000, 000
+
+\bibitem[Domingo et al.(1995)]{domingo1995} Domingo, V., Fleck, B., 
+\& Poland, A.~I.\ 1995, \solphys, 162, 1 
+
+\bibitem[{{Doyle} {et~al.}(1999){Doyle}, {Teriaca}, \& {Banerjee}}]{doyle1999}
+{Doyle}, J.~G., {Teriaca}, L., \& {Banerjee}, D. 1999, \aap, 349, 956
+
+\bibitem[{{Druckm{\"u}llerov{\'a}} {et~al.}(2011){Druckm{\"u}llerov{\'a}},
+  {Morgan}, \& {Habbal}}]{druckmullerova2011}
+{Druckm{\"u}llerov{\'a}}, H., {Morgan}, H., \& {Habbal}, S.~R. 2011, \apj, 737,
+  88
+
+\bibitem[{{Eddy}(1974)}]{eddy1974}
+{Eddy}, J.~A. 1974, \aap, 34, 235
+
+\bibitem[{{Frazin} {et~al.}(2009){Frazin}, {Jacob}, {Manchester}, {Morgan}, \&
+  {Wakin}}]{frazin2009}
+{Frazin}, R.~A., {Jacob}, M., {Manchester}, W.~B., {Morgan}, H., \& {Wakin},
+  M.~B. 2009, \apj, 695, 636
+
+\bibitem[{{Gallagher} {et~al.}(2011){Gallagher}, {Young}, {Byrne}, \&
+  {McAteer}}]{gallagher2011}
+{Gallagher}, P.~T., {Young}, C.~A., {Byrne}, J.~P., \& {McAteer}, R.~T.~J.
+  2011, Advances in Space Research, 47, 2118
+
+\bibitem[{{Gibson} {et~al.}(2003){Gibson}, {Foster}, {Guhathakurta}, {Holzer},
+  \& {St.~Cyr}}]{gibson2003}
+{Gibson}, S.~E., {Foster}, D.~J., {Guhathakurta}, M., {Holzer}, T., \&
+  {St.~Cyr}, O.~C. 2003, Journal of Geophysical Research (Space Physics), 108,
+  7
+
+\bibitem[{{Gopalswamy} {et~al.}(2001){Gopalswamy}, {Yashiro}, {Kaiser},
+  {Howard}, \& {Bougeret}}]{gopalswamy2001}
+{Gopalswamy}, N., {Yashiro}, S., {Kaiser}, M.~L., {Howard}, R.~A., \&
+  {Bougeret}, J.-L. 2001, \jgr, 106, 29219
+
+\bibitem[{{Gosling} {et~al.}(1974){Gosling}, {Hildner}, {MacQueen}, {Munro},
+  {Poland}, \& {Ross}}]{gosling1974}
+{Gosling}, J.~T., {Hildner}, E., {MacQueen}, R.~M., {Munro}, R.~H., {Poland},
+  A.~I., \& {Ross}, C.~L. 1974, \jgr, 79, 4581
+
+\bibitem[{{Guhathakurta} {et~al.}(1996){Guhathakurta}, {Holzer}, \&
+  {MacQueen}}]{guhathakurta1996}
+{Guhathakurta}, M., {Holzer}, T.~E., \& {MacQueen}, R.~M. 1996, \apj, 458, 817
+
+\bibitem[{{Habbal} {et~al.}(2007){Habbal}, {Morgan}, {Johnson}, {Arndt}, {Daw},
+  {Jaeggli}, {Kuhn}, \& {Mickey}}]{habbal2007}
+{Habbal}, S.~R., {Morgan}, H., {Johnson}, J., {Arndt}, M.~B., {Daw}, A.,
+  {Jaeggli}, S., {Kuhn}, J., \& {Mickey}, D. 2007, \apj, 663, 598
+
+\bibitem[{{Habbal} {et~al.}(2011){Habbal}, {Druckm{\"u}ller}, {Morgan}, {Ding},
+  {Johnson}, {Druckm{\"u}llerov{\'a}}, {Daw}, {Arndt}, {Dietzel}, \&
+  {Saken}}]{habbal2011}
+{Habbal}, S.~R., {et~al.} 2011, \apj, 734, 120
+
+\bibitem[{{He} {et~al.}(2009){He}, {Marsch}, {Tu}, \& {Tian}}]{he2009}
+{He}, J., {Marsch}, E., {Tu}, C., \& {Tian}, H. 2009, \apjl, 705, L217
+
+\bibitem[{{Howard} {et~al.}(2002){Howard}, {Moses}, {Socker}, {Dere}, \&
+  {Cook}}]{howard2002}
+{Howard}, R.~A., {Moses}, J.~D., {Socker}, D.~G., {Dere}, K.~P., \& {Cook},
+  J.~W. 2002, Advances in Space Research, 29, 2017
+
+\bibitem[{{Kaiser}(2005)}]{kaiser2005}
+{Kaiser}, M.~L. 2005, Advances in Space Research, 36, 1483
+
+\bibitem[{{Kienreich} {et~al.}(2009){Kienreich}, {Temmer}, \&
+  {Veronig}}]{kienreich2009}
+{Kienreich}, I.~W., {Temmer}, M., \& {Veronig}, A.~M. 2009, \apjl, 703, L118
+
+\bibitem[{{Koutchmy} {et~al.}(1988){Koutchmy}, {Koutchmy}, {Nitschelm},
+  {Sykora}, \& {Smartt}}]{koutchmy1988}
+{Koutchmy}, O., {Koutchmy}, S., {Nitschelm}, C., {Sykora}, J., \& {Smartt},
+  R.~N. 1988, in Solar and Stellar Coronal Structure and Dynamics, ed.
+  {R.~C.~Altrock}, 256--266
+
+\bibitem[{{Koutchmy} \& {Livshits}(1992)}]{koutchmy1992}
+{Koutchmy}, S., \& {Livshits}, M. 1992, Space Science Reviews, 61, 393
+
+\bibitem[{{Lemen} {et~al.}(2011){Lemen}, {Title}, {Akin}, {Boerner}, {Chou},
+  {Drake}, {Duncan}, {Edwards}, {Friedlaender}, {Heyman}, {Hurlburt}, {Katz},
+  {Kushner}, {Levay}, {Lindgren}, {Mathur}, {McFeaters}, {Mitchell}, {Rehse},
+  {Schrijver}, {Springer}, {Stern}, {Tarbell}, {Wuelser}, {Wolfson}, {Yanari},
+  {Bookbinder}, {Cheimets}, {Caldwell}, {Deluca}, {Gates}, {Golub}, {Park},
+  {Podgorski}, {Bush}, {Scherrer}, {Gummin}, {Smith}, {Auker}, {Jerram},
+  {Pool}, {Soufli}, {Windt}, {Beardsley}, {Clapp}, {Lang}, \&
+  {Waltham}}]{lemen2011}
+{Lemen}, J.~R., {et~al.} 2011, \solphys, 172
+
+\bibitem[{{Lugaz} {et~al.}(2009){Lugaz}, {Vourlidas}, {Roussev}, \&
+  {Morgan}}]{lugaz2009}
+{Lugaz}, N., {Vourlidas}, A., {Roussev}, I.~I., \& {Morgan}, H. 2009, \solphys,
+  256, 269
+
+\bibitem[{{Morgan}(2011{\natexlab{a}})}]{morgan2011solmin}
+{Morgan}, H. 2011{\natexlab{a}}, \apj, 738, 190
+
+\bibitem[{{Morgan}(2011{\natexlab{b}})}]{morgan2011rotation}
+---. 2011{\natexlab{b}}, \apj, 738, 189
+
+\bibitem[{{Morgan} \& {Habbal}(2010{\natexlab{a}})}]{morgan2010cme}
+{Morgan}, H., \& {Habbal}, S. 2010{\natexlab{a}}, \apj, 711, 631
+
+\bibitem[{{Morgan} \& {Habbal}(2007{\natexlab{a}})}]{morgan2007empiricalmodel}
+{Morgan}, H., \& {Habbal}, S.~R. 2007{\natexlab{a}}, \aap, 464, 357
+
+\bibitem[{{Morgan} \& {Habbal}(2007{\natexlab{b}})}]{morgan2007twistingsheets}
+---. 2007{\natexlab{b}}, \aap, 465, L47
+
+\bibitem[{{Morgan} \& {Habbal}(2007{\natexlab{c}})}]{morgan2007fcorona}
+---. 2007{\natexlab{c}}, \aap, 471, L47
+
+\bibitem[{{Morgan} \& {Habbal}(2010{\natexlab{b}})}]{morgan2010structure}
+---. 2010{\natexlab{b}}, \apj, 710, 1
+
+\bibitem[{{Morgan} {et~al.}(2009){Morgan}, {Habbal}, \& {Lugaz}}]{morgan2009}
+{Morgan}, H., {Habbal}, S.~R., \& {Lugaz}, N. 2009, \apj, 690, 1119
+
+\bibitem[{{Morgan} {et~al.}(2006){Morgan}, {Habbal}, \& {Woo}}]{morgan2006}
+{Morgan}, H., {Habbal}, S.~R., \& {Woo}, R. 2006, \solphys, 236, 263
+
+\bibitem[{{Olmedo} {et~al.}(2008){Olmedo}, {Zhang}, {Wechsler}, {Poland}, \&
+  {Borne}}]{olmedo2008}
+{Olmedo}, O., {Zhang}, J., {Wechsler}, H., {Poland}, A., \& {Borne}, K. 2008,
+  \solphys, 248, 485
+
+\bibitem[{{Qu{\'e}merais} \& {Lamy}(2002)}]{quemerais2002}
+{Qu{\'e}merais}, E., \& {Lamy}, P. 2002, \aap, 393, 295
+
+\bibitem[{{Robbrecht} \& {Berghmans}(2004)}]{robbrecht2004}
+{Robbrecht}, E., \& {Berghmans}, D. 2004, \aap, 425, 1097
+
+\bibitem[{{Stenborg} \& {Cobelli}(2003)}]{stenborg2003}
+{Stenborg}, G., \& {Cobelli}, P.~J. 2003, \aap, 398, 1185
+
+\bibitem[{{Thernisien} {et~al.}(2006){Thernisien}, {Howard}, \&
+  {Vourlidas}}]{thernisien2006}
+{Thernisien}, A.~F.~R., {Howard}, R.~A., \& {Vourlidas}, A. 2006, \apj, 652,
+  763
+
+\bibitem[{{van de Hulst}(1950)}]{van1950}
+{van de Hulst}, H.~C. 1950, \bain, 11, 135
+
+\bibitem[{{Wang} {et~al.}(2010){Wang}, {Cao}, {Chen}, {Zhang}, {Yu}, {Zheng},
+  {Shen}, {Zhang}, \& {Wang}}]{wang2010}
+{Wang}, Y., {et~al.} 2010, \apj, 717, 973
+
+\bibitem[{{Yashiro} {et~al.}(2004){Yashiro}, {Gopalswamy}, {Michalek},
+  {St.~Cyr}, {Plunkett}, {Rich}, \& {Howard}}]{yashiro2004}
+{Yashiro}, S., {Gopalswamy}, N., {Michalek}, G., {St.~Cyr}, O.~C., {Plunkett},
+  S.~P., {Rich}, N.~B., \& {Howard}, R.~A. 2004, Journal of Geophysical
+  Research (Space Physics), 109, 7105
+
+\end{thebibliography}
+
+
+\clearpage
+\begin{figure}[]
+\begin{center}
+\includegraphics[width=8.5cm]{fig1.pdf}
+\end{center}
+\caption{Tomographic reconstruction of the coronal density structure at a height of 4\Rs\ created from LASCO C2 data collected over a half-solar-rotation period centered on 2005/01/18 (CR 2025.6). Lowest density regions are black to purple, whilst higher density streamers range from light blue through green, yellow, to red. The reconstruction map has 720 longitude bins, and 360 latitude bins. As explained in the text, density units are normalized (not absolute electron density).}
+\label{tomo}
+\end{figure}
+
+\clearpage
+\begin{figure}[]
+\begin{center}
+\includegraphics[width=8.5cm]{fig2.pdf}
+\end{center}
+\caption{Synthetic coronal brightness images created for (a) a C2-type FOV and (b) a C3-type FOV for observation time 2005/01/18 04:56 (that is, the model corona is rotated to an appropriate Carrington longitude and B$_0$ angle for this time). The inner black circle shows the position of the Sun. Log$_{10}$ of brightness is shown, with some contrast enhancement.}
+\label{coronamodel}
+\end{figure}
+
+\clearpage
+\begin{figure}[]
+\begin{center}
+\includegraphics[width=8.5cm]{fig3.pdf}
+\end{center}
+\caption{Synthetic CME brightness images created for four of the six model CMEs listed in Table \ref{cmetable}. (a) CME A is a hollow flux tube looping out into the corona, with front edge at height 5\Rs. The loop is viewed face-on, and the central axis of symmetry of the loop is at longitude $-$90\de\ relative to the observer (in the plane of the sky in the east), and co-latitude 90\de\ (equator). Subsequent images (b), (c) and (d) show CMEs B, C, and D respectively. The black circle/part of a circle in each image shows the position of the Sun. Log$_{10}$ of brightness is shown, with some contrast enhancement. Shades are reversed, so that dark regions are the brightest.}
+\label{cmemodel}
+\end{figure}
+
+\clearpage
+\begin{figure*}[]
+\begin{center}
+\includegraphics[width=14.0cm]{fig4.pdf}
+\end{center}
+\caption{(a) Unprocessed synthetic coronal image showing a C3-type FOV. The small inner circle shows the position of the Sun. (b) Mean (solid line) and standard deviation (dashed line) as a function of height calculated from the image shown in (a). (c) Image (a) processed using equation \ref{nrgfeq}. Note how the true radial structure of the model corona is effectively revealed by this process.}
+\label{nrgf}
+\end{figure*}
+
+\clearpage
+\begin{figure}[]
+\begin{center}
+\includegraphics[width=8.5cm]{fig5.pdf}
+\end{center}
+\caption{Synthetic images containing the model corona, CMEs and noise for (a) 2005/01/18 01:10, C2 FOV (2.25-5.75\Rs) and (b) 2005/01/18 12:14, C3 FOV (6.0-16.0\Rs) FOV. These images have been processed with the NRGF. The CMEs shown are the ones shown in isolation in Figure \ref{cmemodel}, namely CMEs A and B in (a), and C and D in (b).}
+\label{nrgfproc}
+\end{figure}
+
+\clearpage
+\begin{figure}[]
+\begin{center}
+\includegraphics[width=8.5cm]{fig6.pdf}
+\end{center}
+\caption{(a) NRGF-processed image of Figure \ref{nrgfproc}a transformed into polar coordinates. The x-axis shows position angles anti-clockwise from North, and the y-axis shows heliocentric height throughout the useful FOV. Two CMEs (A and B, see Figure \ref{cmemodel}) can be seen in this image. CME A is bright at position angle 90\de, and CME B is a faint halo seen centered at position angle 290\de. Four radial slices are chosen at position angles 90\de\ (red, cutting through CME front), 106\de\ (cyan, cutting through CME leg), 135\de\ (blue, streamer without CME) and 200\de\ (green, coronal hole without CME). (b) Radial profiles of NRGF brightness along the four cuts shown in (a). (c) Time profiles of NRGF brightness along the cuts shown in (a), at a height of 5.5\Rs.}
+\label{polar}
+\end{figure}
+
+\clearpage
+\begin{figure}[]
+\begin{center}
+\includegraphics[width=8.5cm]{fig7.pdf}
+\end{center}
+\caption{Iterative development of the CME/quiescent separation process as applied to a cut across the front edge of CME A at position angle 90\de. Each panel shows the original `observed' radial profile of NRGF brightness (solid line) which of course contains the CME and background corona. The dashed and dotted lines show, at that stage of iteration, the CME component (dashed line) and quiescent corona (dotted line). The iteration number $n$ is shown in each panel (0, 3, 6, 7, 9, 12, and 19). Note that in panel (a) (iteration 0, i.e. prior to deconvolution), initial values are shown, so that the background is identical to the original profile and the CME profile is zero at all heights.}
+\label{convergence}
+\end{figure}
+
+\clearpage
+\begin{figure*}[]
+\begin{center}
+\includegraphics[width=9.0cm]{fig8.pdf}\includegraphics[width=9.0cm]{fig9.pdf}
+\end{center}
+\caption{Comparison of direct model CME observations and the separated CME component. The three columns (a), (b), and (c) are for CMEs A, B and C. Columns (d), (e) and (f) show the same CMEs, but in the C3 FOV. The top panel of each column shows an NRGF image of the CME after processing of the synthetic observations using the separation routine. The second panel down shows a direct synthetic observation of the model CME (without any quiescent coronal structure). Good agreement between the top two panels shows that the separation routines are working. The white curved lines show the outer limits of the FOV. Two or three colored dashed lines are plotted over the model CME images. Slices of the NRGF brightness along these lines are plotted in the third panel down for the model CME (solid line) and separated CME component (dotted line). In many places, these two lines are indistinguishable. The bottom panels show the percent relative difference between the model and separated CME brightness, indicated by the color bar.}
+\label{res1}
+\end{figure*}
+
+\clearpage
+\begin{figure*}[]
+\begin{center}
+\includegraphics[width=15.0cm]{fig10.pdf}
+\end{center}
+\caption{(a) The South-west corona for the C3-type FOV at time 2005/01/18 15:15, showing a radial slice along position angle 270\de. Two CMEs labelled D and E are propagating along this position angle. CME F has not yet entered the FOV. (b) NRGF brightness profiles along the radial slice at position angle 270\de\ for the C2-type FOV at three different times, indicated in the legend. The model is the solid line, and the separated CME component the dashed line. It is difficult to distinguish between the two lines due to the good agreement. The synthetic data is set up in such a way that the three CMEs appear at the same height during these three times. (c) As (b), but for the C3-type FOV. Note that the increase in brightness for the green line at heights above 14\Rs\ is due to CME D leaving the FOV.}
+\label{res3}
+\end{figure*}
+
+\clearpage
+\begin{figure*}[]
+\begin{center}
+\includegraphics[width=12.0cm]{fig11.pdf}
+\end{center}
+\caption{(a) NRGF-processed LASCO C2 image of the north-east corona at 2010/03/12 05:06. A faint CME is propagating and interacting with a streamer centered on position angle 70\de. Position angles are plotted on the image, as are three heights of 3, 4 and 5\Rs. (b) The quiescent component following the separation method. (c) The CME component following separation. (d) NRGF brightness plotted as a function of position angle at a constant height of 3\Rs. The three lines are for the original NRGF image (solid), the separated quiescent component (dash) and CME component (dash-dot). (e), (f) Same as (d), but for heights of 4 and 5\Rs\ respectively.}
+\label{c2res}
+\end{figure*}
+
+\clearpage
+\begin{figure*}[]
+\begin{center}
+\includegraphics[width=12.0cm]{fig12.pdf}
+\end{center}
+\caption{Same as Figure \ref{c2res}, but for a LASCO C3 observation at 2010/03/12 11:42. The three heights shown are 8, 11 and 14\Rs.}
+\label{c3res}
+\end{figure*}
+
+\clearpage
+\begin{figure*}[]
+\begin{center}
+\includegraphics[width=15.0cm]{halo_c2.jpg}
+\end{center}
+\caption{Example of an original NRGF image (left), separated dynamic component (center) and quiescent corona (right) for a halo CME observed on 2005/05/13 17:22 by LASCO C2.}
+\label{halo}
+\end{figure*}
+
+\clearpage
+\begin{figure*}[]
+\begin{center}
+\includegraphics[width=10.0cm]{figsecchi.pdf}
+\end{center}
+\caption{Separated dynamic component images of a CME observed during 2011/01/13 by COR2 B (left column), LASCO C3 (middle column) and COR2 A (right column). Times of observation for COR2 A and B are 11:24, 11:39, 11:54, 12:24, 12:39 and 12:54. The LASCO C3 observations are made within a few minutes of the COR observation. All the images are scaled to the same spatial scale, with the outer field of view set at 12\Rs. The Sun's position is shown as a black circle.}
+\label{secchi}
+\end{figure*}
+
+\clearpage
+\begin{figure}[]
+\begin{center}
+\includegraphics[width=8.5cm]{fig13.pdf}
+\end{center}
+\caption{(a) Separated CME component for the synthetic observation of 2005/01/19 01:10 (C2 FOV), converted to absolute units using equation \ref{nrgfeqinv2}. The color is scaled as shown in the color bar on the right. (b) Direct synthetic observations of the model CMEs in the absence of background quiescent corona and noise. Two cuts are shown with white dashed lines: one across CME A in the east, and another across CME C in the north west. (c) Brightness across CME A for the directly observed brightness (solid line) and the separated component (dashed line). (d) As (c) but for the cut across CME C.}
+\label{absb}
+\end{figure}
+
+
+\end{document}

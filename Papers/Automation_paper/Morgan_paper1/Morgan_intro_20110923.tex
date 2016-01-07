@@ -1,0 +1,125 @@
+%% Template.tex; Solar Physics
+%% 
+\documentclass[namedreferences]{SolarPhysics}
+%
+% spr-sola-addons available options:
+%  natbib        -- For citations: redefine \cite commands
+%  solaenum      -- makes enumerated list with italics-roman numerals and a single right-bracket
+%  linksfromyear -- loads a natbib and puts a link on a year citation (hyperref must be loaded)
+%  optionalrh    -- for optional running title/author
+%
+%\usepackage[optionalrh,solaenum]{spr-sola-addons} % For Solar Physics 
+%\usepackage{epsfig}                     % For eps figures, old commands
+\usepackage{graphicx}                    % For eps figures, newer & more powerfull
+%\usepackage{courier}                    % Change the \texttt command to courier style
+%\usepackage{amssymb}                    % useful mathematical symbols
+\usepackage{color}                       % For color text: \color command
+\usepackage{url}                         % For breaking URLs easily trough lines
+\def\UrlFont{\sf}                        % define the fonts for the URLs
+
+%% Local definitions
+%% please place your own definitions here and don't use \def but
+%% \newcommand{}{} or 
+%% \renewcommand{}{} if it is already defined in LaTeX
+
+%I'm adding these:
+\usepackage[optionalrh,natbib]{spr-sola-addons}
+\newcommand{\solphys}{{\it Solar Physics}}
+\newcommand{\aap}{    {\it Astronomy \& Astrophysics}}
+\newcommand{\aaps}{   {\it Astronomy \& Astrophysics Supplemental}}
+\newcommand{\apj}{    {\it Astrophysical Journal}}
+\newcommand{\apjl}{    {\it Astrophysical Journal Letters}}
+\newcommand{\jgr}{    {\it Journal of Geophysical Research}}
+\newcommand{\aapr}{    {\it Astronomy \& Astrophysics Review}}
+\newcommand{\grl}{    {\it Geophysical Research Letters}}
+\newcommand{\nat}{{\it Nature}}
+\newcommand{\ssr}{{\it Space Science Review}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{article}
+
+\begin{opening}
+
+\title{Automatically Detecting and Tracking CMEs I: The separation of dynamic and quiescent components in coronagraph images.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Authors Names
+%
+\author{H.~\surname{Morgan}$^{1}$\sep
+		J.~P.~\surname{Byrne}$^{1}$\sep
+        S.~R.~\surname{Habbal}$^{1}$      
+       }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Runningheads
+%
+\runningauthor{J.~P.~Byrne {\it et al.}}
+\runningtitle{Multiscale Technique for Automatically Detecting and Tracking CMEs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Affilations 
+%
+  \institute{$^{1}$ Institute for Astronomy, University of Hawaii, 2680 Woodlawn Drive, Honolulu, HI 96822, USA
+                     email: \url{hmorgan@ifa.hawaii.edu} email: \url{jbyrne@ifa.hawaii.edu} email: \url{shadia@ifa.hawaii.edu}%\\ 
+%             $^{2}$ Second affiliation
+%                     email: \url{e.mail-c} \\
+             }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Abstract 
+\begin{abstract}
+Studies of CMEs in coronagraph observations require confidently distinguishing the CME structure from the background quiescent coronal material, which is predominantly composed of streamers. These persistent features are particularly troublesome in efforts to automatically detect and track CMEs, important for CME physics and space weather monitoring \& forecasting. Many efforts resort to some form of time-differencing to achieve separation of the dynamic CMEs from more static features, despite the errors inherent to such techniques - notably spatiotemporal crosstalk. Here we describe a new deconvolution technique that separates coronagraph images into quiescent and dynamic components. A set of synthetic observations made from a sophisticated corona and CME model demonstrates the validity and effectiveness of the technique in isolating the CME signal. Applied to observations from the LASCO/C2 and C3 coronagraphs (and demonstrated to work on SECCHI/COR2), the structure of a faint CME is revealed in detail despite the background streamers that are several times brighter than the CME. Quiescent coronal structures and CMEs are intrinsically linked, and must interact (for example, CMEs often cause rapid changes in streamer brightness and position). Although such interaction is an unavoidable source of error in any separation process, we show in a companion paper that the deconvolution approach outlined here, is a robust and accurate method for preceding the higher-level detection and classification of CME structure.
+\end{abstract}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Keywords
+%
+%\keywords{}
+
+
+\end{opening}
+%-------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sections
+%
+% \section{}%\label{s:?} 
+
+\section{Introduction}
+
+A coronal mass ejection (CME) was first observed scientifically during the total solar eclipse of 1860, but it was not recognised as an important dynamic phenomenon until the latter half of the twentieth century \citep{1974A&A....34..235E}. The first modern discovery of CMEs, their frequency of  occurrence, and major restructuring effects on the corona, was made by the white-light coronagraphic observations of the Skylab mission in the early 1970s \citep{1974ApJ...187L..85M}. They are defined as clouds of magnetic plasma ejected by the Sun and observed with various morphologies as they propagate through the corona into interplanetary space, though the physics governing their eruption and propagation is still not fully understood \citep{2006SSRv..123....1K}. The large amounts of kinetic and magnetic energy they carry can drive interplanetary shocks that contribute to severe space weather at the Earth and elsewhere in the heliosphere \citep{2004Natur.432...78P, 2005AnGeo..23.1033S}, and thus they can have detrimental effects on many forms of space-based technology depended upon in modern society \citep{2007A&G....48f..11L, 2008sswe.rept.....C}. They are often associated with eruptive prominences \citep{2008AnGeo..26.3025F} and/or solar flares \citep{1985SoPh...98..369S, 2002ApJ...566L.117Z}, though some have no apparent trigger event \citep{2010ApJ...722..289M} making their prediction impossible. The Large Angle Spectrometric Coronagraph \citep[LASCO;][]{1995SoPh..162..357B} onboard the Solar and Heliospheric Observatory \citep[SOHO;][]{1995SoPh..162....1D} enabled a great advance in our understanding of the dynamic solar corona, and paved the way for the twin COR coronagraphs of the Sun Earth Connection Coronal and Heliospheric Investigation \citep[SECCHI;][]{2000SPIE.4139..259H} onboard the Solar Terrestrial Relations Observatory \citep[STEREO;][]{2008SSRv..136....5K}. Thus in the last two decades, CME events have been detected and catalogued by numerous scientists, and the statistics of their behaviour and evolution through the corona (spatial size, type and distribution, and kinematics) has led to a deeper understanding of the complex plasma and magnetohydrodynamic (MHD) physics responsible for their eruption and propagation. Indeed many theoretical models have been developed to try to explain the various forms of CMEs and associated coronal restructuring observed on the Sun \citep[see][and references therein]{2011LRSP....8....1C}, thus the necessity for robust and accurate methods of characterising CME structure in coronagraph observations is clear.
+
+There are many aspects of CMEs that are not well understood. One of the reasons for this is the lack of information on CME structure, density, and other physical attributes. When viewed in white-light coronagraph images, CME emission from Thomson-scattered light is integrated over an extended line-of-sight (LOS) \citep[for details see][]{2009SSRv..147...31H}, and other non-CME structures, notably coronal streamers, can exist along the same LOS which confuses the interpretation of plane-of-sky observations. Despite the increasing sophistication of solar tomography techniques \citep[see][and references therein]{2009ApJ...690.1119M, 2010ApJ...710....1M} detailed information on the topology of the quiescent corona is still lacking, compounding the difficulties in resolving CME structure as they erupt and interact with the surrounding corona and affect its topology. \citet{2009ApJ...695..636F} show that given reasonable assumptions about specific CME structure, it is possible to reconstruct its 3D density from only three viewpoints. However, the leading hindrance to the reconstruction is the presence of quiescent coronal structure in the coronagraph data. Thus removing the features that generally exist on timescales greater than CME evolution is an important step in all CME studies, and is usually accomplished through differencing techniques. Given a sequence of images, a fixed difference is generated by subtracting a pre-event image from the subsequent frames, or a running difference image is generated by subtracting antecedent frames from each other, both of which highlight (in somewhat different manners) features that have moved during the time-step between the images. However, differencing methods blend spatial and temporal information in a non-trivial manner, an effect called spatiotemporal crosstalk. This severely limits the ability to inspect structure in the differenced images, and the cadence of subtraction also increases the quantitative uncertainties involved in studying CME dynamics.
+
+This is the first of two papers on new methods for improving the detection and tracking of CME structure in coronagraph images, overcoming the drawbacks of traditional image processing methods and the limitations of current catalogues (a review of such catalogues is included in Paper II). Here we outline methods that greatly improve the coronagraph data ahead of the detection process demonstrated and discussed in Paper II, of use for any/all future CME coronagraph studies; achieved by the separation and removal of quiescent coronal structure to reveal the more dynamic CMEs and similar outflows. The process is based on an iterative deconvolution technique in both the spatial and temporal image dimensions, that successfully isolates the CME signal. It significantly improves upon the methods outlined in \citet{2010ApJ...711..631M} by utilising the temporal information in a manner that no longer requires any image differencing, thus avoiding the spatiotemporal effects outlined above. The validity and effectiveness of the improved technique is demonstrated by applying it to a model corona (with CMEs) generated from synthetic coronagraph observations, described in Section~2. In Section~3 we describe the deconvolution-based process of separating dynamic events from the quiescent coronal structures. In Section~4 we present the results of the separation process applied to the model data and to real observations from the LASCO/C2 and C3 and SECCHI/COR2 coronagraphs. The results are discussed in Section~5 and our conclusions presented in Section~6.
+
+
+
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography
+%
+% Using BibTeX
+%
+ \bibliographystyle{spr-mp-sola.bst}
+% %\bibliographystyle{spr-mp-sola-cnd} %% Alternative style: no title, no concluding page
+ \bibliography{references.bib}  
+%
+% Without BibTeX 
+% \begin{thebibliography}{}
+% \bibitem[\protect\citeauthoryear{Author}{Year}]{key}
+%   <bibliographical entry>
+%
+% \bibitem[\protect\citeauthoryear{}{}]{}
+%   
+%  
+% \end{thebibliography}
+
+\end{article} 
+\end{document}

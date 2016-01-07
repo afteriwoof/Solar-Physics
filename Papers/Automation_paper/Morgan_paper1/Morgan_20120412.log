@@ -1,0 +1,637 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.1.11)  12 APR 2012 16:16
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**Morgan_20120412.tex
+(./Morgan_20120412.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, farsi, finnish, french,
+ galician, german, ngerman, swissgerman, monogreek, greek, hungarian, icelandic
+, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, oriya, panja
+bi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji, lao, lati
+n, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, polish, portu
+guese, romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedis
+h, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/aastex/aastex.cls
+Document Class: aastex 2005/06/22 5.2/AAS markup document class
+Class aastex Info: Original \LaTeX2.09 style by Chris Biemesderfer (chris@seago
+at.com). Adapted to \LaTeXe by A. Ogawa (ogawa@teleport.com) on input line 83.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/11/26 v0.05c Graphics/color for pdfTeX
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+(/usr/local/texlive/2010/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip43
+\bibsep=\skip44
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count88
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks16
+\verbatim@line=\toks17
+\verbatim@in@stream=\read1
+)
+\@slugcmmntwidth=\dimen105
+\abstract@box=\box26
+\c@editornote=\count89
+\c@cureqno=\count90
+\tnotemarkskip=\skip45
+\@abovenoteskip=\dimen106
+\pt@box=\box27
+\pt@width=\dimen107
+\pt@line=\count91
+\pt@column=\count92
+\pt@nlines=\count93
+\pt@ncol=\count94
+\pt@page=\count95
+\tabbaseskip=\dimen108
+\pt@tmpcapwidth=\dimen109
+\spew@tblnotesbox=\box28
+\restof@tblnotesbox=\box29
+\noteheight=\dimen110
+\pt@tabnoteminht=\dimen111
+\firsttabskip=\dimen112
+\captionbox=\box30
+\pt@reduceline=\dimen113
+\extra@vspace=\dimen114
+\c@plate=\count96
+\my@footins=\box31
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count97
+\rotFPtop=\skip46
+\rotFPbot=\skip47
+\rot@float@box=\box32
+\rot@mess@toks=\toks18
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+\epsfxsize=\dimen115
+\epsfysize=\dimen116
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2007/09/30 v1.0 Managing graphics extensions (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/02/22 v3.7 Keyval support for LaTeX options (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2010/03/01 v1.9 Key value parser (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2010/01/28 v1.3 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2010/04/01 v0.9 Utility functions of pdfTeX for LuaTeX (HO)
+
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2010/04/26 v1.7 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 436.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+(/usr/local/texlive/2010/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2009/05/18 v2.2 Customized lists
+\enit@toks=\toks19
+\labelindent=\skip48
+\enit@outerparindent=\dimen117
+\enitdp@desc=\count98
+)
+No file Morgan_20120412.aux.
+\openout1 = `Morgan_20120412.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+(/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count99
+\scratchdimen=\dimen118
+\scratchbox=\box33
+\nofMPsegments=\count100
+\nofMParguments=\count101
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count102
+\MPscratchDim=\dimen119
+\MPnumerator=\count103
+\everyMPtoPDFconversion=\toks21
+)
+AAS preprint substyle, v5.2 <12 Dec 2003>.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 54.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 54.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 54.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+
+Package natbib Warning: Citation `eddy1974' on page 1 undefined on input line 6
+0.
+
+
+Package natbib Warning: Citation `gosling1974' on page 1 undefined on input lin
+e 60.
+
+
+Package natbib Warning: Citation `brueckner1995' on page 1 undefined on input l
+ine 60.
+
+
+Package natbib Warning: Citation `domingo1995' on page 1 undefined on input lin
+e 60.
+
+
+Package natbib Warning: Citation `howard2002' on page 1 undefined on input line
+ 60.
+
+
+Package natbib Warning: Citation `kaiser2005' on page 1 undefined on input line
+ 60.
+
+
+Package natbib Warning: Citation `yashiro2004' on page 1 undefined on input lin
+e 60.
+
+
+Package natbib Warning: Citation `robbrecht2004' on page 1 undefined on input l
+ine 60.
+
+
+Package natbib Warning: Citation `olmedo2008' on page 1 undefined on input line
+ 60.
+
+
+Package natbib Warning: Citation `gopalswamy2001' on page 1 undefined on input 
+line 60.
+
+
+Package natbib Warning: Citation `bewsher2008' on page 1 undefined on input lin
+e 60.
+
+
+Package natbib Warning: Citation `byrne2011' on page 1 undefined on input line 
+60.
+
+[1
+
+{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `morgan2009' on page 2 undefined on input line
+ 62.
+
+
+Package natbib Warning: Citation `morgan2010structure' on page 2 undefined on i
+nput line 62.
+
+
+Package natbib Warning: Citation `frazin2009' on page 2 undefined on input line
+ 62.
+
+
+Package natbib Warning: Citation `koutchmy1988' on page 2 undefined on input li
+ne 64.
+
+
+Package natbib Warning: Citation `koutchmy1992' on page 2 undefined on input li
+ne 64.
+
+
+Package natbib Warning: Citation `stenborg2003' on page 2 undefined on input li
+ne 64.
+
+
+Package natbib Warning: Citation `byrne2009' on page 2 undefined on input line 
+64.
+
+
+Package natbib Warning: Citation `gallagher2011' on page 2 undefined on input l
+ine 64.
+
+
+Package natbib Warning: Citation `byrne2010' on page 2 undefined on input line 
+64.
+
+
+Package natbib Warning: Citation `byrne2009' on page 2 undefined on input line 
+66.
+
+
+Package natbib Warning: Citation `morgan2010cme' on page 2 undefined on input l
+ine 66.
+
+
+LaTeX Warning: Reference `method1' on page 2 undefined on input line 66.
+
+
+LaTeX Warning: Reference `method2' on page 2 undefined on input line 66.
+
+
+LaTeX Warning: Reference `results' on page 2 undefined on input line 66.
+
+
+LaTeX Warning: Reference `discussion' on page 2 undefined on input line 66.
+
+
+LaTeX Warning: Reference `conclusions' on page 2 undefined on input line 66.
+
+[2]
+
+Package natbib Warning: Citation `morgan2009' on page 3 undefined on input line
+ 75.
+
+
+Package natbib Warning: Citation `morgan2010structure' on page 3 undefined on i
+nput line 75.
+
+
+LaTeX Warning: Reference `tomo' on page 3 undefined on input line 75.
+
+
+Package natbib Warning: Citation `morgan2009' on page 3 undefined on input line
+ 75.
+
+[3]
+
+Package natbib Warning: Citation `doyle1999' on page 4 undefined on input line 
+78.
+
+
+Package natbib Warning: Citation `guhathakurta1996' on page 4 undefined on inpu
+t line 78.
+
+
+Package natbib Warning: Citation `gibson2003' on page 4 undefined on input line
+ 78.
+
+
+LaTeX Warning: Reference `tomo' on page 4 undefined on input line 82.
+
+
+Package natbib Warning: Citation `guhathakurta1996' on page 4 undefined on inpu
+t line 82.
+
+
+Package natbib Warning: Citation `doyle1999' on page 4 undefined on input line 
+87.
+
+
+Package natbib Warning: Citation `guhathakurta1996' on page 4 undefined on inpu
+t line 91.
+
+
+Package natbib Warning: Citation `van1950' on page 4 undefined on input line 93
+.
+
+
+Package natbib Warning: Citation `quemerais2002' on page 4 undefined on input l
+ine 93.
+
+
+LaTeX Warning: Reference `coronamodel' on page 4 undefined on input line 93.
+
+[4]
+
+Package natbib Warning: Citation `thernisien2006' on page 5 undefined on input 
+line 100.
+
+
+LaTeX Warning: Reference `gh' on page 5 undefined on input line 106.
+
+
+LaTeX Warning: Reference `cmemodel' on page 5 undefined on input line 106.
+
+
+LaTeX Warning: Reference `cmetable' on page 5 undefined on input line 106.
+
+
+LaTeX Warning: Reference `gh' on page 5 undefined on input line 123.
+
+
+LaTeX Warning: Reference `cmetable' on page 5 undefined on input line 128.
+
+[5]
+
+Package natbib Warning: Citation `morgan2006' on page 6 undefined on input line
+ 135.
+
+
+LaTeX Warning: Reference `nrgf' on page 6 undefined on input line 135.
+
+
+LaTeX Warning: Reference `nrgf' on page 6 undefined on input line 135.
+
+
+LaTeX Warning: Reference `nrgfeq' on page 6 undefined on input line 140.
+
+
+LaTeX Warning: Reference `nrgfeq' on page 6 undefined on input line 142.
+
+
+LaTeX Warning: Reference `nrgf' on page 6 undefined on input line 142.
+
+
+LaTeX Warning: Reference `nrgf' on page 6 undefined on input line 142.
+
+
+Package natbib Warning: Citation `morgan2007empiricalmodel' on page 6 undefined
+ on input line 142.
+
+
+Package natbib Warning: Citation `morgan2007twistingsheets' on page 6 undefined
+ on input line 142.
+
+
+Package natbib Warning: Citation `morgan2010structure' on page 6 undefined on i
+nput line 142.
+
+
+Package natbib Warning: Citation `he2009' on page 6 undefined on input line 142
+.
+
+
+Package natbib Warning: Citation `wang2010' on page 6 undefined on input line 1
+42.
+
+
+Package natbib Warning: Citation `kienreich2009' on page 6 undefined on input l
+ine 142.
+
+
+Package natbib Warning: Citation `lugaz2009' on page 6 undefined on input line 
+142.
+
+
+Package natbib Warning: Citation `frazin2009' on page 6 undefined on input line
+ 142.
+
+
+Package natbib Warning: Citation `habbal2007' on page 6 undefined on input line
+ 142.
+
+
+Package natbib Warning: Citation `habbal2011' on page 6 undefined on input line
+ 142.
+
+
+Package natbib Warning: Citation `druckmullerova2011' on page 6 undefined on in
+put line 142.
+
+
+LaTeX Warning: Reference `nrgfeq' on page 6 undefined on input line 145.
+
+[6]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 147.
+
+ (/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 147.
+
+
+LaTeX Warning: Reference `nrgfeq' on page 7 undefined on input line 151.
+
+
+LaTeX Warning: Reference `nrgfproc' on page 7 undefined on input line 153.
+
+
+LaTeX Warning: Reference `polar' on page 7 undefined on input line 157.
+
+
+LaTeX Warning: Reference `polar' on page 7 undefined on input line 157.
+
+
+LaTeX Warning: Reference `polar' on page 7 undefined on input line 157.
+
+[7]
+
+LaTeX Warning: Reference `convergence' on page 8 undefined on input line 182.
+
+
+LaTeX Warning: Reference `polar' on page 8 undefined on input line 182.
+
+[8]
+
+LaTeX Warning: Reference `res1' on page 9 undefined on input line 193.
+
+
+LaTeX Warning: Reference `res1' on page 9 undefined on input line 196.
+
+[9]
+
+LaTeX Warning: Reference `res3' on page 10 undefined on input line 198.
+
+
+LaTeX Warning: Reference `c2res' on page 10 undefined on input line 202.
+
+
+LaTeX Warning: Reference `c3res' on page 10 undefined on input line 202.
+
+
+LaTeX Warning: Reference `c3res' on page 10 undefined on input line 202.
+
+
+LaTeX Warning: Reference `halo' on page 10 undefined on input line 204.
+
+
+Package natbib Warning: Citation `bisi2010' on page 10 undefined on input line 
+204.
+
+
+LaTeX Warning: Reference `secchi' on page 10 undefined on input line 207.
+
+
+Package natbib Warning: Citation `frazin2009' on page 10 undefined on input lin
+e 207.
+
+
+Overfull \hbox (1.94485pt too wide) in paragraph at lines 207--208
+[]\OT1/cmr/m/n/10.95 The tech-nique is suc-cess-fully ap-plied to the COR 2/SEC
+-CHI coro-n-a-graphs aboard the STEREO
+ []
+
+[10]
+
+LaTeX Warning: Reference `nrgfeq' on page 11 undefined on input line 213.
+
+
+LaTeX Warning: Reference `nrgfeq' on page 11 undefined on input line 218.
+
+
+Package natbib Warning: Citation `morgan2011rotation' on page 11 undefined on i
+nput line 218.
+
+
+Package natbib Warning: Citation `morgan2011solmin' on page 11 undefined on inp
+ut line 218.
+
+
+Package natbib Warning: Citation `morgan2010structure' on page 11 undefined on 
+input line 218.
+
+
+LaTeX Warning: Reference `absb' on page 11 undefined on input line 226.
+
+
+LaTeX Warning: Reference `nrgfeqinv2' on page 11 undefined on input line 226.
+
+[11]
+
+Package natbib Warning: Citation `lemen2011' on page 12 undefined on input line
+ 231.
+
+
+Package natbib Warning: Citation `morgan2007fcorona' on page 12 undefined on in
+put line 233.
+
+[12]
+Missing character: There is no Õ in font cmr10!
+ [13] [14] [15] [16] [17]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `bp') on input line 441.
+
+
+LaTeX Warning: File `fig1.pdf' not found on input line 443.
+
+
+./Morgan_20120412.tex:443: Package pdftex.def Error: File `fig1.pdf' not found.
+
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.443 \includegraphics[width=8.5cm]{fig1.pdf}
+                                             
+? 
+./Morgan_20120412.tex:443: Emergency stop.
+ ...                                              
+                                                  
+l.443 \includegraphics[width=8.5cm]{fig1.pdf}
+                                             
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 3080 strings out of 493738
+ 41201 string characters out of 3143023
+ 102618 words of memory out of 3000000
+ 6322 multiletter control sequences out of 15000+200000
+ 13673 words of font info for 55 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 41i,11n,26p,1771b,376s stack positions out of 5000i,500n,10000p,200000b,50000s
+./Morgan_20120412.tex:443:  ==> Fatal error occurred, no output PDF file produc
+ed!

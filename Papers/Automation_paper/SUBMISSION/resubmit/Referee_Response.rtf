@@ -1,0 +1,244 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red63\green0\blue63;\red26\green26\blue26;}
+\margl1440\margr1440\vieww18000\viewh24340\viewkind0
+\deftab720
+\pard\pardeftab720\ql\qnatural
+
+\f0\fs30 \cf2 ----------------------------------------------------------------------\
+Referee Report - Authors' Response\
+\
+We thank the referee for their detailed review and helpful comments which we address individually below. In light of some of the thoughts evoked in us by the referee's report, parts of the paper have been edited further than just those bits noted by the referee, which we have listed below. All changes have been highlighted in bold in the updated paper.\
+\
+
+\i Reviewer's Comments:\
+This paper presents a full discussion of an automated implementation of a multiscale decomposition approach to CME detection. The combination of the multiscale analysis used here and the deconvolution technique outlined in Paper 1 will allow a rigorous analysis of both CMEs and the quiescent corona through which they pass. I recommend this paper for publication in ApJ subject to clarification of the issues attached below.\
+\
+Comments:\
+\
+What form did the ten test events used to threshold the intensity magnitude and the CME masks take? Was there a mix of clean and messy events? Were the events similar to each other or was there a broad spectrum of halos, partial halos and limb events?
+\i0 \
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 The test events were initially a selection of CMEs comprising five of the LASCO events in Byrne et al. A&A (2009), plus others that were pulled out of the database that certainly encompass noisy events, some very kinked or disjoint events, and halos (partial and full). In fact, it has really gone beyond ten events since others have been inspected as testing has proceeded, but a variety of ten seemed like a safe initial testbed to motivate the thresholds. The following line in the paper has been edited to specify this somewhat:\
+\pard\pardeftab720\ql\qnatural
+\cf0 Section 2.2, p. 5: "\'85\cf3 resulting from inspection of the method applied to a sample of ten different CMEs of varying speeds, widths and noise levels."\cf0 \
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Would it be possible to include a cleaner CME profile as part of Figure 2 to allow a comparison?\
+
+\i0 \'a0\
+\pard\pardeftab720\ql\qnatural
+\cf0 Figure 2 has been adapted to include an interval of dates containing some typical cleaner CME detections for comparison.\
+\pard\pardeftab720\ql\qnatural
+\cf2 \'a0\
+
+\i Why was 7 degrees chosen as the threshold value for the automated detection of CMEs? Was this chosen arbitrarily or based on previous work? If so, then please provide a citation.\
+
+\i0 \'a0\
+\pard\pardeftab720\ql\qnatural
+\cf0 This was chosen based upon the original threshold used in CACTus (Robbrecht & Berghmans, A&A 2004), which in private communication was apparently based upon the smallest CME width listed in the CDAW catalogue at the time. For CACTus version 2 this threshold has been lowered to 5 degrees, so a note has been added to the text to say that the same could be done for CORIMP in future:\
+Section 2.3, p. 8: "Detections that span $<$\\,7$^\{\\circ\}$ and do not have adjoining detections within 7$^\{\\circ\}$ are discarded (chosen to match the original threshold in CACTus\'a0based on the smallest widths in CDAW. Although since this threshold is implemented after the detections have been made, a lower threshold may be defined for direct comparison with the second version of CACTus if so desired)."\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i How does the algorithm perform when faced with a full halo CME? Although reference has been made to the intensity variation within a full halo CME in the text, this does not appear to have been supported by an analysis of a real (or simulated) full halo event.\
+
+\i0 \'a0\
+\pard\pardeftab720\ql\qnatural
+\cf0 Halo CMEs represent the limit of the algorithms, since they tend to be faint and disjoint. This means they can more easily pass under the threshold limits. However, it seems unlikely (from the samples used here) that an entire halo would go undetected, with the algorithms detecting at least parts of those tested. Discussion to this effect has been added in the context of the SECCHI observations where the CME appears as a halo from STEREO Ahead and Behind:\
+Section 3.1, p. 10: "Note that the CME appears as a halo from the perspective of the STEREO Ahead and Behind spacecrafts. This represents the most difficult class of events to be automatically detected, since halos tend to be faint and somewhat disjoint in the images, sometimes failing to surpass the detection thresholds. Thus, as has happened here, parts of a halo CME can go undetected."\
+Mention of it in the context of the models has also been added to the final paragraph of Section 3.2, p. 12.\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Considering that the authors intend to incorporate this technique as part of the SDO Feature Finding Team, a brief discussion of the limits of the algorithm would be interesting. Will the algorithm be able to detect all CMEs regardless of kinematics, angular extent and intensity or are there limits to the CMEs that can be detected?\
+
+\i0 \
+\pard\pardeftab720\ql\qnatural
+\cf0 Now that the caveat of halo CMEs being potentially undetected has been added to the text, we feel the limits of the algorithm are satisfactorily outlined at the relevant sections in the paper, so an additional discussion could be repetitive. To be specific, the thresholds that are explicitly stated are: intensity of 1.5 sigma; angular mask cut-offs; edge strengths of 1 median absolute deviation; minimum angular width of 7 degrees; grouping of at least 3 detections in the detection stack. And we state the useable ranges of the fields-of-view. The model employed also shows a case of when two blob CMEs occur very close in space and time as an example of when CMEs become difficult to distinguish from each other. It should be clear from the paper too, that the limiting factor regarding the kinematics is if the CME is so fast and so clean that it only has two detections in the detection stack. But even then (since this threshold acts in either the angular or time direction of the detection stack) they have to be very clean, cohesive detections on the CME structure, which is extremely unlikely for such eruptive CMEs (or any CME really). It should be further noted, as with the angular width thresholds, that this still only means the detections are removed in the detection stack cleaning process, and not that they haven't actually been made, which again should be clear from the details in the paper.\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+\
+\
+Minor issues:\
+\
+No reference is made to either of the two movies attached to the paper.\
+\pard\pardeftab720\ql\qnatural
+\cf0 References added.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 1, p. 2; "Their geometry is attributed...low plasma-B environment of the solar corona" -> This is poorly written, rephrase.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 "Their geometry is attributed to the underlying magnetic field, generally believed to have a flux-rope configuration. The eruption of the CME is triggered by a loss of stability and its subsequent outward motion is governed by the interplay of magnetic and gas pressure forces in the low plasma-$\\beta$ environment of the solar corona."\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 1, p. 2; "This often comprises of an initiation phase.." -> "This often consists of an initiation phase.."\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 1, p. 2; "But these automated catalogues have their limitations.." -> This is poor grammar, rephrase.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 \'a0"However, these automated catalogues have their limitations. For example..."\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 1, p. 2; "In this paper we outline our application of multiscale filtering techniques in an automated sense.." -> Rephrase\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 \'a0"In this paper we discuss a new coronal image processing (CORIMP) technique for detecting and tracking CMEs. We outline our application of an automated multiscale filtering technique,..."\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 1, p. 2; "(Morgan et al. 2012)(Morgan et al. 2012, hereafter referred to as Paper 1)" -> just "(Morgan et al. 2012, hereafter referred to as Paper 1)"\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 2, p. 3 & Figure 1b; I would suggest adding arrows to indicate the comet and planet Mercury referred to in the text as these are not immediately clear in Figure 1b.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done. Indeed Figure 1 has been overhauled with the latest processing, giving cleaner results.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Figure 1; What is the intensity scale used in panels c and d?\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 It is arbitrary, simply indicating the relative strength of the edges detected in the images. This has been added to the text of Section 2.1 when referring to the figure: "(with intensity showing the relative edge strengths)"\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 2.1, p. 3; "The fundamental equat5ion..." -> "The fundamental equation..."\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 2.2, p. 5; "The discarded finer scales detail mostly the noise.." -> "The discarded finer scales mostly detail the noise.."\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 2.2, p. 5; "...since they meet the criteria that they are..." -> "...since they meet the criterion that they are..." This should be singular, not plural.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 2.2, p. 5; Figures 1g, h show the CME detection mask, not Figures 1e, f. Similarly on p. 6, Figures 1i, j show the resultant CME structure detections, not Figures 1g, h.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 2.3, p. 6; "...decreasing height as it falls toward the Sun. And the planet Mercury..." -> This is poor grammar, rephrase.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 "The planets Mercury and Jupiter show a change in position angle, along with a slight change in height, as they traverse the fields-of-view...."\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 2.3, p. 7; "Because of the chance that persistent..." -> Rephrase.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 "Since there exists the possibility that persistent..."\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Figures 3, 4 & 9; The Y-axis of the different distance-time plots should be in Rsun, especially considering that units of Rsun are used consistently for distance measurements throughout the paper.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 3.3, p. 12; Is there a reference for equations 9, 10 & 11?\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 The following text and reference have been added: "The model kinematic profiles are described by the following equations, based on a variation of the acceleration function chosen by Gallagher et al. (2003)..."\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 3.3, p. 12; "But given these inherent..." -> Rephrase.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 "Nonetheless, given these inherent..."\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 4, p. 14; "...the drawbacks of current cataloging procedures for investigating CME dynamics was highlighted..." -> "...the drawbacks of current cataloging procedures for investigating CME dynamics were highlighted..."\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 4, p. 14; "...dataset to inspect statistics of the thousands of events." -> Rephrase.\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 "...dataset and inspecting the statistics across thousands of events."\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 4, p. 14; "The multiscale filtering lends itself to reveal the..." -> Rephrase\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 "The multiscale filtering technique reveals the..."\'a0\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+
+\i Section 4, p. 14; "And furthermore, the spread..." -> "Furthermore, the spread..."\
+\pard\pardeftab720\ql\qnatural
+
+\i0 \cf0 Done.\'a0\
+\
+\
+Further changes:\
+\
+All events were reprocessed with the recently updated versions of the codes, giving cleaner results reflected in the new figures and animations.\
+\
+Added the name CORIMP to refer to the methods and cataloguing efforts outlined throughout the paper.\
+\
+Abstract: changed last word from "community" to "public".\
+\
+Section 2.3, p. 6-7: Edited content in light of the new median-absolute-deviation threshold on the edge strengths, as well as the new Figure 2.\
+\
+Section 2.3, p. 8: Included the reference to Temmer et al., 2010.\
+\
+Section 3.1, p. 8-9: The paragraph discussing the events in Figure 3 was lengthened, with part of the caption of Figure 3 moved to the text.\
+\
+Section 3.2, p. 12: Edited the final paragraph.\
+\
+Section 3.3, p. 12: Edited the first paragraph to explain that the median-absolute-deviation threshold was not appropriate for testing the kinematics of the model CME detections.\
+\
+Fig. 2: Edited caption to match new figure.\
+\
+Fig. 8: Re-scaled to better show the relative angular spans of CMEs A and B.\
+\
+Animation 1 caption:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f1\fs27\fsmilli13963 \cf0 Animation of the sample output of the CORIMP automatic CME detection and tracking technique applied to LASCO/C2 and C3 images for 2000 January 2, 2000 April 18, 2000 April 23, and 2011 January 13. Instances of the detections in C2 and C3 are shown for each event, along with the resulting height-time profile corresponding to the tracks of the strongest outermost front (red points on CME) of the overall detected structure (yellow points on CME). Each height-time profile has an associated colorbar that indicates the relevant position angle along which the heights are measured within the angular span of the CME, counter-clockwise from solar north.
+\f0\fs30 \
+\pard\pardeftab720\ql\qnatural
+\cf0 \
+Animation 2 caption:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f1\fs27\fsmilli13963 \cf0 Animation of the sample output of the CORIMP automatic CME detection and tracking technique applied to SECCHI/COR2 A (left) and B (right) images, and LASCO/C3 (centre) images, for 2011 January 13. The CME appears as a partial halo in the STEREO observations, and parts of its front are too faint to be fully detected in the images.}

@@ -1,0 +1,145 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: proposal_text_jpb.aux
+The style file: spr-mp-sola.bst.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=5001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib.bib
+I was expecting a `,' or a `}'---line 1182 of file references.bib.bib
+ : 
+ : pages = 209-222
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1384 of file references.bib.bib
+ :   
+ :   % volume = 257,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1502 of file references.bib.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1740 of file references.bib.bib
+ :    
+ :    %editor = "{Priest, E.~\& Forbes, T.}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1893 of file references.bib.bib
+ :      
+ :      adsnote    = {written by JPB}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1962 of file references.bib.bib
+ :   
+ :   % volume = 4853,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1986 of file references.bib.bib
+ :    
+ :    % pages = {322},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2023 of file references.bib.bib
+ :  
+ :  %  volume = 4,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2110 of file references.bib.bib
+ :   
+ :   % volume = 4139,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2134 of file references.bib.bib
+ :  
+ :  %  volume = 5171,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2256 of file references.bib.bib
+ :     
+ :     %month = ,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2500 of file references.bib.bib
+ :     
+ :     %pages = {1044-1086},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2534 of file references.bib.bib
+ :   
+ :   % series = {Astrophysics and Space Science Library},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2675 of file references.bib.bib
+ :    
+ :    %volume = 6,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2892 of file references.bib.bib
+ :  
+ :  %  volume = 40,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3049 of file references.bib.bib
+ :    
+ :    %editor = "{}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 3 entries,
+            5989 wiz_defined-function locations,
+            1023 strings with 8298 characters,
+and the built_in function-call counts, 13727 in all, are:
+= -- 1829
+> -- 115
+< -- 53
++ -- 511
+- -- 46
+* -- 845
+:= -- 2617
+add.period$ -- 6
+call.type$ -- 3
+change.case$ -- 16
+chr.to.int$ -- 147
+cite$ -- 3
+duplicate$ -- 153
+empty$ -- 767
+format.name$ -- 83
+if$ -- 3228
+int.to.chr$ -- 1
+int.to.str$ -- 2
+missing$ -- 0
+newline$ -- 83
+num.names$ -- 16
+pop$ -- 62
+preamble$ -- 1
+purify$ -- 13
+quote$ -- 0
+skip$ -- 989
+stack$ -- 0
+substring$ -- 1732
+swap$ -- 86
+text.length$ -- 36
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 93
+warning$ -- 0
+while$ -- 91
+width$ -- 0
+write$ -- 100
+(There were 16 error messages)

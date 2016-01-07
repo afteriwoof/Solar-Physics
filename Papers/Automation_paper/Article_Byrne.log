@@ -1,0 +1,480 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.1.11)  3 FEB 2012 18:25
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**Article_Byrne.tex
+(./Article_Byrne.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, farsi, finnish, french,
+ galician, german, ngerman, swissgerman, monogreek, greek, hungarian, icelandic
+, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, oriya, panja
+bi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji, lao, lati
+n, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, polish, portu
+guese, romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedis
+h, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/aastex/aastex.cls
+Document Class: aastex 2005/06/22 5.2/AAS markup document class
+Class aastex Info: Original \LaTeX2.09 style by Chris Biemesderfer (chris@seago
+at.com). Adapted to \LaTeXe by A. Ogawa (ogawa@teleport.com) on input line 83.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/11/26 v0.05c Graphics/color for pdfTeX
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+(/usr/local/texlive/2010/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip43
+\bibsep=\skip44
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count88
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks16
+\verbatim@line=\toks17
+\verbatim@in@stream=\read1
+)
+\@slugcmmntwidth=\dimen105
+\abstract@box=\box26
+\c@editornote=\count89
+\c@cureqno=\count90
+\tnotemarkskip=\skip45
+\@abovenoteskip=\dimen106
+\pt@box=\box27
+\pt@width=\dimen107
+\pt@line=\count91
+\pt@column=\count92
+\pt@nlines=\count93
+\pt@ncol=\count94
+\pt@page=\count95
+\tabbaseskip=\dimen108
+\pt@tmpcapwidth=\dimen109
+\spew@tblnotesbox=\box28
+\restof@tblnotesbox=\box29
+\noteheight=\dimen110
+\pt@tabnoteminht=\dimen111
+\firsttabskip=\dimen112
+\captionbox=\box30
+\pt@reduceline=\dimen113
+\extra@vspace=\dimen114
+\c@plate=\count96
+\my@footins=\box31
+)
+(./Article_Byrne.aux)
+\openout1 = `Article_Byrne.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+
+(/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count97
+\scratchdimen=\dimen115
+\scratchbox=\box32
+\nofMPsegments=\count98
+\nofMParguments=\count99
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count100
+\MPscratchDim=\dimen116
+\MPnumerator=\count101
+\everyMPtoPDFconversion=\toks19
+) (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2010/04/01 v0.9 Utility functions of pdfTeX for LuaTeX (HO)
+
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2010/04/26 v1.7 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2007/09/30 v1.0 Managing graphics extensions (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/02/22 v3.7 Keyval support for LaTeX options (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2010/03/01 v1.9 Key value parser (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2010/01/28 v1.3 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 436.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+AAS 2-column preprint substyle, v5.2 <12 Dec 2003>.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 149.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 149.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 149.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+Underfull \hbox (badness 1424) in paragraph at lines 151--152
+\OT1/cmr/m/n/10 stud-ied ex-ten-sively since they were first dis-
+ []
+
+[1{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+[2]
+Package epstopdf Info: Source file: <images/figure_data10_orig.eps>
+(epstopdf)                    date: 2012-02-03 12:33:21
+(epstopdf)                    size: 10104627 bytes
+(epstopdf)             Output file: <images/figure_data10_orig-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2012-02-03 12:34:59
+(epstopdf)                    size: 3228273 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_data10_orig-e
+ps-converted-to.pdf images/figure_data10_orig.eps>
+(epstopdf)             \includegraphics on input line 174.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_data10_orig-eps-converted-to.pdf, id=24, 284.06125pt x 560.0925p
+t>
+File: images/figure_data10_orig-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/figure_data10_orig-eps-converted-to.pdf> [3]
+
+LaTeX Warning: Text page 4 contains only floats.
+
+
+Overfull \vbox (29.56885pt too high) has occurred while \output is active []
+
+
+
+LaTeX Warning: Text page 4 contains only floats.
+
+
+Overfull \vbox (29.56885pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (15.56885pt too high) has occurred while \output is active []
+
+
+[4 <./images/figure_data10_orig-eps-converted-to.pdf>] [5]
+Package epstopdf Info: Source file: <images/figure_20100312_stack.eps>
+(epstopdf)                    date: 2012-02-03 14:19:19
+(epstopdf)                    size: 89724 bytes
+(epstopdf)             Output file: <images/figure_20100312_stack-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2012-02-03 14:20:26
+(epstopdf)                    size: 23246 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_20100312_stac
+k-eps-converted-to.pdf images/figure_20100312_stack.eps>
+(epstopdf)             \includegraphics on input line 247.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_20100312_stack-eps-converted-to.pdf, id=53, 540.0175pt x 284.061
+25pt>
+File: images/figure_20100312_stack-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use images/figure_20100312_stack-eps-converted-to.pdf> [6 <./images/figure_20
+100312_stack-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <images/figure_events.eps>
+(epstopdf)                    date: 2012-02-03 16:28:41
+(epstopdf)                    size: 21040350 bytes
+(epstopdf)             Output file: <images/figure_events-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2012-02-03 16:30:14
+(epstopdf)                    size: 4348108 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_events-eps-co
+nverted-to.pdf images/figure_events.eps>
+(epstopdf)             \includegraphics on input line 273.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_events-eps-converted-to.pdf, id=61, 380.42125pt x 456.70625pt>
+File: images/figure_events-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/figure_events-eps-converted-to.pdf>
+Package epstopdf Info: Source file: <images/figure_events_secchi.eps>
+(epstopdf)                    date: 2012-02-03 15:27:49
+(epstopdf)                    size: 4424076 bytes
+(epstopdf)             Output file: <images/figure_events_secchi-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2012-02-03 15:29:10
+(epstopdf)                    size: 699643 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_events_secchi
+-eps-converted-to.pdf images/figure_events_secchi.eps>
+(epstopdf)             \includegraphics on input line 279.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_events_secchi-eps-converted-to.pdf, id=63, 277.035pt x 246.9225p
+t>
+File: images/figure_events_secchi-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/figure_events_secchi-eps-converted-to.pdf> [7]
+
+LaTeX Warning: Text page 8 contains only floats.
+
+
+LaTeX Warning: Text page 8 contains only floats.
+
+[8 <./images/figure_events-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <images/figure_model8.eps>
+(epstopdf)                    date: 2012-02-03 16:54:20
+(epstopdf)                    size: 5058150 bytes
+(epstopdf)             Output file: <images/figure_model8-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2012-02-03 16:55:21
+(epstopdf)                    size: 1115116 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_model8-eps-co
+nverted-to.pdf images/figure_model8.eps>
+(epstopdf)             \includegraphics on input line 294.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_model8-eps-converted-to.pdf, id=84, 292.09125pt x 453.695pt>
+File: images/figure_model8-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/figure_model8-eps-converted-to.pdf>
+Package epstopdf Info: Source file: <images/figure_model8_2.eps>
+(epstopdf)                    date: 2012-02-03 17:02:44
+(epstopdf)                    size: 4157407 bytes
+(epstopdf)             Output file: <images/figure_model8_2-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2012-02-03 17:03:58
+(epstopdf)                    size: 856012 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_model8_2-eps-
+converted-to.pdf images/figure_model8_2.eps>
+(epstopdf)             \includegraphics on input line 300.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_model8_2-eps-converted-to.pdf, id=86, 292.09125pt x 453.695pt>
+File: images/figure_model8_2-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/figure_model8_2-eps-converted-to.pdf> [9 <./images/figure_events_se
+cchi-eps-converted-to.pdf>] [10 <./images/figure_model8-eps-converted-to.pdf> <
+./images/figure_model8_2-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <images/figure_model_stack.eps>
+(epstopdf)                    date: 2012-02-03 13:49:51
+(epstopdf)                    size: 84295 bytes
+(epstopdf)             Output file: <images/figure_model_stack-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2012-02-03 13:50:13
+(epstopdf)                    size: 17895 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_model_stack-e
+ps-converted-to.pdf images/figure_model_stack.eps>
+(epstopdf)             \includegraphics on input line 319.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_model_stack-eps-converted-to.pdf, id=126, 511.9125pt x 284.06125
+pt>
+File: images/figure_model_stack-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/figure_model_stack-eps-converted-to.pdf>
+Package epstopdf Info: Source file: <images/figure_model_vel_angles_CMEsAB.eps>
+
+(epstopdf)                    date: 2012-02-03 17:08:16
+(epstopdf)                    size: 65266 bytes
+(epstopdf)             Output file: <images/figure_model_vel_angles_CMEsAB-eps-
+converted-to.pdf>
+(epstopdf)                    date: 2012-02-03 17:08:50
+(epstopdf)                    size: 30080 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_model_vel_ang
+les_CMEsAB-eps-converted-to.pdf images/figure_model_vel_angles_CMEsAB.eps>
+(epstopdf)             \includegraphics on input line 327.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_model_vel_angles_CMEsAB-eps-converted-to.pdf, id=128, 357.335pt 
+x 453.695pt>
+File: images/figure_model_vel_angles_CMEsAB-eps-converted-to.pdf Graphic file (
+type pdf)
+ <use images/figure_model_vel_angles_CMEsAB-eps-converted-to.pdf>
+[11 <./images/figure_model_stack-eps-converted-to.pdf> <./images/figure_model_v
+el_angles_CMEsAB-eps-converted-to.pdf>]
+Underfull \hbox (badness 2884) in paragraph at lines 336--337
+[]\OT1/cmr/m/n/10 The de-tec-tion re-gions are cleaned and
+ []
+
+Package epstopdf Info: Source file: <images/figure_model_histograms.eps>
+(epstopdf)                    date: 2012-02-03 17:50:33
+(epstopdf)                    size: 229446 bytes
+(epstopdf)             Output file: <images/figure_model_histograms-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2012-02-03 17:51:23
+(epstopdf)                    size: 80542 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_model_histogr
+ams-eps-converted-to.pdf images/figure_model_histograms.eps>
+(epstopdf)             \includegraphics on input line 346.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_model_histograms-eps-converted-to.pdf, id=141, 511.9125pt x 605.
+26125pt>
+File: images/figure_model_histograms-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use images/figure_model_histograms-eps-converted-to.pdf> [12]
+
+LaTeX Warning: Text page 13 contains only floats.
+
+
+Overfull \vbox (20.518pt too high) has occurred while \output is active []
+
+
+
+LaTeX Warning: Text page 13 contains only floats.
+
+
+Overfull \vbox (20.518pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (6.518pt too high) has occurred while \output is active []
+
+ [13 <./images/figure_model_histograms-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <images/figure_peak_accel.eps>
+(epstopdf)                    date: 2012-02-03 18:06:51
+(epstopdf)                    size: 2934284 bytes
+(epstopdf)             Output file: <images/figure_peak_accel-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2012-02-03 18:07:46
+(epstopdf)                    size: 392903 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/figure_peak_accel-ep
+s-converted-to.pdf images/figure_peak_accel.eps>
+(epstopdf)             \includegraphics on input line 366.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/figure_peak_accel-eps-converted-to.pdf, id=155, 959.585pt x 1096.095pt>
+File: images/figure_peak_accel-eps-converted-to.pdf Graphic file (type pdf)
+<use images/figure_peak_accel-eps-converted-to.pdf> [14 <./images/figure_peak_a
+ccel-eps-converted-to.pdf>]
+Overfull \hbox (1.4115pt too wide) in paragraph at lines 390--391
+[]\OT1/cmr/m/n/10 This work is sup-ported by SHINE grant 0962716
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 390--391
+\OT1/cmr/m/n/10 d'Astronomie (France), and the Uni-ver-sity of
+ []
+
+(./Article_Byrne.bbl [15]) [16] (./Article_Byrne.aux) ) 
+Here is how much of TeX's memory you used:
+ 2817 strings out of 493738
+ 39821 string characters out of 3143023
+ 101688 words of memory out of 3000000
+ 6066 multiletter control sequences out of 15000+200000
+ 12998 words of font info for 54 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 38i,8n,26p,2564b,297s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2010
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2010/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2010/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2010/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2010/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2010/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2010/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2010/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2010/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2010/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2010/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2010/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr9.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmti10.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti9.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt10.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfont
+s/symbols/msbm10.pfb>
+Output written on Article_Byrne.pdf (16 pages, 11047613 bytes).
+PDF statistics:
+ 237 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,395 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.1.11)  20 APR 2011 15:56
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**template.tex
+(./template.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, farsi, finnish, french,
+ galician, german, ngerman, swissgerman, monogreek, greek, hungarian, icelandic
+, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, oriya, panja
+bi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji, lao, lati
+n, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, polish, portu
+guese, romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedis
+h, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded.
+(./SolarPhysics.cls
+Document Class: SolarPhysics 2009/10/08 (version 1.3) Springer base document cl
+ass for "Solar Physics" journal
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+
+
+Package amsfonts Warning: The 'psamsfonts' option is obsolete in AMSFonts v3.
+
+\@emptytoks=\toks14
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+)) (/usr/local/texlive/2010/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
+\symwasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
+)
+\@cla=\count79
+\@clb=\count80
+\bdj=\box26
+\tracingkluwer=\count81
+\id@boxheight=\dimen102
+\topsepm@th=\skip41
+\aobox=\box27
+\@temptokenb=\toks15
+\cnt@authors=\count82
+\cnt@institutes=\count83
+\@abstractbox=\box28
+\mottobox=\box29
+\logotoks=\toks16
+\c@outputpage=\count84
+\c@article=\count85
+\stretchtabsep=\skip42
+\maxfloatwidth=\dimen103
+\figtabbox=\box30
+\floatindent=\dimen104
+\@tabskip=\dimen105
+\captionskip=\dimen106
+\@tabwidth=\dimen107
+\captionindent=\dimen108
+\@floatcaption=\toks17
+\abovecaptionskip=\skip43
+\belowcaptionskip=\skip44
+\c@table=\count86
+\c@tabnote=\count87
+\c@figure=\count88
+\c@algorithm=\count89
+\rotdimen=\dimen109
+\c@endnote=\count90
+\endnotesep=\dimen110
+\@endnotes=\write3
+\bibhang=\skip45
+
+Springer -- Named references
+\eqnoindent=\dimen111
+\theoremsep=\dimen112
+\dispsep=\dimen113
+\items@ve=\skip46
+\labels@ve=\skip47
+\c@part=\count91
+\c@section=\count92
+\c@subsection=\count93
+\c@subsubsection=\count94
+\c@paragraph=\count95
+\c@subparagraph=\count96
+) (/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/11/26 v0.05c Graphics/color for pdfTeX
+\Gread@gobject=\count97
+))
+\Gin@req@height=\dimen114
+\Gin@req@width=\dimen115
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(./spr-sola-addons.sty
+Package: spr-sola-addons 2006/12/13Springer style for SOLA journal (DG)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip48
+\bibsep=\skip49
+LaTeX Info: Redefining \cite on input line 694.
+LaTeX Info: Redefining \citeauthor on input line 712.
+LaTeX Info: Redefining \citeyear on input line 735.
+\c@NAT@ctr=\count98
+)
+\c@start=\count99
+)
+(./template.aux)
+\openout1 = `template.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+
+(/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count100
+\scratchdimen=\dimen116
+\scratchbox=\box31
+\nofMPsegments=\count101
+\nofMParguments=\count102
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count103
+\MPscratchDim=\dimen117
+\MPnumerator=\count104
+\everyMPtoPDFconversion=\toks20
+) (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2010/04/01 v0.9 Utility functions of pdfTeX for LuaTeX (HO)
+
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2010/04/26 v1.7 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2007/09/30 v1.0 Managing graphics extensions (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/02/22 v3.7 Keyval support for LaTeX options (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2010/03/01 v1.9 Key value parser (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2010/01/28 v1.3 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 436.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Article 1
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 82.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <13> not available
+(Font)              size <12> substituted on input line 82.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 82.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 82.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+wasy on input line 82.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
+)
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <7> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 82.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 82.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 82.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
+ Abstract [1{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.m
+ap}]
+<images/normalising.pdf, id=16, 614.295pt x 794.97pt>
+File: images/normalising.pdf Graphic file (type pdf)
+
+<use images/normalising.pdf> Figure 1
+Overfull \hbox (7.62454pt too wide) in paragraph at lines 108--109
+\OT1/cmr/m/n/10 The CME cat-a-logue hosted at the Co-or-di-nated Data Anal-y-si
+s Work-shop (CDAW$[]$)|
+ []
+
+[2]
+
+LaTeX Warning: Reference `ihough' on page 3 undefined on input line 121.
+
+
+Overfull \hbox (1.68001pt too wide) in paragraph at lines 121--122
+\OT1/cmr/m/n/10 The Com-puter Aided CME Track-ing cat-a-logue (CAC-Tus$[]$; Rob
+-brecht and Bergh-|
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <./images/normalising.pdf>] <images/SEEDS.pdf, id=34, 928.46875pt x 891.33p
+t>
+File: images/SEEDS.pdf Graphic file (type pdf)
+
+<use images/SEEDS.pdf> Figure 2 [4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5 <./images/SEEDS.pdf>] [6] <images/ARTEMIS.pdf, id=57, 934.49126pt x 921.442
+5pt>
+File: images/ARTEMIS.pdf Graphic file (type pdf)
+
+<use images/ARTEMIS.pdf> Figure 3 [7] [8 <./images/ARTEMIS.pdf>]
+<images/canny_images.pdf, id=75, 614.295pt x 794.97pt>
+File: images/canny_images.pdf Graphic file (type pdf)
+
+<use images/canny_images.pdf> Figure 4
+
+LaTeX Warning: Reference `iVectors' on page 9 undefined on input line 217.
+
+
+LaTeX Warning: Reference `ichapter:kinematics' on page 9 undefined on input lin
+e 217.
+
+[9]
+Underfull \vbox (badness 2142) has occurred while \output is active []
+
+ [10 <./images/canny_images.pdf>] [11] <images/im+filt.pdf, id=96, 794.97pt x 6
+14.295pt>
+File: images/im+filt.pdf Graphic file (type pdf)
+
+<use images/im+filt.pdf> Figure 5
+<images/modalpmapcontour.pdf, id=98, 794.97pt x 614.295pt>
+File: images/modalpmapcontour.pdf Graphic file (type pdf)
+
+<use images/modalpmapcontour.pdf> Figure 6 [12 <./images/im+filt.pdf>]
+<images/colour_contours_distributions.pdf, id=116, 794.97pt x 614.295pt>
+File: images/colour_contours_distributions.pdf Graphic file (type pdf)
+
+<use images/colour_contours_distributions.pdf> Figure 7
+<images/cme_mask.pdf, id=118, 794.97pt x 614.295pt>
+File: images/cme_mask.pdf Graphic file (type pdf)
+ <use images/cme_mask.pdf>
+Figure 8 [13 <./images/modalpmapcontour.pdf>]
+Underfull \vbox (badness 7151) has occurred while \output is active []
+
+ [14 <./images/colour_contours_distributions.pdf> <./images/cme_mask.pdf>]
+<images/20040401_cme_masks.pdf, id=164, 614.295pt x 794.97pt>
+File: images/20040401_cme_masks.pdf Graphic file (type pdf)
+
+<use images/20040401_cme_masks.pdf> Figure 9
+<images/20010423_faint.pdf, id=166, 614.295pt x 794.97pt>
+File: images/20010423_faint.pdf Graphic file (type pdf)
+
+<use images/20010423_faint.pdf> Figure 10
+
+LaTeX Warning: Float too large for page by 28.52924pt on input line 290.
+
+
+Package natbib Warning: Citation `2010gallagher' on page 15 undefined on input 
+line 292.
+
+(./template.bbl [15] [16 <./images/20040401_cme_masks.pdf>] [17 <./images/20010
+423_faint.pdf>] [18]
+Underfull \hbox (badness 1107) in paragraph at lines 242--254
+[]\OT1/cmr/m/n/10 Stenborg, G., Vourl-i-das, A., Howard, R.A.: 2008, A Fresh Vi
+ew of the
+ []
+
+) [19] [20
+
+]
+
+Package natbib Warning: There were undefined citations.
+
+(./template.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.0pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3265 strings out of 493738
+ 41707 string characters out of 3143023
+ 107999 words of memory out of 3000000
+ 6495 multiletter control sequences out of 15000+200000
+ 15164 words of font info for 58 fonts, out of 3000000 for 9000
+ 719 hyphenation exceptions out of 8191
+ 38i,10n,26p,2074b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
+b></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
+sr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local
+/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
+ve/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
+2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2
+010/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/201
+0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2010
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2010/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2010/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2010/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2010/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2010/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2010/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on template.pdf (20 pages, 9648844 bytes).
+PDF statistics:
+ 565 PDF objects out of 1000 (max. 8388607)
+ 184 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+

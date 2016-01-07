@@ -1,0 +1,269 @@
+\begin{thebibliography}{15}
+% BibTex style file: spr-mp-sola.bst (nameyear), 2011-02-21
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{\textit{#1}}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \href  \undefined \def \href#1#2{\textsf{#2}}\fi
+\ifx \doiurl  \undefined \def
+  \doiurl#1{\href{http://dx.doi.org/#1}{\textsf{#1}}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{\textit{#1}}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{\textbf{#1}}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{\textit{#1}}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{}\fi
+\ifx \botherref \undefined \def \botherref#1{}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{}\fi
+\ifx \bbook \undefined \def \bbook#1{}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\def \endbibitem {}
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1} \fi
+
+\bibitem[\protect\citeauthoryear{{Boursier}
+  \textit{et~al.}}{2009}]{2009SoPh..257..125B}
+\begin{barticle}
+\bauthor{\bsnm{{Boursier}}, \binits{Y.}},
+\bauthor{\bsnm{{Lamy}}, \binits{P.}},
+\bauthor{\bsnm{{Llebaria}}, \binits{A.}},
+\bauthor{\bsnm{{Goudail}}, \binits{F.}},
+\bauthor{\bsnm{{Robelus}}, \binits{S.}}:
+\byear{2009},
+\batitle{{The ARTEMIS Catalog of LASCO Coronal Mass Ejections. Automatic
+  Recognition of Transient Events and Marseille Inventory from Synoptic maps}}.
+\bjtitle{\solphys}
+\bvolume{257},
+\bfpage{125}\,--\,\blpage{147}.
+doi:\doiurl{10.1007/s11207-009-9370-5}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Byrne}
+  \textit{et~al.}}{2009}]{2009A&A...495..325B}
+\begin{barticle}
+\bauthor{\bsnm{{Byrne}}, \binits{J.P.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}},
+\bauthor{\bsnm{{McAteer}}, \binits{R.T.J.}},
+\bauthor{\bsnm{{Young}}, \binits{C.A.}}:
+\byear{2009},
+\batitle{{The kinematics of coronal mass ejections using multiscale methods}}.
+\bjtitle{\aap}
+\bvolume{495},
+\bfpage{325}\,--\,\blpage{334}.
+doi:\doiurl{10.1051/0004-6361:200809811}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Davis}}{1975}]{1975CGIP....4..248D}
+\begin{barticle}
+\bauthor{\bsnm{{Davis}}, \binits{L.S.}}:
+\byear{1975},
+\batitle{{A Survey of Edge Detection Techniques}}.
+\bjtitle{Computer Graphics Image Processing}
+\bvolume{4},
+\bfpage{248}\,--\,\blpage{270}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Duda} and {Hart}}{1973}]{1973pcsa.book.....D}
+\begin{bbook}
+\bauthor{\bsnm{{Duda}}, \binits{R.O.}},
+\bauthor{\bsnm{{Hart}}, \binits{P.E.}}:
+\byear{1973},
+\bbtitle{{Pattern classification and scene analysis. \emph{New York, NY:
+  Wiley}}}.
+\end{bbook}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Fligge} and
+  {Solanki}}{1997}]{1997A&AS..124..579F}
+\begin{barticle}
+\bauthor{\bsnm{{Fligge}}, \binits{M.}},
+\bauthor{\bsnm{{Solanki}}, \binits{S.K.}}:
+\byear{1997},
+\batitle{{Noise reduction in astronomical spectra using wavelet packets}}.
+\bjtitle{\aaps}
+\bvolume{124},
+\bfpage{579}\,--\,\blpage{587}.
+doi:\doiurl{10.1051/aas:1997208}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Gopalswamy}
+  \textit{et~al.}}{2009}]{2009EM&P..104..295G}
+\begin{barticle}
+\bauthor{\bsnm{{Gopalswamy}}, \binits{N.}},
+\bauthor{\bsnm{{Yashiro}}, \binits{S.}},
+\bauthor{\bsnm{{Michalek}}, \binits{G.}},
+\bauthor{\bsnm{{Stenborg}}, \binits{G.}},
+\bauthor{\bsnm{{Vourlidas}}, \binits{A.}},
+\bauthor{\bsnm{{Freeland}}, \binits{S.}},
+\bauthor{\bsnm{{Howard}}, \binits{R.}}:
+\byear{2009},
+\batitle{{The SOHO/LASCO CME Catalog}}.
+\bjtitle{Earth Moon and Planets}
+\bvolume{104},
+\bfpage{295}\,--\,\blpage{313}.
+doi:\doiurl{10.1007/s11038-008-9282-7}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Hewett}
+  \textit{et~al.}}{2008}]{2008SoPh..248..311H}
+\begin{barticle}
+\bauthor{\bsnm{{Hewett}}, \binits{R.J.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}},
+\bauthor{\bsnm{{McAteer}}, \binits{R.T.J.}},
+\bauthor{\bsnm{{Young}}, \binits{C.A.}},
+\bauthor{\bsnm{{Ireland}}, \binits{J.}},
+\bauthor{\bsnm{{Conlon}}, \binits{P.A.}},
+\bauthor{\bsnm{{Maguire}}, \binits{K.}}:
+\byear{2008},
+\batitle{{Multiscale Analysis of Active Region Evolution}}.
+\bjtitle{\solphys}
+\bvolume{248},
+\bfpage{311}\,--\,\blpage{322}.
+doi:\doiurl{10.1007/s11207-007-9028-0}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Kimura} and
+  {Mann}}{1998}]{1998EP&S...50..493K}
+\begin{barticle}
+\bauthor{\bsnm{{Kimura}}, \binits{H.}},
+\bauthor{\bsnm{{Mann}}, \binits{I.}}:
+\byear{1998},
+\batitle{{Brightness of the solar F-corona}}.
+\bjtitle{Earth, Planets, and Space}
+\bvolume{50},
+\bfpage{493}\,--\,\blpage{499}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Morgan}, {Habbal}, and
+  {Woo}}{2006}]{2006SoPh..236..263M}
+\begin{barticle}
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.R.}},
+\bauthor{\bsnm{{Woo}}, \binits{R.}}:
+\byear{2006},
+\batitle{{The Depiction of Coronal Structure in White-Light Images}}.
+\bjtitle{\solphys}
+\bvolume{236},
+\bfpage{263}\,--\,\blpage{272}.
+doi:\doiurl{10.1007/s11207-006-0113-6}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Murtagh}, {Starck}, and
+  {Bijaoui}}{1995}]{1995A&AS..112..179M}
+\begin{barticle}
+\bauthor{\bsnm{{Murtagh}}, \binits{F.}},
+\bauthor{\bsnm{{Starck}}, \binits{J.}},
+\bauthor{\bsnm{{Bijaoui}}, \binits{A.}}:
+\byear{1995},
+\batitle{{Image restoration with noise suppression using a multiresolution
+  support.}}
+\bjtitle{\aaps}
+\bvolume{112},
+\bfpage{179}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Olmedo}
+  \textit{et~al.}}{2008}]{2008SoPh..248..485O}
+\begin{barticle}
+\bauthor{\bsnm{{Olmedo}}, \binits{O.}},
+\bauthor{\bsnm{{Zhang}}, \binits{J.}},
+\bauthor{\bsnm{{Wechsler}}, \binits{H.}},
+\bauthor{\bsnm{{Poland}}, \binits{A.}},
+\bauthor{\bsnm{{Borne}}, \binits{K.}}:
+\byear{2008},
+\batitle{{Automatic Detection and Tracking of Coronal Mass Ejections in
+  Coronagraph Time Series}}.
+\bjtitle{\solphys}
+\bvolume{248},
+\bfpage{485}\,--\,\blpage{499}.
+doi:\doiurl{10.1007/s11207-007-9104-5}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Robbrecht} and
+  {Berghmans}}{2004}]{2004A&A...425.1097R}
+\begin{barticle}
+\bauthor{\bsnm{{Robbrecht}}, \binits{E.}},
+\bauthor{\bsnm{{Berghmans}}, \binits{D.}}:
+\byear{2004},
+\batitle{{Automated recognition of coronal mass ejections (CMEs) in
+  near-real-time data}}.
+\bjtitle{\aap}
+\bvolume{425},
+\bfpage{1097}\,--\,\blpage{1106}.
+doi:\doiurl{10.1051/0004-6361:20041302}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Stenborg} and
+  {Cobelli}}{2003}]{2003A&A...398.1185S}
+\begin{barticle}
+\bauthor{\bsnm{{Stenborg}}, \binits{G.}},
+\bauthor{\bsnm{{Cobelli}}, \binits{P.J.}}:
+\byear{2003},
+\batitle{{A wavelet packets equalization technique to reveal the multiple
+  spatial-scale nature of coronal structures}}.
+\bjtitle{\aap}
+\bvolume{398},
+\bfpage{1185}\,--\,\blpage{1193}.
+doi:\doiurl{10.1051/0004-6361:20021687}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Stenborg}, {Vourlidas}, and
+  {Howard}}{2008}]{2008ApJ...674.1201S}
+\begin{barticle}
+\bauthor{\bsnm{{Stenborg}}, \binits{G.}},
+\bauthor{\bsnm{{Vourlidas}}, \binits{A.}},
+\bauthor{\bsnm{{Howard}}, \binits{R.A.}}:
+\byear{2008},
+\batitle{{A Fresh View of the Extreme-Ultraviolet Corona from the Application
+  of a New Image-Processing Technique}}.
+\bjtitle{\apj}
+\bvolume{674},
+\bfpage{1201}\,--\,\blpage{1206}.
+doi:\doiurl{10.1086/525556}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Young} and
+  {Gallagher}}{2008}]{2008SoPh..248..457Y}
+\begin{barticle}
+\bauthor{\bsnm{{Young}}, \binits{C.A.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}}:
+\byear{2008},
+\batitle{{Multiscale Edge Detection in the Corona}}.
+\bjtitle{\solphys}
+\bvolume{248},
+\bfpage{457}\,--\,\blpage{469}.
+doi:\doiurl{10.1007/s11207-008-9177-9}.
+\end{barticle}
+\endbibitem
+
+\end{thebibliography}
