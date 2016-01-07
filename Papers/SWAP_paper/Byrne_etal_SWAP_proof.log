@@ -1,0 +1,466 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 JUL 2014 14:08
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**Byrne_etal_SWAP_proof.tex
+(./Byrne_etal_SWAP_proof.tex
+LaTeX2e <2011/06/27>
+Babel <3.9f> and hyphenation patterns for 78 languages loaded.
+(./solarphysics.cls
+Document Class: solarphysics 2011/09/20 (version 1.8) Springer base document cl
+ass for "Solar Physics" journal
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+
+
+Package amsfonts Warning: The 'psamsfonts' option is obsolete in AMSFonts v3.
+
+\@emptytoks=\toks14
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/usr/local/texlive/2013/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
+\symwasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
+)
+\@cla=\count79
+\@clb=\count80
+\bdj=\box26
+\tracingkluwer=\count81
+\id@boxheight=\dimen102
+\topsepm@th=\skip41
+\aobox=\box27
+\@temptokenb=\toks15
+\cnt@authors=\count82
+\cnt@institutes=\count83
+\@abstractbox=\box28
+\mottobox=\box29
+\logotoks=\toks16
+\c@outputpage=\count84
+\c@article=\count85
+\stretchtabsep=\skip42
+\maxfloatwidth=\dimen103
+\figtabbox=\box30
+\floatindent=\dimen104
+\@tabskip=\dimen105
+\captionskip=\dimen106
+\@tabwidth=\dimen107
+\captionindent=\dimen108
+\@floatcaption=\toks17
+\abovecaptionskip=\skip43
+\belowcaptionskip=\skip44
+\c@table=\count86
+\c@tabnote=\count87
+\c@figure=\count88
+\c@algorithm=\count89
+\rotdimen=\dimen109
+\c@endnote=\count90
+\endnotesep=\dimen110
+\@endnotes=\write3
+\bibhang=\skip45
+
+Springer -- Named references
+\eqnoindent=\dimen111
+\theoremsep=\dimen112
+\dispsep=\dimen113
+\items@ve=\skip46
+\labels@ve=\skip47
+\c@part=\count91
+\c@section=\count92
+\c@subsection=\count93
+\c@subsubsection=\count94
+\c@paragraph=\count95
+\c@subparagraph=\count96
+) (./spr-sola-addons.sty
+Package: spr-sola-addons 2011/09/20Springer style for SOLA journal (DG)
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count97
+))
+\Gin@req@height=\dimen114
+\Gin@req@width=\dimen115
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(./Byrne_etal_SWAP_proof.aux)
+\openout1 = `Byrne_etal_SWAP_proof.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+
+(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count98
+\scratchdimen=\dimen116
+\scratchbox=\box31
+\nofMPsegments=\count99
+\nofMParguments=\count100
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count101
+\MPscratchDim=\dimen117
+\MPnumerator=\count102
+\makeMPintoPDFobject=\count103
+\everyMPtoPDFconversion=\toks20
+) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Article 1
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <13> not available
+(Font)              size <12> substituted on input line 100.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 100.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 100.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+wasy on input line 100.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
+)
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <7> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 100.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 100.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 100.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
+ Abstract
+Keywords [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.ma
+p}] [2]
+Package epstopdf Info: Source file: <images/overlays.eps>
+(epstopdf)                    date: 2013-12-16 23:15:22
+(epstopdf)                    size: 2476392 bytes
+(epstopdf)             Output file: <images/overlays-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-12-16 23:15:34
+(epstopdf)                    size: 284186 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/overlays-eps-convert
+ed-to.pdf images/overlays.eps>
+(epstopdf)             \includegraphics on input line 127.
+Package epstopdf Info: Output file is already uptodate.
+ <images/overlays-eps-converted-to.pdf, id=20, 794.97pt x 614.295pt>
+File: images/overlays-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/overlays-eps-converted-to.pdf>
+Package pdftex.def Info: images/overlays-eps-converted-to.pdf used on input lin
+e 127.
+(pdftex.def)             Requested size: 320.3991pt x 296.3091pt.
+ Figure 1
+Package epstopdf Info: Source file: <images/polar_fig_swap_20110308.eps>
+(epstopdf)                    date: 2013-12-16 23:17:23
+(epstopdf)                    size: 1301637 bytes
+(epstopdf)             Output file: <images/polar_fig_swap_20110308-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2013-12-16 23:17:29
+(epstopdf)                    size: 123120 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/polar_fig_swap_20110
+308-eps-converted-to.pdf images/polar_fig_swap_20110308.eps>
+(epstopdf)             \includegraphics on input line 134.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/polar_fig_swap_20110308-eps-converted-to.pdf, id=21, 805.0075pt x 517.9
+35pt>
+File: images/polar_fig_swap_20110308-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use images/polar_fig_swap_20110308-eps-converted-to.pdf>
+Package pdftex.def Info: images/polar_fig_swap_20110308-eps-converted-to.pdf us
+ed on input line 134.
+(pdftex.def)             Requested size: 347.0pt x 223.253pt.
+ Figure 2
+[3]
+Underfull \vbox (badness 1584) has occurred while \output is active []
+
+ [4 <./images/overlays-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <images/SWAP_MK4_panels.eps>
+(epstopdf)                    date: 2014-03-13 19:17:27
+(epstopdf)                    size: 2140456 bytes
+(epstopdf)             Output file: <images/SWAP_MK4_panels-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2014-07-14 17:15:28
+(epstopdf)                    size: 261266 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/SWAP_MK4_panels-eps-
+converted-to.pdf images/SWAP_MK4_panels.eps>
+(epstopdf)             \includegraphics on input line 145.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/SWAP_MK4_panels-eps-converted-to.pdf, id=38, 1239.63126pt x 2476.25125p
+t>
+File: images/SWAP_MK4_panels-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/SWAP_MK4_panels-eps-converted-to.pdf>
+Package pdftex.def Info: images/SWAP_MK4_panels-eps-converted-to.pdf used on in
+put line 145.
+(pdftex.def)             Requested size: 260.33025pt x 520.02812pt.
+ Figure 3
+
+LaTeX Warning: Float too large for page by 7.21912pt on input line 148.
+
+
+Underfull \vbox (badness 1590) has occurred while \output is active []
+
+ [5 <./images/polar_fig_swap_20110308-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <images/stackplots.eps>
+(epstopdf)                    date: 2014-02-18 18:19:11
+(epstopdf)                    size: 25006250 bytes
+(epstopdf)             Output file: <images/stackplots-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-07-14 17:15:30
+(epstopdf)                    size: 3453914 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/stackplots-eps-conve
+rted-to.pdf images/stackplots.eps>
+(epstopdf)             \includegraphics on input line 158.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/stackplots-eps-converted-to.pdf, id=47, 1184.425pt x 958.58125pt>
+File: images/stackplots-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/stackplots-eps-converted-to.pdf>
+Package pdftex.def Info: images/stackplots-eps-converted-to.pdf used on input l
+ine 158.
+(pdftex.def)             Requested size: 347.0pt x 263.51523pt.
+ Figure 4 [6] [7 <./images/SWAP_MK4_panels-eps-converted-to.pdf>] [8 <./images/
+stackplots-eps-converted-to.pdf>]
+<images/euvi.pdf, id=86, 794.97pt x 614.295pt>
+File: images/euvi.pdf Graphic file (type pdf)
+ <use images/euvi.pdf>
+Package pdftex.def Info: images/euvi.pdf used on input line 168.
+(pdftex.def)             Requested size: 347.0pt x 133.68019pt.
+ Figure 5
+Package epstopdf Info: Source file: <images/combined.eps>
+(epstopdf)                    date: 2013-12-16 23:21:00
+(epstopdf)                    size: 21521428 bytes
+(epstopdf)             Output file: <images/combined-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-07-14 17:15:31
+(epstopdf)                    size: 4975030 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/combined-eps-convert
+ed-to.pdf images/combined.eps>
+(epstopdf)             \includegraphics on input line 174.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/combined-eps-converted-to.pdf, id=88, 770.88pt x 685.56125pt>
+File: images/combined-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/combined-eps-converted-to.pdf>
+Package pdftex.def Info: images/combined-eps-converted-to.pdf used on input lin
+e 174.
+(pdftex.def)             Requested size: 347.0pt x 334.75633pt.
+ Figure 6 [9 <./images/euvi.pdf>]
+<images/ells_fig.pdf, id=121, 433.62pt x 542.025pt>
+File: images/ells_fig.pdf Graphic file (type pdf)
+ <use images/ells_fig.pdf>
+Package pdftex.def Info: images/ells_fig.pdf used on input line 182.
+(pdftex.def)             Requested size: 339.10905pt x 395.07843pt.
+
+Figure 7 [10 <./images/combined-eps-converted-to.pdf>] [11 <./images/ells_fig.p
+df>]
+Package epstopdf Info: Source file: <images/lasco_c2_fig.eps>
+(epstopdf)                    date: 2013-12-16 22:57:03
+(epstopdf)                    size: 1134609 bytes
+(epstopdf)             Output file: <images/lasco_c2_fig-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-07-14 17:15:32
+(epstopdf)                    size: 220535 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/lasco_c2_fig-eps-con
+verted-to.pdf images/lasco_c2_fig.eps>
+(epstopdf)             \includegraphics on input line 190.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/lasco_c2_fig-eps-converted-to.pdf, id=152, 853.1875pt x 853.1875pt>
+File: images/lasco_c2_fig-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/lasco_c2_fig-eps-converted-to.pdf>
+Package pdftex.def Info: images/lasco_c2_fig-eps-converted-to.pdf used on input
+ line 190.
+(pdftex.def)             Requested size: 341.26895pt x 281.04488pt.
+ Figure 8
+Package epstopdf Info: Source file: <images/plot_kins_quartiles_savgol_20110308
+T194136_goes_fig.eps>
+(epstopdf)                    date: 2014-03-14 08:42:18
+(epstopdf)                    size: 1204717 bytes
+(epstopdf)             Output file: <images/plot_kins_quartiles_savgol_20110308
+T194136_goes_fig-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-03-14 08:42:26
+(epstopdf)                    size: 177387 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/plot_kins_quartiles_
+savgol_20110308T194136_goes_fig-eps-converted-to.pdf images/plot_kins_quartiles
+_savgol_20110308T194136_goes_fig.eps>
+(epstopdf)             \includegraphics on input line 197.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/plot_kins_quartiles_savgol_20110308T194136_goes_fig-eps-converted-to.pd
+f, id=154, 529.98pt x 552.0625pt>
+File: images/plot_kins_quartiles_savgol_20110308T194136_goes_fig-eps-converted-
+to.pdf Graphic file (type pdf)
+
+<use images/plot_kins_quartiles_savgol_20110308T194136_goes_fig-eps-converted-t
+o.pdf>
+Package pdftex.def Info: images/plot_kins_quartiles_savgol_20110308T194136_goes
+_fig-eps-converted-to.pdf used on input line 197.
+(pdftex.def)             Requested size: 344.4829pt x 358.83636pt.
+ Figure 9 [12 <./images/lasco_c2_fig-eps-converted-to.pdf>] [13 <./images/plot_
+kins_quartiles_savgol_20110308T194136_goes_fig-eps-converted-to.pdf>]
+[14] [15] [16] (./Byrne_etal_SWAP_proof.bbl References [17] [18]
+Underfull \vbox (badness 1831) has occurred while \output is active []
+
+ [19]
+Underfull \hbox (badness 10000) in paragraph at lines 1212--1223
+[]\OT1/cmr/m/n/8 Zhang, J., Wang, J.: 2002, Are Ho-mol-o-gous Flare-Coronal Mas
+s Ejec-tion
+ []
+
+
+Underfull \hbox (badness 5726) in paragraph at lines 1212--1223
+\OT1/cmr/m/n/8 Events Trig-gered by Mov-ing Mag-netic Fea-tures?  \OT1/cmr/m/it
+/8 As-tro-phys. J. \OT1/cmr/bx/n/8 566\OT1/cmr/m/n/8 , L117.
+ []
+
+) [20] (./Byrne_etal_SWAP_proof.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.0pt have occurred.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3136 strings out of 493315
+ 41398 string characters out of 6137904
+ 109802 words of memory out of 5000000
+ 6524 multiletter control sequences out of 15000+600000
+ 14859 words of font info for 57 fonts, out of 8000000 for 9000
+ 962 hyphenation exceptions out of 8191
+ 38i,10n,28p,2703b,389s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
+b></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
+al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
+live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/20
+13/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2013
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2013/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2013/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on Byrne_etal_SWAP_proof.pdf (20 pages, 10864087 bytes).
+PDF statistics:
+ 248 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 82 words of extra memory for PDF output out of 10000 (max. 10000000)
+

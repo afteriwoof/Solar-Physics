@@ -1,0 +1,295 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Byrne_etal_SWAP_proof.aux
+The style file: spr-mp-sola-jpb.bst.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+format.doi is an unknown function---line 1389 of file spr-mp-sola-jpb.bst.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references-jpb.bib.bib
+Warning--string name "a18" is undefined
+--line 1255 of file references-jpb.bib.bib
+You're missing a field name---line 1341 of file references-jpb.bib.bib
+ :   
+ :   % volume = 257,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1459 of file references-jpb.bib.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 1531 of file references-jpb.bib.bib
+ : @article{1995ApJ...446..377F
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1697 of file references-jpb.bib.bib
+ :    
+ :    %editor = "{Priest, E.~\& Forbes, T.}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1850 of file references-jpb.bib.bib
+ :      
+ :      adsnote    = {written by JPB}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1919 of file references-jpb.bib.bib
+ :   
+ :   % volume = 4853,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1943 of file references-jpb.bib.bib
+ :    
+ :    % pages = {322},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1980 of file references-jpb.bib.bib
+ :  
+ :  %  volume = 4,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2067 of file references-jpb.bib.bib
+ :   
+ :   % volume = 4139,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2459 of file references-jpb.bib.bib
+ :     
+ :     %pages = {1044-1086},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2493 of file references-jpb.bib.bib
+ :   
+ :   % series = {Astrophysics and Space Science Library},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2634 of file references-jpb.bib.bib
+ :    
+ :    %volume = 6,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2851 of file references-jpb.bib.bib
+ :  
+ :  %  volume = 40,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3008 of file references-jpb.bib.bib
+ :    
+ :    %editor = "{}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 3219 of file references-jpb.bib.bib
+ : @article{2011AdSpR..47.2118G
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3381 of file references-jpb.bib.bib
+ :     
+ :     %month = oct,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 4428 of file references-jpb.bib.bib
+ : @article{2011LRSP....8....1C
+ :                             ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 4542 of file references-jpb.bib.bib
+ :    volume = in 
+ :                review,
+I'm skipping whatever remains of this entry
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You can't pop an empty literal stack for entry 2003ApJ...595.1231A
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1999ApJ...510..485A
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2010ApJ...708..314A
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012ApJ...750...44B
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1995SoPh..162..357B
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2009A&A...495..325B
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2010NatCo...1E..74B
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012ApJ...752..145B
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2013A&A...557A..96B
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2013NatPh...9..811C
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1964NASSP..50..451C
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1996JGR...10127499C
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2011LRSP....8....1C
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2004A&A...422..307C
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2006A&A...455..339D
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1995SoPh..162....1D
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2011ApJ...737...88D
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2003SPIE.4843...66E
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2008AnGeo..26.3025F
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1995ApJ...446..377F
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2011AdSpR..47.2118G
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2006ApJ...641..590G
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2003ApJ...586..562G
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2013SoPh..286...67H
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1974SoPh...34..323H
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2008SSRv..136...67H
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2013SoPh..285..269H
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1993JGR....9813177H
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1986JGR....9110951I
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2008SSRv..136....5K
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2006PhRvL..96y5002K
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2001AGUGM.125..143K
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1976SoPh...50...85K
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2001ApJ...562.1045K
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012SoPh..275...17L
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2007ApJ...658L.123L
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2014NatCo...5E3481L
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2007A&G....48f..11L
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2008ApJ...683.1192L
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1980IAUS...91..207M
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2014SoPh..289.2945M
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012ApJ...752..144M
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2006SoPh..236..263M
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2013ApJS..206...19M
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2011igi-global
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012SoPh..275....3P
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2004Natur.432...78P
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2002A&ARv..10..313P
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2010ApJ...721.1579R
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2013SoPh..286....5S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2008ApJ...674..586S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2005AnGeo..23.1033S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2013SoPh..286...43S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2003A&A...398.1185S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2008ApJ...674.1201S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1966Natur.211..695S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012ApJ...746L...5S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2001ApJ...561..372S
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 1999A&A...351..707T
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2004A&A...413L..27T
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2007ApJ...671L..77V
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2009ApJ...693.1178V
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012ApJ...749..182W
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2012LRSP....9....3W
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2004SPIE.5171..111W
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2004JGRA..10907105Y
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2008SoPh..248..457Y
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2002ApJ...566L.117Z
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2006ApJ...651.1238Z
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You can't pop an empty literal stack for entry 2014zuccarello
+while executing---line 2551 of file spr-mp-sola-jpb.bst.bst
+You've used 70 entries,
+            5840 wiz_defined-function locations,
+            1494 strings with 25951 characters,
+and the built_in function-call counts, 371365 in all, are:
+= -- 50816
+> -- 2454
+< -- 109
++ -- 11880
+- -- 961
+* -- 26933
+:= -- 73863
+add.period$ -- 140
+call.type$ -- 70
+change.case$ -- 389
+chr.to.int$ -- 70
+cite$ -- 70
+duplicate$ -- 3121
+empty$ -- 23710
+format.name$ -- 2963
+if$ -- 84092
+int.to.chr$ -- 1
+int.to.str$ -- 40
+missing$ -- 0
+newline$ -- 1224
+num.names$ -- 404
+pop$ -- 2183
+preamble$ -- 1
+purify$ -- 319
+quote$ -- 0
+skip$ -- 22945
+stack$ -- 0
+substring$ -- 54263
+swap$ -- 1181
+text.length$ -- 881
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 2149
+warning$ -- 0
+while$ -- 2484
+width$ -- 0
+write$ -- 1649
+(There were 89 error messages)

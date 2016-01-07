@@ -1,0 +1,56 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12040\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 ;SWAP\
+restore, '~/Postdoc/Events_combined/20110308/SWAP/mults_20110308.sav', /ver\
+i=197\
+im_swap = mults[*,*,i]\
+restore,'~/Postdoc/Events_combined/20110308/SWAP/fronts/front*19*53*sav',/ver\
+xf_swap=xf\
+yf_swap=yf\
+fls=file_Search('~/Postdoc/Events_combined/20110308/SWAP/fits/*')\
+mreadfits_corimp,fls[59],in_swap,da_swap\
+index2map, in_swap, im_swap^0.05, map_swap\
+sub_map, map_swap, smap_swap, xr=[600,1600], yr=[-1000,0]\
+\
+\
+;MK4\
+fronts_mk4=file_search('~/Postdoc/Events_combined/20110308/MK4/fronts/front*sav')\
+mreadfits_corimp,file_search('~/Postdoc/Events_combined/20110308/MK4/fits/*fts.gz'),in_mk4,da_mk4, /quiet\
+restore,'~/Postdoc/Events_combined/20110308/MK4/mults_mk4_20110308.sav'\
+i=5\
+im_mk4 = mults[*,*,i+40]\
+temp=im_mk4\
+temp=rm_inner_corimp(temp,in_mk4[i+40],dr_px1,thr=1.11)\
+temp=rm_outer_corimp(temp,in_mk4[i+40],dr_px2,thr=2.5)\
+im_mk4[dr_px1] = max(temp[where(temp gt 0)])\
+im_mk4[dr_px2] = max(temp[where(temp gt 0)])\
+index2map, in_mk4[i+40], im_mk4^0.2, map_mk4\
+sub_map,map_mk4,smap_mk4,xr=[250,2250],yr=[-1750,250]\
+restore,fronts_mk4[i]\
+xf_mk4 = xf\
+yf_mk4 = yf\
+\
+;SWAP\
+set_plot, 'ps'\
+device, /encapsul, bits=8, lang=2, xs=60, ys=30, filename='combined_modgrad_points.eps'\
+!p.charsize=3\
+!p.charthick=5\
+!p.thick=3\
+!p.multi=[0,2,1]\
+plot_map, smap_swap, tit='SWAP 8-Mar-2011 19:53:59 UT'\
+xf_swap = (xf_swap-in_swap.crpix1)*in_swap.cdelt1\
+yf_swap = (yf_swap-in_swap.crpix2)*in_swap.cdelt2\
+plots, xf_swap, yf_swap, psym=1, color=255\
+;MK4\
+plot_map, smap_mk4, tit='MK4 8-Mar-2011 19:56:16 UT'\
+draw_circle, 0, 0, in_mk4[i+40].rsun, color=0, noclip=0\
+xf_mk4 = (xf_mk4 - in_mk4[i+40].crpix1)*in_mk4[i+40].cdelt1\
+yf_mk4 = (yf_mk4 - in_mk4[i+40].crpix2)*in_mk4[i+40].cdelt2\
+plots,xf_mk4,yf_mk4,psym=1, color=255, thick=3\
+device, /close\
+\
+$open combined_modgrad_points.eps}

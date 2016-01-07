@@ -1,0 +1,437 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.1.11)  8 OCT 2013 17:13
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**Byrne_etal_SWAP_20131008.tex
+(./Byrne_etal_SWAP_20131008.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, farsi, finnish, french,
+ galician, german, ngerman, swissgerman, monogreek, greek, hungarian, icelandic
+, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, oriya, panja
+bi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji, lao, lati
+n, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, polish, portu
+guese, romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedis
+h, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded.
+(./solarphysics.cls
+Document Class: solarphysics 2011/09/20 (version 1.8) Springer base document cl
+ass for "Solar Physics" journal
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+
+
+Package amsfonts Warning: The 'psamsfonts' option is obsolete in AMSFonts v3.
+
+\@emptytoks=\toks14
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+)) (/usr/local/texlive/2010/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
+\symwasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
+)
+\@cla=\count79
+\@clb=\count80
+\bdj=\box26
+\tracingkluwer=\count81
+\id@boxheight=\dimen102
+\topsepm@th=\skip41
+\aobox=\box27
+\@temptokenb=\toks15
+\cnt@authors=\count82
+\cnt@institutes=\count83
+\@abstractbox=\box28
+\mottobox=\box29
+\logotoks=\toks16
+\c@outputpage=\count84
+\c@article=\count85
+\stretchtabsep=\skip42
+\maxfloatwidth=\dimen103
+\figtabbox=\box30
+\floatindent=\dimen104
+\@tabskip=\dimen105
+\captionskip=\dimen106
+\@tabwidth=\dimen107
+\captionindent=\dimen108
+\@floatcaption=\toks17
+\abovecaptionskip=\skip43
+\belowcaptionskip=\skip44
+\c@table=\count86
+\c@tabnote=\count87
+\c@figure=\count88
+\c@algorithm=\count89
+\rotdimen=\dimen109
+\c@endnote=\count90
+\endnotesep=\dimen110
+\@endnotes=\write3
+\bibhang=\skip45
+
+Springer -- Named references
+\eqnoindent=\dimen111
+\theoremsep=\dimen112
+\dispsep=\dimen113
+\items@ve=\skip46
+\labels@ve=\skip47
+\c@part=\count91
+\c@section=\count92
+\c@subsection=\count93
+\c@subsubsection=\count94
+\c@paragraph=\count95
+\c@subparagraph=\count96
+) (./spr-sola-addons.sty
+Package: spr-sola-addons 2011/09/20Springer style for SOLA journal (DG)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/11/26 v0.05c Graphics/color for pdfTeX
+\Gread@gobject=\count97
+))
+\Gin@req@height=\dimen114
+\Gin@req@width=\dimen115
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(./Byrne_etal_SWAP_20131008.aux)
+\openout1 = `Byrne_etal_SWAP_20131008.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+
+(/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count98
+\scratchdimen=\dimen116
+\scratchbox=\box31
+\nofMPsegments=\count99
+\nofMParguments=\count100
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count101
+\MPscratchDim=\dimen117
+\MPnumerator=\count102
+\everyMPtoPDFconversion=\toks20
+) (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2010/04/01 v0.9 Utility functions of pdfTeX for LuaTeX (HO)
+
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2010/04/26 v1.7 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2007/09/30 v1.0 Managing graphics extensions (HO)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/02/22 v3.7 Keyval support for LaTeX options (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2010/03/01 v1.9 Key value parser (HO)
+
+(/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2010/01/28 v1.3 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 436.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Article 1
+LaTeX Font Info:    Try loading font information for U+msa on input line 76.
+ (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 76.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+wasy on input line 76.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
+)
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 87.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <13> not available
+(Font)              size <12> substituted on input line 87.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/it' in size <13> not available
+(Font)              size <12> substituted on input line 87.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <7> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 87.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 87.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 87.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 87.
+ Abstract
+Keywords
+Missing character: There is no Õ in font cmr10!
+
+Underfull \vbox (badness 7030) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<images/overlays.pdf, id=20, 794.97pt x 614.295pt>
+File: images/overlays.pdf Graphic file (type pdf)
+ <use images/overlays.pdf>
+Figure 1
+Package epstopdf Info: Source file: <images/polar_fig_swap_20110308.eps>
+(epstopdf)                    date: 2013-09-30 16:49:51
+(epstopdf)                    size: 260836 bytes
+(epstopdf)             Output file: <images/polar_fig_swap_20110308-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2013-09-30 16:51:06
+(epstopdf)                    size: 76904 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/polar_fig_swap_20110
+308-eps-converted-to.pdf images/polar_fig_swap_20110308.eps>
+(epstopdf)             \includegraphics on input line 115.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/polar_fig_swap_20110308-eps-converted-to.pdf, id=21, 853.1875pt x 568.1
+225pt>
+File: images/polar_fig_swap_20110308-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use images/polar_fig_swap_20110308-eps-converted-to.pdf> Figure 2
+[2] [3 <./images/overlays.pdf>] [4 <./images/polar_fig_swap_20110308-eps-conver
+ted-to.pdf>]
+Package epstopdf Info: Source file: <images/combined_modgrad_points.eps>
+(epstopdf)                    date: 2013-09-30 16:24:46
+(epstopdf)                    size: 314573 bytes
+(epstopdf)             Output file: <images/combined_modgrad_points-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2013-09-30 16:26:25
+(epstopdf)                    size: 90293 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/combined_modgrad_poi
+nts-eps-converted-to.pdf images/combined_modgrad_points.eps>
+(epstopdf)             \includegraphics on input line 131.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/combined_modgrad_points-eps-converted-to.pdf, id=50, 1706.375pt x 853.1
+875pt>
+File: images/combined_modgrad_points-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use images/combined_modgrad_points-eps-converted-to.pdf> Figure 3
+Package epstopdf Info: Source file: <images/combined.eps>
+(epstopdf)                    date: 2013-09-24 14:54:17
+(epstopdf)                    size: 21534055 bytes
+(epstopdf)             Output file: <images/combined-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-09-25 16:42:32
+(epstopdf)                    size: 4979874 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/combined-eps-convert
+ed-to.pdf images/combined.eps>
+(epstopdf)             \includegraphics on input line 141.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/combined-eps-converted-to.pdf, id=51, 770.88pt x 685.56125pt>
+File: images/combined-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/combined-eps-converted-to.pdf> Figure 4
+Package epstopdf Info: Source file: <images/ells_fig.eps>
+(epstopdf)                    date: 2013-09-25 16:16:13
+(epstopdf)                    size: 41530 bytes
+(epstopdf)             Output file: <images/ells_fig-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-09-25 16:47:49
+(epstopdf)                    size: 25825 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/ells_fig-eps-convert
+ed-to.pdf images/ells_fig.eps>
+(epstopdf)             \includegraphics on input line 147.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/ells_fig-eps-converted-to.pdf, id=53, 853.1875pt x 853.1875pt>
+File: images/ells_fig-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/ells_fig-eps-converted-to.pdf> Figure 5
+Package epstopdf Info: Source file: <images/plot_heights_inner.eps>
+(epstopdf)                    date: 2013-09-24 13:23:00
+(epstopdf)                    size: 47717 bytes
+(epstopdf)             Output file: <images/plot_heights_inner-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2013-09-25 16:51:35
+(epstopdf)                    size: 19947 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/plot_heights_inner-e
+ps-converted-to.pdf images/plot_heights_inner.eps>
+(epstopdf)             \includegraphics on input line 153.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/plot_heights_inner-eps-converted-to.pdf, id=55, 568.1225pt x 853.1875pt
+>
+File: images/plot_heights_inner-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/plot_heights_inner-eps-converted-to.pdf> Figure 6
+
+LaTeX Warning: Reference `imk4_swap_figs' on page 5 undefined on input line 156
+.
+
+Package epstopdf Info: Source file: <images/lasco_c2_fig.eps>
+(epstopdf)                    date: 2013-10-02 16:43:46
+(epstopdf)                    size: 1138304 bytes
+(epstopdf)             Output file: <images/lasco_c2_fig-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-10-02 16:48:36
+(epstopdf)                    size: 222529 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/lasco_c2_fig-eps-con
+verted-to.pdf images/lasco_c2_fig.eps>
+(epstopdf)             \includegraphics on input line 159.
+Package epstopdf Info: Output file is already uptodate.
+<images/lasco_c2_fig-eps-converted-to.pdf, id=57, 853.1875pt x 853.1875pt>
+File: images/lasco_c2_fig-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/lasco_c2_fig-eps-converted-to.pdf> Figure 7
+Package epstopdf Info: Source file: <images/plot_kins_quartiles_savgol_20110308
+T194136_CMEcore_coronagraphs.eps>
+(epstopdf)                    date: 2013-10-02 17:10:39
+(epstopdf)                    size: 184740 bytes
+(epstopdf)             Output file: <images/plot_kins_quartiles_savgol_20110308
+T194136_CMEcore_coronagraphs-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-10-02 17:12:20
+(epstopdf)                    size: 75811 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/plot_kins_quartiles_
+savgol_20110308T194136_CMEcore_coronagraphs-eps-converted-to.pdf images/plot_ki
+ns_quartiles_savgol_20110308T194136_CMEcore_coronagraphs.eps>
+(epstopdf)             \includegraphics on input line 165.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/plot_kins_quartiles_savgol_20110308T194136_CMEcore_coronagraphs-eps-con
+verted-to.pdf, id=59, 568.1225pt x 853.1875pt>
+File: images/plot_kins_quartiles_savgol_20110308T194136_CMEcore_coronagraphs-ep
+s-converted-to.pdf Graphic file (type pdf)
+
+<use images/plot_kins_quartiles_savgol_20110308T194136_CMEcore_coronagraphs-eps
+-converted-to.pdf> Figure 8 [5 <./images/combined_modgrad_points-eps-converted-
+to.pdf>] [6 <./images/combined-eps-converted-to.pdf>] [7 <./images/ells_fig-eps
+-converted-to.pdf> <./images/plot_heights_inner-eps-converted-to.pdf>] [8 <./im
+ages/lasco_c2_fig-eps-converted-to.pdf>]
+Underfull \vbox (badness 1132) has occurred while \output is active []
+
+ [9 <./images/plot_kins_quartiles_savgol_20110308T194136_CMEcore_coronagraphs-e
+ps-converted-to.pdf>] <images/xrayflux.png, id=104, 602.25pt x 602.25pt>
+File: images/xrayflux.png Graphic file (type png)
+
+<use images/xrayflux.png> Figure 9 (./Byrne_etal_SWAP_20131008.bbl References
+Underfull \vbox (badness 1194) has occurred while \output is active []
+
+ [10 <./images/xrayflux.png (PNG copy)>]
+Underfull \hbox (badness 1852) in paragraph at lines 140--152
+[]\OT1/cmr/m/n/8 Druckm^^?ullerov^^Sa, H., Mor-gan, H., Hab-bal, S.R.: 2011, En
+-hanc-ing Coro-nal Struc-tures
+ []
+
+[11]) [12] (./Byrne_etal_SWAP_20131008.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.0pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 2946 strings out of 493738
+ 38227 string characters out of 3143023
+ 100871 words of memory out of 3000000
+ 6179 multiletter control sequences out of 15000+200000
+ 15218 words of font info for 58 fonts, out of 3000000 for 9000
+ 719 hyphenation exceptions out of 8191
+ 38i,9n,26p,2198b,393s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
+b></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
+/usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
+al/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/
+texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
+live/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texli
+ve/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
+2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/20
+10/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2010
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2010/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2010/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on Byrne_etal_SWAP_20131008.pdf (12 pages, 6147159 bytes).
+PDF statistics:
+ 178 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 82 words of extra memory for PDF output out of 10000 (max. 10000000)
+

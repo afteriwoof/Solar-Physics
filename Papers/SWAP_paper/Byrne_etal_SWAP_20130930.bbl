@@ -1,0 +1,443 @@
+\begin{thebibliography}{20}
+% BibTex style file: spr-mp-sola.bst (nameyear), 2011-09-16
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{\textit{#1}}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \href  \undefined \def \href#1#2{\textsf{#2}}\fi
+\ifx \doiurl  \undefined \def
+  \doiurl#1{\href{http://dx.doi.org/#1}{\textsf{#1}}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{\textit{#1}}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{\textbf{#1}}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{\textit{#1}}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{}\fi
+\ifx \botherref \undefined \def \botherref#1{}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{}\fi
+\ifx \bbook \undefined \def \bbook#1{}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\def \endbibitem {}
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1} \fi
+
+\bibitem[\protect\citeauthoryear{{Brueckner}
+  \textit{et~al.}}{1995}]{1995SoPh..162..357B}
+\begin{barticle}
+\bauthor{\bsnm{{Brueckner}}, \binits{G.E.}},
+\bauthor{\bsnm{{Howard}}, \binits{R.A.}},
+\bauthor{\bsnm{{Koomen}}, \binits{M.J.}},
+\bauthor{\bsnm{{Korendyke}}, \binits{C.M.}},
+\bauthor{\bsnm{{Michels}}, \binits{D.J.}},
+\bauthor{\bsnm{{Moses}}, \binits{J.D.}},
+\bauthor{\bsnm{{Socker}}, \binits{D.G.}},
+\bauthor{\bsnm{{Dere}}, \binits{K.P.}},
+\bauthor{\bsnm{{Lamy}}, \binits{P.L.}},
+\bauthor{\bsnm{{Llebaria}}, \binits{A.}},
+\bauthor{\bsnm{{Bout}}, \binits{M.V.}},
+\bauthor{\bsnm{{Schwenn}}, \binits{R.}},
+\bauthor{\bsnm{{Simnett}}, \binits{G.M.}},
+\bauthor{\bsnm{{Bedford}}, \binits{D.K.}},
+\bauthor{\bsnm{{Eyles}}, \binits{C.J.}}:
+\byear{1995},
+\batitle{{The Large Angle Spectroscopic Coronagraph (LASCO)}}.
+\bjtitle{\solphys}
+\bvolume{162},
+\bfpage{357}\,--\,\blpage{402}.
+doi:\doiurl{10.1007/BF00733434}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Byrne}
+  \textit{et~al.}}{2009}]{2009A&A...495..325B}
+\begin{barticle}
+\bauthor{\bsnm{{Byrne}}, \binits{J.P.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}},
+\bauthor{\bsnm{{McAteer}}, \binits{R.T.J.}},
+\bauthor{\bsnm{{Young}}, \binits{C.A.}}:
+\byear{2009},
+\batitle{{The kinematics of coronal mass ejections using multiscale methods}}.
+\bjtitle{\aap}
+\bvolume{495},
+\bfpage{325}\,--\,\blpage{334}.
+doi:\doiurl{10.1051/0004-6361:200809811}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Byrne}
+  \textit{et~al.}}{2012}]{2012ApJ...752..145B}
+\begin{barticle}
+\bauthor{\bsnm{{Byrne}}, \binits{J.P.}},
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.R.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}}:
+\byear{2012},
+\batitle{{Automatic Detection and Tracking of Coronal Mass Ejections. II.
+  Multiscale Filtering of Coronagraph Images}}.
+\bjtitle{\apj}
+\bvolume{752},
+\bfpage{145}.
+doi:\doiurl{10.1088/0004-637X/752/2/145}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Domingo}, {Fleck}, and
+  {Poland}}{1995}]{1995SoPh..162....1D}
+\begin{barticle}
+\bauthor{\bsnm{{Domingo}}, \binits{V.}},
+\bauthor{\bsnm{{Fleck}}, \binits{B.}},
+\bauthor{\bsnm{{Poland}}, \binits{A.I.}}:
+\byear{1995},
+\batitle{{The SOHO Mission: an Overview}}.
+\bjtitle{\solphys}
+\bvolume{162},
+\bfpage{1}\,--\,\blpage{2}.
+doi:\doiurl{10.1007/BF00733425}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Druckm{\"u}llerov{\'a}}, {Morgan}, and
+  {Habbal}}{2011}]{2011ApJ...737...88D}
+\begin{barticle}
+\bauthor{\bsnm{{Druckm{\"u}llerov{\'a}}}, \binits{H.}},
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.R.}}:
+\byear{2011},
+\batitle{{Enhancing Coronal Structures with the Fourier
+  Normalizing-radial-graded Filter}}.
+\bjtitle{\apj}
+\bvolume{737},
+\bfpage{88}.
+doi:\doiurl{10.1088/0004-637X/737/2/88}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Elmore}
+  \textit{et~al.}}{2003}]{2003SPIE.4843...66E}
+\begin{bchapter}
+\bauthor{\bsnm{{Elmore}}, \binits{D.F.}},
+\bauthor{\bsnm{{Burkepile}}, \binits{J.T.}},
+\bauthor{\bsnm{{Darnell}}, \binits{J.A.}},
+\bauthor{\bsnm{{Lecinski}}, \binits{A.R.}},
+\bauthor{\bsnm{{Stanger}}, \binits{A.L.}}:
+\byear{2003},
+\bctitle{{Calibration of a ground-based solar coronal polarimeter}}.
+In: \beditor{\bsnm{{Fineschi}}, \binits{S.}} (ed.)
+\bbtitle{Society of Photo-Optical Instrumentation Engineers (SPIE) Conference
+  Series},
+\bsertitle{Society of Photo-Optical Instrumentation Engineers (SPIE) Conference
+  Series}
+\bseriesno{4843},
+\bfpage{66}\,--\,\blpage{75}.
+doi:\doiurl{10.1117/12.459279}.
+\end{bchapter}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Gallagher}
+  \textit{et~al.}}{2011}]{2011AdSpR..47.2118G}
+\begin{barticle}
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}},
+\bauthor{\bsnm{{Young}}, \binits{C.A.}},
+\bauthor{\bsnm{{Byrne}}, \binits{J.P.}},
+\bauthor{\bsnm{{McAteer}}, \binits{R.T.J.}}:
+\byear{2011},
+\batitle{{Coronal mass ejection detection using wavelets, curvelets and
+  ridgelets: Applications for space weather monitoring}}.
+\bjtitle{Advances in Space Research}
+\bvolume{47},
+\bfpage{2118}\,--\,\blpage{2126}.
+doi:\doiurl{10.1016/j.asr.2010.03.028}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Lemen}
+  \textit{et~al.}}{2012}]{2012SoPh..275...17L}
+\begin{barticle}
+\bauthor{\bsnm{{Lemen}}, \binits{J.R.}},
+\bauthor{\bsnm{{Title}}, \binits{A.M.}},
+\bauthor{\bsnm{{Akin}}, \binits{D.J.}},
+\bauthor{\bsnm{{Boerner}}, \binits{P.F.}},
+\bauthor{\bsnm{{Chou}}, \binits{C.}},
+\bauthor{\bsnm{{Drake}}, \binits{J.F.}},
+\bauthor{\bsnm{{Duncan}}, \binits{D.W.}},
+\bauthor{\bsnm{{Edwards}}, \binits{C.G.}},
+\bauthor{\bsnm{{Friedlaender}}, \binits{F.M.}},
+\bauthor{\bsnm{{Heyman}}, \binits{G.F.}},
+\bauthor{\bsnm{{Hurlburt}}, \binits{N.E.}},
+\bauthor{\bsnm{{Katz}}, \binits{N.L.}},
+\bauthor{\bsnm{{Kushner}}, \binits{G.D.}},
+\bauthor{\bsnm{{Levay}}, \binits{M.}},
+\bauthor{\bsnm{{Lindgren}}, \binits{R.W.}},
+\bauthor{\bsnm{{Mathur}}, \binits{D.P.}},
+\bauthor{\bsnm{{McFeaters}}, \binits{E.L.}},
+\bauthor{\bsnm{{Mitchell}}, \binits{S.}},
+\bauthor{\bsnm{{Rehse}}, \binits{R.A.}},
+\bauthor{\bsnm{{Schrijver}}, \binits{C.J.}},
+\bauthor{\bsnm{{Springer}}, \binits{L.A.}},
+\bauthor{\bsnm{{Stern}}, \binits{R.A.}},
+\bauthor{\bsnm{{Tarbell}}, \binits{T.D.}},
+\bauthor{\bsnm{{Wuelser}}, \binits{J.-P.}},
+\bauthor{\bsnm{{Wolfson}}, \binits{C.J.}},
+\bauthor{\bsnm{{Yanari}}, \binits{C.}},
+\bauthor{\bsnm{{Bookbinder}}, \binits{J.A.}},
+\bauthor{\bsnm{{Cheimets}}, \binits{P.N.}},
+\bauthor{\bsnm{{Caldwell}}, \binits{D.}},
+\bauthor{\bsnm{{Deluca}}, \binits{E.E.}},
+\bauthor{\bsnm{{Gates}}, \binits{R.}},
+\bauthor{\bsnm{{Golub}}, \binits{L.}},
+\bauthor{\bsnm{{Park}}, \binits{S.}},
+\bauthor{\bsnm{{Podgorski}}, \binits{W.A.}},
+\bauthor{\bsnm{{Bush}}, \binits{R.I.}},
+\bauthor{\bsnm{{Scherrer}}, \binits{P.H.}},
+\bauthor{\bsnm{{Gummin}}, \binits{M.A.}},
+\bauthor{\bsnm{{Smith}}, \binits{P.}},
+\bauthor{\bsnm{{Auker}}, \binits{G.}},
+\bauthor{\bsnm{{Jerram}}, \binits{P.}},
+\bauthor{\bsnm{{Pool}}, \binits{P.}},
+\bauthor{\bsnm{{Soufli}}, \binits{R.}},
+\bauthor{\bsnm{{Windt}}, \binits{D.L.}},
+\bauthor{\bsnm{{Beardsley}}, \binits{S.}},
+\bauthor{\bsnm{{Clapp}}, \binits{M.}},
+\bauthor{\bsnm{{Lang}}, \binits{J.}},
+\bauthor{\bsnm{{Waltham}}, \binits{N.}}:
+\byear{2012},
+\batitle{{The Atmospheric Imaging Assembly (AIA) on the Solar Dynamics
+  Observatory (SDO)}}.
+\bjtitle{\solphys}
+\bvolume{275},
+\bfpage{17}\,--\,\blpage{40}.
+doi:\doiurl{10.1007/s11207-011-9776-8}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Lockwood} and
+  {Hapgood}}{2007}]{2007A&G....48f..11L}
+\begin{barticle}
+\bauthor{\bsnm{{Lockwood}}, \binits{M.}},
+\bauthor{\bsnm{{Hapgood}}, \binits{M.}}:
+\byear{2007},
+\batitle{{The Rough Guide to the Moon and Mars}}.
+\bjtitle{Astronomy and Geophysics}
+\bvolume{48}(\bissue{6}),
+\bfpage{060000}\,--\,\blpage{6}.
+doi:\doiurl{10.1111/j.1468-4004.2007.48611.x}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Morgan}, {Byrne}, and
+  {Habbal}}{2012}]{2012ApJ...752..144M}
+\begin{barticle}
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Byrne}}, \binits{J.P.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.R.}}:
+\byear{2012},
+\batitle{{Automatically Detecting and Tracking Coronal Mass Ejections. I.
+  Separation of Dynamic and Quiescent Components in Coronagraph Images}}.
+\bjtitle{\apj}
+\bvolume{752},
+\bfpage{144}.
+doi:\doiurl{10.1088/0004-637X/752/2/144}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Morgan}, {Habbal}, and
+  {Woo}}{2006}]{2006SoPh..236..263M}
+\begin{barticle}
+\bauthor{\bsnm{{Morgan}}, \binits{H.}},
+\bauthor{\bsnm{{Habbal}}, \binits{S.R.}},
+\bauthor{\bsnm{{Woo}}, \binits{R.}}:
+\byear{2006},
+\batitle{{The Depiction of Coronal Structure in White-Light Images}}.
+\bjtitle{\solphys}
+\bvolume{236},
+\bfpage{263}\,--\,\blpage{272}.
+doi:\doiurl{10.1007/s11207-006-0113-6}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{P\'erez-Su\'arez}
+  \textit{et~al.}}{2011}]{2011igi-global}
+\begin{bbook}
+\bauthor{\bsnm{{P\'erez-Su\'arez}}, \binits{D.}},
+\bauthor{\bsnm{{Higgins}}, \binits{P.A.}},
+\bauthor{\bsnm{{Bloomfield}}, \binits{D.S.}},
+\bauthor{\bsnm{{McAteer}}, \binits{R.T.J.}},
+\bauthor{\bsnm{{Krista}}, \binits{L.D.}},
+\bauthor{\bsnm{{Byrne}}, \binits{J.P.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}}:
+\byear{2011},
+\bbtitle{{``Automated Solar Feature Detection for Space Weather Applications",
+  in Applied Signal and Image Processing: Multidisciplinary Advancements, eds.
+  R. Qahwaji, R. Green, \& E. L. Hines, (IGI Global), p. 207\,--\,225}}.
+\end{bbook}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Pesnell}, {Thompson}, and
+  {Chamberlin}}{2012}]{2012SoPh..275....3P}
+\begin{barticle}
+\bauthor{\bsnm{{Pesnell}}, \binits{W.D.}},
+\bauthor{\bsnm{{Thompson}}, \binits{B.J.}},
+\bauthor{\bsnm{{Chamberlin}}, \binits{P.C.}}:
+\byear{2012},
+\batitle{{The Solar Dynamics Observatory (SDO)}}.
+\bjtitle{\solphys}
+\bvolume{275},
+\bfpage{3}\,--\,\blpage{15}.
+doi:\doiurl{10.1007/s11207-011-9841-3}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Santandrea}
+  \textit{et~al.}}{2013}]{2013SoPh..286....5S}
+\begin{barticle}
+\bauthor{\bsnm{{Santandrea}}, \binits{S.}},
+\bauthor{\bsnm{{Gantois}}, \binits{K.}},
+\bauthor{\bsnm{{Strauch}}, \binits{K.}},
+\bauthor{\bsnm{{Teston}}, \binits{F.}},
+\bauthor{\bsnm{{Tilmans}}, \binits{E.}},
+\bauthor{\bsnm{{Baijot}}, \binits{C.}},
+\bauthor{\bsnm{{Gerrits}}, \binits{D.}},
+\bauthor{\bsnm{{De Groof}}, \binits{A.}},
+\bauthor{\bsnm{{Schwehm}}, \binits{G.}},
+\bauthor{\bsnm{{Zender}}, \binits{J.}}:
+\byear{2013},
+\batitle{{PROBA2: Mission and Spacecraft Overview}}.
+\bjtitle{\solphys}
+\bvolume{286},
+\bfpage{5}\,--\,\blpage{19}.
+doi:\doiurl{10.1007/s11207-013-0289-5}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Schwenn}
+  \textit{et~al.}}{2005}]{2005AnGeo..23.1033S}
+\begin{barticle}
+\bauthor{\bsnm{{Schwenn}}, \binits{R.}},
+\bauthor{\bsnm{{dal Lago}}, \binits{A.}},
+\bauthor{\bsnm{{Huttunen}}, \binits{E.}},
+\bauthor{\bsnm{{Gonzalez}}, \binits{W.D.}}:
+\byear{2005},
+\batitle{{The association of coronal mass ejections with their effects near the
+  Earth}}.
+\bjtitle{Annales Geophysicae}
+\bvolume{23},
+\bfpage{1033}\,--\,\blpage{1059}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Seaton}
+  \textit{et~al.}}{2013}]{2013SoPh..286...43S}
+\begin{barticle}
+\bauthor{\bsnm{{Seaton}}, \binits{D.B.}},
+\bauthor{\bsnm{{Berghmans}}, \binits{D.}},
+\bauthor{\bsnm{{Nicula}}, \binits{B.}},
+\bauthor{\bsnm{{Halain}}, \binits{J.-P.}},
+\bauthor{\bsnm{{De Groof}}, \binits{A.}},
+\bauthor{\bsnm{{Thibert}}, \binits{T.}},
+\bauthor{\bsnm{{Bloomfield}}, \binits{D.S.}},
+\bauthor{\bsnm{{Raftery}}, \binits{C.L.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}},
+\bauthor{\bsnm{{Auch{\`e}re}}, \binits{F.}},
+\bauthor{\bsnm{{Defise}}, \binits{J.-M.}},
+\bauthor{\bsnm{{D'Huys}}, \binits{E.}},
+\bauthor{\bsnm{{Lecat}}, \binits{J.-H.}},
+\bauthor{\bsnm{{Mazy}}, \binits{E.}},
+\bauthor{\bsnm{{Rochus}}, \binits{P.}},
+\bauthor{\bsnm{{Rossi}}, \binits{L.}},
+\bauthor{\bsnm{{Sch{\"u}hle}}, \binits{U.}},
+\bauthor{\bsnm{{Slemzin}}, \binits{V.}},
+\bauthor{\bsnm{{Yalim}}, \binits{M.S.}},
+\bauthor{\bsnm{{Zender}}, \binits{J.}}:
+\byear{2013},
+\batitle{{The SWAP EUV Imaging Telescope Part I: Instrument Overview and
+  Pre-Flight Testing}}.
+\bjtitle{\solphys}
+\bvolume{286},
+\bfpage{43}\,--\,\blpage{65}.
+doi:\doiurl{10.1007/s11207-012-0114-6}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Stenborg} and
+  {Cobelli}}{2003}]{2003A&A...398.1185S}
+\begin{barticle}
+\bauthor{\bsnm{{Stenborg}}, \binits{G.}},
+\bauthor{\bsnm{{Cobelli}}, \binits{P.J.}}:
+\byear{2003},
+\batitle{{A wavelet packets equalization technique to reveal the multiple
+  spatial-scale nature of coronal structures}}.
+\bjtitle{\aap}
+\bvolume{398},
+\bfpage{1185}\,--\,\blpage{1193}.
+doi:\doiurl{10.1051/0004-6361:20021687}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Stenborg}, {Vourlidas}, and
+  {Howard}}{2008}]{2008ApJ...674.1201S}
+\begin{barticle}
+\bauthor{\bsnm{{Stenborg}}, \binits{G.}},
+\bauthor{\bsnm{{Vourlidas}}, \binits{A.}},
+\bauthor{\bsnm{{Howard}}, \binits{R.A.}}:
+\byear{2008},
+\batitle{{A Fresh View of the Extreme-Ultraviolet Corona from the Application
+  of a New Image-Processing Technique}}.
+\bjtitle{\apj}
+\bvolume{674},
+\bfpage{1201}\,--\,\blpage{1206}.
+doi:\doiurl{10.1086/525556}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Yashiro}
+  \textit{et~al.}}{2004}]{2004JGRA..10907105Y}
+\begin{barticle}
+\bauthor{\bsnm{{Yashiro}}, \binits{S.}},
+\bauthor{\bsnm{{Gopalswamy}}, \binits{N.}},
+\bauthor{\bsnm{{Michalek}}, \binits{G.}},
+\bauthor{\bsnm{{St.~Cyr}}, \binits{O.C.}},
+\bauthor{\bsnm{{Plunkett}}, \binits{S.P.}},
+\bauthor{\bsnm{{Rich}}, \binits{N.B.}},
+\bauthor{\bsnm{{Howard}}, \binits{R.A.}}:
+\byear{2004},
+\batitle{{A catalog of white light coronal mass ejections observed by the SOHO
+  spacecraft}}.
+\bjtitle{Journal of Geophysical Research (Space Physics)}
+\bvolume{109},
+\bfpage{7105}.
+doi:\doiurl{10.1029/2003JA010282}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{{Young} and
+  {Gallagher}}{2008}]{2008SoPh..248..457Y}
+\begin{barticle}
+\bauthor{\bsnm{{Young}}, \binits{C.A.}},
+\bauthor{\bsnm{{Gallagher}}, \binits{P.T.}}:
+\byear{2008},
+\batitle{{Multiscale Edge Detection in the Corona}}.
+\bjtitle{\solphys}
+\bvolume{248},
+\bfpage{457}\,--\,\blpage{469}.
+doi:\doiurl{10.1007/s11207-008-9177-9}.
+\end{barticle}
+\endbibitem
+
+\end{thebibliography}

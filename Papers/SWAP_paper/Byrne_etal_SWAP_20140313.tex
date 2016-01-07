@@ -1,0 +1,296 @@
+%% Template.tex; Solar Physics
+%% 
+\documentclass[namedreferences]{solarphysics}
+%
+% spr-sola-addons available options:
+%  natbib        -- For citations: redefine \cite commands (loads natbib.sty)
+%  solaenum      -- makes enumerated list with italics-roman numerals and a single right-bracket\textbf{}
+%  solaromanenum -- makes enumerated list with roman numerals and a single right-bracket
+%  linksfromyear -- puts a link on a year citation (hyperref must be loaded)
+%  optionalrh    -- for optional running title/author
+%
+\usepackage[optionalrh,solaromanenum]{spr-sola-addons} % For Solar Physics 
+%\usepackage{epsfig}                     % For eps figures, old commands
+\usepackage{graphicx}                    % For eps figures, newer & more powerfull
+%\usepackage{courier}                    % Change the \texttt command to courier style
+%\usepackage{amssymb}                    % useful mathematical symbols
+\usepackage{color}                       % For color text: \color command
+\usepackage{url}                         % For breaking URLs easily trough lines
+\def\UrlFont{\sf}                        % define the fonts for the URLs
+
+
+%% Local definitions
+%% please place your own definitions here and don't use \def but
+%% \newcommand{}{} or 
+%% \renewcommand{}{} if it is already defined in LaTeX
+\newcommand{\solphys}{{\it Solar Physics}}
+\newcommand{\aap}{    {\it Astronomy \& Astrophysics}}
+\newcommand{\aaps}{   {\it Astronomy \& Astrophysics Supplemental}}
+\newcommand{\apj}{    {\it Astrophysical Journal}}
+\newcommand{\apjl}{    {\it Astrophysical Journal Letters}}
+\newcommand{\apjs}{	{\it Astrophysical Journal Supplement}}
+\newcommand{\jgr}{    {\it Journal of Geophysical Research}}
+\newcommand{\aapr}{    {\it Astronomy \& Astrophysics Review}}
+\newcommand{\grl}{    {\it Geophysical Research Letters}}
+\newcommand{\lrsp}{    {\it Living Rev. Solar Phys.}}
+\newcommand{\nat}{    {\it Nature}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{article}
+
+\begin{opening}
+
+\title{Bridging EUV and white-light observations to inspect the initiation phase of a ``two-stage" solar eruptive event.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Authors Names
+%
+\author{J.\,P.~\surname{Byrne}$^{1}$\sep
+	H.~\surname{Morgan}$^{2}$\sep
+	D.\,B.~\surname{Seaton}$^{3}$\sep
+	H.\,M.~\surname{Bain}$^{4}$\sep     
+	S.\,R.~\surname{Habbal}$^{1}$
+       }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Runningheads
+%
+\runningauthor{Byrne et al.}
+\runningtitle{Bridging EUV and white-light observations of a ``two-stage" solar eruptive event.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Affilations 
+%
+  \institute{$^{1}$Institute for Astronomy, University of Hawai'i, 2680 Woodlawn Drive, Honolulu, HI 96822, USA.
+                     email: \url{jbyrne@ifa.hawaii.edu} %email: \url{e.mail-b}%\\ 
+	$^{2}$Sefydliad Mathemateg a Ffiseg, Prifysgol Aberystwyth, Ceredigion, Cymru, SY23 3BZ, UK.
+	$^{3}$Royal Observatory of Belgium, Avenue Circulaire 3, 1180 Brussels, Belgium.
+	$^{4}$Space Sciences Laboratory, University of California, Berkeley, CA 94720-7450, USA.
+%                     email: \url{e.mail-c} \\
+             }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Abstract 
+\begin{abstract}
+The initiation phase of CMEs is a very important aspect of solar physics, as these phenomena ultimately drive space weather in the heliosphere. The interesting physics at play is known to occur between the photosphere and low corona, where many models introduce an instability that triggers a CME, often with associated magnetic reconnection and flaring activity. To this end, it is important to obtain a variety of observations of the low corona in order to build as clear a picture as possible of the dynamics that occur therein. Here, we combine the EUV imagery of the SWAP instrument on board \emph{PROBA2} with the white-light imagery of the ground-based Mk4 coronameter at MLSO in order to bridge the observational gap that exists between the disk imagery of AIA on board \emph{SDO} and the coronal imagery of LASCO on board \emph{SOHO}. Methods of multiscale image analysis were applied to the observations to better reveal the coronal signal while suppressing noise and other features. This allowed an investigation into the initiation phase of a CME that was driven by a rising flux rope structure from a ``two-stage" flaring active region underlying an extended helmet streamer. {\bf It was found that the initial outward motion of the erupting loop system in the EUV observations coincided with the first X-ray flare peak, and led to a plasma pile-up of the white-light CME core material. The characterized CME core then underwent a strong jerk in its motion, as the early acceleration increased abruptly, simultaneous with the second X-ray flare peak. The overall system expanded into the helmet streamer to become the larger CME structure observed in the LASCO coronagraph images, which later became concave-outward in shape. Theoretical models for the event are discussed in light of these unique observations, and it is concluded that the formation of a torus-unstable flux rope may be a likely scenario.}
+ 
+\end{abstract}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Keywords
+%
+\keywords{Coronal Mass Ejections, Low Coronal Signatures, Initiation and Propagation}
+
+
+\end{opening}
+%-------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sections
+%
+
+\section{Introduction}
+\label{intro}
+
+Coronal mass ejections (CMEs) represent the largest, most dynamic phenomena that originate from the Sun. Propagating at speeds of hundreds up to thousands of kilometers per second \cite{2004JGRA..10907105Y}, the particle densities and energies involved can cause adverse space weather at Earth and elsewhere in the heliosphere \cite{2005AnGeo..23.1033S}. They can lead to geomagnetic storms upon impacting our magnetosphere, damaging satellites, affecting communication and navigation systems, and increasing the radiation risk for astronauts \cite{2007A&G....48f..11L}. Given their potentially hazardous impact on Earth's geomagnetic environment, the physics governing their eruption and propagation needs to be understood. 
+
+Various theoretical CME models exist in the effort to reproduce the physical driver mechanisms responsible for their initiation and propagation (see the review by \opencite{2011LRSP....8....1C}). All are based upon {\bf some form of triggering mechanism}, most likely as a result of a magnetic energy imbalance often described in the context of tether straining and release \cite{2001AGUGM.125..143K}. {\bf Considering the pre-eruption structure of the CME as a flux rope (e.g., \opencite{1996JGR...10127499C}) or strongly sheared arcade}, possible causes for eruption may include flux injection and magnetic twisting \cite{2006PhRvL..96y5002K,2001ApJ...562.1045K}, reconnection beneath the flux rope \cite{2007ApJ...658L.123L,2003ApJ...595.1231A,1995ApJ...446..377F,1980IAUS...91..207M}, or reconnection between the overlying field and neighboring flux systems \cite{2008ApJ...683.1192L,2007ApJ...671L..77V,1999ApJ...510..485A}. Such models may provide an interpretation on observations, and thus allow some deeper understanding of the forces governing CMEs and their relationship with associated phenomena like flares {\bf (see the review by \opencite{2002A&ARv..10..313P})}.
+
+An important aspect of studying CME initiation, is the ability to resolve their low-corona propagation and associated source regions on the disk: be it a flaring or non-flaring active region, a prominence/filament eruption or other rising loop system \cite{2002ApJ...566L.117Z,2001ApJ...561..372S}, or else a ``stealth CME" without any specifically detectable source \cite{2013SoPh..285..269H}. Prominence lift-offs often become the core material of a CME \cite{2008AnGeo..26.3025F,2003ApJ...586..562G}, and rising loops often form some part of the CME morphology \cite{2006A&A...455..339D,2004A&A...422..307C}. {\bf For example, \inlinecite{2006ApJ...651.1238Z} combine EIT and LASCO observations of the initiation phase of two successive prominence-eruption CMEs, and determine that they are driven by the kink instability and mass drainage with an impulsive acceleration onset resulting from magnetic reconnection beneath the filament.} The low-corona kinematics and morphology of CMEs provide insight into the early forces at play, and so a rigorous study of such phenomena is key to understanding the physics involved. However, a difficulty exists in studies of coronal structure that are prone to low signal-to-noise ratios in the observational data. Low-coronal white-light observations using a coronagraph are problematic due to the strong radial brightness gradient and issues with scattered light in the instrument, while extended EUV disk observations are problematic due to the strong drop-off in emission brightness with increasing coronal height. These common issues with solar observational data motivate the ongoing development and use of advanced image processing techniques to suppress noise and enhance structures in the image data \cite{2011ApJ...737...88D,2011AdSpR..47.2118G,2011igi-global,2008ApJ...674.1201S,2008SoPh..248..457Y,2006SoPh..236..263M,2003A&A...398.1185S}. 
+
+{\bf In this paper, a relatively unique ``two-stage" solar eruptive event is studied with a combination of multiple, overlapping EUV disk observations and white-light coronal observations. This compliments the observations of \inlinecite{2012ApJ...746L...5S}, who reported the event as evidence for secondary heating during a flare and associated CME. In Section\,\ref{sect:techniques} we describe the observations and use of multiscale image processing methods. In Section\,\ref{sect:event} we describe the event that occurred on 8~March~2011, and how the combination of observations and techniques can provide deeper insight to the initiation phase of CMEs. A discussion of the interpretation of this study is presented in Section\,\ref{sect:discussion}, and final conclusions in Section\,\ref{sect:conclusions}.}
+
+\section{Observations \& Techniques}
+\label{sect:techniques}
+
+
+In order to connect CMEs to their source regions, data from disk imagers such as the Sun Watcher using APS detectors and image Processing (SWAP; \opencite{2013SoPh..286...43S}, \opencite{2013SoPh..286...67H}) on board the second Projects for Onboard Autonomy (\emph{PROBA2}; \opencite{2013SoPh..286....5S}) and the Atmospheric Imaging Assembly (AIA; \opencite{2012SoPh..275...17L}) on board the Solar Dynamics Observatory (\emph{SDO}; \opencite{2012SoPh..275....3P}), may be used in tandem with coronagraph observations. However, difficulties in the interpretation of the observed features arise due to the varying instrument specifications, particularly the limitations on their fields-of-view, image passbands, and cadences of observations. In order to bridge the gap between the EUV observations of the low corona and the white-light images of the upper corona, the SWAP imager was used in conjunction with the ground-based Mauna Loa Solar Observatory (MLSO) Mk4 coronameter \cite{2003SPIE.4843...66E} to directly compare the observations of CMEs as they erupt through the overlapping fields-of-view (Fig.\,\ref{overlays}). {\bf SWAP has a spectral bandpass centered on 174\,\AA, with 3.2 arcsec pixels over a 54$\times$54 arcmin field-of-view, and a cadence of $\sim$\,2~mintues. Mk4 is a rotating coronameter that produces white-light images of the polarization brightness of the corona from 1.1\,--\,2.8\,$R_{\odot}$ at a cadence of $\sim$\,3~minutes over a five-hour observing day.} This allows a direct correspondence of features in the EUV images with those in the white-light images, and can therefore provide new insight into the initial phases of CME eruption and acceleration.
+
+\begin{figure}[ht]
+\centering{\includegraphics[scale=0.6, trim=60 50 200 70]{images/overlays.eps}}
+\caption{A LASCO/C2 image of the 8~March~2011 CME, with an MLSO/Mk4 image overlaid in the range 1.1\,--\,2.2\,$R_\odot$, at times 20:24 and 20:22~UT respectively. The C2 image has been processed via the CORIMP techniques of normalizing radial graded filter (NRGF) and quiescent background subtraction. It has been trimmed to a half-width of 3.4\,$R_\odot$, which is the upper limit of the \emph{PROBA2}/SWAP field-of-view as indicated by the dashed circle. The SWAP field-of-view during nominal operations is indicated by the dashed box. The \emph{SDO}/AIA field-of-view is indicated by the inner dotted box. The limb of the Sun behind the occulter is indicated by the solid white circle. A CME is observed off the south-west limb as a bright loop structure with some inner core material, as seen here in the Thomson-scattered white-light coronagraph images. It is clear how the fields-of-view of SWAP and AIA can be used to bridge CME observations to the low corona and solar disk, for gaining insight to their initiation phase.}
+\label{overlays}
+\end{figure}
+
+
+\begin{figure}[t]
+\centering{\includegraphics[width=\linewidth]{images/polar_fig_swap_20110308.eps}}
+\caption{The top two panels show polar-unwrapped images of the solar corona across the \emph{PROBA2}/SWAP field-of-view on 8~March~2011 at 19:53:59\,UT; left being the level-1 data, right being the enhanced data (shown at log-scale image intensity). Across each image, at a constant height of 1.3\,$R_{\odot}$, a normalized intensity profile is plotted to demonstrate how the background coronal structure is suppressed by the multiscale techniques, to highlight only the complex structure of the prominence. The bottom left plot shows a direct comparison of the two intensity profiles, where the prominence is located between 230\,--\,260$^\circ$. The bottom right plot shows a log scale of the normalized intensity profile across the enhanced image to demonstrate that the rest of the coronal structure is still present, just strongly suppressed relative to the prominence material. (The green line corresponds to the intensity slice of the enhanced image in each case.)}
+\label{polar_fig_swap_20110308}
+\end{figure}
+
+Methods of multiscale image processing have been developed in recent years for use on coronagraph images to enhance the underlying structure. The fundamental idea behind these methods is to highlight details apparent on different scales within the data. Therefore, multiscale techniques provide an ability to remove small-scale features in images, essentially suppressing the noise such that the structures of interest can be revealed in greater detail. By applying them to coronagraph images, the morphology of CMEs as they propagate through the corona in a sequence of observations can be determined with better accuracy than previously possible, and can allow a characterisation of the erupting structure (with an ellipse-fit for example) to determine various properties in their evolution (\opencite{2009A&A...495..325B}, \citeyear{2012ApJ...752..145B}). %Similarly the structures in EUV observations may be enhanced in this manner, or, for example using a new form of multiscale Gaussian normalization \inlinecite{} (Morgan \& Druckmuller?).
+
+Here, multiscale methods are demonstrated for use on the Mk4 coronameter and SWAP EUV imager, to provide insight to the low-coronal morphology of erupting structures that form CMEs. Details on the fundamental techniques are outlined in \inlinecite{2008SoPh..248..457Y} wherein the magnitude of the multiscale gradient is used to show the relative strength of the detected edges in the image structure at a particular scale of the multiscale decomposition (i.e., the strongest edges appear brightest). To further increase the signal-to-noise ratio of the edge detections, the magnitude information from the scales most relevant to the coronal structures of interest may be multiplied together, neglecting the largest scales that smooth out the coronal signal, and the smallest scales that reveal the finer structure and noise (see \opencite{2012ApJ...752..145B}, for details). Thus the magnitude of the multiscale gradient across the dominant edges of coronal loops and CMEs is further enhanced for subsequent characterization of their morphology. 
+
+Figure\,\ref{polar_fig_swap_20110308} shows the effectiveness of the multiscale techniques for detecting the structure of an ejection observed by SWAP at 19:53:59\,UT on 8~March~2011. The top left image shows the level-1 processed data, polar-unwrapped about Sun-center at coronal heights of 1\,--\,1.7\,$R_{\odot}$. The top right image shows the result of the multiscale filtering technique applied in such a manner as to enhance the edges of the detected structure in the data. The bottom left plot shows the comparison of a normalized intensity profile at a height of 1.3\,$R_{\odot}$ in each, revealing how the multiscale techniques best characterize the complex structure of the erupting prominence material located between  230\,--\,260$^\circ$. The bottom right plot shows a log scale of the normalized intensity profile across the multiscale filtered image to reveal the suppressed signal of the background features.
+\begin{figure}[p]
+\centering{\includegraphics[scale=0.21, clip=true]{images/SWAP_MK4_panels.eps}}
+\caption{SWAP (left) and Mk4 (right) observations of the erupting loop system that forms the core of the CME on 8~March~2011. The images have been processed using a multiscale filter, and have intensities that represent the relative magnitudes of the edges in each image. The erupting structure is traced manually by a point-\&-click characterisation, as shown.}
+\label{combined_modgrad_points}
+\end{figure}
+
+The extended corona from $\sim$\,2\,--\,30\,$R_{\odot}$ is often observed with the Large Angle Spectrometric Coronagraph (LASCO; \opencite{1995SoPh..162..357B})  on board the Solar and Heliospheric Observatory (SOHO; \opencite{1995SoPh..162....1D}) which orbits the L1 point. Coronal structures, and specifically CMEs, have been studied in the white-light image data from these instruments through the use of a number of steps outlined in the Coronal Image Processing package (CORIMP; \opencite{2012ApJ...752..144M}; \opencite{2012ApJ...752..145B}). These techniques have here been extended for use on the MLSO/Mk4 coronameter data, which provides white-light polarization brightness images of the corona from $\sim$\,1.14\,--\,2.86\,$R_{\odot}$ at a cadence of approximately 3~minutes. The Mk4 data is prepared via an instrumental vignetting function that maximizes the image contrast by offsetting the radial brightness gradient in order to best reveal structures such as CMEs and streamers. A multiscale decomposition is then performed in order to produce magnitude images of the relative edge strengths in the image to highlight the detected structure (see Fig.\,\ref{combined_modgrad_points}). This allows, for example, an ellipse-fit characterization of the outward propagating fronts, as described in \inlinecite{2009A&A...495..325B}.
+
+
+
+\section{``Two-Stage" Solar Eruptive Event Case Study}
+\label{sect:event}
+
+\begin{figure}[t]
+\centering{\includegraphics[width=\linewidth, clip=true, trim=0 0 120 150]{images/stackplots.eps}}
+\caption{Stack plots were generated for a radial intensity profile through the SWAP and AIA-171 observations. The profile location is shown in a full field-of-view SWAP image at 19:35\,UT (top left), and at two stages of the eruption in cropped AIA-171 images at 18:30 and 19:35\,UT on 8~March~2011 (bottom left). The stack plots (right) clearly show the two-stage eruption, with green and orange arrows on the AIA images to indicate the different loop structures of interest; the latter of which becomes the CME core that is tracked through the SWAP, Mk4 and LASCO observations. (An online animation accompanies this figure.)}
+\label{stackplots}
+\end{figure}
+
+A CME erupted from the southwest active region NOAA\,11165, {\bf first visible in LASCO/C2 at 20:12\,UT on 8~March~2011.} The active region caused numerous flares during its evolution across the disk, notably an M4.4 flare at GOES start-time 18:08\,UT (peaking at 18:28\,UT) associated with the rising loop system that later erupted to form the core material of the CME. Of particular interest for this event, is the ``two-stage" X-ray flare profile seen in the GOES flux, identified as two individual M-class flares separated by almost 2 hours. \inlinecite{2012ApJ...746L...5S} present this as clear evidence for a secondary heating phase. The loop system evolution was visible up to $\sim$\,1.3\,$R_{\odot}$ in AIA images, at which height a set of loops that were most strongly observed in AIA\,171{\AA} images began to erupt, coinciding with the time of the secondary M1.4 flare $\sim$\,20:00\,UT. These were then observable to a height of $\sim$\,1.6\,$R_{\odot}$ in the larger field-of-view of the SWAP\,174{\AA} imager. The observations of the active region are exhaustively reported by \inlinecite{2012ApJ...746L...5S}, though it is noted that the system of loops they track (see the stack plot in Fig.\,4 of their paper) is not the same as the specific flux rope loops observed and tracked here, which erupted as the core of the CME (Fig.\,\ref{stackplots}). The CME core is then observed in the white-light Mk4 coronameter images to a height of $\sim$\,2.2\,$R_{\odot}$, entrained within a faint CME bubble that started to become visible at these heights before being clearly observed to propagate outwards in the extended LASCO coronagraph images. This type of cavity-CME morphology is often seen in low coronal observations, studied for example by \inlinecite{2006ApJ...641..590G} for long-lasting structures seen in Mk4 data, which erupt to become the typical three-part CME structure of a bright front, darker cavity and bright core \cite{1986JGR....9110951I}.  %(Fig.\,\ref{lasco_c2_fig}). 
+
+{\bf The STEREO-Ahead spacecraft was at a separation of almost 88$^{\circ}$ from Earth, providing direct observations of the active region with the SECCHI/EUVI at wavelengths of 171, 195, 284 and 304\,\AA. These images, particularly the 195\,\AA, reveal a top-down view of the loop structures involved in the two-stage flaring eruption. Initial post-flare loops are observed following the M-class flare X-ray peak from about 19:00~UT, proceeded by relatively higher post-flare loops following the secondary X-ray peak from about 21:15~UT (Fig.\,\ref{euvi}). The outward propagation of the erupting loop structure is also very faintly visible, and appears to undergo a slight clockwise untwisting motion and/or possible asymmetric expansion (see movie). Thus it may be that the erupting loops, which are oriented north-south (above the east-west flare ribbons seen in EUVI-Ahead), are impeded by overlying field lines that are oriented in a more east-west direction as seen in the AIA images.}
+
+\begin{figure}[!t]
+\centering{\includegraphics[width=\linewidth, clip=true, trim=30 300 30 30]{images/euvi.pdf}}
+\caption{EUVI-A 195\,{\AA} observations of the active region NOAA\,11165 at times 19:00 and 21:15\,UT on 8~March~2011. The left image shows the post-flare loops of the first stage of the eruption, following the initial X-ray flare peak at $\sim$18:28\,UT; while the right image shows the post-flare loops of the second stage of the eruption, following the secondary X-ray flare peak at $\sim$20:15\,UT. (An online animation accompanies this figure.)}
+\label{euvi}
+\end{figure}
+
+\begin{figure}[t]
+\centering{\includegraphics[width=\linewidth, trim=60 0 0 0]{images/combined.eps}}
+\caption{A merged SWAP (blue) and Mk4 (red) image with the ellipse-fits to the characterized CME core material as observed by each instrument at 19:59\,UT on 8 March 2011. (An online animation accompanies this figure.)}
+\label{combined}
+\end{figure}
+
+\inlinecite{2013ApJS..206...19M} report on the expansion of active region loops from this region into the extended solar corona in the few days leading up to this CME. The region lies beneath a helmet streamer structure that appears to contain the observed coronal loops, with a number of faint brightenings due to small outward-propagating plasma blobs. These, and the pointed shape of the rising loops, are postulated to be indicators of helmet streamer interchange reconnection at the apex of the closed field \cite{2012ApJ...749..182W}. A subsequent brightening and expanding of the loops, accompanied by a swelling of the helmet streamer, precedes the CME from this region and is evidence for an energy input to the system that leads to an explosive energy release. Such a process manifests as the two-stage solar eruptive event outlined here and in the observations of \inlinecite{2012ApJ...746L...5S}. The AIA images of the active region underlying this system were processed with a multiscale Gaussian normalization technique \cite{MorganDruckmuller_inreview} to enhance the observations of the coronal loop evolution over the course of the event. The right panels of Fig.\,\ref{stackplots} show stack plots obtained from a radial intensity profile through both the SWAP and AIA-171 observations, enhanced with the different multiscale filtering techniques. The stack plots clearly show the two stages of the eruption, with green and orange arrows on the AIA images indicating the different loop structures that each intensity track corresponds to; the latter being the flux rope structure that erupts as the CME core. {\bf The loop structures in the AIA-171 images also exhibit a kink-unstable topology, with a single twist observed most clearly after the first stage of the eruption. This is especially highlighted by the path of upflowing material into the southern portion of the loops, tracing the kinked loop structure.}	 
+
+\begin{figure}[t]
+\centering{\includegraphics[scale=0.82, clip=true, trim=10 0 10 60]{images/ells_fig.pdf}}
+\caption{\emph{Top:} The SWAP and Mk4 ellipse-fits to the characterized CME core material over the course of the eruption. \emph{Bottom:} The height-time profile of the characterized eruption observed simultaneously with the SWAP imager and Mk4 coronameter, where the plus symbols represent the span of heights of each of the ellipse-fits, as indicated by the colorbar. The spatial and temporal offsets are due to the different speeds of the eruptions and difference cadences of the instruments; where the erupting EUV loops observed with SWAP move at a speed of $\sim$\,100$\,km\,s^{-1}$, while the associated core of the CME observed with Mk4 reaches a speed of $\sim$\,400$\,km\,s^{-1}$.}
+\label{ell_heights_inner}
+\end{figure}
+
+In order to best reveal the eruption material when comparing the low signal-to-noise SWAP and Mk4 images, multiscale methods of noise suppression and edge enhancement were employed, as discussed above. This allowed a robust point-\&-click characterization of the CME core material, which was the brightest structure to be tracked through the different imagers when the CME front was not yet fully formed. The rising loop system observed with SWAP and the erupting CME core material observed with Mk4 coincided both temporally and spatially, at least initially, and each was characterized by ellipse-fits to the detected front edges of the core flux rope structure. Figure\,\ref{combined} shows an overlay of SWAP and Mk4 images during the eruption at times 19:58:59 and 19:59:12\,UT respectively, with the ellipse-fits to the erupting fronts. Figure\,\ref{ell_heights_inner} shows the progression of the ellipse-fits to the fronts over the course of the eruption, indicating how the white-light material observed with Mk4 propagates away from the source quicker than the EUV material observed with SWAP. The different height-time profiles show the material in the Mk4 images attained a speed of $\sim$\,400$km\,s^{-1}$, while the associated erupting loop structures in the SWAP images moved at only $\sim$\,100$\,km\,s^{-1}$. {\bf This may be, at least partly, due to the increased intensity drop-off of the EUV emission with height, and possible plasma pile-up in the white-light observations. It is also important to note that Mk4 observes the real density-enhanced structure, while the SWAP EUV is also sensitive to the temperature of the coronal material.} %The reasons for this are unclear, but the analysis of \inlinecite{2012ApJ...746L...5S} shows that the active region underwent a two-stage flaring process at the time of the eruption that is evidence of a secondary heating phase that coincides with the CME acceleration (Fig.~\ref{kins_CMEcore}). 
+
+
+\begin{figure}[t]
+\centering{\includegraphics[clip=true, scale=0.4, trim=0 60 0 90]{images/lasco_c2_fig.eps}}
+\caption{A radially filtered LASCO/C2 image of the CME at 21:06:51\,UT on 8~March~2011. The yellow contours trace the edges in the detected CME structure (from the CORIMP catalog), with red points clicked along the corresponding core material, and a resulting ellipse-fit in blue.}
+\label{lasco_c2_fig}
+\end{figure}
+
+
+\begin{figure}[!t]
+\centering{\includegraphics[clip=true, scale=0.65, trim=0 0 0 0]{images/plot_kins_quartiles_savgol_20110308T194136_goes_fig.eps}}
+\caption{The kinematic profiles of height, velocity, and (inset) the early acceleration phase of the CME core material, detected and characterized via the multiscale edge enhancement and ellipse-fits (see Section\,\ref{sect:techniques} and Figs.\,\ref{ell_heights_inner} and \ref{lasco_c2_fig}). The automated CORIMP CME detections provide the height-time measurements of the CME front shown here in gray for reference, with the height-time measurements of the CME core  plotted in color according to their position angle. The fields-of-view of the Mk4, C2 and C3 instruments are indicated by the horizontal dotted lines, covering a useable range of 1.1\,--\,25\,$R_{\odot}$, with the CME core tracked to approximately 18\,$R_{\odot}$. A Savitzky-Golar filter was applied to the height-time measurements to obtain distribution profiles of velocity and acceleration, with the median, interquartiles range, and upper/lower fences over-plotted in solid, dashed and dotted lines respectively. Overlaid is the GOES X-ray 1\,--\,8\,{\AA} flux profile, showing the double-eruption peaks at about 18:28 and 20:15\,UT, the latter of which coincides with the CME jerk (abrupt increase in acceleration; see inset).}
+\label{kins_CMEcore}
+\end{figure}
+
+The CME was observed to have a typical three-part structure that propagated out through the corona at a bulk speed in the range $\sim$\,400\,--\,600$\,km\,s^{-1}$ (based on the kinematics of the CME front detected and tracked in the CORIMP catalog\footnote{http://alshamess.ifa.hawaii.edu/CORIMP/}). The core of the CME was manually tracked via the multiscale methods and ellipse-fits discussed above (an example LASCO image is shown in Fig.\,\ref{lasco_c2_fig}). The resulting kinematics are plotted in Fig.\,\ref{kins_CMEcore}, where the height-time measurements of the CME core, observed with Mk4, C2 and C3, are shown in color (corresponding to the position angle of the measurements across the plane-of-sky) overlaid on the CME front height-time measurements shown in gray for reference. The Savitzky-Golay filter is used to derive the velocity and acceleration profiles for the CME core; whereby a distribution of velocity and acceleration values is obtained at each data point, with the corresponding median, interquartile range, and upper and lower fences overlaid on each profile as solid, dashed and dotted lines respectively (see \opencite{2013A&A...557A..96B} for a detailed discussion). The inset acceleration phase of the CME core shows initial values of approximately $\sim$\,20$\,m\,s^{-2}$ jumping to $\sim$\,130$\,m\,s^{-2}$, referred to as the CME jerk by \inlinecite{2008ApJ...674..586S}. The steepness of this jump may in part be attributed to the numerical effects of the data gap between Mk4 and C2, where the spline-fit of the Savitzky-Golay filter (operating on a moving window of 6 neighboring data points) compensates somewhat for the jump in velocity that occurs between these two fields-of-view. The magnitude of the velocity, however, was verified by inspection of the different profiles within the separate instrument fields-of-view, for different degrees of polynomial fits and Savitzky-Golay filter sizes. That is, the rise in velocity is determined to be real, though its true steepness might be better quantified if it were possible to obtain a more complete set of measurements. Nevertheless, it occurs in sync with the second rise in the X-ray flare profile, being an indication of a very fast energy release that allows the explosive eruption of the CME to begin, before later attaining a speed akin to the local solar wind speed. This double acceleration profile is further evidence for the complexity of the system whose morphology has been observed to change dramatically over the course of its evolution \cite{2013ApJS..206...19M, 2012ApJ...746L...5S}.
+
+
+
+\section{Discussion}
+\label{sect:discussion}
+
+The study of this particular event is especially interesting in the context of the flare-CME relationship. The two-stage flaring profile of the erupting loop system is evidence for a secondary heating process (see \opencite{2012ApJ...746L...5S} for details), indicating two stages of magnetic reconnection that occur to first change the topology of the system and then allow for the subsequent flux rope eruption. This scenario demonstrates that a loss of stability occurs initially, to allow the loop system to rise and alter its magnetic configuration with an explosive energy release detected as an M-class flare. This is followed by a secondary energy release that allows the underlying flux rope to erupt through the corona as a CME, with the production of a second X-ray peak and post-flare loops at the CME footpoints.
+
+
+{\bf 
+
+It is not wholly clear why we observe different rates of motion of the material in the SWAP and Mk4 images during the CME onset (Fig.~\ref{ell_heights_inner}). One reason is possibly that the material observed by the different instruments corresponds to different parts of the erupting structure at different temperatures, which are difficult to dissociate from each other on the plane-of-sky. \inlinecite{2012ApJ...750...44B} observed a very similar effect for the four AIA passbands they used to track an erupting plasmoid, and demonstrated that different temperature structures do exhibit different eruption speeds (see, in particular, Fig.\,4 of their paper). The effect may further be attributed, at least in part, to a greater loss of signal in the EUV than the white-light as the eruption proceeds to the edge of the field-of-view (diminishing in its signal-to-noise ratio while the white-light may also be showing plasma pile-up); though this is difficult to reconcile with the observations that appear to show consistent loop structures as characterised in our analysis. Indeed if the offset is true and the different parts of the structure do undergo such differing rates of propagation on the same plane-of-sky, it may be that the trailing part simply becomes a different portion of the main CME and/or undergoes a delayed jerk in its motion, which is not observed as the EUV signal diminishes towards the edge of the SWAP field-of-view. This would imply that there is some form of delayed or staggered eruption occurring throughout the CME structure, or that an expansion effect takes over as the CME bubble forms, that acts to create the observed offset between the different observations. 
+
+
+
+%Alternatively, the different observations of the EUV and white-light may correspond to significantly different parts of the eruption undergoing different physical mechanisms as the system evolves, leading to their detection in the hotter EUV bands versus the cooler white-light images. The heating and cooling of loop structures over evolving active regions is well reported in observations, for example (refs?).
+
+Eitherway, this event is intriguing in its possible interpretation. The postflare loops in the first stage may be likened to the typical ones in the standard flare model (CSHKP: \opencite{1964NASSP..50..451C}; \opencite{1966Natur.211..695S}; \opencite{1974SoPh...34..323H}; \opencite{1976SoPh...50...85K}). Thus the early phase must be driven, at least in part, by a non-ideal process. The erupting loops, which are oriented north-south (above east-west flare ribbons seen in EUVI-Ahead), are then impeded by overlying field lines as seen in AIA data, causing a $\sim$\,50~minute stall in the eruption. For the eruption to proceed, the upward magnetic pressure force must overcome the downward magnetic tension force, following either an energy build-up and/or a topological change to the system during the continued reconnection in the decay phase of the first stage. The jerk in the CME motion when it quickly accelerates during the second stage flare is evidence of this catastrophic energy release.
+
+The exact physical connection between these two stages is unclear and open to interpretation. For example, one possibility we investigated is that of tension reduction, through a mechanism such as magnetic breakout whereby the overlying arcades are removed by coronal reconnection. This was motivated by two factors. Firstly by the SDO/HMI magnetogram data in the days preceding the eruption, that show the active region evolving into a possible multi-polar configuration. But since the magnetogram data on the limb is not clear (i.e., we cannot directly observe or extrapolate the active region topology) this does not provide strong evidence. Secondly by the ``bugle effect" modeled by \inlinecite{2009ApJ...693.1178V} that pertains to a streamer blowout CME. This follows the observations of \inlinecite{2013ApJS..206...19M} that show a streamer swelling on the limb above the active region to large heights in the LASCO coronagraphs, which evolves slowly over the preceding days in the lead-up to the eruptive event. Helmet streamers like this are sometimes observed prior to CME initiation \cite{1993JGR....9813177H} though not always to such great heights due to the low signal-to-noise ratio -- an issue overcome by the dynamic separation technique of \inlinecite{2012ApJ...752..144M}. \inlinecite{2009ApJ...693.1178V} also describe how the rising flux rope can ``snow plow" the plasma ahead of it, with the effect of broadening the helmet streamer and facilitating reconnection between the flux rope and the helmet field. Flare reconnection then sets in due to the expansion of the magnetic field in the wake of the CME eruption as indicated by the elongated ``X"-shaped structure and post-flare loops in the observations of \inlinecite{2012ApJ...746L...5S}.
+
+However, since the presence of a quadrupolar topology (required in the breakout model) is not clear, we consider the formation of a kink or torus-unstable flux rope \cite{2004A&A...413L..27T,2010ApJ...708..314A}, with evidence of internal tether-cutting during the eruption (c.f., \opencite{2010ApJ...721.1579R}). Being a rather unique ``two-stage" event, it may be posited that a facilitator (such as tension reduction via tether-cutting reconnection, arcade shearing, flux emergence or cancellation) allowed for a loss-of-equilibrium in the first stage, and a subsequent instability then triggered a catastrophic eruption in the second stage. In this case, the overlying magnetic field tension was strong enough, especially in the presence of the helmet streamer, to stall the eruption until the upward magnetic pressure rose to a critical point. \inlinecite{2004A&A...413L..27T} studied the stability of the loop model by \inlinecite{1999A&A...351..707T} in a twisted configuration that leads to an ideal kink instability, where the resulting vertical current sheet corresponds to the central element of the standard flare model. They note that the surrounding potential field would prevent a global eruption unless the overlying field is sufficiently weakened or magnetic reconnection occurs in either the formed current sheet or with neighbouring flux systems (requiring a multiple-loop configuration). For this event, although the X-ray flare profile indicates a non-ideal process from the start, we may be seeing a similar form of halted eruption before a second stage process kicks in.
+
+\inlinecite{2010ApJ...708..314A} consider the non-ideal case via a flux cancellation model that transforms a sheared arcade into a slowly rising and stable flux rope. Eventually an altitude is reached at which the rate of overlying field decay exceeds the upward magnetic pressure and a torus instability causes a rapid eruption in the form of a CME (of inverse tear-drop shape as observed in this event). Furthermore, they describe how part of the flux rope in the early stages rises faster, due to an asymmetric build-up of the pre-eruptive flux rope. Then the system enters a phase of fast expansion (accelerating to a velocity of $400\,km\,s^{-1}$ in their model), where the overlying field lines that are not affected by the shearing motions, correspond to the front of the CME commonly tracked in coronagraph observations. These modeled effects may offer a sound explanation for the observations of the 8~March~2011 event.
+
+
+\section{Conclusions}
+\label{sect:conclusions}
+
+The \emph{PROBA2}/SWAP imager is unique in that it provides radially extended EUV observations of the Sun and low-corona to greater heights than other EUV imagers such as \emph{SDO}/AIA. An ongoing goal in solar physics has been to study the connection between processes on the Sun and the effects felt elsewhere in the heliosphere; a connection known to lie predominantly between the regions of the photosphere, chromosphere and corona. Therefore obtaining extensive observations across the solar atmosphere is paramount to understanding the physics at play. Since the LASCO/C1 coronagraph was lost very early on in the \emph{SOHO} mission, observations of the low corona have generally been quite limited. In order to bridge this gap and garner some knowledge of the low-corona initiation phase of CMEs, we have combined the SWAP observations with those of the ground-based Mk4 coronameter, to directly compare the EUV and white-light imagery. This was achieved through the use of advanced image processing techniques to overcome the low signal-to-noise ratio in these data, and characterize the erupting structures of interest. The subsequent investigation of the dynamics of a specific case-study on 8~March~2011 provides insight to the early CME formation and eruption, using SWAP and Mk4 in tandem with the observations of AIA and LASCO. This compliments the previous investigation of \inlinecite{2012ApJ...746L...5S} who first reported on the event's two-stage flaring profile as evidence for secondary heating. It is concluded that this event shows evidence for a torus-unstable flux rope that is first formed by possible shearing motions and flux cancellation, before undergoing a magnetic pressure build-up and overlying tension decay that drives a subsequent fast CME and resulting streamer blowout. 
+
+Our study highlights the importance of multi-wavelength, high-cadence, extensive coverage observations of the low-corona, where the physical mechanisms that underly CME formation, initiation, and connection with flares and surrounding coronal field may best be investigated. It is hoped that future instruments such as the new COSMO K-coronagraph\footnote{http://www.cosmo.ucar.edu/kcoronagraph.html} will help to further advance our knowledge of these mechanisms.
+
+}
+% \section{}%\label{s:?} 
+
+
+
+
+%% Figure 
+%
+% \begin{figure} 
+% \centerline{\includegraphics[width=0.5\textwidth,clip=]{<fig.eps>}}
+% \caption{}%\label{fig:?}
+% \end{figure}
+
+
+
+%% Table
+%
+% \begin{table}
+% \caption{}%\label{tbl:?}
+% \begin{tabular}{}     
+% \hline
+% \multicolumn{2}{c}{<>}
+% <data>
+% \hline
+% \end{tabular}
+% \end{table}
+  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Appendix
+%
+% \appendix   
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Acknowledgements
+%
+ \begin{acks}
+ 
+This work is supported by SHINE grant 0962716 and NASA grants NNX08AJ07G and NNX13AG11G to the Institute for Astronomy.
+SWAP is a project of the Centre Spatial de Li'ege and the Royal Observatory of Belgium funded by the Belgian Federal Science Policy Office (BELSPO).
+Mk4 data is provided courtesy of the Mauna Loa Solar Observatory, operated by the High Altitude Observatory, as part of the National Center for Atmospheric Research (NCAR). NCAR is supported by the National Science Foundation.
+The \emph{SOHO}/LASCO data used here are produced by a consortium of the Naval Research Laboratory (USA), Max-Planck-Institut fuer Aeronomie (Germany), Laboratoire d'Astronomie (France), and the University of Birmingham (UK). SOHO is a project of international cooperation between ESA and NASA.
+\emph{SDO} data supplied courtesy of the NASA/\emph{SDO} consortia. JPB is grateful to have been a PROBA2 Guest Investigator.
+
+ \end{acks}
+
+
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography
+%
+% Using BibTeX
+%
+ \bibliographystyle{spr-mp-sola.bst}
+% %\bibliographystyle{spr-mp-sola-cnd} %% Alternative style: no title, no concluding page
+ \bibliography{references.bib}  
+%
+% Without BibTeX 
+% \begin{thebibliography}{}
+% \bibitem[\protect\citeauthoryear{Author}{Year}]{key}
+%   <bibliographical entry>
+%
+% \bibitem[\protect\citeauthoryear{}{}]{}
+%   
+%  
+% \end{thebibliography}
+
+\end{article} 
+\end{document}

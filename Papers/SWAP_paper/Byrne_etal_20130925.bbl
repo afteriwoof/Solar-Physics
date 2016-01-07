@@ -1,0 +1,21 @@
+\begin{thebibliography}{4}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Byrne} {et~al.}(2009){Byrne}, {Gallagher}, {McAteer}, \&
+  {Young}}]{2009A&A...495..325B}
+{Byrne}, J.~P., {Gallagher}, P.~T., {McAteer}, R.~T.~J., \& {Young}, C.~A.
+  2009, \aap, 495, 325
+
+\bibitem[{{Byrne} {et~al.}(2012){Byrne}, {Morgan}, {Habbal}, \&
+  {Gallagher}}]{2012ApJ...752..145B}
+{Byrne}, J.~P., {Morgan}, H., {Habbal}, S.~R., \& {Gallagher}, P.~T. 2012,
+  \apj, 752, 145
+
+\bibitem[{{Morgan} {et~al.}(2012){Morgan}, {Byrne}, \&
+  {Habbal}}]{2012ApJ...752..144M}
+{Morgan}, H., {Byrne}, J.~P., \& {Habbal}, S.~R. 2012, \apj, 752, 144
+
+\bibitem[{{Young} \& {Gallagher}(2008)}]{2008SoPh..248..457Y}
+{Young}, C.~A., \& {Gallagher}, P.~T. 2008, \solphys, 248, 457
+
+\end{thebibliography}

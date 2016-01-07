@@ -1,0 +1,7 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Young} \& {Gallagher}(2008)}]{2008SoPh..248..457Y}
+{Young}, C.~A., \& {Gallagher}, P.~T. 2008, \solphys, 248, 457
+
+\end{thebibliography}

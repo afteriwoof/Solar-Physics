@@ -1,0 +1,174 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Byrne_etal_SWAP_20140512.aux
+White space in argument---line 112 of file Byrne_etal_SWAP_20140512.aux
+ : \citation{
+ :            2012ApJ...746L...5S}
+I'm skipping whatever remains of this command
+The style file: spr-mp-sola.bst.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib.bib
+Warning--string name "a18" is undefined
+--line 1255 of file references.bib.bib
+You're missing a field name---line 1341 of file references.bib.bib
+ :   
+ :   % volume = 257,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1459 of file references.bib.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 1531 of file references.bib.bib
+ : @article{1995ApJ...446..377F
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1697 of file references.bib.bib
+ :    
+ :    %editor = "{Priest, E.~\& Forbes, T.}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1850 of file references.bib.bib
+ :      
+ :      adsnote    = {written by JPB}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1919 of file references.bib.bib
+ :   
+ :   % volume = 4853,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1943 of file references.bib.bib
+ :    
+ :    % pages = {322},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 1980 of file references.bib.bib
+ :  
+ :  %  volume = 4,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2067 of file references.bib.bib
+ :   
+ :   % volume = 4139,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2091 of file references.bib.bib
+ :  
+ :  %  volume = 5171,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2462 of file references.bib.bib
+ :     
+ :     %pages = {1044-1086},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2496 of file references.bib.bib
+ :   
+ :   % series = {Astrophysics and Space Science Library},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2637 of file references.bib.bib
+ :    
+ :    %volume = 6,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 2854 of file references.bib.bib
+ :  
+ :  %  volume = 40,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3011 of file references.bib.bib
+ :    
+ :    %editor = "{}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 3222 of file references.bib.bib
+ : @article{2011AdSpR..47.2118G
+ :                             ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3358 of file references.bib.bib
+ :    
+ :    %volume = 1,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 3385 of file references.bib.bib
+ :     
+ :     %month = oct,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 4433 of file references.bib.bib
+ : @article{2011LRSP....8....1C
+ :                             ,
+I'm skipping whatever remains of this entry
+Warning--string name "in" is undefined
+--line 4529 of file references.bib.bib
+I was expecting a `,' or a `}'---line 4529 of file references.bib.bib
+ :    volume = in 
+ :                review,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 4538 of file references.bib.bib
+ :    volume = in 
+ :                review,
+I'm skipping whatever remains of this entry
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 69 entries,
+            5872 wiz_defined-function locations,
+            1488 strings with 25775 characters,
+and the built_in function-call counts, 365566 in all, are:
+= -- 49925
+> -- 2406
+< -- 108
++ -- 11778
+- -- 944
+* -- 26773
+:= -- 72671
+add.period$ -- 127
+call.type$ -- 69
+change.case$ -- 384
+chr.to.int$ -- 69
+cite$ -- 69
+duplicate$ -- 3068
+empty$ -- 23370
+format.name$ -- 2917
+if$ -- 82671
+int.to.chr$ -- 1
+int.to.str$ -- 40
+missing$ -- 0
+newline$ -- 1193
+num.names$ -- 399
+pop$ -- 2105
+preamble$ -- 1
+purify$ -- 315
+quote$ -- 0
+skip$ -- 22555
+stack$ -- 0
+substring$ -- 53366
+swap$ -- 1208
+text.length$ -- 865
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 2118
+warning$ -- 0
+while$ -- 2439
+width$ -- 0
+write$ -- 1612
+(There were 22 error messages)
