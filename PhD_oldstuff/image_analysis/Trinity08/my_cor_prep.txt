@@ -1,0 +1,25 @@
+; Code to prep the cor data by taking the backgrounds from the server grian as pointed to in my .cshrc
+
+;Last Edited: 08-04-08
+
+pro my_cor_prep, date1, date2, cor1=cor1, cor2=cor2
+
+
+if (keyword_set(cor1)) then list = cor1_pbseries([date1,date2], 'C') ; C for combined Ahead and Behind.
+
+if (keyword_set(cor2)) then list = cor1_pbseries([date1,date2], 'C', /cor2)
+
+ahead = list[0,*,0]
+behind = list[0,*,1]
+
+; Prepping files
+secchi_prep, ahead.filename, ahdrs, aimgs, /polariz_on, /calfac_off, /rotate
+secchi_prep, behind.filename, bhdrs, bimgs, /polariz_on, /calfac_off, /rotate
+
+
+
+
+
+
+
+end

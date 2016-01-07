@@ -1,0 +1,13 @@
+; Last edited: 06-08-07
+
+PRO rot_norms, in, da
+
+sz = size(da, /dim)
+
+; Remove inner disk and perform fmedian filter (slow!)
+for i=0,sz[2]-1 do begin
+	da[*,*,i] = rot(da[*,*,i], 180, 1., in[i].crpix1, in[i].crpix2)
+	writefits, 'norm_rot_'+time2file(in[i].date_d$0bs+'_'+in[i].time_d$obs,/sec)+'.fts', da[*,*,i], in[i]
+endfor
+
+END
