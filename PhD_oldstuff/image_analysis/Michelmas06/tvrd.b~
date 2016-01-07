@@ -1,0 +1,4 @@
+a=make_array(1,13)
+for i=32,44 do begin $
+a[i-32]=tvrd(i)
+

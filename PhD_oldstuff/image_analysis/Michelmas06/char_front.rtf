@@ -1,0 +1,165 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf420
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11360\viewh13300\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 1       linestyle=0, /data\
+2       xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+3       for i=0,0 do plots, $\
+4       xy[*,info[0].offset:(info[0].offset+info[0].n-1)], linestyle=0\
+5       xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+6       plot_image, im\
+7       retall\
+8       linestyle=0, /data\
+9       xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+10      for i=0,0 do plots, $\
+11      plot_image, im\
+12      linestyle=0, /data\
+13      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+14      for i=0,0 do plots, $\
+15      tvscl, im\
+16      linestyle=0, /data\
+17      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+18      for i=0,3 do plots, $\
+19      /path_data_coords\
+20      contour, im, /xstyle, levels=40, path_info=info, path_xy=xy, $\
+21      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+22      plot_image, im\
+23      im=smooth(sigdiff9, 5, /ed)\
+24      plot_image, im\
+25      plot_image, sigdiff9\
+26      plot_image, sigdiff8\
+27      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+\
+\
+\
+1       test\
+2       .r test\
+3       help,kit\
+4       test,kit\
+5       .r test\
+6       test,kit\
+7       .r test\
+8       print,fls\
+9       fls = findfile('18-apr-2000')\
+10      $ls\
+11      /path_data_coords\
+12      contour, im, /xstyle, levels=40, path_info=info, path_xy=xy, $\
+13      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+14      linestyle=0, /data\
+15      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+16      linestyle=0, /data\
+17      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+18      for i=0,1 do plots, $\
+19      linestyle=0, /data\
+20      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+21      for i=0,0 do plots, $\
+22      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+23      y=[y,y[0]]\
+24      x=[x,x[0]]\
+25      y=reform(xy[1,info[0].offset:(info[0].offset+info[0].n-1)])\
+26      x=reform(xy[0,info[0].offset:(info[0].offset+info[0].n-1)])\
+27      xy[1,info[0].offset:(info[0].offset+info[0].n-1)], psym=3\
+28      oplot, xy[0,info[0].offset:(info[0].offset+info[0].n-1)], $\
+29      help, xy\
+30      linestyle=0\
+31      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+32      for i=0,0 do oplot, $\
+33      linestyle=0, /data\
+34      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+35      for i=0,0 do oplot, $\
+36      linestyle=0, /data\
+37      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+38      for i=0,0 do plots, $\
+39      for i=0 do plots, $\
+40      linestyle=0, /data\
+41      oplot, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+42      linestyle=0, /data\
+43      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+44      contour, im, level=50, /over, path_info=info, path_xy=xy\
+45      contour, im, level=50, /over, path_info=info, path+xy=xy\
+46      plot_image, im\
+47      linestyle=0, /data\
+48      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+49      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+50      linestyle=0, /data\
+51      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+52      for i=0,1 do plots, $\
+53      linestyle=0, /data\
+54      plots, xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+55      for i=0,1 do plots, $\
+56      linestyle=0, /data\
+57      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+58      linestyle=1, /data\
+59      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+60      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+61      linestyle=1, /data\
+62      plots, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+63      linestyle=1, /data\
+64      plot, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+65      linestyle=1, /data\
+66      oplot, xy[*,info[0].offset:(info[0].offset+info[0].n-1)], $\
+67      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+68      linestyle=(i<5),/data\
+69      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+70      for i=0,3 do plots, $\
+71      print, info[0]\
+72      print, info[0].n-1\
+73      print, info[0].n\
+74      ?info\
+75      help, /info\
+76      help, info\
+77      print, info[0].offset\
+78      print, info[0]\
+79      print, s\
+80      s=size(xy,/dimensions)\
+81      print, s\
+82      s=size(xy)\
+83      contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+84      contour, im, /xstyle, /ystyle, nlevels=max(image), /fill\
+85      linestyle=(i<3),/data\
+86      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+87      for i=0,(N_elements(info)-1) do plots, $\
+88      tvscl, im\
+89      window, 0, xs=dims[0], ys=dims[1]\
+90      tvscl, im\
+91      plot_image, im\
+92      linestyle=(i<3),/data\
+93      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+94      for i=0,(N_elements(info)-1) do plots, $\
+95      linestyle=(i<5),/data\
+96      xy[*,info[i].offset:(info[i].offset+info[i].n-1)], $\
+97      for i=0,(N_elements(info)-1) do plots, $\
+98      help, info\
+99      print, info\
+100     /path_data_coords\
+101     contour, im, /xstyle, /ystyle, levels=40, path_info=info,path_xy=xy, $\
+102     /path_data_coords\
+103     contour, im, /xstyle, /ystyle, levels=400, path_info=info,path_xy=xy, $\
+104     /path_data_coords\
+105     contour, im, /xstyle, /ystyle, levels=40, path_info=info,path_xy=xy, $\
+106     contour, im, /xstyle, /ystyle, nlevels=max(im), /fill\
+107     contour, im, /xstyle, /ystyle, nlevels=255, /fill\
+108     contour, im, /xstyle, /ystyle, nlevels=1023, /fill\
+109     window, 2\
+110     tvscl, im\
+111     window, 0, xs=dims[0], ys=dims[1]\
+112     dims=[1024,1024]\
+113     print, s\
+114     s=size(im,/dimensions)\
+115     print, s\
+116     s=size(im)\
+117     plot_image, im\
+118     loadct,3\
+119     plot_image, im\
+120     tvscl, openimg, 1\
+121     openimg=morph_open(padimg, strucelem, /gray)\
+122     strucElem=shift(dist(2*radius+1),radius,radius) le radius\
+123     radius=50\
+124     tvscl, openimg, 1                                   \
+125     openimg=morph_open(padimg, strucelem, /gray)\
+126     tvscl, padimg, 0\
+127     window, 0, xs=dims[0], ys=dims[1]\
+128     tvscl, padimg, 0\
+}

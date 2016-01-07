@@ -1,0 +1,12 @@
+PRO rois
+
+image=read_jpeg('srs.jpg')
+
+xroi, image, r, g, b, regions_in=regions, regions_out=regions, $
+	roi_select_color=roi_select_color, $
+	roi_color=roi_color, rejected=rejected, /block
+obj_destroy, rejected
+
+obj_destroy, regions
+
+END

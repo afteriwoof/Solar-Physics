@@ -1,0 +1,28 @@
+; Code which calls the front_ell_kinematics.pro and gathers the ellipse kinematics into plots.
+
+; fronts is the front edges which need to be restored.
+
+; Last Edited: 04-12-07
+
+pro ell_kinematics, in, da, fronts, ang, kins
+
+sz = size(da,/dim)
+
+kins = fltarr(sz[2], 6)
+
+for k=0,sz[2]-1 do begin
+
+	front_ell_kinematics2, fronts[*,*,k], in[k], da[*,*,k], ang, ell_info
+	
+	;front_ell_kinematics2, fronts[*,*,k], in[k], da[*,*,k], ang, ell_info
+	
+	for i=0,5 do kins[k,i] = ell_info[i]
+	
+endfor
+
+
+
+
+
+
+end
