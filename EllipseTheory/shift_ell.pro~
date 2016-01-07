@@ -1,0 +1,36 @@
+; Code to work out the angular width of an ellipse when it actually crosses the 0/360 line.
+
+; Last Edited: 05-12-07
+
+pro shift, in, da, x_ell, y_ell, p
+
+sz_da = size(da,/dim)
+
+; transform back into array space (from the map space)
+xe = x_ell/in.cdelt1 + in.crpix1
+ye = y_ell/in.cdelt2 + in.crpix2
+xec = p[2]/in.cdelt1 + in.crpix1
+yec = p[3]/in.cdelt2 + in.crpix2
+
+;to see if the ellipse needs shifting, make masks of ellipse and 0/360 line and add.
+sz = size(x_ell,/dim)
+res = polyfillv( [xec, xe[0], xe[1]], [yec, ye[0], ye[1]], 1024, 1024 )
+for i=1,sz[0]-2 do begin
+	res2 = polyfillv( [xec, xe[i], xe[i+1]], [yec, ye[i], ye[i+1]], 1024, 1024 )
+	res = [res,res2]
+endfor
+temp=fltarr(sz_da[0], sz_da[1])
+temp[res] = 1
+plot_image, temp
+
+recpol, x_ell, y_ell, r, a, /degrees
+
+min_a = min(a)
+max_a = max(a)
+
+
+
+
+
+
+end

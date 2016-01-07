@@ -1,0 +1,119 @@
+; Trying to take top view of two planes at an angle to each other
+
+; Created: 05-09-08
+
+pro plane_coords, file, x, y, z
+
+readcol, file, phi, theta, r, f='F,F,F'
+
+; convert latitude into spherical
+theta = 90 - theta
+
+phi = phi*!pi/180
+theta = theta*!pi/180
+
+x = r*sin(theta)*cos(phi)
+y = r*sin(theta)*sin(phi)
+z = r*cos(theta)
+
+
+
+p1 = [x[0],y[0],z[0]]
+p2 = [x[1],y[1],z[1]]
+p3 = [x[2],y[2],z[2]]
+p4 = [x[3],y[3],z[3]]
+
+; Rotate p1 and p4 into alignment through angle1 then drop by angle2.
+angle1 = atan((p4[1]-p1[1])/(p4[0]-p1[0])) ; this is in radians
+; Then have to rotate all the points before doing another angle calculation.
+print, 'angle1_radians: ', angle1
+angle1 *= (180/!pi) ; computations for rotation require degrees
+angle1 = 90 - angle1
+print, 'angle1_degrees: ', angle1
+angle1 *= (!pi/180)
+temp_p2 = p2 - p1 ; shifting by p1 so that it is the origin
+temp_p2[0] = temp_p2[0]*cos(angle1) - temp_p2[1]*sin(angle1)
+temp_p2[1] = temp_p2[0]*sin(angle1) + temp_p2[1]*cos(angle1)
+p2 = temp_p2 + p1 ; shift back by p1 again from origin
+temp_p3 = p3-p1
+temp_p3[0] = temp_p3[0]*cos(angle1) - temp_p3[1]*sin(angle1)
+temp_p3[1] = temp_p3[0]*sin(angle1) + temp_p3[1]*cos(angle1)
+p3 = temp_p3 + p1
+temp_p4 = p4-p1
+temp_p4[0] = temp_p4[0]*cos(angle1) - temp_p4[1]*sin(angle1)
+temp_p4[1] = temp_p4[0]*sin(angle1) + temp_p4[1]*cos(angle1)
+p4 = temp_p4 + p1
+
+angle2 = -atan((p1[2]-p4[2])/(p1[1]-p4[1]))
+;angle2 *= (!pi/180.)
+print, 'angle2_degrees: ', angle2*!pi/180
+temp_p2 = p2 - p1
+temp_p2[1] = temp_p2[1]*cos(angle2) - temp_p2[2]*sin(angle2)
+temp_p2[2] = temp_p2[1]*sin(angle2) + temp_p2[2]*cos(angle2)
+p2 = temp_p2 + p1
+temp_p3 = p3 - p1
+temp_p3[1] = temp_p3[1]*cos(angle2) - temp_p3[2]*sin(angle2)
+temp_p3[2] = temp_p3[1]*sin(angle2) + temp_p3[2]*cos(angle2)
+p3 = temp_p3 + p1
+temp_p4 = p4 - p1
+temp_p4[1] = temp_p4[1]*cos(angle2) - temp_p4[2]*sin(angle2)
+temp_p4[2] = temp_p4[1]*sin(angle2) + temp_p4[2]*cos(angle2)
+p4 = temp_p4 + p1
+
+angle3 = -atan((p2[2]-p3[2])/(p2[0]-p3[0]))
+print, 'angle3_degrees: ', angle3*!pi/180
+;angle3 *= (180./!pi)
+print, angle3
+temp_p2 = p2 - p1
+temp_p2[0] = temp_p2[0]*cos(angle3) - temp_p2[2]*sin(angle3)
+temp_p2[2] = temp_p2[0]*sin(angle3) + temp_p2[2]*cos(angle3)
+p2 = temp_p2+p1
+temp_p3 = p3 - p1
+temp_p3[0] = temp_p3[0]*cos(angle3) - temp_p3[2]*sin(angle3)
+temp_p3[2] = temp_p3[0]*sin(angle3) + temp_p3[2]*cos(angle3)
+p3 = temp_p3 + p1
+;a = p1-p2
+;b = p3-p2
+;normal = [(a[1]*b[2]-a[2]*b[1]),-(a[0]*b[2]-a[2]*b[0]),(a[0]*b[1]-a[1]*b[0])]
+;normal *= 0.05
+;print, normal
+
+a = y[0]*(z[1]-z[2])+y[1]*(z[2]-z[0])+y[2]*(z[0]-z[1])
+b = z[0]*(x[1]-x[2])+z[1]*(x[2]-x[0])+z[2]*(x[0]-x[1])
+c = x[0]*(y[1]-y[2])+x[1]*(y[2]-y[0])+x[2]*(y[0]-y[1])
+d = -( x[0]*(y[1]*z[2]-y[2]*z[1])+x[1]*(y[2]*z[0]-y[0]*z[2])+x[2]*(y[0]*z[1]-y[1]*z[0]) )
+print, a, b, c, d
+normal = [a,b,c]
+unit_normal = [ (a/(sqrt(a*a+b*b+c*c))), (b/(sqrt(a*a+b*b+c*c))), (c/(sqrt(a*a+b*b+c*c))) ]
+print, unit_normal
+
+; from http://www.dfanning.com/tips/threedaxes.html
+surface, dist(5), /nodata, /save, xrange=[-10,5], yrange=[-10,0], zrange=[-11,-7], $
+	        xstyle=1, ystyle=1, zstyle=1, charsize=2, ax=0,az=90
+	
+plots, x, y, z, color=1, psym=2, /t3d
+plots, p1, color=3, psym=2, /t3d
+plots, p4, color=3, psym=2, /t3d
+plots, p3, color=3, psym=2, /t3d
+plots, p2, color=3, psym=2, /t3d
+;plots, temp_p4, color=4, psym=2, /t3d
+;iplot, x, y, z, xr=[-10,5], yr=[-10,0], zr=[-11,-7], linestyle=6, sym_index=2
+;iplot, p1[0], p1[1], p1[2], sym_color=3, linestyle=6, sym_index=4, /overplot
+;iplot, p2[0], p2[1], p2[2], sym_color=3, linestyle=6, sym_index=4, /overplot
+;iplot, p3[0], p3[1], p3[2], sym_color=3, linestyle=6, sym_index=4, /overplot
+;iplot, p4[0], p4[1], p4[2], sym_color=3, linestyle=6, sym_index=4, /overplot
+;iplot, x[0]+unit_normal[0], y[0]+unit_normal[1], x[0]+unit_normal[2], /overplot, linestyle=6, sym_index=2
+
+temp1 = p1-p2
+dotted = temp1[0]*unit_normal[0] + temp1[1]*unit_normal[1] + temp1[2]*unit_normal[2]
+print, dotted
+
+
+; dihedral angle between the planes
+;unit_normal1 = [0,0,1]
+;dotprod = unit_normal1[0]*unit_normal[0]+unit_normal1[1]*unit_normal[1]+unit_normal1[2]*unit_normal[2]
+;dotprod = dotprod / (sqrt(unit_normal1[0]^2.+unit_normal1[1]^2.+unit_normal1[2]^2.))
+;dotprod = dotprod / (sqrt(unit_normal[0]^2.+unit_normal[1]^2.+unit_normal[2]^2.))
+;print, dotprod
+
+end

@@ -1,0 +1,90 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf480
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 http://web.archive.org/web/20041013054628/http:/www.j3d.org/matrix_faq/curvfaq_latest.html#Q21\
+\
+\
+Q21. How do I calculate the coefficients of an arbitary rotated ellipse?\
+------------------------------------------------------------------------\
+\
+  The parameters calculated previously are only correct for an ellipse\
+  which is aligned with the X and Y axii.\
+\
+  The ellipse still has to be rotated by the desired angle. This is done\
+  as follows:\
+\
+  Rotating a pair of X and Y coordinates can be performed by the following\
+  expression:\
+\
+          |  M  N |   | Mx - Ny |\
+    [x y] |       | = |         |\
+          | -N  M |   | Nx + My |\
+\
+  where\
+\
+    M =  cos( angle )\
+    N =  sin( angle )\
+\
+  Substituting the resulting matrix elements into equation [1] gives:\
+\
+            2             2\
+    (Mx-Ny-c )    (Nx+My-d )\
+    ---------- +  ---------- - 1 = 0\
+         2               2\
+        r               s\
+\
+  Multiplying out the denominators gives:\
+\
+     2|                  |    2|                  |    2 2\
+    s |(Mx-Ny-c)(Mx-Ny-c)| + r |(Nx+My-d)(Nx+My-d)| - r s  = 0\
+      |                  |     |                  |\
+\
+  Multiplying out the equations within the parenthesis gives:\
+\
+\
+     2|  2 2    2 2    2                       |\
+    s |(M x  + N y  + c  - 2MxNy - 2Nyc - 2Mxc)| +\
+      |                                        |\
+\
+     2|  2 2    2 2    2                       |    2 2\
+    r |(N x  + M y  + d  + 2NxMy - 2Myd - 2Nxd)| - r s  = 0\
+      |                                        |\
+\
+  Then rearranging into the order required by equation [2] gives:\
+\
+\
+     2 2 2    2 2 2    2         2        2        2 2\
+    s M x  + s N y  - s 2MxNy - s 2Mxc - s 2Nyc + s c  +\
+\
+\
+     2 2 2    2 2 2    2         2        2        2 2    2 2\
+    r N x  + r M y  + r 2MxMy - r 2Myd - r 2Nxd + r d  - r s  = 0\
+\
+\
+  The values of the constant terms are then as follows:\
+\
+\
+              2 2    2 2\
+    A =      s M  + r N\
+\
+              2 2    2 2\
+    B =      s N  + r M\
+\
+              2      2\
+    C = -2 ( s Mc + r Nd )\
+\
+              2      2\
+    D = -2 ( s Nc + r Md )\
+\
+              2      2\
+    E =  2 ( s MN - r MN )\
+\
+              2 2    2 2    2 2\
+    F =      s c  + r d  - r s\
+\
+\
+  These values tend to get quite large, so 64-bit integers will be\
+  required.}
