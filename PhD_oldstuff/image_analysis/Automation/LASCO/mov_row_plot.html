@@ -1,0 +1,681 @@
+<HTML>
+
+<HEAD>
+<TITLE> Javascript Movie Player </TITLE>
+
+</HEAD>
+
+<BODY FONT=3 BGCOLOR=FFFFFF LINK=#0000CC VLINK=#0000CC TEXT=#000000> 
+
+<SCRIPT language="Javascript">
+<!--
+//
+// DYNAMICALLY CREATED HTML - DO NOT EDIT
+//
+// Javascript program to produce fast animations by reading from cache
+// Written: 7 July 1997, Zarro, NASA/GSFC
+// Modified: 27 July 1997, Freeland, LSAL - added nice SWING option
+// Modified: 9 Oct 1998, Zarro, SMA/GSFC - added context window button
+// Modified: 14 Oct 1998, Zarro, SMA/GSFC - load images asynchronously
+// Modified: 23 Aug 1999, William Thompson, GSFC - make button text black
+
+// Following variables control movie speed, labels, etc.
+
+var imax = 360, inc = 1.50, delay = 100;
+var num_loaded_images = 0;
+var frame=-1, speed=24;
+var timeout_id=null;
+var dir=1, playing=0, swingon=0, run=0;
+var bname = "Reverse";
+var url_path = "mov_row_plot";
+var context = "frame00.gif";
+var ctitle ="test";
+var url_context=url_path+"/"+context;
+var iwidth = 400,iheight = 600;
+var index=0;
+
+// -->
+</SCRIPT>
+
+<CENTER>
+
+<H1> Javascript Movie Player </H1>
+<P>
+
+<TABLE BORDER="10" CELLPADDING="8">
+<TR>
+<TD align="center"> 
+<img NAME=animation ALT="FRAME" width=400 height=600>
+</TR>
+</TABLE>
+<P>
+
+<FORM NAME="form">
+ <FONT COLOR="Black">
+ <INPUT TYPE=button VALUE="Start" onClick="start_play();">
+ <INPUT TYPE=button VALUE="Pause" onClick="stop_play();">
+ <INPUT TYPE=button VALUE="Faster" onClick="speed*=inc; show_speed();">
+ <INPUT TYPE=button VALUE="Slower" onClick="speed/=inc; show_speed();">
+ <INPUT TYPE=button VALUE="Step" onClick="step();">
+ <INPUT TYPE=button NAME="direction" VALUE="Reverse" onClick="reverse();">
+ <INPUT TYPE=button VALUE="Swing Mode:" onClick="swing_mode();">
+ <INPUT TYPE=text VALUE="OFF" NAME="swing" SIZE=3>
+
+ </FONT>
+ <BR>
+ Frame: <INPUT TYPE=text VALUE="" NAME="frame" SIZE=22> 
+ &nbsp; Speed:<INPUT TYPE=text VALUE="" NAME="rate" SIZE=4> (frames/sec)
+</FORM>
+ 
+</FORM>
+</CENTER>
+
+<P>
+<HR>
+<B>Document</B>: <I><SCRIPT>document.write(document.title);</SCRIPT></I><BR>
+<B>URL</B>: <I><SCRIPT>document.write(document.URL);</SCRIPT></I><BR>
+<B>Last Update</B>: <I><SCRIPT>document.write(document.lastModified);</SCRIPT></I><BR>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+function get_window_width(fac,def) {  // Return window width
+
+ 
+var width;
+if (!fac) {fac=.75;}
+if (!def) {def=512;}
+
+if (window.screen) {
+ width=parseInt(fac*parseFloat(window.screen.width));
+} else {
+ width=def;
+}
+
+return width;
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+function get_window_height(fac,def) {   // Return window height
+
+ 
+var height;
+if (!fac) {fac=.75;}
+if (!def) {def=512;}
+
+if (window.screen) {
+ height=parseInt(fac*parseFloat(window.screen.height));
+} else {
+ height=def;
+}
+
+return height;
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Javascript Pop-up image Window
+// Written: Zarro (SAC/GSFC), October 1998, (dzarro@solar.stanford.edu)
+
+var win;
+
+function pop_img(url,title,width,height) {
+
+if (!url) {
+ alert('Image URL not entered');
+ return false;
+}
+
+// default to fit within 75% of browser window, or 512x512
+
+if (!width) {width=get_window_width(.75,512);}
+if (!height) {height=get_window_height(.75,512);}
+
+if (!win || win.closed) {
+ win = open("","img","width="+width.toString()+",height="+height.toString()+",scrollbars=yes,resizable=yes"); 
+}
+
+// dynamically create HTML, adding a CLOSE button
+
+if (win) {
+ d=win.document;
+ d.write('<html><head><title>Image Window</title></head><body bgcolor="white"><center>');
+ if (title) {
+  d.write('<h1>'+title+'</h1>');
+ }
+ d.write('<img src='+url+'>');
+ d.write('<br><br><br>');
+ d.write('<form><b><input type="button" value="CLOSE" onClick="self.close();"></b></form></center>'); 
+ d.write('</html></body>');
+ d.close();
+ win.focus();
+}
+
+return true;     
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function load_img() {        // asynchronously load all images into cache
+ for (i=0; i < imax ; i++) {
+  id[i]=setTimeout("load_src()",0);
+ }
+ return;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+function load_src() {      // load individual images into cache
+
+ if (index < imax) {
+  if (iwidth && iheight) {
+   images[index] = new Image(iwidth,iheight);
+  } else {
+   images[index] = new Image();
+  }
+  images[index].onload=count_images;
+  images[index].src = urls[index];
+  index++;
+ }
+ return;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+function clear_ids() {         // clear asynchronous id's
+ for (i=0; i < imax ; i++) {clearTimeout(id[i]);}
+ return;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+function count_images() // count images as they are loaded into cache
+{ 
+ if (++num_loaded_images == imax) {
+  show_speed();
+  clear_ids();
+  animate();
+ } else {
+  document.animation.src=images[num_loaded_images-1].src;
+  document.form.frame.value="Loading "+num_loaded_images+" of "+imax; 
+ }
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function image_abort() //  abort loading images
+{ 
+ imax=num_loaded_images;
+ if (!images[num_loaded_images].complete) imax=imax-1;
+ alert("Aborting");
+ if (imax > -1) animate(); 
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function image_error(message) //  abort loading images
+{ 
+ alert(message);
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function start_play()  // start movie
+{
+ if (playing == 0) {
+  if (timeout_id == null && num_loaded_images==imax) animate();
+ }
+} 
+
+///////////////////////////////////////////////////////////////////////////
+
+function stop_play() // stop movie
+{ 
+ if (timeout_id) clearTimeout(timeout_id); 
+  timeout_id=null;
+  playing = 0;
+} 
+
+///////////////////////////////////////////////////////////////////////////
+
+function swing_mode()    // set swing mode
+{
+ if (swingon) {
+  swingon=0;
+  document.form.swing.value="OFF";
+ }
+  else {
+  swingon=1;
+  document.form.swing.value="ON";
+ }
+}
+
+///////////////////////////////////////////////////////////////////////////
+  
+function animate()  // control movie loop
+{
+ var j;
+ frame=(frame+dir+imax)%imax;
+ j=frame+1;
+ if (images[frame].complete) {
+  document.animation.src=images[frame].src;
+  document.form.frame.value="Displaying "+j+" of "+imax;
+  if (swingon && (j == imax || frame == 0)) reverse();
+  timeout_id=setTimeout("animate()",delay);
+  playing=1;
+ }
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function step() // step frames
+{
+ var j;
+ if (timeout_id) clearTimeout(timeout_id); timeout_id=null;
+ frame=(frame+dir+imax)%imax;
+ j=frame+1;
+ if (images[frame].complete) {
+  document.animation.src=images[frame].src;
+  document.form.frame.value="Displaying "+j+" of "+imax;
+  playing=0;
+ }
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function reverse()  // reverse direction
+{
+ dir=-dir;
+ if (dir > 0) document.form.direction.value="Reverse"; bname="Reverse";
+ if (dir < 0) document.form.direction.value="Forward"; bname="Forward";
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function show_speed()      // show speed
+{
+  document.form.rate.value=Math.round(speed);
+  delay = 1000.0/speed; 
+}
+
+///////////////////////////////////////////////////////////////////////////
+// actual image loading is done here
+
+show_speed();
+images = new Array(imax);          
+urls= new Array(imax);
+id= new Array(imax);
+
+
+urls[0]=url_path+"/frame000.gif";
+urls[1]=url_path+"/frame001.gif";
+urls[2]=url_path+"/frame002.gif";
+urls[3]=url_path+"/frame003.gif";
+urls[4]=url_path+"/frame004.gif";
+urls[5]=url_path+"/frame005.gif";
+urls[6]=url_path+"/frame006.gif";
+urls[7]=url_path+"/frame007.gif";
+urls[8]=url_path+"/frame008.gif";
+urls[9]=url_path+"/frame009.gif";
+urls[10]=url_path+"/frame010.gif";
+urls[11]=url_path+"/frame011.gif";
+urls[12]=url_path+"/frame012.gif";
+urls[13]=url_path+"/frame013.gif";
+urls[14]=url_path+"/frame014.gif";
+urls[15]=url_path+"/frame015.gif";
+urls[16]=url_path+"/frame016.gif";
+urls[17]=url_path+"/frame017.gif";
+urls[18]=url_path+"/frame018.gif";
+urls[19]=url_path+"/frame019.gif";
+urls[20]=url_path+"/frame020.gif";
+urls[21]=url_path+"/frame021.gif";
+urls[22]=url_path+"/frame022.gif";
+urls[23]=url_path+"/frame023.gif";
+urls[24]=url_path+"/frame024.gif";
+urls[25]=url_path+"/frame025.gif";
+urls[26]=url_path+"/frame026.gif";
+urls[27]=url_path+"/frame027.gif";
+urls[28]=url_path+"/frame028.gif";
+urls[29]=url_path+"/frame029.gif";
+urls[30]=url_path+"/frame030.gif";
+urls[31]=url_path+"/frame031.gif";
+urls[32]=url_path+"/frame032.gif";
+urls[33]=url_path+"/frame033.gif";
+urls[34]=url_path+"/frame034.gif";
+urls[35]=url_path+"/frame035.gif";
+urls[36]=url_path+"/frame036.gif";
+urls[37]=url_path+"/frame037.gif";
+urls[38]=url_path+"/frame038.gif";
+urls[39]=url_path+"/frame039.gif";
+urls[40]=url_path+"/frame040.gif";
+urls[41]=url_path+"/frame041.gif";
+urls[42]=url_path+"/frame042.gif";
+urls[43]=url_path+"/frame043.gif";
+urls[44]=url_path+"/frame044.gif";
+urls[45]=url_path+"/frame045.gif";
+urls[46]=url_path+"/frame046.gif";
+urls[47]=url_path+"/frame047.gif";
+urls[48]=url_path+"/frame048.gif";
+urls[49]=url_path+"/frame049.gif";
+urls[50]=url_path+"/frame050.gif";
+urls[51]=url_path+"/frame051.gif";
+urls[52]=url_path+"/frame052.gif";
+urls[53]=url_path+"/frame053.gif";
+urls[54]=url_path+"/frame054.gif";
+urls[55]=url_path+"/frame055.gif";
+urls[56]=url_path+"/frame056.gif";
+urls[57]=url_path+"/frame057.gif";
+urls[58]=url_path+"/frame058.gif";
+urls[59]=url_path+"/frame059.gif";
+urls[60]=url_path+"/frame060.gif";
+urls[61]=url_path+"/frame061.gif";
+urls[62]=url_path+"/frame062.gif";
+urls[63]=url_path+"/frame063.gif";
+urls[64]=url_path+"/frame064.gif";
+urls[65]=url_path+"/frame065.gif";
+urls[66]=url_path+"/frame066.gif";
+urls[67]=url_path+"/frame067.gif";
+urls[68]=url_path+"/frame068.gif";
+urls[69]=url_path+"/frame069.gif";
+urls[70]=url_path+"/frame070.gif";
+urls[71]=url_path+"/frame071.gif";
+urls[72]=url_path+"/frame072.gif";
+urls[73]=url_path+"/frame073.gif";
+urls[74]=url_path+"/frame074.gif";
+urls[75]=url_path+"/frame075.gif";
+urls[76]=url_path+"/frame076.gif";
+urls[77]=url_path+"/frame077.gif";
+urls[78]=url_path+"/frame078.gif";
+urls[79]=url_path+"/frame079.gif";
+urls[80]=url_path+"/frame080.gif";
+urls[81]=url_path+"/frame081.gif";
+urls[82]=url_path+"/frame082.gif";
+urls[83]=url_path+"/frame083.gif";
+urls[84]=url_path+"/frame084.gif";
+urls[85]=url_path+"/frame085.gif";
+urls[86]=url_path+"/frame086.gif";
+urls[87]=url_path+"/frame087.gif";
+urls[88]=url_path+"/frame088.gif";
+urls[89]=url_path+"/frame089.gif";
+urls[90]=url_path+"/frame090.gif";
+urls[91]=url_path+"/frame091.gif";
+urls[92]=url_path+"/frame092.gif";
+urls[93]=url_path+"/frame093.gif";
+urls[94]=url_path+"/frame094.gif";
+urls[95]=url_path+"/frame095.gif";
+urls[96]=url_path+"/frame096.gif";
+urls[97]=url_path+"/frame097.gif";
+urls[98]=url_path+"/frame098.gif";
+urls[99]=url_path+"/frame099.gif";
+urls[100]=url_path+"/frame100.gif";
+urls[101]=url_path+"/frame101.gif";
+urls[102]=url_path+"/frame102.gif";
+urls[103]=url_path+"/frame103.gif";
+urls[104]=url_path+"/frame104.gif";
+urls[105]=url_path+"/frame105.gif";
+urls[106]=url_path+"/frame106.gif";
+urls[107]=url_path+"/frame107.gif";
+urls[108]=url_path+"/frame108.gif";
+urls[109]=url_path+"/frame109.gif";
+urls[110]=url_path+"/frame110.gif";
+urls[111]=url_path+"/frame111.gif";
+urls[112]=url_path+"/frame112.gif";
+urls[113]=url_path+"/frame113.gif";
+urls[114]=url_path+"/frame114.gif";
+urls[115]=url_path+"/frame115.gif";
+urls[116]=url_path+"/frame116.gif";
+urls[117]=url_path+"/frame117.gif";
+urls[118]=url_path+"/frame118.gif";
+urls[119]=url_path+"/frame119.gif";
+urls[120]=url_path+"/frame120.gif";
+urls[121]=url_path+"/frame121.gif";
+urls[122]=url_path+"/frame122.gif";
+urls[123]=url_path+"/frame123.gif";
+urls[124]=url_path+"/frame124.gif";
+urls[125]=url_path+"/frame125.gif";
+urls[126]=url_path+"/frame126.gif";
+urls[127]=url_path+"/frame127.gif";
+urls[128]=url_path+"/frame128.gif";
+urls[129]=url_path+"/frame129.gif";
+urls[130]=url_path+"/frame130.gif";
+urls[131]=url_path+"/frame131.gif";
+urls[132]=url_path+"/frame132.gif";
+urls[133]=url_path+"/frame133.gif";
+urls[134]=url_path+"/frame134.gif";
+urls[135]=url_path+"/frame135.gif";
+urls[136]=url_path+"/frame136.gif";
+urls[137]=url_path+"/frame137.gif";
+urls[138]=url_path+"/frame138.gif";
+urls[139]=url_path+"/frame139.gif";
+urls[140]=url_path+"/frame140.gif";
+urls[141]=url_path+"/frame141.gif";
+urls[142]=url_path+"/frame142.gif";
+urls[143]=url_path+"/frame143.gif";
+urls[144]=url_path+"/frame144.gif";
+urls[145]=url_path+"/frame145.gif";
+urls[146]=url_path+"/frame146.gif";
+urls[147]=url_path+"/frame147.gif";
+urls[148]=url_path+"/frame148.gif";
+urls[149]=url_path+"/frame149.gif";
+urls[150]=url_path+"/frame150.gif";
+urls[151]=url_path+"/frame151.gif";
+urls[152]=url_path+"/frame152.gif";
+urls[153]=url_path+"/frame153.gif";
+urls[154]=url_path+"/frame154.gif";
+urls[155]=url_path+"/frame155.gif";
+urls[156]=url_path+"/frame156.gif";
+urls[157]=url_path+"/frame157.gif";
+urls[158]=url_path+"/frame158.gif";
+urls[159]=url_path+"/frame159.gif";
+urls[160]=url_path+"/frame160.gif";
+urls[161]=url_path+"/frame161.gif";
+urls[162]=url_path+"/frame162.gif";
+urls[163]=url_path+"/frame163.gif";
+urls[164]=url_path+"/frame164.gif";
+urls[165]=url_path+"/frame165.gif";
+urls[166]=url_path+"/frame166.gif";
+urls[167]=url_path+"/frame167.gif";
+urls[168]=url_path+"/frame168.gif";
+urls[169]=url_path+"/frame169.gif";
+urls[170]=url_path+"/frame170.gif";
+urls[171]=url_path+"/frame171.gif";
+urls[172]=url_path+"/frame172.gif";
+urls[173]=url_path+"/frame173.gif";
+urls[174]=url_path+"/frame174.gif";
+urls[175]=url_path+"/frame175.gif";
+urls[176]=url_path+"/frame176.gif";
+urls[177]=url_path+"/frame177.gif";
+urls[178]=url_path+"/frame178.gif";
+urls[179]=url_path+"/frame179.gif";
+urls[180]=url_path+"/frame180.gif";
+urls[181]=url_path+"/frame181.gif";
+urls[182]=url_path+"/frame182.gif";
+urls[183]=url_path+"/frame183.gif";
+urls[184]=url_path+"/frame184.gif";
+urls[185]=url_path+"/frame185.gif";
+urls[186]=url_path+"/frame186.gif";
+urls[187]=url_path+"/frame187.gif";
+urls[188]=url_path+"/frame188.gif";
+urls[189]=url_path+"/frame189.gif";
+urls[190]=url_path+"/frame190.gif";
+urls[191]=url_path+"/frame191.gif";
+urls[192]=url_path+"/frame192.gif";
+urls[193]=url_path+"/frame193.gif";
+urls[194]=url_path+"/frame194.gif";
+urls[195]=url_path+"/frame195.gif";
+urls[196]=url_path+"/frame196.gif";
+urls[197]=url_path+"/frame197.gif";
+urls[198]=url_path+"/frame198.gif";
+urls[199]=url_path+"/frame199.gif";
+urls[200]=url_path+"/frame200.gif";
+urls[201]=url_path+"/frame201.gif";
+urls[202]=url_path+"/frame202.gif";
+urls[203]=url_path+"/frame203.gif";
+urls[204]=url_path+"/frame204.gif";
+urls[205]=url_path+"/frame205.gif";
+urls[206]=url_path+"/frame206.gif";
+urls[207]=url_path+"/frame207.gif";
+urls[208]=url_path+"/frame208.gif";
+urls[209]=url_path+"/frame209.gif";
+urls[210]=url_path+"/frame210.gif";
+urls[211]=url_path+"/frame211.gif";
+urls[212]=url_path+"/frame212.gif";
+urls[213]=url_path+"/frame213.gif";
+urls[214]=url_path+"/frame214.gif";
+urls[215]=url_path+"/frame215.gif";
+urls[216]=url_path+"/frame216.gif";
+urls[217]=url_path+"/frame217.gif";
+urls[218]=url_path+"/frame218.gif";
+urls[219]=url_path+"/frame219.gif";
+urls[220]=url_path+"/frame220.gif";
+urls[221]=url_path+"/frame221.gif";
+urls[222]=url_path+"/frame222.gif";
+urls[223]=url_path+"/frame223.gif";
+urls[224]=url_path+"/frame224.gif";
+urls[225]=url_path+"/frame225.gif";
+urls[226]=url_path+"/frame226.gif";
+urls[227]=url_path+"/frame227.gif";
+urls[228]=url_path+"/frame228.gif";
+urls[229]=url_path+"/frame229.gif";
+urls[230]=url_path+"/frame230.gif";
+urls[231]=url_path+"/frame231.gif";
+urls[232]=url_path+"/frame232.gif";
+urls[233]=url_path+"/frame233.gif";
+urls[234]=url_path+"/frame234.gif";
+urls[235]=url_path+"/frame235.gif";
+urls[236]=url_path+"/frame236.gif";
+urls[237]=url_path+"/frame237.gif";
+urls[238]=url_path+"/frame238.gif";
+urls[239]=url_path+"/frame239.gif";
+urls[240]=url_path+"/frame240.gif";
+urls[241]=url_path+"/frame241.gif";
+urls[242]=url_path+"/frame242.gif";
+urls[243]=url_path+"/frame243.gif";
+urls[244]=url_path+"/frame244.gif";
+urls[245]=url_path+"/frame245.gif";
+urls[246]=url_path+"/frame246.gif";
+urls[247]=url_path+"/frame247.gif";
+urls[248]=url_path+"/frame248.gif";
+urls[249]=url_path+"/frame249.gif";
+urls[250]=url_path+"/frame250.gif";
+urls[251]=url_path+"/frame251.gif";
+urls[252]=url_path+"/frame252.gif";
+urls[253]=url_path+"/frame253.gif";
+urls[254]=url_path+"/frame254.gif";
+urls[255]=url_path+"/frame255.gif";
+urls[256]=url_path+"/frame256.gif";
+urls[257]=url_path+"/frame257.gif";
+urls[258]=url_path+"/frame258.gif";
+urls[259]=url_path+"/frame259.gif";
+urls[260]=url_path+"/frame260.gif";
+urls[261]=url_path+"/frame261.gif";
+urls[262]=url_path+"/frame262.gif";
+urls[263]=url_path+"/frame263.gif";
+urls[264]=url_path+"/frame264.gif";
+urls[265]=url_path+"/frame265.gif";
+urls[266]=url_path+"/frame266.gif";
+urls[267]=url_path+"/frame267.gif";
+urls[268]=url_path+"/frame268.gif";
+urls[269]=url_path+"/frame269.gif";
+urls[270]=url_path+"/frame270.gif";
+urls[271]=url_path+"/frame271.gif";
+urls[272]=url_path+"/frame272.gif";
+urls[273]=url_path+"/frame273.gif";
+urls[274]=url_path+"/frame274.gif";
+urls[275]=url_path+"/frame275.gif";
+urls[276]=url_path+"/frame276.gif";
+urls[277]=url_path+"/frame277.gif";
+urls[278]=url_path+"/frame278.gif";
+urls[279]=url_path+"/frame279.gif";
+urls[280]=url_path+"/frame280.gif";
+urls[281]=url_path+"/frame281.gif";
+urls[282]=url_path+"/frame282.gif";
+urls[283]=url_path+"/frame283.gif";
+urls[284]=url_path+"/frame284.gif";
+urls[285]=url_path+"/frame285.gif";
+urls[286]=url_path+"/frame286.gif";
+urls[287]=url_path+"/frame287.gif";
+urls[288]=url_path+"/frame288.gif";
+urls[289]=url_path+"/frame289.gif";
+urls[290]=url_path+"/frame290.gif";
+urls[291]=url_path+"/frame291.gif";
+urls[292]=url_path+"/frame292.gif";
+urls[293]=url_path+"/frame293.gif";
+urls[294]=url_path+"/frame294.gif";
+urls[295]=url_path+"/frame295.gif";
+urls[296]=url_path+"/frame296.gif";
+urls[297]=url_path+"/frame297.gif";
+urls[298]=url_path+"/frame298.gif";
+urls[299]=url_path+"/frame299.gif";
+urls[300]=url_path+"/frame300.gif";
+urls[301]=url_path+"/frame301.gif";
+urls[302]=url_path+"/frame302.gif";
+urls[303]=url_path+"/frame303.gif";
+urls[304]=url_path+"/frame304.gif";
+urls[305]=url_path+"/frame305.gif";
+urls[306]=url_path+"/frame306.gif";
+urls[307]=url_path+"/frame307.gif";
+urls[308]=url_path+"/frame308.gif";
+urls[309]=url_path+"/frame309.gif";
+urls[310]=url_path+"/frame310.gif";
+urls[311]=url_path+"/frame311.gif";
+urls[312]=url_path+"/frame312.gif";
+urls[313]=url_path+"/frame313.gif";
+urls[314]=url_path+"/frame314.gif";
+urls[315]=url_path+"/frame315.gif";
+urls[316]=url_path+"/frame316.gif";
+urls[317]=url_path+"/frame317.gif";
+urls[318]=url_path+"/frame318.gif";
+urls[319]=url_path+"/frame319.gif";
+urls[320]=url_path+"/frame320.gif";
+urls[321]=url_path+"/frame321.gif";
+urls[322]=url_path+"/frame322.gif";
+urls[323]=url_path+"/frame323.gif";
+urls[324]=url_path+"/frame324.gif";
+urls[325]=url_path+"/frame325.gif";
+urls[326]=url_path+"/frame326.gif";
+urls[327]=url_path+"/frame327.gif";
+urls[328]=url_path+"/frame328.gif";
+urls[329]=url_path+"/frame329.gif";
+urls[330]=url_path+"/frame330.gif";
+urls[331]=url_path+"/frame331.gif";
+urls[332]=url_path+"/frame332.gif";
+urls[333]=url_path+"/frame333.gif";
+urls[334]=url_path+"/frame334.gif";
+urls[335]=url_path+"/frame335.gif";
+urls[336]=url_path+"/frame336.gif";
+urls[337]=url_path+"/frame337.gif";
+urls[338]=url_path+"/frame338.gif";
+urls[339]=url_path+"/frame339.gif";
+urls[340]=url_path+"/frame340.gif";
+urls[341]=url_path+"/frame341.gif";
+urls[342]=url_path+"/frame342.gif";
+urls[343]=url_path+"/frame343.gif";
+urls[344]=url_path+"/frame344.gif";
+urls[345]=url_path+"/frame345.gif";
+urls[346]=url_path+"/frame346.gif";
+urls[347]=url_path+"/frame347.gif";
+urls[348]=url_path+"/frame348.gif";
+urls[349]=url_path+"/frame349.gif";
+urls[350]=url_path+"/frame350.gif";
+urls[351]=url_path+"/frame351.gif";
+urls[352]=url_path+"/frame352.gif";
+urls[353]=url_path+"/frame353.gif";
+urls[354]=url_path+"/frame354.gif";
+urls[355]=url_path+"/frame355.gif";
+urls[356]=url_path+"/frame356.gif";
+urls[357]=url_path+"/frame357.gif";
+urls[358]=url_path+"/frame358.gif";
+urls[359]=url_path+"/frame359.gif";
+
+load_img();
+
+// -->
+</SCRIPT>
+
+</BODY>
+</HTML>
+

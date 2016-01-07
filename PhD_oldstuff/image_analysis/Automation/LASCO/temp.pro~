@@ -1,0 +1,14 @@
+pro temp, in
+
+thr1=2
+thr2=3
+
+case in.detector of
+'COR2':	thr1=5 
+thr2=10
+endcase
+
+print, thr1, thr2
+
+
+end

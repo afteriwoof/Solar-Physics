@@ -1,0 +1,17 @@
+; Code to run noblink_thresh quickly having saved the data arrays from a previous running of the code!
+
+restore, 'diffn.sav'
+restore, 'diffnb.sav'
+restore, 'danb.sav'
+
+szd = size(diffn, /dim)
+
+for i=0,szd[2]-1 do begin & $
+
+	mu = moment(diffn(50:200, 200:950, i), sdev=sdev) & $
+	print, 'sdev:' & print, sdev & $
+	thresh = mu[0] + 3.*sdev & $
+	print, 'thresh:' & print, thresh & $
+
+endfor
+

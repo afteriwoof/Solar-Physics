@@ -1,0 +1,122 @@
+; Code to try and find ellipse parameters for plotting over the contour array indices.
+
+; Last edited 22-02-07
+
+
+;p = randomu(10,10,2)
+
+p=fltarr(4,2)
+p[0,0]=3
+p[0,1]=2
+p[1,0]=6
+p[1,1]=5
+p[2,0]=7
+p[2,1]=4
+p[3,0]=1
+p[3,1]=6
+
+x = p(*,0)
+y = p(*,1)
+plot, x, y
+
+;x=transpose(x)
+;y=transpose(y)
+
+;weights = 0.75/(4.0^2+0.1^2)
+;p = mpfitellipse(x,y)
+
+;phi = dindgen(101)*2D*!dpi/100
+;plots, p(2)+p(0)*cos(phi), p(3)+p(1)*sin(phi)
+
+
+sz_x = size(x, /dim)
+sz_y = size(y, /dim)
+
+sumx = 0.
+sumy = 0.
+sumxx = 0.
+sumyy = 0.
+sumxy = 0.
+i=0.
+
+while(i lt sz_x[0]) do begin & $
+	sumx = sumx + x(i) & $
+	sumy = sumy + y(i) & $
+	
+	sumxx = sumxx + x(i)*x(i) & $
+	sumyy = sumyy + y(i)*y(i) & $
+	sumxy = sumxy + x(i)*y(i) & $
+
+	i=i+1 & $
+endwhile
+
+x_bar = sumx / sz_x[0]
+y_bar = sumy / sz_y[0]
+
+varx = sumxx / sz_x[0]
+vary = sumyy / sz_y[0]
+covarxy = sumxy / sz_x[0]
+
+i=0.
+z=fltarr(3,sz_x[0])
+temp1=fltarr(2)
+temp2=fltarr(2,2)
+mx=fltarr(4,sz_x[0])
+total = fltarr(2,2)
+
+while(i lt sz_x[0]) do begin & $
+
+        ; Take the vector (x-xbar, y-ybar)
+        z[i,0] = ( x[i] - x_bar ) & $
+        z[i,1] = ( y[i] - y_bar ) & $
+        
+	; Multiply each by its transpose
+        temp1[0] = z[i,0] & $
+	temp1[1] = z[i,1] & $
+	
+	temp2 = transpose(temp1)##temp1 & $
+ 	
+	total = total + temp2 & $
+
+        i=i+1 & $
+
+endwhile
+
+dx = z[*,0]
+dy = z[*,1]
+sumdxdx=0.
+sumdydy=0.
+sumdxdy=0.
+i = 0.
+while(i lt sz_x[0]) do begin & $
+	sumdxdx = sumdxdx + dx[i]*dx[i] & $
+	sumdydy = sumdydy + dy[i]*dy[i] & $
+	sumdxdy = sumdxdy + dx[i]*dy[i] & $
+	i=i+1 & $
+endwhile
+
+eps = 1.e-10
+theta = 0.5*atan(2*sumdxdy / (eps + (sumdydy-sumdxdx)))
+
+c = cos(theta)
+s = sin(theta)
+
+u = c*dx - s*dy
+v = s*dx + c*dy
+sumuu = 0.
+sumvv = 0.
+i = 0.
+while(i lt sz_x[0]) do begin & $
+	sumuu = sumuu + u[i]*u[i] & $
+	sumvv = sumvv + v[i]*v[i] & $
+	i=i+1 & $
+endwhile
+
+varu = sumuu / sz_x[0]
+varv = sumvv / sz_x[0]
+
+a = sqrt(varu) ; semi-minor
+b = sqrt(varv) ; semi-major
+
+
+

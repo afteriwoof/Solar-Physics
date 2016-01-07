@@ -1,0 +1,22 @@
+; Code to try and find ellipse parameters for plotting over the contour array indices.
+
+; Last edited 15-02-07
+
+
+;p = randomu(10,10,2)
+
+p=fltarr(3,2)
+p[0,0]=3
+p[0,1]=2
+p[1,0]=6
+p[1,1]=5
+p[2,0]=7
+p[2,1]=4
+
+x = p(*,0)
+y = p(*,1)
+
+
+
+
+
