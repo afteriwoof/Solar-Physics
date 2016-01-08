@@ -284,3 +284,63 @@ mv realtime/soho/lasco/detections/yyyy/mm /volumes/store/processed_data/realtime
 Then on alshamess edit the html file to link the new month: /volumes/data/data1/www/CORIMP/index.html
 
 ***************************************************************************************************************************************
+
+CODE DEPENDENCIES:
+
+Last edited: 2013-07-15
+
+**********************
+run_automated_new.pro
+	sort_fls.pro
+		filename2date.pro
+	rm_inner_corimp.pro
+	rm_outer_corimp.pro
+	reflect_inner_outer.pro
+	canny_atrous2d.pro
+		canny_atrous.pro
+	wtmm.pro
+		find_local_maxima.pro
+	cme_detection_mask_corimp_dynamic_thr.pro
+		test_contour_thresholds.pro
+	cme_mask_inds.pro
+run_automated2_new.pro
+	medabsdev.pro
+	polar.pro
+	find_outer_peak_edges_new.pro
+**********************	
+
+automated_kins ;(needs to be setup for secchi data)
+	read_daily_stacks.pro
+	clean_pa_total.pro
+	separate_pa_total.pro
+	make_pa_total_plot.pro
+	find_pa_heights_all_redo.pro
+	find_pa_heights_masked.pro
+	clean_heights.pro
+	plot_kins_quartiles.pro
+	gather_gail_detections_inset_all.pro
+		get_ht_pa_2d_corimp.pro
+
+
+;OR
+
+automated_kins_stereo.pro
+	read_daily_stacks.pro
+	clean_pa_total.pro
+	separate_pa_total.pro
+	make_pa_total_plot.pro
+	find_pa_heights_all_redo.pro
+	find_pa_heights_masked.pro
+	clean_heights.pro
+	plot_kins_quartiles.pro
+	gather_detections_cor2.pro
+		get_ht_pa_2d_corimp.pro
+
+
+
+
+NOTES to be done:
+
+Need to set pa_total to save out after every N images. Right now it just saves out one for the input dataset (which is broken right now into every day on gail codes).
+
+
